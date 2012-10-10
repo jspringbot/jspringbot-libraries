@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012. JSpringBot Shiela D. Buitizon. All Rights Reserved.
+ * Copyright (c) 2012. JSpringBot. All Rights Reserved.
  *
  * See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -67,7 +67,7 @@ public class HTTPHelperTest {
 
         assertEquals("application/json; charset=UTF-8", httpHelper.getResponseHeader("Content-Type"));
 
-        // simple xml testing
+        // simple json testing
         jsonHelper.jsonValueShouldBe("current_observation.display_location.city", "San Francisco");
         jsonHelper.jsonValueShouldBe("current_observation.display_location.state", "CA");
     }
