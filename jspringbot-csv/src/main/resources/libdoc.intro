@@ -1,0 +1,88 @@
+Contains keywords to parse and query a CSV string or resource.
+
+*Example CSV Resource (classpath:employee.csv)*
+
+| *Name*   | *Department*  | *Position*  | *Age* |
+| Alvin  | Development | CEO       | 29  |
+| Shiela | Development | Developer | 27  |
+| Master | Development | CFO       | 23  |
+| Warren | Research    | QA        | 21  |
+
+*Example CSV Resource (classpath:department.csv)*
+
+| *Name*         | *Description*                         |
+| Development  | This is the development department. |
+| Research     | This is the research department.    |
+
+
+*For Processing Single CSV Resource*
+
+The following show how you can parse and query for a CSV resource.
+
+The example below ensure that there is an employee named Alvin of Age 29 and Position of CEO.
+
+| `Parse CSV Resource`                     | classpath:employee.csv |
+| `Set First CSV Row As Headers`           |
+| `Create CSV Criteria`                    |
+| `Add Column Name Equals CSV Restriction` | Name                   | Alvin |
+| `Add Column Name Equals CSV Restriction` | Age                    | 29    |
+| `Add Column Name Equals CSV Restriction` | Position               | CEO   |
+| `Should Have CSV Result`                 |
+
+The example below checks that there are 2 records with Position of CEO or CFO.
+
+| `Parse CSV Resource`                     | classpath:employee.csv |
+| `Set First CSV Row As Headers`           |
+| `Create CSV Criteria`                    |
+| `Disjunction Start CSV Restriction`      |
+| `Add Column Name Equals CSV Restriction` | Position               | CEO   |
+| `Add Column Name Equals CSV Restriction` | Position               | CFO   |
+| `Disjunction End CSV Restriction`        |
+| `Project CSV Count Should Be`            | 2                      |
+
+The example below checks that there are 2 records with employee named Alvin with position CEO or employee named Master with position CFO.
+
+| `Parse CSV Resource`                     | classpath:employee.csv |
+| `Set First CSV Row As Headers`           |
+| `Create CSV Criteria`                    |
+| `Disjunction Start CSV Restriction`      |
+| `Conjunction Start CSV Restriction`      |
+| `Add Column Name Equals CSV Restriction` | Name                   | Alvin  |
+| `Add Column Name Equals CSV Restriction` | Position               | CEO    |
+| `Conjunction End CSV Restriction`        |
+| `Conjunction Start CSV Restriction`      |
+| `Add Column Name Equals CSV Restriction` | Name                   | Master |
+| `Add Column Name Equals CSV Restriction` | Position               | CFO    |
+| `Conjunction End CSV Restriction`        |
+| `Disjunction End CSV Restriction`        |
+| `Project CSV Count Should Be`            | 2                      |
+
+*For Processing Multiple CSV Resources*
+
+When multiple CSV resources are available on a single test case you need to add support for CSV states.
+
+The example below parses both CSV files and added states, then switches CSV state when needed.
+
+| `Parse State CSV Resource`               | Employee                         | classpath:employee.csv   |
+| `Set First CSV Row As Headers`           |
+| `Parse State CSV Resource`               | Department                       | classpath:department.csv |
+| `Set First CSV Row As Headers`           |
+| #                                      |
+| # Now we check for employees first     |
+| `Switch CSV State`                       | Employee                         |
+| `Create CSV Criteria`                    |
+| `Add Column Name Equals CSV Restriction` | Name                             | Alvin |
+| `Add Column Name Equals CSV Restriction` | Age                              | 29    |
+| `Add Column Name Equals CSV Restriction` | Position                         | CEO   |
+| `Should Have CSV Result`                 |
+| # Now we check for department next     |
+| `Switch CSV State`                       | Department                       |
+| `Create CSV Criteria`                    |
+| `Add Column Name Equals CSV Restriction` | Name                             | Development |
+| `Should Have CSV Result`                 |
+| ${description}=                        | `Get First CSV Column Name Result` | Description |
+| `Log`                                    | ${description}                   |
+
+
+Base from above, we check that there is an employee named Alvin of Age 29 and Position of CEO and
+checks for a department named Development and logs the department description.

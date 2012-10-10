@@ -133,5 +133,6 @@
     <module>jspringbot-json</module>
     <module>jspringbot-xml</module>
     <module>jspringbot-http</module>
+    <module>jspringbot-csv</module>
   </modules>
 </project>
