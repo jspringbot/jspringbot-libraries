@@ -129,6 +129,7 @@
   </profiles>
 
   <modules>
+    <module>jspringbot-json</module>
     <module>jspringbot-syntax-highlight</module>
     <module>jspringbot-xml</module>
   </modules>

@@ -1,0 +1,80 @@
+Contains keywords for creating and parsing JSON values.
+
+*Sample Json Object:*
+
+{ "store": {
+    "book": [
+      { "category": "reference",
+        "author": "Nigel Rees",
+        "title": "Sayings of the Century",
+        "price": 8.95
+      },
+      { "category": "fiction",
+        "author": "Evelyn Waugh",
+        "title": "Sword of Honour",
+        "price": 12.99,
+        "isbn": "0-553-21311-3"
+      }
+    ],
+    "bicycle": {
+      "model": "bmx",
+      "color": "red",
+      "price": 19.95
+    }
+  }
+}
+
+
+*Sample Usage:*
+|                               |                               |                        | *Returns*                     |
+| Start JSON Object             |
+| Start JSON Object             | store                         |
+| Start JSON List               | book                          |
+| Start JSON Object             |
+| Add JSON Object Item          | category                      | reference              |
+| Add JSON Object Item          | author                        | Nigel Rees             |
+| Add JSON Object Item          | title                         | Sayings of the Century |
+| Add JSON Object Item          | price                         | 8.95                   |
+| End JSON Object               |
+| Start JSON Object             |
+| Add JSON Object Item          | category                      | fiction                |
+| Add JSON Object Item          | author                        | Evelyn Waugh           |
+| Add JSON Object Item          | title                         | Sword of Honour        |
+| Add JSON Object Item          | price                         | 12.99                  |
+| Add JSON Object Item          | isbn                          | 0-553-21311-3          |
+| End JSON Object               |
+| End JSON Array                |
+| Start JSON Object             | bicycle                       |
+| Add JSON Object Item          | model                         | bmx                    |
+| Add JSON Object Item          | color                         | red                    |
+| Add JSON Object Item          | price                         | 19.95                  |
+| End JSON Object               |
+| End JSON Object               |
+| End JSON Object               |
+| ${jsonString}=                | Get Created JSON String       |                        | Creates the json sample above |
+| Set Json String               | ${jsonString}                 |
+| Get Json Value                | store.bicycle.color           |                        | red                           |
+| Get Json Value For            | store.bicycle                 | model                  | bmx                           |
+| Get Json Values               | $..category                   |                        | ["reference","fiction"]       |
+| Json Value Should Be          | store.bicycle.price           |                        | 19.95                         |
+| Json Value Should Be Null     | store.book[1].author          |                        | IllegalArgumentException      |
+| Json Value Should Not Be Null | store.book[1].author          |                        | true                          |
+
+
+*More example on creating JSON object and list:*
+
+|                              |              |          | *Returns* |
+| Start JSON Object            |
+| Add JSON Object Boolean Item | booleanValue | true     |
+| Add JSON Object String Item  | stringValue  | hello    |
+| Add JSON Object Integer Item | numberValue  | 123      |
+| Start JSON List              | list         |
+| Add JSON List Boolean Item   | booleanValue | true     |
+| Add JSON List String Item    | StringValue  | hello    |
+| Add JSON List Integer Item   | booleanValue | 123      |
+| End JSON List                |
+| Start JSON Object            | jsonObject   |
+| Add JSON Object String Item  | objname      | objvalue |
+| End JSON Object              |
+| End JSON Object              |
+| Get Created JSON String      |              |          | {"jsonObject":{"objname":"objvalue"},"numberValue":123,"stringValue":"hello","list":[1,2,3],"booleanValue":true} |
