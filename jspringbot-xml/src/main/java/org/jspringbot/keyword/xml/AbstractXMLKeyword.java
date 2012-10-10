@@ -16,16 +16,13 @@
  * limitations under the License.
  */
 
-package org.jspringbot.syntax;
+package org.jspringbot.keyword.xml;
 
-import org.junit.Test;
+import org.jspringbot.Keyword;
+import org.springframework.beans.factory.annotation.Autowired;
 
-/**
- * Test for syntax highlighter
- */
-public class HighlighterUtilsTest {
-    @Test
-    public void testXML() throws Exception {
-        System.out.println(HighlighterUtils.INSTANCE.highlight("<a>hello</a>", "xml"));
-    }
+public abstract class AbstractXMLKeyword implements Keyword {
+
+    @Autowired
+    protected XMLHelper helper;
 }

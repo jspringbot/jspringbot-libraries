@@ -16,16 +16,25 @@
  * limitations under the License.
  */
 
-package org.jspringbot.syntax;
+package org.jspringbot.keyword.xml;
 
-import org.junit.Test;
+import org.jspringbot.KeywordInfo;
+import org.springframework.stereotype.Component;
 
-/**
- * Test for syntax highlighter
- */
-public class HighlighterUtilsTest {
-    @Test
-    public void testXML() throws Exception {
-        System.out.println(HighlighterUtils.INSTANCE.highlight("<a>hello</a>", "xml"));
+import javax.xml.transform.TransformerException;
+
+@Component
+@KeywordInfo(name = "Xpath Text Content Should Be Equal", description = "Xpath Text Content Should Be Equal.", parameters = {"xpathExpression", "expectedValue"})
+public class XpathTextContentShouldBeEqual extends AbstractXMLKeyword{
+
+    @Override
+    public Object execute(Object[] params) {
+        try {
+            helper.xpathTextContentShouldBeEqual(String.valueOf(params[0]), String.valueOf(params[1]));
+        } catch (TransformerException e) {
+            throw new IllegalStateException(e.getMessage(), e);
+        }
+
+        return null;
     }
 }

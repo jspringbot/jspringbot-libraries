@@ -16,16 +16,23 @@
  * limitations under the License.
  */
 
-package org.jspringbot.syntax;
+package org.jspringbot.keyword.xml;
 
-import org.junit.Test;
+import org.jspringbot.KeywordInfo;
+import org.springframework.stereotype.Component;
 
-/**
- * Test for syntax highlighter
- */
-public class HighlighterUtilsTest {
-    @Test
-    public void testXML() throws Exception {
-        System.out.println(HighlighterUtils.INSTANCE.highlight("<a>hello</a>", "xml"));
+import javax.xml.transform.TransformerException;
+
+@Component
+@KeywordInfo(name = "Get Xpath Match Count", description = "Get Xpath Match Count", parameters = {"xpathExpression"})
+public class GetXpathMatchCount extends AbstractXMLKeyword{
+
+    @Override
+    public Object execute(Object[] params) {
+        try {
+            return helper.getXpathMatchCount(String.valueOf(params[0]));
+        } catch (TransformerException e) {
+             throw new IllegalStateException(e.getMessage(), e);
+        }
     }
 }

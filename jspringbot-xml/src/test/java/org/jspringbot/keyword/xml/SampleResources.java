@@ -16,16 +16,33 @@
  * limitations under the License.
  */
 
-package org.jspringbot.syntax;
+package org.jspringbot.keyword.xml;
 
-import org.junit.Test;
+import org.apache.commons.io.IOUtils;
+import org.springframework.core.io.Resource;
 
-/**
- * Test for syntax highlighter
- */
-public class HighlighterUtilsTest {
-    @Test
-    public void testXML() throws Exception {
-        System.out.println(HighlighterUtils.INSTANCE.highlight("<a>hello</a>", "xml"));
+import java.io.IOException;
+import java.io.InputStream;
+
+public class SampleResources {
+    private Resource sampleXML;
+
+    public Resource getSampleXML() {
+        return sampleXML;
+    }
+
+    public void setSampleXML(Resource sampleXML) {
+        this.sampleXML = sampleXML;
+    }
+
+    public String getSampleXMLString() throws IOException {
+        InputStream in = null;
+
+        try {
+            in = sampleXML.getInputStream();
+            return IOUtils.toString(in);
+        } finally {
+            IOUtils.closeQuietly(in);
+        }
     }
 }

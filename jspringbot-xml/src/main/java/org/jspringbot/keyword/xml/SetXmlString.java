@@ -16,16 +16,24 @@
  * limitations under the License.
  */
 
-package org.jspringbot.syntax;
+package org.jspringbot.keyword.xml;
 
-import org.junit.Test;
+import org.jspringbot.KeywordInfo;
+import org.springframework.stereotype.Component;
 
-/**
- * Test for syntax highlighter
- */
-public class HighlighterUtilsTest {
-    @Test
-    public void testXML() throws Exception {
-        System.out.println(HighlighterUtils.INSTANCE.highlight("<a>hello</a>", "xml"));
+@Component
+@KeywordInfo(name = "Set Xml String", description = "Set Xml String.", parameters = {"xmlString"})
+public class SetXmlString extends AbstractXMLKeyword{
+
+    @Override
+    public Object execute(Object[] params) {
+        String xmlString = String.valueOf(params[0]);
+        try {
+            helper.setXmlString(xmlString);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(String.format("Invalid xml string provided: '%s'", xmlString));
+        }
+
+        return null;
     }
 }
