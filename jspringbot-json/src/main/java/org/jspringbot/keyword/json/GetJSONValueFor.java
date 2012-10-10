@@ -16,23 +16,20 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.xml;
+package org.jspringbot.keyword.json;
 
+import net.minidev.json.JSONObject;
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
-import javax.xml.transform.TransformerException;
-
 @Component
-@KeywordInfo(name = "Get XPath Match Count", description = "Get XPath Match Count", parameters = {"xpathExpression"})
-public class GetXPathMatchCount1 extends AbstractXMLKeyword{
+@KeywordInfo(name = "Get JSON Value For", description = "Returns JSON value for obj given key.", parameters = {"obj", "key"})
+public class GetJSONValueFor extends AbstractJSONKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        try {
-            return helper.getXpathMatchCount(String.valueOf(params[0]));
-        } catch (TransformerException e) {
-             throw new IllegalStateException(e.getMessage(), e);
-        }
+        JSONObject obj = (JSONObject) params[0];
+
+        return obj.get(String.valueOf(params[1]));
     }
 }

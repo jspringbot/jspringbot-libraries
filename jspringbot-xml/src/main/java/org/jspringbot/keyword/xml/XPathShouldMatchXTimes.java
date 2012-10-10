@@ -16,22 +16,23 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.json;
+package org.jspringbot.keyword.xml;
 
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
+import javax.xml.transform.TransformerException;
+
 @Component
-@KeywordInfo(name = "Set JSON String", description = "Set JSON String.", parameters = {"jsonString"})
-public class SetJSONString1 extends AbstractJSONKeyword{
+@KeywordInfo(name = "XPath Should Match X Times", description = "XPath Should Match X Times.", parameters = {"xpathExpression", "numberOfTimes"})
+public class XPathShouldMatchXTimes extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        String jsonString = String.valueOf(params[0]);
         try {
-            helper.setJsonString(jsonString);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(String.format("Invalid json string provided: '%s'", jsonString));
+            helper.xpathShouldMatchXTimes(String.valueOf(params[0]), Integer.parseInt(String.valueOf(params[1])));
+        } catch (TransformerException e) {
+             throw new IllegalStateException(e.getMessage(), e);
         }
 
         return null;

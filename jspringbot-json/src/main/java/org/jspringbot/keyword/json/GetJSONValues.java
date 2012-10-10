@@ -22,14 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "JSON Array Length Should Be", description = "Asserts JSON array length value.", parameters = {"jsonExpression", "expectedLength"})
-public class JSONArrayLengthShouldBe1 extends AbstractJSONKeyword {
+@KeywordInfo(name = "Get JSON Values", description = "Returns JSON Values.", parameters = {"jsonExpression"})
+public class GetJSONValues extends AbstractJSONKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        helper.jsonArrayLengthShouldBe(String.valueOf(params[0]), Integer.valueOf(String.valueOf(params[1])));
-
-        return null;
+        return helper.getJsonValues(String.valueOf(params[0]));
 
     }
 }

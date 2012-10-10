@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(name = "Set XML String", description = "Set XML String.", parameters = {"xmlString"})
-public class SetXMLString1 extends AbstractXMLKeyword{
+public class SetXMLString extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
