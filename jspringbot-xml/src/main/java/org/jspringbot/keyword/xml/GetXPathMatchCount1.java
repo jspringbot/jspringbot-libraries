@@ -24,17 +24,15 @@ import org.springframework.stereotype.Component;
 import javax.xml.transform.TransformerException;
 
 @Component
-@KeywordInfo(name = "Xpath Should Match X Times", description = "Xpath Should Match X Times.", parameters = {"xpathExpression", "numberOfTimes"})
-public class XpathShouldMatchXTimes extends AbstractXMLKeyword{
+@KeywordInfo(name = "Get XPath Match Count", description = "Get XPath Match Count", parameters = {"xpathExpression"})
+public class GetXPathMatchCount1 extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
         try {
-            helper.xpathShouldMatchXTimes(String.valueOf(params[0]), Integer.parseInt(String.valueOf(params[1])));
+            return helper.getXpathMatchCount(String.valueOf(params[0]));
         } catch (TransformerException e) {
              throw new IllegalStateException(e.getMessage(), e);
         }
-
-        return null;
     }
 }

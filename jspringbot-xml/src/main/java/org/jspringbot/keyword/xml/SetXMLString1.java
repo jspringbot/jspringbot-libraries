@@ -16,20 +16,24 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.json;
+package org.jspringbot.keyword.xml;
 
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Json Array Length Should Be", description = "Asserts json array length value.", parameters = {"jsonExpression", "expectedLength"})
-public class JsonArrayLengthShouldBe extends AbstractJSONKeyword {
+@KeywordInfo(name = "Set XML String", description = "Set XML String.", parameters = {"xmlString"})
+public class SetXMLString1 extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        helper.jsonArrayLengthShouldBe(String.valueOf(params[0]), Integer.valueOf(String.valueOf(params[1])));
+        String xmlString = String.valueOf(params[0]);
+        try {
+            helper.setXmlString(xmlString);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(String.format("Invalid xml string provided: '%s'", xmlString));
+        }
 
         return null;
-
     }
 }

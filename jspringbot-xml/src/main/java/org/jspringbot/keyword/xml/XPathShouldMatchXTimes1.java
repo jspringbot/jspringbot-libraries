@@ -16,17 +16,25 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.json;
+package org.jspringbot.keyword.xml;
 
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
+import javax.xml.transform.TransformerException;
+
 @Component
-@KeywordInfo(name = "Get Json Value", description = "Returns Json Value.", parameters = {"jsonExpression"})
-public class GetJsonValue extends AbstractJSONKeyword{
+@KeywordInfo(name = "XPath Should Match X Times", description = "XPath Should Match X Times.", parameters = {"xpathExpression", "numberOfTimes"})
+public class XPathShouldMatchXTimes1 extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        return helper.getJsonValue(String.valueOf(params[0]));
+        try {
+            helper.xpathShouldMatchXTimes(String.valueOf(params[0]), Integer.parseInt(String.valueOf(params[1])));
+        } catch (TransformerException e) {
+             throw new IllegalStateException(e.getMessage(), e);
+        }
+
+        return null;
     }
 }

@@ -22,12 +22,17 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Json Value Should Not Be Null", description = "Asserts Json value should not be equal to Null", parameters = {"jsonExpression"})
-public class JsonValueShouldNotBeNull extends AbstractJSONKeyword{
+@KeywordInfo(name = "Set JSON String", description = "Set JSON String.", parameters = {"jsonString"})
+public class SetJSONString1 extends AbstractJSONKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        helper.jsonValueShouldNotBeNull(String.valueOf(params[0]));
+        String jsonString = String.valueOf(params[0]);
+        try {
+            helper.setJsonString(jsonString);
+        } catch (Exception e) {
+            throw new IllegalArgumentException(String.format("Invalid json string provided: '%s'", jsonString));
+        }
 
         return null;
     }

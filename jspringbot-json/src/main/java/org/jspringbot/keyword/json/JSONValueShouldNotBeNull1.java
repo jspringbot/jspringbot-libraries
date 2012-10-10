@@ -16,23 +16,18 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.xml;
+package org.jspringbot.keyword.json;
 
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Set Xml String", description = "Set Xml String.", parameters = {"xmlString"})
-public class SetXmlString extends AbstractXMLKeyword{
+@KeywordInfo(name = "JSON Value Should Not Be Null", description = "Asserts JSON value should not be equal to Null", parameters = {"jsonExpression"})
+public class JSONValueShouldNotBeNull1 extends AbstractJSONKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        String xmlString = String.valueOf(params[0]);
-        try {
-            helper.setXmlString(xmlString);
-        } catch (Exception e) {
-            throw new IllegalArgumentException(String.format("Invalid xml string provided: '%s'", xmlString));
-        }
+        helper.jsonValueShouldNotBeNull(String.valueOf(params[0]));
 
         return null;
     }

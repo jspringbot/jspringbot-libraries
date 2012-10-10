@@ -16,20 +16,25 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.json;
+package org.jspringbot.keyword.xml;
 
-import net.minidev.json.JSONObject;
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
+import javax.xml.transform.TransformerException;
+
 @Component
-@KeywordInfo(name = "Get Json Value For", description = "Returns Json value for obj given key.", parameters = {"obj", "key"})
-public class GetJsonValueFor extends AbstractJSONKeyword {
+@KeywordInfo(name = "XPath Text Content Should Be Equal", description = "XPath Text Content Should Be Equal.", parameters = {"xpathExpression", "expectedValue"})
+public class XPathTextContentShouldBeEqual1 extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        JSONObject obj = (JSONObject) params[0];
+        try {
+            helper.xpathTextContentShouldBeEqual(String.valueOf(params[0]), String.valueOf(params[1]));
+        } catch (TransformerException e) {
+            throw new IllegalStateException(e.getMessage(), e);
+        }
 
-        return obj.get(String.valueOf(params[1]));
+        return null;
     }
 }

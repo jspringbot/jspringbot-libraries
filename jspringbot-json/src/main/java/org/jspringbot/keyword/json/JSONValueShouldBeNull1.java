@@ -22,12 +22,13 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Json Values", description = "Returns Json Values.", parameters = {"jsonExpression"})
-public class GetJsonValues extends AbstractJSONKeyword{
+@KeywordInfo(name = "JSON Value Should Be Null", description = "Asserts JSON value should be equal to Null", parameters = {"jsonExpression"})
+public class JSONValueShouldBeNull1 extends AbstractJSONKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        return helper.getJsonValues(String.valueOf(params[0]));
+        helper.jsonValueShouldBeNull(String.valueOf(params[0]));
 
+        return null;
     }
 }

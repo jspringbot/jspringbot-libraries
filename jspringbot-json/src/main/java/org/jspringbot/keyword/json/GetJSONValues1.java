@@ -16,25 +16,18 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.xml;
+package org.jspringbot.keyword.json;
 
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
-import javax.xml.transform.TransformerException;
-
 @Component
-@KeywordInfo(name = "Xpath Text Content Should Be Equal", description = "Xpath Text Content Should Be Equal.", parameters = {"xpathExpression", "expectedValue"})
-public class XpathTextContentShouldBeEqual extends AbstractXMLKeyword{
+@KeywordInfo(name = "Get JSON Values", description = "Returns JSON Values.", parameters = {"jsonExpression"})
+public class GetJSONValues1 extends AbstractJSONKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        try {
-            helper.xpathTextContentShouldBeEqual(String.valueOf(params[0]), String.valueOf(params[1]));
-        } catch (TransformerException e) {
-            throw new IllegalStateException(e.getMessage(), e);
-        }
+        return helper.getJsonValues(String.valueOf(params[0]));
 
-        return null;
     }
 }
