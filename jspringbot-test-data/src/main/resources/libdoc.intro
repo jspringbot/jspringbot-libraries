@@ -1,0 +1,68 @@
+Contains keywords for creating and parsing test data csv files.
+
+*Example for creating a Test Data:*
+| Create Test Data           | temp.csv | column_a | column_b |
+| Add Test Data              | value_1a | value_1b |
+| Add Test Data              | value_2a | value_2b |
+| Done Creation Of Test Data |
+
+*Result file:*
+
+Filename: temp.csv
+
+| column_a | column_b |
+| value_1a | value_1b |
+| value_2a | value_2b |
+
+
+
+*Example for parsing simple Test Data CSV file:*
+
+Filename: simple-test-data.csv
+
+| *HeaderName_A* | *HeaderName_B* | *HeaderName_C* |
+| header_A1      | header_B1      | header_C1      |
+| header_A2      | header_B2      | header_C2      |
+| header_A3      | header_B3      | header_C3      |
+| header_A4      | header_B4      | header_C4      |
+
+*Sample Test Usage:*
+|                            |                                 |   |              | *Result*     |
+| `Parse Test Data Resource` | classpath:simple-test-data.csv  |   |              |              |
+| ${var1}=                   | `Get Test Data Keys`            |   |              | {0, 1, 2, 3} |
+| ${var2}=                   | `Get Test Data Header By Name`  | 0 | HeaderName_A | header_1A    |
+| ${var3}=                   | `Get Test Data Header By Index` | 1 | 1            | header_B2    |
+| ${var4}=                   | `Get Test Data Header By Name`  | 2 | HeaderName_C | header_C3    |
+
+
+
+*Example for parsing Multi Header with Multi Content CSV:*
+
+Filename: multi-content-test-data.csv
+
+| *HeaderName_A* | *HeaderName_B* | *HeaderName_C* | *Content_A*  | *Content_B*       | *Content_C*  |
+| header_A1      | header_B1      | header_C1      |              |                   |              |
+|                |                |                | content_1_A1 | content_1_B1      | content_1_C1 |
+|                |                |                | content_1_A2 | content_1_B2      | content_1_C2 |
+| header_A2      | header_B2      | header_C2      |              |                   |              |
+|                |                |                | content_2_A1 | content_2_B1      | content_2_C1 |
+|                |                |                | content_2_A2 | content_2_B2      | content_2_C2 |
+|                |                |                | content_2_A3 | content_2_B3      | content_2_C3 |
+| header_A3      | header_B3      | header_C3      |
+|                |                |                | content_3_A1 | content_3_B_value | content_3_C1 |
+|                |                |                | content_3_A2 | content_3_B_value | content_3_C2 |
+|                |                |                | content_3_A3 | content_3_B3      | content_3_C3 |
+
+*Sample Test Usage:*
+|                                  |                                         |                                        |              |                   | *Result*                   |
+| `Parse State Test Data Resource` | multi-content-test-data                 | classpath:multi-content-test-data.csv  |
+| `Switch Test Data`               | multi-content-test-data                 |
+| ${var1}=                         | `Get Test Data Keys`                    |                                        |              |                   | {0, 1, 2}                  |
+| ${var2}=                         | `Get Test Data Content Keys`            | 0                                      |              |                   | {0, 1}                     |
+| ${var3}=                         | `Get Test Data Header By Name`          | 0                                      | HeaderName_A |                   | header_1A                  |
+| ${var4}=                         | `Get Test Data Header By Index`         | 1                                      | 1            |                   | header_B2                  |
+| ${var5}=                         | `Get Test Data Header By Name`          | 2                                      | HeaderName_C |                   | header_C3                  |
+| ${var6}=                         | `Get Test Data Content Keys`            | 0                                      |
+| ${var7}=                         | `Get Test Data Content By Index`        | 1                                      | 2            | 0                 | content_2_A3               |
+| ${var8}=                         | `Get Test Data Content By Name`         | 2                                      | 2            | Content_A         | content_2_A3               |
+| ${var9}=                         | `Get Test Data Content As List By Name` | 2                                      | Content_B    | content_3_B_value | content_3_C1, content_3_C2 |

@@ -145,5 +145,6 @@
     <module>jspringbot-ssh</module>
     <module>jspringbot-selenium</module>
     <module>jspringbot-utils</module>
+    <module>jspringbot-test-data</module>
   </modules>
 </project>
