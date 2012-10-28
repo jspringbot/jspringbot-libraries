@@ -34,6 +34,6 @@
   </bean>
 
   <!-- Scan components -->
-  <ctx:component-scan base-package="org.jspringbot.Keyword.test.data"/>
+  <ctx:component-scan base-package="org.jspringbot.keyword.test.data"/>
   <ctx:annotation-config/>
 </beans>

@@ -31,6 +31,6 @@
   <bean name="csvHelper" class="org.jspringbot.keyword.csv.CSVHelper"/>
 
   <!-- Scan components -->
-  <ctx:component-scan base-package="org.jspringbot.Keyword.csv" />
+  <ctx:component-scan base-package="org.jspringbot.keyword.csv" />
   <ctx:annotation-config/>
 </beans>
