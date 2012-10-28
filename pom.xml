@@ -63,6 +63,14 @@
     </snapshotRepository>
   </distributionManagement>
 
+  <pluginRepositories>
+    <pluginRepository>
+      <id>snapshots-repo</id>
+      <name>badong2210 github mvn-snapshots-repo</name>
+      <url>https://raw.github.com/badong2210/jspringbot-mvn-repo/master/snapshots/</url>
+    </pluginRepository>
+  </pluginRepositories>
+
   <repositories>
     <repository>
       <id>snapshots-repo</id>
@@ -134,5 +142,6 @@
     <module>jspringbot-xml</module>
     <module>jspringbot-http</module>
     <module>jspringbot-csv</module>
+    <module>jspringbot-ssh</module>
   </modules>
 </project>
