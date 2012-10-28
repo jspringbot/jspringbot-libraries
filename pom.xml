@@ -146,5 +146,6 @@
     <module>jspringbot-selenium</module>
     <module>jspringbot-utils</module>
     <module>jspringbot-test-data</module>
+    <module>jspringbot-db</module>
   </modules>
 </project>

@@ -1,0 +1,24 @@
+Contains keyword for accessing the database.
+
+*Sample Usage*
+|                                     |
+| Use Schema                          |
+| Create Query                        |
+| Execute Query                       |
+| Create Query By Name                |
+| Set String Pameter                  |
+| Create Query By Name                |
+| Execute Query                       |
+| Projected Count Is Not Zero         |
+| Record Count Should Be Equal        |
+| Use Schema                          |
+| Create Query By Name                |
+| Set String Parameter                |
+| Add Result Column                   |
+| Add Result Column                   |
+| Execute Query                       |
+| @{listValue}=                       |
+| @{expectedResult}=                  |
+| Lists Should Be Equal               |
+| Record At Column Should Contain     |
+| Record At Row Column Should Contain |
