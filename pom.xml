@@ -144,5 +144,6 @@
     <module>jspringbot-csv</module>
     <module>jspringbot-ssh</module>
     <module>jspringbot-selenium</module>
+    <module>jspringbot-utils</module>
   </modules>
 </project>
