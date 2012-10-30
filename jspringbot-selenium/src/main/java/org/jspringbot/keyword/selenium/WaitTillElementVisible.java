@@ -22,11 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Textfield Value Should Be", description = "Verifies the value in text field identified by locator is exactly expected.", parameters={"locator", "expectedValue"})
-public class TextfieldValueShouldBe extends AbstractSeleniumKeyword {
+@KeywordInfo(name = "Wait Till Element Visible", description = "Waits until element specified with locator is visible on current page or timeout expires.", parameters = {"locator","poll","timeout"})
+public class WaitTillElementVisible extends AbstractSeleniumKeyword {
 
     public Object execute(Object[] params) {
-        helper.textfieldValueShouldBe(String.valueOf(params[0]), String.valueOf(params[1]));
+        helper.waitTillElementVisible(String.valueOf(params[0]), Long.parseLong(String.valueOf(params[1])), Long.parseLong(String.valueOf(params[2])));
 
         return null;
     }

@@ -332,8 +332,8 @@ public class SeleniumHelper {
         }
     }
 
-    public void executeJavascript(String code) {
-        executor.executeScript(code);
+    public Object executeJavascript(String code) {
+        return executor.executeScript(code);
     }
 
     public String getElementAttribute(String attributeLocator) {
@@ -848,20 +848,19 @@ public class SeleniumHelper {
         el.submit();
     }
 
-    // TODO to do not yet tested
     public void textfieldValueShouldBe(String locator, String expectedValue) {
-        WebElement el = finder.find(locator,"text field");
+        WebElement el = finder.find(locator,"input");
 
         String actual = null;
         if (el == null) {
-            el = finder.find(locator,"file upload");
+            el = finder.find(locator,"textarea");
         }
 
         if (el != null) {
             actual = el.getAttribute("value");
         }
 
-        if (actual.equalsIgnoreCase(expectedValue)) {
+        if (!StringUtils.equalsIgnoreCase(actual, expectedValue)) {
             throw new AssertionError(String.format("Value of text field '%s' should have been '%s' but was '%s'", locator, expectedValue, actual));
         }
 
@@ -903,6 +902,33 @@ public class SeleniumHelper {
         } while(el == null && elapse < timeoutMillis);
 
         if(el == null) {
+            throw new IllegalStateException(String.format("timeout for locating '%s' (%d ms) reached.", locator, timeoutMillis));
+        }
+    }
+
+    public void waitTillElementVisible(String locator, long pollMillis, long timeoutMillis) {
+        long start = System.currentTimeMillis();
+        long elapse = -1;
+        WebElement el;
+
+        do {
+            if(elapse != -1) {
+                try {
+                    Thread.sleep(pollMillis);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            el = finder.find(locator, false);
+            if(el == null) {
+                throw new IllegalStateException(String.format("No element found with locator '%s'.", locator));
+            }
+
+            elapse = System.currentTimeMillis() - start;
+        } while(!el.isDisplayed() && elapse < timeoutMillis);
+
+        if(!el.isDisplayed()) {
             throw new IllegalStateException(String.format("timeout for locating '%s' (%d ms) reached.", locator, timeoutMillis));
         }
     }
