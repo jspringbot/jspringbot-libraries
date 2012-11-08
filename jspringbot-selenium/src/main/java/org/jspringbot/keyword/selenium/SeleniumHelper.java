@@ -1236,4 +1236,9 @@ public class SeleniumHelper {
 
         return key.toString();
     }
+
+    public boolean hasElement(String locator) {
+        return finder.find(locator, false) != null;
+    }
+
 }
