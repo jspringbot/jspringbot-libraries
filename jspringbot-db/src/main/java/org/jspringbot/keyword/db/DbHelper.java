@@ -85,7 +85,6 @@ public class DbHelper {
         schema = param;
 
         session.doWork(new Work() {
-            @Override
             public void execute(Connection connection) throws SQLException {
                 Statement stmt = connection.createStatement();
 
@@ -173,6 +172,16 @@ public class DbHelper {
             throw new IllegalStateException(String.format("Expected projected count should not be zero but was %d", projectedCount));
         }
     }
+
+    public void projectedCountShouldBe(int count) {
+        validateRecord();
+
+        int projectedCount = ((Number) records.get(0)).intValue();
+        if (projectedCount != count) {
+            throw new IllegalStateException(String.format("Expected projected count '%d' but was %d.", count, projectedCount));
+        }
+    }
+
 
     public void projectedCountIsZero() {
         validateRecord();
