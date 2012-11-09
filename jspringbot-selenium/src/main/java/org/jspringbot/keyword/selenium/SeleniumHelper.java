@@ -56,6 +56,10 @@ public class SeleniumHelper {
         this.finder = new ElementFinder(driver);
     }
 
+    public void windowMaximize() {
+        driver.manage().window().maximize();
+    }
+
     public void assignIdToElement(Integer id, String locator) {
         LOG.info(String.format("Assigning temporary id %s to element %s", id, locator));
         WebElement el = finder.find(locator);
