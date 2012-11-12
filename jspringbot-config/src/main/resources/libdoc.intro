@@ -1,0 +1,10 @@
+Contains keywords to access values in properties file
+
+Examples:
+
+Sample Test Usage:
+|               |                     |             | *Returns*                                      |
+| Select Domain | variable            |             |
+| ${url}=       | Get String Property | url         | http://localhost:8080/                         |
+
+where variables is a property file loaded when creating ConfigHelper bean.

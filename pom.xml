@@ -138,6 +138,7 @@
 
   <modules>
     <module>jspringbot-syntax-highlight</module>
+    <module>jspringbot-config</module>
     <module>jspringbot-json</module>
     <module>jspringbot-xml</module>
     <module>jspringbot-http</module>
