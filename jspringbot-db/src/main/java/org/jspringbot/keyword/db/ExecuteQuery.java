@@ -25,7 +25,6 @@ import org.springframework.stereotype.Component;
 @KeywordInfo(name = "Execute Query", description = "Executes Query.")
 public class ExecuteQuery extends AbstractDBKeyword {
 
-    @Override
     public Object execute(Object[] params) {
         helper.executeQuery();
 

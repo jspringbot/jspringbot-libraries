@@ -25,10 +25,7 @@ import org.springframework.stereotype.Component;
 @KeywordInfo(name = "Execute Javascript", description = "\tExecutes the given JavaScript code.", parameters = {"code"})
 public class ExecuteJavascript extends AbstractSeleniumKeyword {
 
-    @Override
     public Object execute(Object[] params) {
-        helper.executeJavascript(String.valueOf(params[0]));
-
-        return null;
+        return helper.executeJavascript(String.valueOf(params[0]));
     }
 }

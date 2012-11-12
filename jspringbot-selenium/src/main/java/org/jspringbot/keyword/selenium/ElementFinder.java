@@ -242,6 +242,13 @@ public class ElementFinder {
             public WebElement find(WebDriver driver, String locator, String tagName, Map<String, String> attributes) {
                 return findByTag(driver, locator, tagName, attributes);
             }
+        },
+
+        TEXT("text") {
+            @Override
+            public WebElement find(WebDriver driver, String locator, String tagName, Map<String, String> attributes) {
+                return findByLinkText(driver, locator, tagName, attributes);
+            }
         };
 
         private String prefix;
