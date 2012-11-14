@@ -30,7 +30,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.springbot</groupId>
+  <groupId>org.jspringbot</groupId>
   <artifactId>jspringbot-selenium</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
