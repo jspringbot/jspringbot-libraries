@@ -368,6 +368,14 @@ public class SeleniumHelper {
         return driver.getCurrentUrl();
     }
 
+    public int getMatchingCSSCount(String cssLocator) {
+        int count = driver.findElements(By.cssSelector(cssLocator)).size();
+
+        LOG.info("Matching css count for '%s' is '%d'", cssLocator, count);
+
+        return count;
+    }
+
     public int getMatchingXpathCount(String xpath) {
         int count = driver.findElements(By.xpath(xpath)).size();
 
@@ -934,6 +942,13 @@ public class SeleniumHelper {
 
         if(!el.isDisplayed()) {
             throw new IllegalStateException(String.format("timeout for locating '%s' (%d ms) reached.", locator, timeoutMillis));
+        }
+    }
+
+    public void cssShouldMatchXTimes(String cssLocator, int count) {
+        int actual = getMatchingCSSCount(cssLocator);
+        if(actual != count) {
+            throw new AssertionError(String.format("Matching css count for %s expected is %d, but was %d.", cssLocator, count, actual));
         }
     }
 
