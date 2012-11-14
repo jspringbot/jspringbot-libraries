@@ -85,6 +85,7 @@ public class DbHelper {
         schema = param;
 
         session.doWork(new Work() {
+            @Override
             public void execute(Connection connection) throws SQLException {
                 Statement stmt = connection.createStatement();
 
@@ -150,6 +151,12 @@ public class DbHelper {
         }
     }
 
+    public void executeUpdate() {
+        LOG.info("\nQuery string: " + query.getQueryString());
+        int affectedRows = query.executeUpdate();
+        LOG.info("\nAffected Rows: " + affectedRows);
+    }
+
     public void executeQuery() {
         LOG.info("\nQuery string: " + query.getQueryString());
         records = query.list();
@@ -164,15 +171,6 @@ public class DbHelper {
         }
     }
 
-    public void projectedCountIsNotZero() {
-        validateRecord();
-
-        int projectedCount = ((Number) records.get(0)).intValue();
-        if (projectedCount <= 0) {
-            throw new IllegalStateException(String.format("Expected projected count should not be zero but was %d", projectedCount));
-        }
-    }
-
     public void projectedCountShouldBe(int count) {
         validateRecord();
 
@@ -182,6 +180,14 @@ public class DbHelper {
         }
     }
 
+    public void projectedCountIsNotZero() {
+        validateRecord();
+
+        int projectedCount = ((Number) records.get(0)).intValue();
+        if (projectedCount <= 0) {
+            throw new IllegalStateException(String.format("Expected projected count should not be zero but was %d", projectedCount));
+        }
+    }
 
     public void projectedCountIsZero() {
         validateRecord();
