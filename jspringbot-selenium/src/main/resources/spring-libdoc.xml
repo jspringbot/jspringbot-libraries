@@ -26,6 +26,7 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
+  <description>jSpringBot Selenium Keywords</description>
 
   <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelperDelaySupportFactory" factory-method="create">
     <constructor-arg>

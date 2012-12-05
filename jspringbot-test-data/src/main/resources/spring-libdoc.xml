@@ -25,6 +25,8 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+  <description>jSpringBot TestData Keywords</description>
+
   <bean id="cacheManager" class="net.sf.ehcache.CacheManager" factory-method="getInstance"/>
 
   <bean name="csvHelper" class="org.jspringbot.keyword.csv.CSVHelper"/>

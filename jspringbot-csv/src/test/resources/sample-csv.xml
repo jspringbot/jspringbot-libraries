@@ -26,7 +26,7 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <description>Robot CSV Keywords</description>
+  <description>jSpringBot CSV Keywords</description>
 
   <bean name="csvHelper" class="org.jspringbot.keyword.csv.CSVHelper"/>
 

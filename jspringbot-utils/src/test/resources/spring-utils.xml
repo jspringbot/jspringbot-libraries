@@ -26,6 +26,8 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <description>jSpringBot Util Keywords</description>
+
     <bean name="statsCollectorHelper" class="org.jspringbot.keyword.stats.StatsCollectorHelper"/>
 
     <!-- Scan components -->
