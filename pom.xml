@@ -148,5 +148,6 @@
     <module>jspringbot-utils</module>
     <module>jspringbot-test-data</module>
     <module>jspringbot-db</module>
+    <module>jspringbot-i18n</module>
   </modules>
 </project>
