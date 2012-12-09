@@ -18,22 +18,30 @@
 
 package org.jspringbot.keyword.i18n;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.BeanFactory;
+import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
-public class I18nHelper {
+public class i18nHelper1 implements BeanFactoryAware {
 
     private MessageSourceAccessor messages;
 
-    public I18nHelper(MessageSource messageSource) {
+    private BeanFactory factory;
+
+    public i18nHelper1(MessageSource messageSource) {
         this.messages = new MessageSourceAccessor(messageSource);
     }
 
     public void setLanguage(String localeString) {
-        Locale locale = I18nUtil.getLocaleFromString(localeString);
+        Locale locale = i18nUtil1.getLocaleFromString(localeString);
         LocaleContextHolder.setLocale(locale);
     }
 
@@ -41,4 +49,21 @@ public class I18nHelper {
         return messages.getMessage(code);
     }
 
+    @SuppressWarnings("unchecked")
+    public Map<String, String> createDictionary(String bean) {
+        List<String> codes = (List<String>) factory.getBean(bean);
+
+        Map<String, String> dictionary = new HashMap<String, String>(codes.size());
+
+        for(String code : codes) {
+            dictionary.put(code, getMessage(code));
+        }
+
+        return dictionary;
+    }
+
+    @Override
+    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
+        this.factory = beanFactory;
+    }
 }

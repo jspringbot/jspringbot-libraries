@@ -24,5 +24,5 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class Abstracti18nKeyword implements Keyword {
 
     @Autowired
-    protected I18nHelper I18nHelper;
+    protected i18nHelper1 i18nHelper;
 }

@@ -27,7 +27,7 @@
 
   <description>Robot Json Keywords</description>
 
-  <bean name="i18nHelper" class="org.jspringbot.keyword.i18n.I18nHelper">
+  <bean name="i18nHelper" class="org.jspringbot.keyword.i18n.i18nHelper1">
     <constructor-arg ref="messageSource"/>
   </bean>
 
@@ -38,6 +38,16 @@
       </list>
     </property>
     <property name="useCodeAsDefaultMessage" value="true"/>
+  </bean>
+
+  <bean id="loginDictionary" class="org.springframework.beans.factory.config.ListFactoryBean">
+    <property name="singleton" value="true"/>
+    <property name="sourceList" >
+      <list>
+        <value>login.success</value>
+        <value>login.failure</value>
+      </list>
+    </property>
   </bean>
 
   <!-- Scan components -->

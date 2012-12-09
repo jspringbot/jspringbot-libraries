@@ -20,9 +20,9 @@ package org.jspringbot.keyword.i18n;
 
 import java.util.Locale;
 
-public final class I18nUtil {
+public final class i18nUtil1 {
 
-    private I18nUtil()
+    private i18nUtil1()
     {
         // protects from instantiation
     }

@@ -28,7 +28,7 @@ public class SetLanguage extends Abstracti18nKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        I18nHelper.setLanguage(String.valueOf(params[0]));
+        i18nHelper.setLanguage(String.valueOf(params[0]));
 
         return null;
     }

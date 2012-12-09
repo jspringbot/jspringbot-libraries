@@ -27,7 +27,7 @@ public class GetMessage extends Abstracti18nKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        I18nHelper.getMessage(String.valueOf(params[0]));
+        i18nHelper.getMessage(String.valueOf(params[0]));
 
         return null;
     }
