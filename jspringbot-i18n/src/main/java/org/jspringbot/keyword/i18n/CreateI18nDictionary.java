@@ -9,9 +9,7 @@ public class CreateI18nDictionary extends Abstracti18nKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        i18nHelper.setLanguage(String.valueOf(params[0]));
-
-        return null;
+        return i18nHelper.createDictionary(String.valueOf(params[0]));
     }
 
 }
