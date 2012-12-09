@@ -53,7 +53,7 @@ public class I18nHelperTest {
         helper.setLanguage("en");
         assertEquals("english message", helper.getMessage("message"));
 
-        Map<String, String> map = helper.createDictionary("loginDictionary");
+        Map<String, String> map = helper.createDictionary("login");
 
         assertEquals("English Login Success", map.get("login.success"));
         assertEquals("English Login Failure", map.get("login.failure"));
@@ -64,7 +64,7 @@ public class I18nHelperTest {
         helper.setLanguage("zh");
         assertEquals("chinese message", helper.getMessage("message"));
 
-        Map<String, String> map = helper.createDictionary("loginDictionary");
+        Map<String, String> map = helper.createDictionary("login");
 
         assertEquals("Chinese Login Success", map.get("login.success"));
         assertEquals("Chinese Login Failure", map.get("login.failure"));
@@ -75,7 +75,7 @@ public class I18nHelperTest {
         helper.setLanguage("ja");
         assertEquals("japanese message", helper.getMessage("message"));
 
-        Map<String, String> map = helper.createDictionary("loginDictionary");
+        Map<String, String> map = helper.createDictionary("login");
 
         assertEquals("Japanese Login Success", map.get("login.success"));
         assertEquals("Japanese Login Failure", map.get("login.failure"));

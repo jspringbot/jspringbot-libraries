@@ -18,26 +18,32 @@
 
 package org.jspringbot.keyword.i18n;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.core.io.Resource;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
-public class I18nHelper implements BeanFactoryAware {
+public class I18nHelper {
 
     private MessageSourceAccessor messages;
 
-    private BeanFactory factory;
+    private Set<Object> codes;
 
-    public I18nHelper(MessageSource messageSource) {
+    public I18nHelper(MessageSource messageSource, Resource properties) throws IOException {
         this.messages = new MessageSourceAccessor(messageSource);
+
+        Properties prop = new Properties();
+        prop.load(properties.getInputStream());
+
+        codes = Collections.unmodifiableSet(prop.keySet());
+    }
+
+    public I18nHelper(ResourceBundleMessageSource resourceBundleMessageSource) {
     }
 
     public void setLanguage(String localeString) {
@@ -50,20 +56,17 @@ public class I18nHelper implements BeanFactoryAware {
     }
 
     @SuppressWarnings("unchecked")
-    public Map<String, String> createDictionary(String bean) {
-        List<String> codes = (List<String>) factory.getBean(bean);
+    public Map<String, String> createDictionary(String prefix) {
+        Map<String, String> dictionary = new HashMap<String, String>();
 
-        Map<String, String> dictionary = new HashMap<String, String>(codes.size());
+        for(Object code : codes) {
+            String key = String.valueOf(code);
 
-        for(String code : codes) {
-            dictionary.put(code, getMessage(code));
+            if(StringUtils.startsWith(key, prefix)) {
+                dictionary.put(key, getMessage(key));
+            }
         }
 
         return dictionary;
-    }
-
-    @Override
-    public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        this.factory = beanFactory;
     }
 }

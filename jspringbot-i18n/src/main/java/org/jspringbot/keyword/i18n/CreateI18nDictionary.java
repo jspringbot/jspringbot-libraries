@@ -4,7 +4,7 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Create I18n Dictionary", description = "Create I18n Dictionary", parameters = {"bean"})
+@KeywordInfo(name = "Create I18n Dictionary", description = "Create I18n Dictionary", parameters = {"prefix"})
 public class CreateI18nDictionary extends Abstracti18nKeyword {
 
     @Override

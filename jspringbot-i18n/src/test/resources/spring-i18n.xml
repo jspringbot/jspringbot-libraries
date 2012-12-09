@@ -29,6 +29,7 @@
 
   <bean name="i18nHelper" class="org.jspringbot.keyword.i18n.I18nHelper">
     <constructor-arg ref="messageSource"/>
+    <constructor-arg value="classpath:ApplicationResources_en.properties"/>
   </bean>
 
   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
@@ -38,16 +39,6 @@
       </list>
     </property>
     <property name="useCodeAsDefaultMessage" value="true"/>
-  </bean>
-
-  <bean id="loginDictionary" class="org.springframework.beans.factory.config.ListFactoryBean">
-    <property name="singleton" value="true"/>
-    <property name="sourceList" >
-      <list>
-        <value>login.success</value>
-        <value>login.failure</value>
-      </list>
-    </property>
   </bean>
 
   <!-- Scan components -->
