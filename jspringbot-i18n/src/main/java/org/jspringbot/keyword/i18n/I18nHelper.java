@@ -30,18 +30,18 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class i18nHelper1 implements BeanFactoryAware {
+public class I18nHelper implements BeanFactoryAware {
 
     private MessageSourceAccessor messages;
 
     private BeanFactory factory;
 
-    public i18nHelper1(MessageSource messageSource) {
+    public I18nHelper(MessageSource messageSource) {
         this.messages = new MessageSourceAccessor(messageSource);
     }
 
     public void setLanguage(String localeString) {
-        Locale locale = i18nUtil1.getLocaleFromString(localeString);
+        Locale locale = I18nUtil.getLocaleFromString(localeString);
         LocaleContextHolder.setLocale(locale);
     }
 

@@ -33,7 +33,7 @@ import static junit.framework.Assert.assertEquals;
 public class I18nHelperTest {
 
     @Autowired
-    private i18nHelper1 helper;
+    private I18nHelper helper;
 
     @Test
     public void testDefaultMessage() throws Exception {

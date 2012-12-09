@@ -27,7 +27,7 @@
 
   <description>Robot Json Keywords</description>
 
-  <bean name="i18nHelper" class="org.jspringbot.keyword.i18n.i18nHelper1">
+  <bean name="i18nHelper" class="org.jspringbot.keyword.i18n.I18nHelper">
     <constructor-arg ref="messageSource"/>
   </bean>
 
