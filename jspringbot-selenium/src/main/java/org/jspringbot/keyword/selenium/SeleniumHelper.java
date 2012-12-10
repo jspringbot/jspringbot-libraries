@@ -19,7 +19,6 @@
 package org.jspringbot.keyword.selenium;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.JSpringBotLogger;
 import org.openqa.selenium.*;
@@ -333,7 +332,7 @@ public class SeleniumHelper {
         WebElement el = finder.find(locator);
         String actualText = el.getText();
         if (!StringUtils.equals(expectedText, actualText)) {
-            throw new AssertionError(String.format("The text of element '%s' should have been '%s' but was '%s'.", locator, StringEscapeUtils.escapeXml(expectedText), StringEscapeUtils.escapeXml(actualText)));
+            throw new AssertionError(String.format("The text of element '%s' should have been '%s' but was '%s'.", locator, expectedText, actualText));
         }
     }
 
