@@ -337,6 +337,7 @@ public class SeleniumHelper {
         }
     }
 
+
     public Object executeJavascript(String code) {
         return executor.executeScript(code);
     }
