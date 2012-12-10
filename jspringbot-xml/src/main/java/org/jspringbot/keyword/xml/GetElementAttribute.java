@@ -16,6 +16,7 @@ public class GetElementAttribute  extends AbstractXMLKeyword {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(GetElementAttribute.class);
 
+
     @Override
     public Object execute(Object[] params) throws ParserConfigurationException, IOException, SAXException {
         Element element = (Element) params[0];
