@@ -55,32 +55,32 @@
   <distributionManagement>
     <repository>
       <id>repo</id>
-      <url>https://raw.github.com/badong2210/jspringbot-mvn-repo/master/releases/</url>
+      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/releases/</url>
     </repository>
     <snapshotRepository>
       <id>snapshot-repo</id>
-      <url>https://raw.github.com/badong2210/jspringbot-mvn-repo/master/snapshots/</url>
+      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
   <pluginRepositories>
     <pluginRepository>
       <id>snapshots-repo</id>
-      <name>badong2210 github mvn-snapshots-repo</name>
-      <url>https://raw.github.com/badong2210/jspringbot-mvn-repo/master/snapshots/</url>
+      <name>github mvn-snapshots-repo</name>
+      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/snapshots/</url>
     </pluginRepository>
   </pluginRepositories>
 
   <repositories>
     <repository>
       <id>snapshots-repo</id>
-      <name>badong2210 github mvn-snapshots-repo</name>
-      <url>https://raw.github.com/badong2210/jspringbot-mvn-repo/master/snapshots/</url>
+      <name>github mvn-snapshots-repo</name>
+      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/snapshots/</url>
     </repository>
     <repository>
       <id>releases-repo</id>
-      <name>badong2210 github mvn-releases-repo</name>
-      <url>https://raw.github.com/badong2210/jspringbot-mvn-repo/master/releases/</url>
+      <name>github mvn-releases-repo</name>
+      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/releases/</url>
     </repository>
     <repository>
       <id>mvnsearch</id>
