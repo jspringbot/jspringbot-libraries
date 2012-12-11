@@ -72,7 +72,7 @@
     <dependency>
       <groupId>org.jenkins-ci</groupId>
       <artifactId>trilead-ssh2</artifactId>
-      <version>build214</version>
+      <version>build214-jenkins-1</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>

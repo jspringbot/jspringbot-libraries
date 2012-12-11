@@ -74,24 +74,10 @@
 
   <repositories>
     <repository>
-      <id>mvnsearch</id>
-      <url>http://www.mvnsearch.org/maven2</url>
-    </repository>
-    <repository>
-      <id>jboss</id>
-      <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-    </repository>
-    <repository>
-      <id>codehaus.org</id>
-      <url>http://repository.codehaus.org/</url>
-    </repository>
-    <repository>
-      <id>sonatype-releases</id>
-      <name>Sonatype Releases Repository</name>
-      <url>http://oss.sonatype.org/content/repositories/releases/</url>
+      <id>jenkins-ci</id>
+      <url>http://repo.jenkins-ci.org/public/</url>
     </repository>
   </repositories>
-
 
   <scm>
     <connection>scm:git:https://github.com/jspringbot/jspringbot-libraries.git</connection>
