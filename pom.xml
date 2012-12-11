@@ -23,6 +23,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
  
   <groupId>org.jspringbot</groupId>
   <artifactId>jspringbot-libraries</artifactId>
@@ -50,56 +55,46 @@
       <name>Shiela D. Buitizon</name>
       <email>badong2210@yahoo.com</email>
     </developer>
+    <developer>
+      <name>Alvin R. de Leon</name>
+      <email>alvinrdeleon@me.com</email>
+    </developer>
   </developers>
 
   <distributionManagement>
     <repository>
-      <id>repo</id>
-      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/releases/</url>
+      <id>sonatype-nexus-staging</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
     <snapshotRepository>
-      <id>snapshot-repo</id>
-      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/snapshots/</url>
+      <id>sonatype-nexus-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <id>snapshots-repo</id>
-      <name>github mvn-snapshots-repo</name>
-      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/snapshots/</url>
-    </pluginRepository>
-  </pluginRepositories>
+  <scm>
+    <connection>scm:git:https://github.com/jspringbot/jspringbot-libraries.git</connection>
+    <url>scm:git:https://github.com/jspringbot/jspringbot-libraries.git</url>
+    <developerConnection>scm:git:https://github.com/jspringbot/jspringbot-libraries.git</developerConnection>
+  </scm>
 
-  <repositories>
-    <repository>
-      <id>snapshots-repo</id>
-      <name>github mvn-snapshots-repo</name>
-      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/snapshots/</url>
-    </repository>
-    <repository>
-      <id>releases-repo</id>
-      <name>github mvn-releases-repo</name>
-      <url>https://raw.github.com/jspringbot/jspringbot-mvn-repo/master/releases/</url>
-    </repository>
-    <repository>
-      <id>mvnsearch</id>
-      <url>http://www.mvnsearch.org/maven2</url>
-    </repository>
-    <repository>
-      <id>jboss</id>
-      <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-    </repository>
-    <repository>
-      <id>codehaus.org</id>
-      <url>http://repository.codehaus.org/</url>
-    </repository>
-    <repository>
-      <id>sonatype-releases</id>
-      <name>Sonatype Releases Repository</name>
-      <url>http://oss.sonatype.org/content/repositories/releases/</url>
-    </repository>
-  </repositories>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>2.1.2</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
   <profiles>
     <profile>
