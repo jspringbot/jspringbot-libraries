@@ -79,7 +79,7 @@ public class HighlighterUtils {
                 "result = highlight(code, get_lexer_by_name(type), formatter)\n");
 
         return String.valueOf(interpreter.get("result")) +
-                "<link rel='stylesheet' href='http://pygments.org/media/pygments_style.css'>" +
+                "<link rel='stylesheet' href='highlight.css'>" +
                 "<style>\n" +
                 "div.syntax {border-bottom: 1px solid #CCCCCC;border-top: 1px solid #CCCCCC;margin-bottom: 10px;margin-top: 15px;}\n" +
                 ".syntax {background: none repeat scroll 0 0 #F8F8F8;}\n" +
