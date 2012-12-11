@@ -27,9 +27,7 @@ public class ExecuteUpdate extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.executeUpdate();
-
-        return null;
+        return helper.executeUpdate();
     }
 }
 

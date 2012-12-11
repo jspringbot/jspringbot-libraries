@@ -200,7 +200,7 @@ public class DbHelper {
         }
     }
 
-    public void executeUpdate() {
+    public int executeUpdate() {
         LOG.createAppender()
                 .appendBold("Execute Update:")
                 .appendXML(SQLFormatter.prettyPrint(query.getQueryString()))
@@ -212,6 +212,8 @@ public class DbHelper {
                 .appendBold("Affected Rows:")
                 .appendProperty("Result", affectedRows)
                 .log();
+
+        return affectedRows;
     }
 
     public void executeQuery() {
