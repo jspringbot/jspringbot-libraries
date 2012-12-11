@@ -64,6 +64,10 @@ public class HighlighterUtils {
         return highlight(code, "json");
     }
 
+    public String highlightSQL(String code) {
+        return highlight(code, "sql");
+    }
+
     public String highlight(String code, String type) {
         interpreter.set("code", code);
         interpreter.set("type", type);

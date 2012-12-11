@@ -16,17 +16,19 @@
  * limitations under the License.
  */
 
-package org.jspringbot.syntax;
+package org.jspringbot.keyword.db;
 
-import org.junit.Test;
+import org.jspringbot.KeywordInfo;
+import org.springframework.stereotype.Component;
 
-/**
- * Test for syntax highlighter
- */
-public class HighlighterUtilsTest {
-    @Test
-    public void testXML() throws Exception {
-        System.out.println(HighlighterUtils.INSTANCE.highlight("<a>hello</a>", "xml"));
-        System.out.println(HighlighterUtils.INSTANCE.highlightSQL("select * from table where h=5"));
+@Component
+@KeywordInfo(name = "Set Long Parameter", description = "Sets Long Parameter.", parameters = {"key","value"})
+public class SetLongParameter extends AbstractDBKeyword {
+
+    @Override
+    public Object execute(Object[] params) {
+        helper.setLongParameter(String.valueOf(params[0]), Long.valueOf(String.valueOf(params[1])));
+
+        return null;
     }
 }

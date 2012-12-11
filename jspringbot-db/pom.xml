@@ -62,7 +62,7 @@
     </dependency>
     <dependency>
       <groupId>org.jspringbot</groupId>
-      <artifactId>jspringbot</artifactId>
+      <artifactId>jspringbot-syntax-highlight</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>

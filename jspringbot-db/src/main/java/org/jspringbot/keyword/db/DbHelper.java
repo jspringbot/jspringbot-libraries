@@ -21,7 +21,7 @@ package org.jspringbot.keyword.db;
 import org.hibernate.*;
 import org.hibernate.jdbc.Work;
 import org.hibernate.type.Type;
-import org.jspringbot.JSpringBotLogger;
+import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
@@ -30,14 +30,11 @@ import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class DbHelper {
 
-    public static final JSpringBotLogger LOG = JSpringBotLogger.getLogger(DbHelper.class);
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(DbHelper.class);
 
     protected SessionFactory factory;
 
@@ -90,7 +87,11 @@ public class DbHelper {
                 Statement stmt = connection.createStatement();
 
                 try {
-                    LOG.info("use " + schema);
+                    LOG.createAppender()
+                            .appendBold("Use Schema:")
+                            .appendProperty("Schema", param)
+                            .log();
+
                     stmt.execute("use " + schema);
                 } finally {
                     stmt.close();
@@ -111,11 +112,22 @@ public class DbHelper {
             throw new IllegalArgumentException("query name not found in list.");
         }
 
+        LOG.createAppender()
+                .appendBold("Create Query By Name:")
+                .appendProperty("Name", queryName)
+                .log();
+
         createQuery(externalQueries.getProperty(queryName));
     }
 
     public void setStringParameter(String key, String value) {
         validateQuery();
+
+        LOG.createAppender()
+                .appendBold("Set String Parameter:")
+                .appendProperty("property", key)
+                .appendProperty("value", value)
+                .log();
 
         query.setString(key, value);
     }
@@ -123,7 +135,25 @@ public class DbHelper {
     public void setIntegerParameter(String key, Integer value) {
         validateQuery();
 
+        LOG.createAppender()
+                .appendBold("Set Integer Parameter:")
+                .appendProperty("property", key)
+                .appendProperty("value", value)
+                .log();
+
         query.setInteger(key, value);
+    }
+
+    public void setLongParameter(String key, Long value) {
+        validateQuery();
+
+        LOG.createAppender()
+                .appendBold("Set Integer Parameter:")
+                .appendProperty("property", key)
+                .appendProperty("value", value)
+                .log();
+
+        query.setLong(key, value);
     }
 
     public void setParameterList(String key, Object parameterList) {
@@ -131,8 +161,21 @@ public class DbHelper {
 
         if (parameterList instanceof Object[]) {
             query.setParameterList(key, (Object[]) parameterList);
+
+            LOG.createAppender()
+                    .appendBold("Set Parameter List:")
+                    .appendProperty("property", key)
+                    .appendProperty("values", Arrays.asList((Object[]) parameterList))
+                    .log();
+
         } else if (parameterList instanceof Collection) {
             query.setParameterList(key, (Collection) parameterList);
+
+            LOG.createAppender()
+                    .appendBold("Set Parameter List:")
+                    .appendProperty("property", key)
+                    .appendProperty("values", parameterList)
+                    .log();
         } else {
             throw new IllegalArgumentException("ParameterList Type is not supported.");
         }
@@ -140,6 +183,12 @@ public class DbHelper {
 
     public void addResultColumn(String name, String type) {
         validateQuery();
+
+        LOG.createAppender()
+                .appendBold("Add Result Column:")
+                .appendProperty("name", name)
+                .appendProperty("type", type)
+                .log();
 
         Field field = null;
         try {
@@ -152,15 +201,31 @@ public class DbHelper {
     }
 
     public void executeUpdate() {
-        LOG.info("\nQuery string: " + query.getQueryString());
+        LOG.createAppender()
+                .appendBold("Execute Update:")
+                .appendXML(SQLFormatter.prettyPrint(query.getQueryString()))
+                .log();
+
         int affectedRows = query.executeUpdate();
-        LOG.info("\nAffected Rows: " + affectedRows);
+
+        LOG.createAppender()
+                .appendBold("Affected Rows:")
+                .appendProperty("Result", affectedRows)
+                .log();
     }
 
     public void executeQuery() {
-        LOG.info("\nQuery string: " + query.getQueryString());
+        LOG.createAppender()
+                .appendBold("Execute Query:")
+                .appendXML(SQLFormatter.prettyPrint(query.getQueryString()))
+                .log();
+
         records = query.list();
-        LOG.info("Record Size: " + records.size());
+
+        LOG.createAppender()
+                .appendBold("Record Size:")
+                .appendProperty("Result", records.size())
+                .log();
     }
 
     public void recordShouldNotBeEmpty() {
