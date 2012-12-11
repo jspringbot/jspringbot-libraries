@@ -148,7 +148,7 @@ public class DbHelper {
         validateQuery();
 
         LOG.createAppender()
-                .appendBold("Set Integer Parameter:")
+                .appendBold("Set Long Parameter:")
                 .appendProperty("property", key)
                 .appendProperty("value", value)
                 .log();
