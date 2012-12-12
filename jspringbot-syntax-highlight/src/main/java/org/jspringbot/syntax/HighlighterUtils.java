@@ -57,33 +57,31 @@ public class HighlighterUtils {
     }
 
     public String highlightXML(String code) {
-        return highlight(code, "xml");
+        return highlight(code, "xml", true);
     }
 
     public String highlightJSON(String code) {
-        return highlight(code, "json");
+        return highlight(code, "json", true);
     }
 
     public String highlightSQL(String code) {
-        return highlight(code, "sql");
+        return highlight(code, "sql", true);
     }
 
     public String highlight(String code, String type) {
+        return highlight(code, type, false);
+    }
+
+    public String highlight(String code, String type, boolean linenumber) {
         interpreter.set("code", code);
         interpreter.set("type", type);
 
         interpreter.exec("from pygments import highlight\n" +
                 "from pygments.lexers import get_lexer_by_name\n" +
                 "from pygments.formatters import HtmlFormatter\n" +
-                "formatter = HtmlFormatter(cssclass=\"syntax\")\n" +
+                "formatter = HtmlFormatter(cssclass=\"syntax\"" + (linenumber ? ",linenos=\"table\"" : "") + ")\n" +
                 "result = highlight(code, get_lexer_by_name(type), formatter)\n");
 
-        return String.valueOf(interpreter.get("result")) +
-                "<link rel='stylesheet' href='highlight.css'>" +
-                "<style>\n" +
-                "div.syntax {border-bottom: 1px solid #CCCCCC;border-top: 1px solid #CCCCCC;margin-bottom: 10px;margin-top: 15px;}\n" +
-                ".syntax {background: none repeat scroll 0 0 #F8F8F8;}\n" +
-                "div.syntax pre {background-color: transparent;border: medium none;margin: 0;overflow: auto;padding: 10px;font-size:12px;font-family: Bitstream Vera Sans Mono,monospace;}\n" +
-                "</style>";
+        return String.valueOf(interpreter.get("result")) + "<link rel='stylesheet' href='highlight.css'>";
     }
 }
