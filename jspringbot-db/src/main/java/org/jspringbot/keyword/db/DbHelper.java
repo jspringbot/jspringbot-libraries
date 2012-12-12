@@ -203,7 +203,7 @@ public class DbHelper {
     public int executeUpdate() {
         LOG.createAppender()
                 .appendBold("Execute Update:")
-                .appendXML(SQLFormatter.prettyPrint(query.getQueryString()))
+                .appendSQL(SQLFormatter.prettyPrint(query.getQueryString()))
                 .log();
 
         int affectedRows = query.executeUpdate();
@@ -219,7 +219,7 @@ public class DbHelper {
     public void executeQuery() {
         LOG.createAppender()
                 .appendBold("Execute Query:")
-                .appendXML(SQLFormatter.prettyPrint(query.getQueryString()))
+                .appendSQL(SQLFormatter.prettyPrint(query.getQueryString()))
                 .log();
 
         records = query.list();
