@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+  <comment>This contains the sql queries used by the robot test.</comment>
+  <entry key="insert.account">
+    insert into account(created_by, created_time, last_updated_by, last_updated_time, description, name)
+    values(:userName, sysdate, :userName, sysdate, :description, :name)
+  </entry>
+  <entry key="verify.account.by.name">
+    select count(1) from account where name=:name
+  </entry>
+  <entry key="delete.accounts">
+    delete from account
+  </entry>
+  <entry key="get.account.size">
+    select count(1) from account
+  </entry>
+</properties>
