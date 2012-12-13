@@ -32,10 +32,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DbHelper {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(DbHelper.class);
+
+    private static final Pattern NAMED_PARAMETER_PATTERN = Pattern.compile(":[a-z0-9$_]+", Pattern.CASE_INSENSITIVE);
 
     protected SessionFactory factory;
 
@@ -52,6 +56,8 @@ public class DbHelper {
     protected String schema;
 
     protected String useSchemaSyntax = "use %s";
+
+    protected Map<String, String> literalSubstitution = new HashMap<String, String>();
 
     public DbHelper(SessionFactory factory) {
         this.factory = factory;
@@ -114,6 +120,13 @@ public class DbHelper {
 
     public void createQuery(String queryString) {
         validateSchema();
+        literalSubstitution.clear();
+
+        LOG.createAppender()
+                .appendBold("Create Query")
+                .appendSQL(SQLFormatter.prettyPrint(queryString))
+                .log();
+
         query = session.createSQLQuery(queryString);
 
         records = null;
@@ -124,12 +137,14 @@ public class DbHelper {
             throw new IllegalArgumentException("query name not found in list.");
         }
 
+        String sql = externalQueries.getProperty(queryName);
+
         LOG.createAppender()
                 .appendBold("Create Query By Name:")
                 .appendProperty("Name", queryName)
                 .log();
 
-        createQuery(externalQueries.getProperty(queryName));
+        createQuery(sql);
     }
 
     public void setStringParameter(String key, String value) {
@@ -140,6 +155,8 @@ public class DbHelper {
                 .appendProperty("property", key)
                 .appendProperty("value", value)
                 .log();
+
+        literalSubstitution.put(key, String.format("'%s'", LiteralEscapeUtils.escapeString(value)));
 
         query.setString(key, value);
     }
@@ -153,6 +170,8 @@ public class DbHelper {
                 .appendProperty("value", value)
                 .log();
 
+        literalSubstitution.put(key, String.valueOf(value));
+
         query.setInteger(key, value);
     }
 
@@ -165,7 +184,27 @@ public class DbHelper {
                 .appendProperty("value", value)
                 .log();
 
+        literalSubstitution.put(key, String.valueOf(value));
+
         query.setLong(key, value);
+    }
+
+    private void addLiteralSubstitution(String key, Object[] obj) {
+        StringBuilder buf = new StringBuilder();
+
+        for(Object item : obj) {
+            if(buf.length() > 0) {
+                buf.append(", ");
+            }
+
+            if(String.class.isInstance(item)) {
+                buf.append(String.format("'%s'", LiteralEscapeUtils.escapeString((String) item)));
+            } else {
+                buf.append(String.valueOf(item));
+            }
+        }
+
+        literalSubstitution.put(key, buf.toString());
     }
 
     public void setParameterList(String key, Object parameterList) {
@@ -180,6 +219,8 @@ public class DbHelper {
                     .appendProperty("values", Arrays.asList((Object[]) parameterList))
                     .log();
 
+            addLiteralSubstitution(key, (Object[]) parameterList);
+
         } else if (parameterList instanceof Collection) {
             query.setParameterList(key, (Collection) parameterList);
 
@@ -188,6 +229,8 @@ public class DbHelper {
                     .appendProperty("property", key)
                     .appendProperty("values", parameterList)
                     .log();
+
+            addLiteralSubstitution(key, ((Collection) parameterList).toArray());
         } else {
             throw new IllegalArgumentException("ParameterList Type is not supported.");
         }
@@ -213,33 +256,54 @@ public class DbHelper {
     }
 
     public int executeUpdate() {
-        LOG.createAppender()
-                .appendBold("Execute Update:")
-                .appendSQL(SQLFormatter.prettyPrint(query.getQueryString()))
-                .log();
+        validateQuery();
 
+        String queryString = SQLFormatter.prettyPrint(sqlSubstitute(query.getQueryString()));
         int affectedRows = query.executeUpdate();
 
         LOG.createAppender()
-                .appendBold("Affected Rows:")
-                .appendProperty("Result", affectedRows)
+                .appendBold("Execute Update ('%d' affected rows) :", affectedRows)
+                .appendSQL(queryString)
                 .log();
 
         return affectedRows;
     }
 
     public void executeQuery() {
-        LOG.createAppender()
-                .appendBold("Execute Query:")
-                .appendSQL(SQLFormatter.prettyPrint(query.getQueryString()))
-                .log();
+        String queryString = SQLFormatter.prettyPrint(sqlSubstitute(query.getQueryString()));
 
         records = query.list();
-
         LOG.createAppender()
-                .appendBold("Record Size:")
-                .appendProperty("Result", records.size())
+                .appendBold("Execute Update ('%d' records retrieved) :", records.size())
+                .appendSQL(queryString)
                 .log();
+    }
+
+    private String sqlSubstitute(String queryString) {
+        StringBuilder buf = new StringBuilder(queryString);
+
+        Matcher matcher = NAMED_PARAMETER_PATTERN.matcher(buf);
+
+        int index = 0;
+        while(matcher.find(index)) {
+            String param = matcher.group().substring(1);
+            if(literalSubstitution.containsKey(param)) {
+                String replacement = literalSubstitution.get(param);
+                buf.replace(matcher.start(), matcher.end(), replacement);
+
+                index = matcher.start() + replacement.length();
+            } else {
+                index = matcher.end();
+            }
+        }
+
+        return buf.toString();
+    }
+
+    public Object getUniqueResult() {
+        validateRecord();
+
+        return records.get(0);
     }
 
     public void recordShouldNotBeEmpty() {
@@ -324,6 +388,31 @@ public class DbHelper {
         List list = getValuesAtColumn(columnNum);
         if (!list.contains(expectedValue)) {
             throw new IllegalArgumentException(String.format("Expected value '%s' is not in column '%d' list", String.valueOf(expectedValue), columnNum));
+        }
+    }
+
+    public Object getRecordAtColumn(int columnNum) {
+        return getRecordAtRowColumn(0, columnNum);
+    }
+
+    public Object getRecordAtRowColumn(int rowNum, int columnNum) {
+        validateRecord();
+
+        Object objectRow = records.get(rowNum);
+        if (objectRow instanceof Object[]) {
+            Object[] obj = (Object[]) objectRow;
+
+            if (columnNum >= obj.length) {
+                throw new IllegalArgumentException("Column number does not exists");
+            }
+
+            return obj[columnNum];
+        } else {
+            if (columnNum != 0) {
+                throw new IllegalArgumentException("Column number does not exists");
+            }
+
+            return objectRow;
         }
     }
 

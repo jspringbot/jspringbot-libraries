@@ -22,11 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Projected Count", description = "Get the projected count.")
-public class GetProjectedCount extends AbstractDBKeyword {
+@KeywordInfo(name = "Get Unique Result", description = "Returns the query unique result.")
+public class GetUniqueResult extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        return helper.getProjectedCount();
+        return helper.getUniqueResult();
     }
 }

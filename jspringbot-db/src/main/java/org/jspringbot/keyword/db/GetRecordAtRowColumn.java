@@ -22,11 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Projected Count", description = "Get the projected count.")
-public class GetProjectedCount extends AbstractDBKeyword {
+@KeywordInfo(name = "Get Record At Row Column", description = "Retrieve the record given the row index and column index.", parameters = {"rowNum","columnNum"})
+public class GetRecordAtRowColumn extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        return helper.getProjectedCount();
+        return helper.getRecordAtRowColumn(Integer.parseInt(String.valueOf(params[0])), Integer.parseInt(String.valueOf(params[1])));
     }
 }
