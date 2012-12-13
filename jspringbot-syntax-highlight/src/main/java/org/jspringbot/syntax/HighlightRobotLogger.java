@@ -54,6 +54,9 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
         private StringBuilder text = new StringBuilder();
 
+        private StringBuilder json = new StringBuilder();
+
+
         private JSpringBotLogger logger;
 
         private HtmlAppender(JSpringBotLogger logger) {
@@ -140,6 +143,16 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return this;
         }
 
+        public HtmlAppender appendJSON(String msg, Object... args) {
+            if(args != null && args.length > 0) {
+                json.append(String.format(msg, args));
+            } else {
+                json.append(msg);
+            }
+
+            return this;
+        }
+
         public void log() {
             if(code.length() > 0) {
                 buf.append(HighlighterUtils.INSTANCE.highlightNormal(code.toString()));
@@ -159,6 +172,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
             if(sql.length() > 0) {
                 buf.append(HighlighterUtils.INSTANCE.highlightSQL(sql.toString()));
+            }
+
+            if(json.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightJSON(json.toString()));
             }
 
             logger.pureHtml(buf.toString());

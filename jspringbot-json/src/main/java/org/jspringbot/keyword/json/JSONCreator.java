@@ -23,7 +23,6 @@ import antlr.TokenStreamException;
 import org.apache.commons.collections.CollectionUtils;
 import org.json.JSONException;
 import org.jspringbot.syntax.HighlightRobotLogger;
-import org.jspringbot.syntax.HighlighterUtils;
 
 import java.util.Stack;
 
@@ -59,6 +58,7 @@ public class JSONCreator {
                 .appendCode(name).appendCode(" : ")
                 .appendCode(value.toString())
                 .log();
+
         getObjectAppender().append(name, value);
     }
 
@@ -164,7 +164,11 @@ public class JSONCreator {
         }
 
         String createdJSONString = lastAppender.toString();
-        LOG.html("<b>Created JSON String:<b>" + HighlighterUtils.INSTANCE.highlightJSON(JSONHelper.prettyPrint(createdJSONString)));
+
+        LOG.createAppender()
+                .appendBold("Created JSON String:")
+                .appendJSON(JSONHelper.prettyPrint(createdJSONString))
+                .log();
 
         return createdJSONString;
     }

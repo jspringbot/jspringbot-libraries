@@ -23,8 +23,7 @@ import antlr.TokenStreamException;
 import com.jayway.jsonpath.JsonPath;
 import com.sdicons.json.model.JSONValue;
 import com.sdicons.json.parser.JSONParser;
-import org.jspringbot.JSpringBotLogger;
-import org.jspringbot.syntax.HighlighterUtils;
+import org.jspringbot.syntax.HighlightRobotLogger;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
@@ -34,7 +33,7 @@ import java.util.List;
 
 public class JSONHelper {
 
-    public static final JSpringBotLogger LOG = JSpringBotLogger.getLogger(JSONHelper.class);
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(JSONHelper.class);
 
     protected  String jsonString;
 
@@ -42,9 +41,11 @@ public class JSONHelper {
 
     public void setJsonString(String jsonString) {
         try {
-            LOG.html("<b>JSON String:</b>" + HighlighterUtils.INSTANCE.highlightJSON(prettyPrint(jsonString)));
+            LOG.createAppender()
+                    .appendBold("JSON String:")
+                    .appendJSON(prettyPrint(jsonString))
+                    .log();
         } catch (Exception e) {
-            e.printStackTrace();
             throw new IllegalStateException(e.getMessage(), e);
         }
 
@@ -65,7 +66,11 @@ public class JSONHelper {
     @SuppressWarnings("unchecked")
     public List<Object> getJsonValues(String jsonExpression) {
         Object jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
-        LOG.info("Json Value:" + String.valueOf(jsonValue));
+
+        LOG.createAppender()
+                .appendBold("Get JSON Values:")
+                .appendProperty("Json Value", String.valueOf(jsonValue))
+                .log();
 
         if(jsonValue instanceof List) {
             return (List<Object>) jsonValue;
@@ -76,11 +81,15 @@ public class JSONHelper {
 
     public Object getJsonValue(String jsonExpression) {
         Object jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
-        LOG.info("Json Value:" + String.valueOf(jsonValue));
 
         if(jsonValue instanceof List) {
-            return ((List) jsonValue).iterator().next();
+            jsonValue = ((List) jsonValue).iterator().next();
         }
+
+        LOG.createAppender()
+                .appendBold("Get JSON Value")
+                .appendProperty("Json Value", String.valueOf(jsonValue))
+                .log();
 
         return jsonValue;
     }
@@ -116,20 +125,30 @@ public class JSONHelper {
         }
     }
 
-    public void jsonArrayLengthShouldBe(String jsonExpression, int expectedLength) {
+    public int getJsonArrayLength(String jsonExpression) {
         try {
             ScriptEngineManager manager = new ScriptEngineManager();
             engine = manager.getEngineByName("JavaScript");
             engine.eval("var json = " + jsonString + ";");
             engine.eval("var jsonExpr = json." + jsonExpression + ".length;");
 
-
             int length = ((Number) engine.get("jsonExpr")).intValue();
-            if (length != expectedLength) {
-                throw new IllegalStateException(String.format("Json Array length should be %s but was %s", expectedLength, length));
-            }
+
+            LOG.createAppender()
+                    .appendBold("Get JSON Array Length")
+                    .appendProperty("Length", length)
+                    .log();
+
+            return length;
         } catch(Exception e) {
             throw new IllegalStateException("Response is not json.", e);
+        }
+    }
+
+    public void jsonArrayLengthShouldBe(String jsonExpression, int expectedLength) {
+        int length = getJsonArrayLength(jsonExpression);
+        if (length != expectedLength) {
+            throw new IllegalStateException(String.format("Json Array length should be %s but was %s", expectedLength, length));
         }
     }
 }
