@@ -42,7 +42,7 @@ public class JSONHelper {
 
     public void setJsonString(String jsonString) {
         try {
-            LOG.html("<b>JSON String:<b>" + HighlighterUtils.INSTANCE.highlightJSON(prettyPrint(jsonString)));
+            LOG.html("<b>JSON String:</b>" + HighlighterUtils.INSTANCE.highlightJSON(prettyPrint(jsonString)));
         } catch (Exception e) {
             e.printStackTrace();
             throw new IllegalStateException(e.getMessage(), e);
