@@ -50,8 +50,14 @@ public class DbHelper {
 
     protected String schema;
 
+    protected String useSchemaSyntax = "use %s";
+
     public DbHelper(SessionFactory factory) {
         this.factory = factory;
+    }
+
+    public void setUseSchemaSyntax(String useSchemaSyntax) {
+        this.useSchemaSyntax = useSchemaSyntax;
     }
 
     public void setQuerySource(Resource source) {
@@ -92,7 +98,7 @@ public class DbHelper {
                             .appendProperty("Schema", param)
                             .log();
 
-                    stmt.execute("use " + schema);
+                    stmt.execute(String.format(useSchemaSyntax, schema));
                 } finally {
                     stmt.close();
                 }
@@ -239,38 +245,45 @@ public class DbHelper {
     }
 
     public void projectedCountShouldBe(int count) {
-        validateRecord();
+        int projectedCount = getProjectedCount();
 
-        int projectedCount = ((Number) records.get(0)).intValue();
         if (projectedCount != count) {
             throw new IllegalStateException(String.format("Expected projected count '%d' but was %d.", count, projectedCount));
         }
     }
 
     public void projectedCountIsNotZero() {
-        validateRecord();
-
-        int projectedCount = ((Number) records.get(0)).intValue();
+        int projectedCount = getProjectedCount();
         if (projectedCount <= 0) {
             throw new IllegalStateException(String.format("Expected projected count should not be zero but was %d", projectedCount));
         }
     }
 
-    public void projectedCountIsZero() {
+    public int getProjectedCount() {
         validateRecord();
 
         int projectedCount = ((Number) records.get(0)).intValue();
+
+        LOG.createAppender()
+                .appendBold("Get Projected Count")
+                .appendProperty("Result", projectedCount)
+                .log();
+
+        return projectedCount;
+    }
+
+    public void projectedCountIsZero() {
+        int projectedCount = getProjectedCount();
         if (projectedCount != 0) {
             throw new IllegalStateException(String.format("Expected projected count should be zero but was %d", projectedCount));
         }
     }
 
-    public void recordCountShouldBeEqual(int expectedCount) {
-        validateRecord();
+    public void projectedCountShouldBeEqual(int expectedCount) {
+        int projectedCount = getProjectedCount();
 
-        int actualCount = ((Number) records.get(0)).intValue();
-        if (actualCount != expectedCount) {
-            throw new IllegalStateException(String.format("Actual count %d should be equal to expected count %d", actualCount, expectedCount));
+        if (projectedCount != expectedCount) {
+            throw new IllegalStateException(String.format("Actual count %d should be equal to expected count %d", projectedCount, expectedCount));
         }
     }
 
@@ -334,9 +347,8 @@ public class DbHelper {
     }
 
     private void validateSchema() {
-        if (schema == null) {
-            throw new IllegalStateException("No schema selected") ;
-        }
+        // no need to check schema
+        // default might be selected
     }
 
     private void validateQuery() {
