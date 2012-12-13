@@ -53,6 +53,13 @@
     <libdoc.output>JSpringBotDBLibrary.html</libdoc.output>
   </properties>
 
+  <repositories>
+    <repository>
+      <id>c5-public-repository</id>
+      <url>http://mvn.carbonfive.com/public</url>
+    </repository>
+  </repositories>
+
   <dependencies>
     <dependency>
       <groupId>commons-collections</groupId>
