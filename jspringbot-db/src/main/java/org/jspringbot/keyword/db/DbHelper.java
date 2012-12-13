@@ -18,6 +18,7 @@
 
 package org.jspringbot.keyword.db;
 
+import org.apache.commons.lang.StringUtils;
 import org.hibernate.*;
 import org.hibernate.jdbc.Work;
 import org.hibernate.type.Type;
@@ -63,7 +64,12 @@ public class DbHelper {
     public void setQuerySource(Resource source) {
         try {
             externalQueries = new Properties();
-            externalQueries.load(new InputStreamReader(source.getInputStream()));
+
+            if(StringUtils.endsWithIgnoreCase(source.getFilename(), "xml")) {
+                externalQueries.loadFromXML(source.getInputStream());
+            } else {
+                externalQueries.load(new InputStreamReader(source.getInputStream()));
+            }
         } catch (IOException e) {
             throw new IllegalStateException("Error loading queries.");
         }
