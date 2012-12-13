@@ -69,6 +69,7 @@ public class JSONHelper {
 
         LOG.createAppender()
                 .appendBold("Get JSON Values:")
+                .appendProperty("Json Expression", jsonExpression)
                 .appendProperty("Json Value", String.valueOf(jsonValue))
                 .log();
 
@@ -87,7 +88,8 @@ public class JSONHelper {
         }
 
         LOG.createAppender()
-                .appendBold("Get JSON Value")
+                .appendBold("Get JSON Value:")
+                .appendProperty("Json Expression", jsonExpression)
                 .appendProperty("Json Value", String.valueOf(jsonValue))
                 .log();
 
@@ -135,7 +137,8 @@ public class JSONHelper {
             int length = ((Number) engine.get("jsonExpr")).intValue();
 
             LOG.createAppender()
-                    .appendBold("Get JSON Array Length")
+                    .appendBold("Get JSON Array Length:")
+                    .appendProperty("Json Expression", jsonExpression)
                     .appendProperty("Length", length)
                     .log();
 
