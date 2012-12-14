@@ -67,17 +67,21 @@ public class JSONHelper {
     public List<Object> getJsonValues(String jsonExpression) {
         Object jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
 
+        List items;
+
+        if(jsonValue instanceof List) {
+            items = (List) jsonValue;
+        } else {
+            items = Arrays.asList(jsonValue);
+        }
+
         LOG.createAppender()
                 .appendBold("Get JSON Values:")
                 .appendProperty("Json Expression", jsonExpression)
-                .appendProperty("Json Value", String.valueOf(jsonValue))
+                .appendProperty("Size", items.size())
                 .log();
 
-        if(jsonValue instanceof List) {
-            return (List<Object>) jsonValue;
-        }
-
-        return Arrays.asList(jsonValue);
+        return items;
     }
 
     public Object getJsonValue(String jsonExpression) {
