@@ -41,6 +41,7 @@ public class SQLFormatter {
         END_CLAUSES.add( "join" );
         END_CLAUSES.add( "into" );
         END_CLAUSES.add( "union" );
+        END_CLAUSES.add( "limit" );
 
         LOGICAL.add( "and" );
         LOGICAL.add( "or" );
