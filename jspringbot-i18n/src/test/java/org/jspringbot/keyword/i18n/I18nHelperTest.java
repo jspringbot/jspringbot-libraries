@@ -24,8 +24,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.Map;
-
 import static junit.framework.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -53,10 +51,10 @@ public class I18nHelperTest {
         helper.setLanguage("en");
         assertEquals("english message", helper.getMessage("message"));
 
-        Map<String, String> map = helper.createDictionary("login");
+        I18nDictionary dictionary = helper.createDictionary();
 
-        assertEquals("English Login Success", map.get("login.success"));
-        assertEquals("English Login Failure", map.get("login.failure"));
+        assertEquals("English Login Success", dictionary.get("login.success"));
+        assertEquals("English Login Failure", dictionary.get("login.failure"));
     }
 
     @Test
@@ -64,10 +62,10 @@ public class I18nHelperTest {
         helper.setLanguage("zh");
         assertEquals("chinese message", helper.getMessage("message"));
 
-        Map<String, String> map = helper.createDictionary("login");
+        I18nDictionary dictionary = helper.createDictionary();
 
-        assertEquals("Chinese Login Success", map.get("login.success"));
-        assertEquals("Chinese Login Failure", map.get("login.failure"));
+        assertEquals("Chinese Login Success", dictionary.get("login.success"));
+        assertEquals("Chinese Login Failure", dictionary.get("login.failure"));
     }
 
     @Test
@@ -75,10 +73,10 @@ public class I18nHelperTest {
         helper.setLanguage("ja");
         assertEquals("japanese message", helper.getMessage("message"));
 
-        Map<String, String> map = helper.createDictionary("login");
+        I18nDictionary dictionary = helper.createDictionary();
 
-        assertEquals("Japanese Login Success", map.get("login.success"));
-        assertEquals("Japanese Login Failure", map.get("login.failure"));
+        assertEquals("Japanese Login Success", dictionary.get("login.success"));
+        assertEquals("Japanese Login Failure", dictionary.get("login.failure"));
 
     }
 }

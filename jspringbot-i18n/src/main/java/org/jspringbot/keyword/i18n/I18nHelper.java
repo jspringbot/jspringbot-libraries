@@ -18,32 +18,19 @@
 
 package org.jspringbot.keyword.i18n;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
-import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.core.io.Resource;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Locale;
 
 public class I18nHelper {
 
     private MessageSourceAccessor messages;
 
-    private Set<Object> codes;
-
-    public I18nHelper(MessageSource messageSource, Resource properties) throws IOException {
+    public I18nHelper(MessageSource messageSource) throws IOException {
         this.messages = new MessageSourceAccessor(messageSource);
-
-        Properties prop = new Properties();
-        prop.load(properties.getInputStream());
-
-        codes = Collections.unmodifiableSet(prop.keySet());
-    }
-
-    public I18nHelper(ResourceBundleMessageSource resourceBundleMessageSource) {
     }
 
     public void setLanguage(String localeString) {
@@ -55,18 +42,7 @@ public class I18nHelper {
         return messages.getMessage(code);
     }
 
-    @SuppressWarnings("unchecked")
-    public Map<String, String> createDictionary(String prefix) {
-        Map<String, String> dictionary = new HashMap<String, String>();
-
-        for(Object code : codes) {
-            String key = String.valueOf(code);
-
-            if(StringUtils.startsWith(key, prefix)) {
-                dictionary.put(key, getMessage(key));
-            }
-        }
-
-        return dictionary;
+    public I18nDictionary createDictionary() {
+        return new I18nDictionary(messages);
     }
 }

@@ -29,7 +29,6 @@
 
   <bean name="i18nHelper" class="org.jspringbot.keyword.i18n.I18nHelper">
     <constructor-arg ref="messageSource"/>
-    <constructor-arg value="classpath:ApplicationResources_en.properties"/>
   </bean>
 
   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
