@@ -16,16 +16,15 @@ public class GetElementAttribute  extends AbstractXMLKeyword {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(GetElementAttribute.class);
 
-
     @Override
     public Object execute(Object[] params) throws ParserConfigurationException, IOException, SAXException {
         Element element = (Element) params[0];
         String attributeName = String.valueOf(params[1]);
 
-        StringBuilder buf = new StringBuilder();
-        buf.append("<b>Element:</b>").append(HighlighterUtils.INSTANCE.highlightXML(XMLFormatter.prettyPrint(element)));
-
-        LOG.pureHtml(buf.toString());
+        LOG.createAppender()
+                .appendBold("Element:")
+                .appendXML(HighlighterUtils.INSTANCE.highlightXML(XMLFormatter.prettyPrint(element)))
+                .log();
 
         String result = element.getAttribute(attributeName);
 
