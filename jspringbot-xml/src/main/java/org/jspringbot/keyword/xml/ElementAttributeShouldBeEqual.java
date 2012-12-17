@@ -35,7 +35,7 @@ public class ElementAttributeShouldBeEqual extends AbstractXMLKeyword {
                 .appendProperty("Expected", expectedValue)
                 .log();
 
-        if(StringUtils.equals(result, expectedValue)) {
+        if(!StringUtils.equals(result, expectedValue)) {
             throw new IllegalArgumentException("Attribute name and expected value did not match.");
         }
 
