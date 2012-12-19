@@ -56,6 +56,9 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
         private StringBuilder json = new StringBuilder();
 
+        private StringBuilder javascript = new StringBuilder();
+
+        private StringBuilder css = new StringBuilder();
 
         private JSpringBotLogger logger;
 
@@ -143,6 +146,26 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return this;
         }
 
+        public HtmlAppender appendJavascript(String msg, Object... args) {
+            if(args != null && args.length > 0) {
+                javascript.append(String.format(msg, args));
+            } else {
+                javascript.append(msg);
+            }
+
+            return this;
+        }
+
+        public HtmlAppender appendCss(String msg, Object... args) {
+            if(args != null && args.length > 0) {
+                css.append(String.format(msg, args));
+            } else {
+                css.append(msg);
+            }
+
+            return this;
+        }
+
         public HtmlAppender appendJSON(String msg, Object... args) {
             if(args != null && args.length > 0) {
                 json.append(String.format(msg, args));
@@ -172,6 +195,14 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
             if(sql.length() > 0) {
                 buf.append(HighlighterUtils.INSTANCE.highlightSQL(sql.toString()));
+            }
+
+            if(javascript.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightJavascript(javascript.toString()));
+            }
+
+            if(css.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightCss(css.toString()));
             }
 
             if(json.length() > 0) {

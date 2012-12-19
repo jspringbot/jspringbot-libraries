@@ -64,6 +64,14 @@ public class HighlighterUtils {
         return highlight(code, "json", true);
     }
 
+    public String highlightJavascript(String code) {
+        return highlight(code, "javascript", true);
+    }
+
+    public String highlightCss(String code) {
+        return highlight(code, "css", true);
+    }
+
     public String highlightSQL(String code) {
         return highlight(code, "sql", true);
     }

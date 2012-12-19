@@ -20,10 +20,12 @@ package org.jspringbot.keyword.selenium;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.jspringbot.JSpringBotLogger;
+import org.jspringbot.syntax.HighlightRobotLogger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceEditor;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,7 +34,7 @@ import java.util.*;
 
 public class SeleniumHelper {
 
-    private static final JSpringBotLogger LOG = JSpringBotLogger.getLogger(SeleniumHelper.class);
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(SeleniumHelper.class);
 
     protected WebDriver driver;
 
@@ -60,13 +62,16 @@ public class SeleniumHelper {
         driver.manage().window().maximize();
     }
 
-    public void assignIdToElement(Integer id, String locator) {
-        LOG.info(String.format("Assigning temporary id %s to element %s", id, locator));
+    public void assignIdToElement(String id, String locator) {
+        LOG.createAppender()
+                .appendBold("Assign ID To Element:")
+                .appendCss(locator)
+                .appendProperty("id", id)
+                .log();
+
         WebElement el = finder.find(locator);
 
-        // TODO FIX THIS
-        executor.executeScript(String.format("arguments[0].id = '%s';", id));
-        //self._current_browser().execute_script("arguments[0].id = '%s';" % id, element)
+        executor.executeScript(String.format("arguments[0].id = '%s';", id), el);
     }
 
     public void setScreenCaptureDir(File screenCaptureDir) {
@@ -81,7 +86,10 @@ public class SeleniumHelper {
     public void navigateTo(String url) {
         driver.navigate().to(url);
 
-        LOG.html("Navigated to <a href='%s'>%s</a>", url, url);
+        LOG.createAppender()
+                .appendBold("Navigate To:")
+                .appendProperty("link", url)
+                .log();
     }
 
     public void closeBrowser() {
@@ -96,8 +104,15 @@ public class SeleniumHelper {
 
     public void alertShouldBePresent(String expectedAlertText) {
         String actualAlertText = getAlertMessage();
+
+        LOG.createAppender()
+                .appendBold("Alert Should Be Present:")
+                .appendProperty("Actual Alert Text", actualAlertText)
+                .appendProperty("Expected Alert Text", expectedAlertText)
+                .log();
+
         if (!StringUtils.equals(actualAlertText, expectedAlertText)) {
-            throw new IllegalArgumentException(String.format("Alert text should have been '%s' but was '%s'", expectedAlertText, actualAlertText));
+            throw new IllegalArgumentException("Alert text is not equal.");
         }
     }
 
@@ -117,34 +132,57 @@ public class SeleniumHelper {
     }
 
     public void checkboxShouldBeSelected(String locator){
-        LOG.info("Verifying checkbox '%s' is selected.", locator);
-        
         WebElement el = getCheckbox(locator);
+
+        LOG.createAppender()
+                .appendBold("Checkbox Should Be Selected:")
+                .appendCss(locator)
+                .appendProperty("Selected", el.isSelected())
+                .log();
+
         if (!el.isSelected()) {
-            throw new IllegalArgumentException(String.format("Checkbox '%s' should have been selected but was not", locator));
+            throw new IllegalArgumentException("Checkbox should have been selected.");
         }
     }
 
     public void checkboxShouldNotBeSelected(String locator) {
-        LOG.info("Verifying checkbox '%s' is not selected.", locator);
-        
         WebElement el = getCheckbox(locator);
+
+        LOG.createAppender()
+                .appendBold("Checkbox Should Not e Selected:")
+                .appendCss(locator)
+                .appendProperty("Selected", el.isSelected())
+                .log();
+
         if (el.isSelected()) {
-            throw new IllegalArgumentException(String.format("Checkbox '%s' should not have been selected", locator));
+            throw new IllegalArgumentException("Checkbox should not have been selected.");
         }
     }
 
     public void chooseFile(String locator, String filePath) {
         File file = new File(filePath);
+
+        LOG.createAppender()
+                .appendBold("Choose File:")
+                .appendCss(locator)
+                .appendProperty("File Path", filePath)
+                .appendProperty("Is File", file.isFile())
+                .log();
+
         if (!file.isFile()) {
-            throw new IllegalArgumentException(String.format("File '%s' does not exist on the local file system", filePath));
+            throw new IllegalArgumentException("File does not exist on the local file system.");
         }
+
         WebElement el = finder.find(locator);
         el.sendKeys(filePath);
     }
 
     public void clickButton(String locator) {
-        LOG.info("Clicking button '%s'.", locator);
+        LOG.createAppender()
+                .appendBold("Click Button:")
+                .appendCss(locator)
+                .log();
+
         WebElement button = finder.find(locator, false, "input");
         if (button == null) {
             button = finder.find(locator, "button");
@@ -153,15 +191,21 @@ public class SeleniumHelper {
     }
 
     public void clickElement(String locator) {
-        LOG.info("Clicking element '%s'.", locator);
+        LOG.createAppender()
+                .appendBold("Click Element:")
+                .appendCss(locator)
+                .log();
 
         finder.find(locator).click();
     }
 
     public void clickImage(String locator) {
-        LOG.info("Clicking image '%s'.", locator);
+        LOG.createAppender()
+                .appendBold("Click Image:")
+                .appendCss(locator)
+                .log();
 
-        WebElement image = finder.find(locator,false,"img");
+        WebElement image = finder.find(locator, false, "img");
 
         if (image == null) {
             image = finder.find(locator,"input");
@@ -171,7 +215,11 @@ public class SeleniumHelper {
     }
 
     public void clickLink(String locator) {
-        LOG.info("Clicking link '%s'.", locator);
+        LOG.createAppender()
+                .appendBold("Click Link:")
+                .appendCss(locator)
+                .log();
+
         WebElement el = finder.find(locator);
         el.click();
     }
@@ -181,6 +229,7 @@ public class SeleniumHelper {
 
         WebElement el = finder.find("tag=a",false,"a");
         links.add(el.getAttribute("id"));
+
         return links;
     }
 
@@ -201,24 +250,39 @@ public class SeleniumHelper {
     }
 
     public void deleteAllCookies() {
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
+                .appendBold("Delete All Cookies:");
+
         Set<Cookie> allCookies = getCookies();
         for (Cookie loadedCookie : allCookies) {
+            appender.appendProperty(loadedCookie.getName(), loadedCookie.getValue());
             deleteCookie(loadedCookie);
         }
+
+        appender.log();
     }
 
     public void deleteCookie(String cookieName) {
-        LOG.info("Deleting cookie with name %s.", cookieName);
-
         Cookie cookie = driver.manage().getCookieNamed(cookieName);
+
+        LOG.createAppender()
+                .appendBold("Delete Cookie:")
+                .appendProperty(cookie.getName(), cookie.getValue())
+                .log();
+
         driver.manage().deleteCookie(cookie);
     }
 
     public String getCookieValue (String cookieName) {
         Cookie cookie = driver.manage().getCookieNamed(cookieName);
 
+
         if (cookie != null) {
-            LOG.info("Deleting cookie with name %s.", cookieName);
+            LOG.createAppender()
+                    .appendBold("Get Cookie Value")
+                    .appendProperty(cookie.getName(), cookie.getValue())
+                    .log();
+
             return cookie.getValue();
         } else {
             throw new IllegalStateException(String.format("Cookie with name '%s' not found", cookieName));
@@ -226,16 +290,39 @@ public class SeleniumHelper {
     }
 
     public Set<Cookie> getCookies () {
-        return driver.manage().getCookies();
+        Set<Cookie> cookies = driver.manage().getCookies();
+
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
+                .appendBold("Get Cookies:");
+
+        for(Cookie cookie : cookies) {
+            appender.appendProperty(cookie.getName(), cookie.getValue());
+        }
+
+        appender.log();
+
+        return cookies;
     }
 
     public void doubleClickElement(String locator) {
-        LOG.info("Double clicking element '%s'.", locator);
+        LOG.createAppender()
+                .appendBold("Double Click Element:")
+                .appendCss(locator)
+                .log();
+
         WebElement el = finder.find(locator);
         new Actions(driver).doubleClick(el).perform();
     }
 
     public void dragAndDrop(String locatorSrc, String locatorDest) {
+        LOG.createAppender()
+                .appendBold("Drag And Drop:")
+                .append("<br/>Source:")
+                .appendCss(locatorSrc)
+                .append("Destination:")
+                .appendCss(locatorDest)
+                .log();
+
         WebElement element = finder.find(locatorSrc);
         WebElement target = finder.find(locatorDest);
 
@@ -243,67 +330,127 @@ public class SeleniumHelper {
     }
 
     public void dragAndDropByOffset(String locatorSrc, int xOffset, int yOffset) {
+
+        LOG.createAppender()
+                .appendBold("Drag And Drop By Offset:")
+                .appendCss(locatorSrc)
+                .appendProperty("xOffset", xOffset)
+                .appendProperty("yOffset", yOffset)
+                .log();
+
         WebElement element = finder.find(locatorSrc);
 
         new Actions(driver).dragAndDropBy(element, xOffset, yOffset).perform();
     }
 
     public void elementShouldBeDisabled(String locator) {
+
+        LOG.createAppender()
+                .appendBold("Element Should Be Disabled:")
+                .appendCss(locator)
+                .appendProperty("Enabled", isEnabled(locator))
+                .log();
+
         if (isEnabled(locator))  {
-            throw new AssertionError(String.format("Element '%s' is enabled", locator));
+            throw new AssertionError("Element is enabled.");
         }
     }
 
     public void elementShouldBeEnabled(String locator) {
-        if (!isEnabled(locator))  {
-            throw new AssertionError(String.format("Element '%s' is disabled", locator));
+        boolean isEnabled = isEnabled(locator);
+
+        LOG.createAppender()
+                .appendBold("Element Should Be Enabled:")
+                .appendCss(locator)
+                .appendProperty("Enabled", isEnabled)
+                .log();
+
+        if (!isEnabled)  {
+            throw new AssertionError("Element is disabled");
         }
     }
 
     public void elementShouldBeVisible(String locator) {
-        LOG.info("Verifying element '%s' is visible.", locator);
+        boolean isVisible = isVisible(locator);
+        LOG.createAppender()
+                .appendBold("Element Should Be Visible:")
+                .appendCss(locator)
+                .appendProperty("Visible", isVisible)
+                .log();
 
-        if (!isVisible(locator)) {
-            throw new AssertionError(String.format("The element '%s' should be visible, but it is not.", locator));
+        if (!isVisible) {
+            throw new AssertionError("The element should be visible, but it is not.");
         }
     }
 
     public void elementShouldNotBeVisible(String locator) {
-        LOG.info("Verifying element '%s' is not visible.", locator);
+        boolean isVisible = isVisible(locator);
 
-        if (isVisible(locator)) {
-            throw new AssertionError(String.format("The element '%s' should not be visible, but it is not.", locator));
+        LOG.createAppender()
+                .appendBold("Element Should Not Be Visible:")
+                .appendCss(locator)
+                .appendProperty("Visible", isVisible)
+                .log();
+
+        if (isVisible) {
+            throw new AssertionError("The element should not be visible, but it is not.");
         }
     }
 
     public void currentFrameShouldContain(String text) {
-        if (!textIsPresent(text)) {
-            throw new AssertionError(String.format("Page should have contained text %s but did not", text));
-        }
+        boolean textIsPresent = textIsPresent(text);
 
-        LOG.info("Current page contains text %s.", text);
+        LOG.createAppender()
+                .appendBold("Current Frame Should Contain Text:")
+                .appendProperty("text", text)
+                .appendProperty("Text Is Present", textIsPresent)
+                .log();
+
+        if (!textIsPresent) {
+            throw new AssertionError("Page should have contained text but did not.");
+        }
     }
 
     public void frameShouldContainText(String locator, String text) {
-        if (!frameContains(locator, text)) {
-            throw new AssertionError(String.format("Page should have contained text '%s' but did not.", text));
+        boolean frameContains = frameContains(locator, text);
+        LOG.createAppender()
+                .appendBold("Frame Should Contain Text:")
+                .appendProperty("text", text)
+                .appendProperty("Text Is Present", frameContains)
+                .log();
+
+
+        if (!frameContains) {
+            throw new AssertionError("Page should have contained text but did not.");
         }
-        LOG.info(String.format("Current page contains text '%s'.", text));
     }
 
     public void elementShouldContain(String locator, String expected) {
-        LOG.info(String.format("Verifying element '%s' contains text '%s'.", locator, expected));
-        String actual = getText(locator,false);
+        String actual = getText(locator, false);
+
+        LOG.createAppender()
+                .appendBold("Element Should Contain Text:")
+                .appendCss(locator)
+                .appendProperty("Actual", actual)
+                .appendProperty("Expected", expected)
+                .log();
+
         if (!expected.equalsIgnoreCase(actual)) {
-            throw new AssertionError(String.format("Element '%s' should have contained text '%s' but its text was '%s'.", locator, expected, actual));
+            throw new AssertionError("Element should have contained text.");
         }
     }
 
     public void elementShouldContainClass(String locator, String expectedClassName) {
-        LOG.info(String.format("Verifying element '%s' contains class '%s'.", locator, expectedClassName));
         WebElement el = finder.find(locator, true);
 
         String classNames = el.getAttribute("class");
+
+        LOG.createAppender()
+                .appendBold("Element Should Contain Class:")
+                .appendCss(locator)
+                .appendProperty("Class Names", classNames)
+                .appendProperty("Expected Class Name", expectedClassName)
+                .log();
 
         if(StringUtils.isNotEmpty(classNames)) {
             if(Arrays.asList(StringUtils.split(classNames, " ")).contains(expectedClassName)) {
@@ -311,33 +458,61 @@ public class SeleniumHelper {
             }
         }
 
-        throw new AssertionError(String.format("Element '%s' should have contained class '%s' but its class was '%s'.", locator, expectedClassName, classNames));
+        throw new AssertionError("Element should have contained class.");
     }
 
     public void elementShouldNotContainClass(String locator, String expectedClassName) {
-        LOG.info(String.format("Verifying element '%s' should not contains class '%s'.", locator, expectedClassName));
         WebElement el = finder.find(locator, true);
 
         String classNames = el.getAttribute("class");
 
+        LOG.createAppender()
+                .appendBold("Element Should Not Contain Class:")
+                .appendCss(locator)
+                .appendProperty("Class Names", classNames)
+                .appendProperty("Expected Class Name", expectedClassName)
+                .log();
+
         if(StringUtils.isNotEmpty(classNames)) {
             if(Arrays.asList(StringUtils.split(classNames, " ")).contains(expectedClassName)) {
-                throw new AssertionError(String.format("Element '%s' should have not contained class '%s'.", locator, expectedClassName));
+                throw new AssertionError("Element should have not contained class");
             }
         }
     }
 
     public void elementTextShouldBe(String locator, String expectedText) {
-        LOG.info(String.format("Verifying element %s contains exactly text %s", locator, expectedText));
         WebElement el = finder.find(locator);
+
         String actualText = el.getText();
+
+        LOG.createAppender()
+                .appendBold("Element Text Should Be:")
+                .appendCss(locator)
+                .appendProperty("Actual Text", actualText)
+                .appendProperty("Expected Text", expectedText)
+                .log();
+
         if (!StringUtils.equals(expectedText, actualText)) {
-            throw new AssertionError(String.format("The text of element '%s' should have been '%s' but was '%s'.", locator, expectedText, actualText));
+            throw new AssertionError("The text of element is not as expected.");
         }
     }
 
+    public Object executeJavascript(String code) throws IOException {
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
+                .appendBold("Execute Javascript:");
 
-    public Object executeJavascript(String code) {
+        if(StringUtils.startsWith(code, "file:") || StringUtils.startsWith(code, "classpath:")) {
+            appender.appendProperty("Resource", code);
+            ResourceEditor editor = new ResourceEditor();
+            editor.setValue(code);
+            Resource resource = (Resource) editor.getValue();
+
+            code = new String(IOUtils.toCharArray(resource.getInputStream()));
+        }
+
+        appender.appendJavascript(code);
+        appender.log();
+
         return executor.executeScript(code);
     }
 
@@ -345,53 +520,121 @@ public class SeleniumHelper {
         String[] parts = parseAttributeLocator(attributeLocator);
         String locator = parts[0];
         String attributeName = parts[1];
-        WebElement el =finder.find(parts[0],true);
+
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
+                .appendBold("Get Element Attribute:")
+                .appendCss(locator)
+                .appendProperty("Attribute Name", attributeName);
+
+        WebElement el = finder.find(parts[0], true);
 
         if (el == null) {
-            throw new IllegalArgumentException(String.format("Element '%s' not found", locator));
+            appender.log();
+            throw new IllegalArgumentException("Element not found");
         }
-        return el.getAttribute(attributeName);
+
+        String attributeValue = el.getAttribute(attributeName);
+
+        appender.appendProperty("Attribute Value", attributeValue)
+                .log();
+
+        return attributeValue;
     }
 
     public int getHorizontalPosition(String locator) {
         WebElement element = finder.find(locator);
 
-        return element.getLocation().getX();
+        Point point = element.getLocation();
+
+        LOG.createAppender()
+                .appendBold("Get Horizontal Position:")
+                .appendCss(locator)
+                .appendProperty("X", point.getX())
+                .appendProperty("Y", point.getY())
+                .log();
+
+        return point.getY();
     }
 
     public int getVerticalPosition(String locator) {
         WebElement element = finder.find(locator);
 
-        return element.getLocation().getY();
+        Point point = element.getLocation();
+
+        LOG.createAppender()
+                .appendBold("Get Vertical Position:")
+                .appendCss(locator)
+                .appendProperty("X", point.getX())
+                .appendProperty("Y", point.getY())
+                .log();
+
+        return point.getY();
     }
 
     public String getLocation() {
+        LOG.createAppender()
+                .appendBold("Get Location:")
+                .appendProperty("Current URL", driver.getCurrentUrl())
+                .log();
+
         return driver.getCurrentUrl();
     }
 
     public int getMatchingCSSCount(String cssLocator) {
+        if(StringUtils.startsWith(cssLocator, "css=")) {
+            cssLocator = cssLocator.substring(4);
+        }
+
         int count = driver.findElements(By.cssSelector(cssLocator)).size();
 
-        LOG.info("Matching css count for '%s' is '%d'", cssLocator, count);
+        LOG.createAppender()
+                .appendBold("Get Matching CSS Count:")
+                .appendCss(cssLocator)
+                .appendProperty("Count", count)
+                .log();
 
         return count;
     }
 
     public int getMatchingXpathCount(String xpath) {
+        if(StringUtils.startsWith(xpath, "xpath=")) {
+            xpath = xpath.substring(6);
+        }
+
         int count = driver.findElements(By.xpath(xpath)).size();
 
-        LOG.info("Matching xpath count for '%s' is '%d'", xpath, count);
+        LOG.createAppender()
+                .appendBold("Get Matching XPath Count:")
+                .appendCss(xpath)
+                .appendProperty("Count", count)
+                .log();
 
         return count;
     }
 
     public String getSource() {
-        return driver.getPageSource();
+        String source = driver.getPageSource();
+
+        LOG.createAppender()
+                .appendBold("Get Source:")
+                .appendXML(source)
+                .log();
+
+        return source;
     }
 
     public List<String> getListItems(String locator) {
         List<WebElement> selectOptions = getSelectListOptions(locator);
-        return getLabelsForOptions(selectOptions);
+
+        List<String> labels = getLabelsForOptions(selectOptions);
+
+        LOG.createAppender()
+                .appendBold("Get List Items:")
+                .appendCss(locator)
+                .appendProperty("Labels", labels)
+                .log();
+
+        return labels;
     }
 
     public String getSelectedListLabel (String locator) {
