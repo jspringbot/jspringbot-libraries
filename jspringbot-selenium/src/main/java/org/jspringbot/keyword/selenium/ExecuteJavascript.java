@@ -21,11 +21,13 @@ package org.jspringbot.keyword.selenium;
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 @Component
 @KeywordInfo(name = "Execute Javascript", description = "\tExecutes the given JavaScript code.", parameters = {"code"})
 public class ExecuteJavascript extends AbstractSeleniumKeyword {
 
-    public Object execute(Object[] params) {
+    public Object execute(Object[] params) throws IOException {
         return helper.executeJavascript(String.valueOf(params[0]));
     }
 }

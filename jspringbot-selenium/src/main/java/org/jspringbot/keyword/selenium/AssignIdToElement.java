@@ -27,7 +27,7 @@ public class AssignIdToElement extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.assignIdToElement(Integer.valueOf(String.valueOf(params[0])),String.valueOf(params[1]));
+        helper.assignIdToElement(String.valueOf(params[0]),String.valueOf(params[1]));
 
         return null;
     }
