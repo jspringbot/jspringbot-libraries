@@ -2,7 +2,6 @@ package org.jspringbot.keyword.xml;
 
 import org.jspringbot.KeywordInfo;
 import org.jspringbot.syntax.HighlightRobotLogger;
-import org.jspringbot.syntax.HighlighterUtils;
 import org.springframework.stereotype.Component;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
@@ -20,11 +19,6 @@ public class GetElementAttribute  extends AbstractXMLKeyword {
     public Object execute(Object[] params) throws ParserConfigurationException, IOException, SAXException {
         Element element = (Element) params[0];
         String attributeName = String.valueOf(params[1]);
-
-        LOG.createAppender()
-                .appendBold("Element:")
-                .appendXML(HighlighterUtils.INSTANCE.highlightXML(XMLFormatter.prettyPrint(element)))
-                .log();
 
         String result = element.getAttribute(attributeName);
 
