@@ -358,6 +358,15 @@ public class HTTPHelper {
         }
         appender.log();
 
+        // request parameters for post
+        if (request instanceof HttpPost && CollectionUtils.isNotEmpty(params)) {
+            appender = LOG.createAppender().appendBold("Request Parameters:");
+            for(NameValuePair nv : params) {
+                appender.appendProperty(nv.getName(), nv.getValue());
+            }
+            appender.log();
+        }
+
         LOG.createAppender()
             .appendBold("Response Status Line:")
             .appendCode(String.valueOf(status))
@@ -404,6 +413,10 @@ public class HTTPHelper {
 
 
         return cookieValue;
+    }
+
+    public int getResponseStatusCode() {
+        return response.getStatusLine().getStatusCode();
     }
 
     /**
