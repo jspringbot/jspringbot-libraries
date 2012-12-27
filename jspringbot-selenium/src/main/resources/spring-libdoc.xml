@@ -26,21 +26,16 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <description>jSpringBot Selenium Keywords</description>
+  <description>Robot Selenium Keywords</description>
 
-  <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelperDelaySupportFactory" factory-method="create">
-    <constructor-arg>
-      <bean class="org.jspringbot.keyword.selenium.SeleniumHelper">
-        <constructor-arg>
-          <bean class="org.jspringbot.keyword.selenium.DummyWebDriver"/>
-        </constructor-arg>
-        <property name="screenCaptureDir" value="${screenshot.folder}"/>
-      </bean>
-    </constructor-arg>
-    <constructor-arg value="0"/>
+  <bean id="webdriver" class="org.openqa.selenium.firefox.FirefoxDriver" destroy-method="stopClient"/>
+
+  <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelper">
+    <constructor-arg ref="webdriver"/>
+    <property name="screenCaptureDir" value="${project.build.directory}/robotframework-reports"/>
   </bean>
 
   <!-- Scan components -->
-  <ctx:component-scan base-package="org.jspringbot.robot.keyword.selenium" />
+  <ctx:component-scan base-package="org.jspringbot.keyword.selenium"/>
   <ctx:annotation-config/>
 </beans>

@@ -28,9 +28,6 @@
 
     <description>jSpringBot Http Keywords</description>
 
-    <import resource="spring-xml.xml"/>
-    <import resource="spring-json.xml"/>
-
     <bean name="connectionManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager">
         <property name="defaultMaxPerRoute" value="2"/>
         <property name="maxTotal" value="2"/>
@@ -42,8 +39,6 @@
 
     <bean name="httpHelper" class="org.jspringbot.keyword.http.HTTPHelper">
         <constructor-arg ref="httpClient"/>
-        <property name="jsonHelper" ref="jsonHelper"/>
-        <property name="xmlHelper" ref="xmlHelper"/>
     </bean>
 
     <!-- Scan components -->
