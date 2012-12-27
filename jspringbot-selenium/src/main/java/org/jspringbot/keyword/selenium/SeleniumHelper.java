@@ -18,6 +18,7 @@
 
 package org.jspringbot.keyword.selenium;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.syntax.HighlightRobotLogger;
@@ -679,66 +680,36 @@ public class SeleniumHelper {
     }
 
     public void selectAllFromList(String locator) {
-        LOG.info(String.format("Selecting all options from list '%s'.", locator));
+        LOG.createAppender()
+                .appendBold("Select All From List:")
+                .appendCss(locator)
+                .log();
 
         WebElement selectEl = getSelectList(locator);
+        boolean isMultiSelectList = isMultiSelectList(selectEl);
 
-        if (!isMultiSelectList(selectEl)) {
-            throw new IllegalArgumentException("Keyword 'Select all from list' works only for multiselect lists.");
+        if (!isMultiSelectList) {
+            LOG.createAppender()
+                    .appendProperty("multi-select", isMultiSelectList)
+                    .log();
+
+            throw new IllegalArgumentException("Keyword 'Select all from list' works only for multi-select lists.");
         }
+
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender();
 
         List<WebElement> selectOptions = getSelectListOptions(selectEl);
+        int index = 0;
         for(WebElement option : selectOptions) {
             if(!option.isSelected()) {
+                appender.appendProperty(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText());
                 option.click();
+            } else {
+                appender.appendProperty(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText() + ": (already selected)");
             }
         }
-    }
 
-    public void selectFromList(String locator, String... items) {
-
-        LOG.info(String.format("Selecting %s from list '%s'.", items.toString(), locator));
-
-        List<WebElement> selectOptions = getSelectListOptions(locator);
-        for (int i=0; i<items.length; i++) {
-            String item = items[i];
-        }
-
-        /*
-        def select_from_list(self, locator, *items):
-        """Selects `*items` from list identified by `locator`
-
-        If more than one value is given for a single-selection list, the last
-        value will be selected. If the target list is a multi-selection list,
-        and `*items` is an empty list, all values of the list will be selected.
-
-        Select list keywords work on both lists and combo boxes. Key attributes for
-        select lists are `id` and `name`. See `introduction` for details about
-        locating elements.
-        """
-        items_str = items and "option(s) '%s'" % ", ".join(items) or "all options"
-        self._info("Selecting %s from list '%s'." % (items_str, locator))
-        items = list(items)
-
-        select, options = self._get_select_list_options(locator)
-        is_multi_select = self._is_multiselect_list(select)
-        select_func = self._select_option_from_multi_select_list if is_multi_select else self._select_option_from_single_select_list
-
-        if not items:
-            for i in range(len(options)):
-                select_func(select, options, i)
-            return
-
-        option_values = self._get_values_for_options(options)
-        option_labels = self._get_labels_for_options(options)
-        for item in items:
-            option_index = None
-            try: option_index = option_values.index(item)
-            except:
-                try: option_index = option_labels.index(item)
-                except: continue
-            select_func(select, options, option_index)
-         */
+        appender.log();
     }
 
     public String getText(String locator) {
@@ -769,38 +740,186 @@ public class SeleniumHelper {
         inputTextIntoTextField(locator, text);
     }
 
-    public void listSelectionShouldBe() {
-        /*
-        def list_selection_should_be(self, locator, *items):
-        """Verifies the selection of select list identified by `locator` is exactly `*items`.
+    public void listSelectionShouldBe(String locator, List<String> items) {
+        List<String> values = getSelectedListValues(locator);
 
-        If you want to test that no option is selected, simply give no `items`.
+        boolean containsValues = items.containsAll(values);
 
-        Select list keywords work on both lists and combo boxes. Key attributes for
-        select lists are `id` and `name`. See `introduction` for details about
-        locating elements.
-        """
-        items_str = items and "option(s) [ %s ]" % " | ".join(items) or "no options"
-        self._info("Verifying list '%s' has %s selected." % (locator, items_str))
-        items = list(items)
-        self.page_should_contain_list(locator)
-        select, options = self._get_select_list_options_selected(locator)
-        if not items and len(options) == 0:
-            return
-        selected_values = self._get_values_for_options(options)
-        selected_labels = self._get_labels_for_options(options)
-        err = "List '%s' should have had selection [ %s ] but it was [ %s ]" \
-            % (locator, ' | '.join(items), ' | '.join(selected_labels))
-        for item in items:
-            if item not in selected_values + selected_labels:
-                raise AssertionError(err)
-        for selected_value, selected_label in zip(selected_values, selected_labels):
-            if selected_value not in items and selected_label not in items:
-                raise AssertionError(err)
-         */
+        if(containsValues) {
+            LOG.createAppender()
+                    .appendBold("List Selection Should Be: (values)")
+                    .appendCss(locator)
+                    .appendProperty("Expected", items)
+                    .appendProperty("Actual Values", values)
+                    .log();
+
+            return;
+        }
+
+        List<String> texts = getSelectedListLabels(locator);
+        boolean containsText = items.containsAll(texts);
+
+        if(containsText) {
+            LOG.createAppender()
+                    .appendBold("List Selection Should Be: (text)")
+                    .appendCss(locator)
+                    .appendProperty("Expected", items)
+                    .appendProperty("Actual", texts)
+                    .log();
+
+            return;
+        }
+
+        throw new IllegalArgumentException("Selection list not found");
     }
+
+    public void listValueSelectionShouldBe(String locator, List<String> items) {
+        List<String> values = getSelectedListValues(locator);
+
+        boolean containsValues = items.containsAll(values);
+
+        if(containsValues) {
+            LOG.createAppender()
+                    .appendBold("List Value Selection Should Be:")
+                    .appendCss(locator)
+                    .appendProperty("Expected", items)
+                    .appendProperty("Actual Values", values)
+                    .log();
+
+            return;
+        }
+
+        throw new IllegalArgumentException("Selection value for list not found");
+    }
+
+    public void listTextSelectionShouldBe(String locator, List<String> items) {
+        List<String> texts = getSelectedListLabels(locator);
+        boolean containsText = items.containsAll(texts);
+
+        if(containsText) {
+            LOG.createAppender()
+                    .appendBold("List Selection Should Be: (text)")
+                    .appendCss(locator)
+                    .appendProperty("Expected", items)
+                    .appendProperty("Actual", texts)
+                    .log();
+
+            return;
+        }
+
+        throw new IllegalArgumentException("Selection text list not found");
+    }
+
+    public void listShouldHaveNoSelection(String locator) {
+        List<String> values = getSelectedListValues(locator);
+
+        if(CollectionUtils.isNotEmpty(values)) {
+            LOG.createAppender()
+                    .appendBold("List Should Have No Selection:")
+                    .appendCss(locator)
+                    .appendProperty("Values", values)
+                    .appendProperty("Texts", getSelectedListLabels(locator))
+                    .log();
+
+            throw new IllegalArgumentException("List should have no selection.");
+        }
+
+        LOG.createAppender()
+                .appendBold("List Should Have No Selection:")
+                .appendCss(locator)
+                .log();
+    }
+
+    public void selectFromListByIndex(String locator, List<Integer> indices) {
+        LOG.createAppender()
+                .appendBold("Select From List By Index:")
+                .appendCss(locator)
+                .appendProperty("Indices", indices)
+                .log();
+
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender();
+        List<WebElement> options = getSelectListOptions(locator);
+
+        for(int i = 0; i < options.size(); i++) {
+            if(indices.contains(i)) {
+                WebElement option = options.get(i);
+                appender.append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                options.get(i).click();
+
+            }
+        }
+
+        appender.log();
+    }
+
+    public void selectFromListByValue(String locator, List<String> values) {
+        LOG.createAppender()
+                .appendBold("Select From List By Value:")
+                .appendCss(locator)
+                .appendProperty("Values", values)
+                .log();
+
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender();
+        List<WebElement> options = getSelectListOptions(locator);
+
+        for(int i = 0; i < options.size(); i++) {
+            WebElement option = options.get(i);
+
+            if(values.contains(option.getAttribute("value"))) {
+                appender.append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                options.get(i).click();
+            }
+        }
+
+        appender.log();
+    }
+
+    public void selectFromListByLabel(String locator, List<String> labels) {
+        LOG.createAppender()
+                .appendBold("Select From List By Label:")
+                .appendCss(locator)
+                .appendProperty("Labels", labels)
+                .log();
+
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender();
+        List<WebElement> options = getSelectListOptions(locator);
+
+        for(int i = 0; i < options.size(); i++) {
+            WebElement option = options.get(i);
+
+            if(labels.contains(option.getText())) {
+                appender.append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                options.get(i).click();
+            }
+        }
+
+        appender.log();
+    }
+
+    public void selectFromList(String locator, List<String> items) {
+        List<String> values = getSelectedListValues(locator);
+        boolean containsValues = CollectionUtils.containsAny(values, items);
+
+        if(containsValues) {
+            selectFromListByValue(locator, items);
+
+            return;
+        }
+
+        List<String> texts = getSelectedListLabels(locator);
+        boolean containsText = CollectionUtils.containsAny(texts, items);
+
+        if(containsText) {
+            selectFromListByLabel(locator, items);
+        }
+    }
+
     public void mouseDown(String locator) {
-        LOG.info(String.format("Simulating Mouse Down on element '%s'", locator));
+        LOG.createAppender()
+                .appendBold("Mouse Down:")
+                .appendCss(locator)
+                .log();
+
         WebElement el = finder.find(locator);
 
         if (el == null) {
@@ -811,18 +930,32 @@ public class SeleniumHelper {
     }
 
     public void mouseDownOnImage(String locator){
+        LOG.createAppender()
+                .appendBold("Mouse Down On Image:")
+                .appendCss(locator)
+                .log();
+
         WebElement el = finder.find(locator, "image");
 
         new Actions(driver).clickAndHold(el).perform();
     }
     public void mouseDownOnLink(String locator) {
+        LOG.createAppender()
+                .appendBold("Mouse Down On Link:")
+                .appendCss(locator)
+                .log();
+
         WebElement el = finder.find(locator, "link");
 
         new Actions(driver).clickAndHold(el).perform();
     }
 
     public void mouseOut(String locator) {
-        LOG.info(String.format("Simulating Mouse Over on element '%s'", locator));
+        LOG.createAppender()
+                .appendBold("Mouse Out:")
+                .appendCss(locator)
+                .log();
+
         WebElement el = finder.find(locator);
 
         if (el == null) {
@@ -830,14 +963,18 @@ public class SeleniumHelper {
         }
 
         Dimension size = el.getSize();
-        int offsetx = (el.getSize().getWidth() / 2 ) + 1;
-        int offsety = (el.getSize().getHeight() / 2 ) + 1;
+        int offsetX = (size.getWidth() / 2 ) + 1;
+        int offsetY = (size.getHeight() / 2 ) + 1;
 
-        new Actions(driver).moveToElement(el).moveByOffset(offsetx, offsety).perform();
+        new Actions(driver).moveToElement(el).moveByOffset(offsetX, offsetY).perform();
     }
 
     public void mouseOver(String locator) {
-        LOG.info(String.format("Simulating Mouse Over on element '%s'", locator));
+        LOG.createAppender()
+                .appendBold("Mouse Over:")
+                .appendCss(locator)
+                .log();
+
         WebElement el = finder.find(locator);
 
         if (el == null) {
@@ -848,7 +985,11 @@ public class SeleniumHelper {
     }
 
     public void mouseUp(String locator) {
-        LOG.info(String.format("Simulating Mouse Up on element '%s'", locator));
+        LOG.createAppender()
+                .appendBold("Mouse Up:")
+                .appendCss(locator)
+                .log();
+
         WebElement el = finder.find(locator);
 
         if (el == null) {
@@ -1490,7 +1631,7 @@ public class SeleniumHelper {
         keysMap.put(59,Keys.SEMICOLON);
         keysMap.put(61,Keys.EQUALS);
         keysMap.put(127,Keys.DELETE);
-        Keys key = keysMap.get(Integer.valueOf(keyCode));
+        Keys key = keysMap.get(keyCode);
 
         if (key == null) {
             Character c = (char) keyCode;

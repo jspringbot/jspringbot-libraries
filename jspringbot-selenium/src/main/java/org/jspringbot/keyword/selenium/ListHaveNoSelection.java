@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Select All From List", description = "Selects all values from multi-select list identified by locator.", parameters = {"locator"})
-public class SelectAllFromList extends AbstractSeleniumKeyword {
+@KeywordInfo(name = "List Have No Selection", description = "List selection should be the given items for either option values or label.", parameters = {"locator"})
+public class ListHaveNoSelection extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.selectAllFromList(String.valueOf(params[0]));
+        helper.listShouldHaveNoSelection(String.valueOf(params[0]));
 
         return null;
     }

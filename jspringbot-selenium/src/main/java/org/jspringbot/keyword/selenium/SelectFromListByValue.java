@@ -21,13 +21,22 @@ package org.jspringbot.keyword.selenium;
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
-@KeywordInfo(name = "Select All From List", description = "Selects all values from multi-select list identified by locator.", parameters = {"locator"})
-public class SelectAllFromList extends AbstractSeleniumKeyword {
+@KeywordInfo(name = "Select From List By Value", description = "select the list given the values.", parameters = {"locator", "*values"})
+public class SelectFromListByValue extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.selectAllFromList(String.valueOf(params[0]));
+
+        List<String> list = new ArrayList<String>();
+        for(int  i = 1; i < params.length; i++) {
+            list.add(String.valueOf(params[i]));
+        }
+
+        helper.selectFromListByValue(String.valueOf(params[0]), list);
 
         return null;
     }
