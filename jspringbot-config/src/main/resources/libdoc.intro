@@ -65,4 +65,4 @@ _classpath:sample.properties_
 | ${sample.get('sample.property2')} = "sample property 2 value"
 | ${sample.getInteger('sample.timeout')} = 5000                   # integer type
 | ${sample.getDouble('sample.amount')} = 5.35                     # double type
-| ${sample.getDouble('sample.is.enable.config')} = true           # boolean type
+| ${sample.getBoolean('sample.is.enable.config')} = true          # boolean type
