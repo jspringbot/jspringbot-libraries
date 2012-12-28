@@ -47,8 +47,8 @@
   </build>
 
   <properties>
-    <libdoc.name>JSpringBot DB Library</libdoc.name>
-    <libdoc.output>JSpringBotDBLibrary.html</libdoc.output>
+    <libdoc.name>JSpringBot Date Library</libdoc.name>
+    <libdoc.output>JSpringBotDateLibrary.html</libdoc.output>
   </properties>
 
   <dependencies>
