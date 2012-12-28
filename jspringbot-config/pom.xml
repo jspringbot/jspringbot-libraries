@@ -39,7 +39,7 @@
 
     <properties>
 	    <libdoc.name>JSpringBot Config Library</libdoc.name>
-	    <libdoc.output>JSpringBotCongfigLibrary.html</libdoc.output>
+	    <libdoc.output>JSpringBotConfigLibrary.html</libdoc.output>
 	  </properties>
 
     <dependencies>
