@@ -56,6 +56,14 @@ public class ConfigHelper {
         this.selectedDomain = selectedDomain;
     }
 
+    public ConfigDomainWrapper createDomainWrapper(String selectedDomain) {
+        if (!domainProperties.containsKey(selectedDomain)) {
+            throw new IllegalArgumentException(String.format("Unsupported selected domain '%s'", selectedDomain));
+        }
+
+        return new ConfigDomainWrapper(selectedDomain, domainProperties.get(selectedDomain));
+    }
+
     public String getStringProperty(String key) {
         if (selectedDomain == null) {
             throw new IllegalStateException("No domain selected");

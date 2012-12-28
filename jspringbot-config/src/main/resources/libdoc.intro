@@ -49,3 +49,20 @@ _classpath:sample.properties_
 | ${timeout} = 5000                     # integer type
 | ${amount} = 5.35                      # double type
 | ${configEnabled} = true               # boolean type
+
+*Using domain wrapper object*
+
+| ${variable}= | `Create Config Domain Wrapper` | variable                      |
+| ${sample}=   | `Create Config Domain Wrapper` | sample                        |
+
+=>
+
+| ${variable.domain} = "variable"
+| ${variable.get('url')} = "http://localhost:8080/"
+| ${variable.get('property1')} = "property1 value"
+| ${sample.domain} = "sample"
+| ${sample.get('sample.property1')} = "sample property 1 value"
+| ${sample.get('sample.property2')} = "sample property 2 value"
+| ${sample.getInteger('sample.timeout')} = 5000                   # integer type
+| ${sample.getDouble('sample.amount')} = 5.35                     # double type
+| ${sample.getDouble('sample.is.enable.config')} = true           # boolean type

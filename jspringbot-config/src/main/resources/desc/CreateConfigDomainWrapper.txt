@@ -1,0 +1,27 @@
+Create and return a configuration domain wrapper object. Retrieve properties by using the object methods please example below.
+
+Example:
+
+_classpath:domain1.properties_
+
+| stringProperty=string value
+| integerProperty=100
+| longProperty=100000
+| doubleProperty=10.53
+| booleanProperty=false
+
+_usage_
+
+| ${domain1}= | `Create Config Domain Wrapper` | domain1                      |
+
+=>
+
+| ${domain1.domain} = "domain1"
+| ${domain1.get('stringProperty')} = "stringProperty"
+| ${domain1.getInteger('integerProperty')} = 100
+| ${domain1.getLong('longProperty')} = 100000
+| ${domain1.getDouble('doubleProperty')} = 10.53
+| ${domain1.getBoolean('booleanProperty')} = false
+
+
+
