@@ -1,4 +1,4 @@
-Retrieves the integer property from the selected configuration domain.
+Retrieves the double property from the selected configuration domain.
 
 *Assume we have the following properties:*
 
