@@ -23,13 +23,15 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get String Property",
+@KeywordInfo(
+        name = "Get Config Integer Property",
         parameters = {"key"},
-        description = "Get String Property. \n\n")
-public class GetStringProperty extends AbstractConfigKeyword{
+        description = "classpath:desc/GetConfigIntegerProperty.txt"
+)
+public class GetConfigIntegerProperty extends AbstractConfigKeyword{
 
     @Override
     public Object execute(Object[] params) {
-        return helper.getStringProperty(String.valueOf(params[0]));
+        return Integer.parseInt(helper.getStringProperty(String.valueOf(params[0])));
     }
 }

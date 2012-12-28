@@ -1,0 +1,24 @@
+Switch the currently selected domain configuration.
+
+*Assume we have the following properties:*
+
+_classpath:domain1.properties_
+
+| property1=domain1 property1 value
+
+_classpath:domain2.properties_
+
+| property1=domain2 property1 value
+
+*Sample Test Usage:*
+
+| `Select Config Domain` | domain1                      |           |
+| ${domain1Property1}=   | `Get Config String Property` | property1 |
+| `Select Config Domain` | domain2                      |           |
+| ${domain2Property1}=   | `Get Config String Property` | property1 |
+
+=>
+
+| ${domain1Property1} = "domain1 property1 value"
+| ${domain2Property1} = "domain2 property1 value"
+

@@ -1,10 +1,51 @@
-Contains keywords to access values in properties file
+Contains keywords to access values in properties file. This library if useful for creating domain based variables.
 
-Examples:
+== Examples ==
 
-Sample Test Usage:
-|               |                     |             | *Returns*                                      |
-| Select Domain | variable            |             |
-| ${url}=       | Get String Property | url         | http://localhost:8080/                         |
+*Assume we have the following properties:*
 
-where variables is a property file loaded when creating ConfigHelper bean.
+_classpath:variables.properties_
+
+| url=http://localhost:8080/
+| property1=property1 value
+
+_classpath:sample.properties_
+
+| sample.property1=sample property 1 value
+| sample.property2=sample property 2 value
+| sample.timeout=5000
+| sample.amount=5.35
+| sample.is.enable.config=true
+
+*Spring configuration code snippet (spring-config.xml):*
+
+|   <bean name="configHelper" class="org.jspringbot.keyword.config.ConfigHelper" init-method="init">
+|     <property name="domains">
+|       <map>
+|         <entry key="variables" value="classpath:variables.properties"/>
+|         <entry key="sample" value="classpath:sample.properties"/>
+|       </map>
+|     </property>
+|   </bean>
+
+*Sample Test Usage:*
+
+| `Select Config Domain` | variable                      |                              |
+| ${url}=                | `Get Config String Property`  | url                          |
+| ${property1}=          | `Get Config String Property`  | property1                    |
+| `Select Config Domain` | sample                        |                              |
+| ${sample1}=            | `Get Config String Property`  | sample.property1             |
+| ${sample2}=            | `Get Config String Property`  | sample.property2             |
+| ${timeout}=            | `Get Config Long Property`    | sample.timeout               |
+| ${amount}=             | `Get Config Double Property`  | sample.amount                |
+| ${configEnabled}=      | `Get Config Boolean Property` | sample.is.enable.config      |
+
+=>
+
+| ${url} = "http://localhost:8080/"
+| ${property1} = "property1 value"
+| ${sample1} = "sample property 1 value"
+| ${sample2} = "sample property 2 value"
+| ${timeout} = 5000                     # integer type
+| ${amount} = 5.35                      # double type
+| ${configEnabled} = true               # boolean type

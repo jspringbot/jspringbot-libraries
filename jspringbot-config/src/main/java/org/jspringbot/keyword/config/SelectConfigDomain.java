@@ -22,10 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Select Domain",
+@KeywordInfo(
+        name = "Select Config Domain",
         parameters = {"selectedDomain"},
-        description = "Indicates the properties file to use.")
-public class SelectDomain extends AbstractConfigKeyword{
+        description = "classpath:desc/SelectConfigDomain.txt"
+)
+public class SelectConfigDomain extends AbstractConfigKeyword{
 
     @Override
     public Object execute(Object[] params) {

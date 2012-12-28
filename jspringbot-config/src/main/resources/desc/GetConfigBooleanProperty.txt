@@ -1,0 +1,24 @@
+Retrieves the boolean property from the selected configuration domain.
+
+*Assume we have the following properties:*
+
+_classpath:domain1.properties_
+
+| stringProperty=string value
+| integerProperty=100
+| longProperty=100000
+| doubleProperty=10.53
+| booleanProperty=false
+
+*Sample Test Usage:*
+
+| `Select Config Domain` | domain1                      |                |
+| ${booleanProperty}=     | `Get Config Boolean Property`   | booleanProperty |
+
+=>
+
+| ${booleanProperty} = false
+
+See also `Get Config Long Property`, `Get Config String Property`, `Get Config Integer Property` and `Get Config Double Property`.
+
+

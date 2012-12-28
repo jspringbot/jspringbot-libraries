@@ -1,0 +1,23 @@
+Retrieves the long property from the selected configuration domain.
+
+*Assume we have the following properties:*
+
+_classpath:domain1.properties_
+
+| stringProperty=string value
+| integerProperty=100
+| longProperty=100000
+| doubleProperty=10.53
+| booleanProperty=false
+
+*Sample Test Usage:*
+
+| `Select Config Domain` | domain1                      |                |
+| ${longProperty}=     | `Get Config Long Property`   | longProperty |
+
+=>
+
+| ${longProperty} = 100000
+
+See also `Get Config Integer Property`, `Get Config String Property`, `Get Config Double Property` and `Get Config Boolean Property`.
+
