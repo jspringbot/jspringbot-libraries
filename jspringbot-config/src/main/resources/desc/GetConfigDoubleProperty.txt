@@ -1,6 +1,6 @@
 Retrieves the double property from the selected configuration domain.
 
-*Assume we have the following properties:*
+Example:
 
 _classpath:domain1.properties_
 
@@ -10,7 +10,7 @@ _classpath:domain1.properties_
 | doubleProperty=10.53
 | booleanProperty=false
 
-*Sample Test Usage:*
+_usage_
 
 | `Select Config Domain` | domain1                      |                |
 | ${doubleProperty}=     | `Get Config Double Property`   | doubleProperty |

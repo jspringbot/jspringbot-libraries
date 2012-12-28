@@ -1,6 +1,6 @@
 Switch the currently selected domain configuration.
 
-*Assume we have the following properties:*
+Example:
 
 _classpath:domain1.properties_
 
@@ -10,7 +10,7 @@ _classpath:domain2.properties_
 
 | property1=domain2 property1 value
 
-*Sample Test Usage:*
+_usage_
 
 | `Select Config Domain` | domain1                      |           |
 | ${domain1Property1}=   | `Get Config String Property` | property1 |
