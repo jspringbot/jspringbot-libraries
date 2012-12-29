@@ -19,5 +19,5 @@ _usage_
 
 | ${longProperty} = 100000
 
-See also `Get Config Integer Property`, `Get Config String Property`, `Get Config Double Property` and `Get Config Boolean Property`.
+See also `Get Config Property`, `Get Config Integer Property`, `Get Config Double Property` and `Get Config Boolean Property`.
 

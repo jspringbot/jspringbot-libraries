@@ -12,13 +12,13 @@ _classpath:domain1.properties_
 
 _usage_
 
-| `Select Config Domain` | domain1                      |                |
+| `Select Config Domain` | domain1                        |                |
 | ${doubleProperty}=     | `Get Config Double Property`   | doubleProperty |
 
 =>
 
 | ${doubleProperty} = 10.53
 
-See also `Get Config Long Property`, `Get Config String Property`, `Get Config Integer Property` and `Get Config Boolean Property`.
+See also `Get Config Property`, `Get Config Long Property`, `Get Config Integer Property` and `Get Config Boolean Property`.
 
 

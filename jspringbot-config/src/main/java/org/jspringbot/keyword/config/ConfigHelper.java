@@ -56,12 +56,12 @@ public class ConfigHelper {
         this.selectedDomain = selectedDomain;
     }
 
-    public ConfigDomainWrapper createDomainWrapper(String selectedDomain) {
+    public ConfigDomainObject createDomainWrapper(String selectedDomain) {
         if (!domainProperties.containsKey(selectedDomain)) {
             throw new IllegalArgumentException(String.format("Unsupported selected domain '%s'", selectedDomain));
         }
 
-        return new ConfigDomainWrapper(selectedDomain, domainProperties.get(selectedDomain));
+        return new ConfigDomainObject(selectedDomain, domainProperties.get(selectedDomain));
     }
 
     public String getStringProperty(String key) {

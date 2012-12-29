@@ -23,11 +23,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(
-        name = "Create Config Domain Wrapper",
+        name = "Create Config Domain Object",
         parameters = {"selectedDomain"},
-        description = "classpath:desc/CreateConfigDomainWrapper.txt"
+        description = "classpath:desc/CreateConfigDomainObject.txt"
 )
-public class CreateConfigDomainWrapper extends AbstractConfigKeyword {
+public class CreateConfigDomainObject extends AbstractConfigKeyword {
 
     @Override
     public Object execute(Object[] params) {

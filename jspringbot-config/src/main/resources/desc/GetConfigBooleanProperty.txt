@@ -12,13 +12,13 @@ _classpath:domain1.properties_
 
 _usage_
 
-| `Select Config Domain` | domain1                      |                |
-| ${booleanProperty}=     | `Get Config Boolean Property`   | booleanProperty |
+| `Select Config Domain` | domain1                         |                 |
+| ${booleanProperty}=    | `Get Config Boolean Property`   | booleanProperty |
 
 =>
 
 | ${booleanProperty} = false
 
-See also `Get Config Long Property`, `Get Config String Property`, `Get Config Integer Property` and `Get Config Double Property`.
+See also `Get Config Property`, `Get Config Long Property`, `Get Config Integer Property` and `Get Config Double Property`.
 
 

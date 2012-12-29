@@ -1,5 +1,9 @@
 Contains keywords to access values in properties file. This library if useful for creating domain based variables.
 
+Please see the example {{jspringbot-config}} project.
+
+{jspringbot:sample-config}
+
 == Examples ==
 
 *Assume we have the following properties:*
@@ -50,10 +54,10 @@ _classpath:sample.properties_
 | ${amount} = 5.35                      # double type
 | ${configEnabled} = true               # boolean type
 
-*Using domain wrapper object*
+*Using domain object*
 
-| ${variable}= | `Create Config Domain Wrapper` | variable                      |
-| ${sample}=   | `Create Config Domain Wrapper` | sample                        |
+| ${variable}= | `Create Config Domain Object` | variable                      |
+| ${sample}=   | `Create Config Domain Object` | sample                        |
 
 =>
 

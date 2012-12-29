@@ -1,4 +1,4 @@
-Create and return a configuration domain wrapper object. Retrieve properties by using the object methods please example below.
+Create and return a configuration domain object. With this object, you can retrieve properties by using the object methods.
 
 Example:
 
@@ -12,7 +12,7 @@ _classpath:domain1.properties_
 
 _usage_
 
-| ${domain1}= | `Create Config Domain Wrapper` | domain1                      |
+| ${domain1}= | `Create Config Domain Object` | domain1                      |
 
 =>
 

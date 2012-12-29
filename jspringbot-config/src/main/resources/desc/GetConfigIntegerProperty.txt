@@ -12,13 +12,13 @@ _classpath:domain1.properties_
 
 _usage_
 
-| `Select Config Domain` | domain1                      |                |
+| `Select Config Domain`  | domain1                         |                 |
 | ${integerProperty}=     | `Get Config Integer Property`   | integerProperty |
 
 =>
 
 | ${integerProperty} = 100
 
-See also `Get Config Long Property`, `Get Config String Property`, `Get Config Double Property` and `Get Config Boolean Property`.
+See also `Get Config Property`, `Get Config Long Property`, `Get Config Double Property` and `Get Config Boolean Property`.
 
 

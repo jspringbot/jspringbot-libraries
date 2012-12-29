@@ -2,13 +2,13 @@ package org.jspringbot.keyword.config;
 
 import java.util.Properties;
 
-public class ConfigDomainWrapper {
+public class ConfigDomainObject {
 
     private Properties properties;
 
     private String selectedDomain;
 
-    public ConfigDomainWrapper(String selectedDomain, Properties properties) {
+    public ConfigDomainObject(String selectedDomain, Properties properties) {
         this.properties = properties;
         this.selectedDomain = selectedDomain;
     }

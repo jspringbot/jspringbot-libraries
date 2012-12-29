@@ -12,8 +12,8 @@ _classpath:domain1.properties_
 
 _usage_
 
-| `Select Config Domain` | domain1                      |                |
-| ${stringProperty}=     | `Get Config String Property`   | stringProperty |
+| `Select Config Domain` | domain1                 |                |
+| ${stringProperty}=     | `Get Config Property`   | stringProperty |
 
 =>
 
