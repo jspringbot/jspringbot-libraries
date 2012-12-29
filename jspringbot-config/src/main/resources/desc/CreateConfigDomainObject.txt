@@ -16,7 +16,7 @@ _usage_
 
 =>
 
-| ${domain1.domain} = "domain1"
+| ${domain1.getDomain()} = "domain1"
 | ${domain1.get('stringProperty')} = "stringProperty"
 | ${domain1.getInteger('integerProperty')} = 100
 | ${domain1.getLong('longProperty')} = 100000
