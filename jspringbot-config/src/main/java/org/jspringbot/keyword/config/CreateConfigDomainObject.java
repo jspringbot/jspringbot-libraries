@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Create Config Domain Object",
-        parameters = {"selectedDomain"},
+        parameters = {"domain"},
         description = "classpath:desc/CreateConfigDomainObject.txt"
 )
 public class CreateConfigDomainObject extends AbstractConfigKeyword {

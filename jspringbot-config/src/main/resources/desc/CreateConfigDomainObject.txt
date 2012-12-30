@@ -2,7 +2,7 @@ Create and return a configuration domain object. With this object, you can retri
 
 Example:
 
-_classpath:domain1.properties_
+{{classpath:domain1.properties}}
 
 | stringProperty=string value
 | integerProperty=100

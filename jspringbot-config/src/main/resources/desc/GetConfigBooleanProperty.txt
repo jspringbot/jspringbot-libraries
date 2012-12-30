@@ -2,7 +2,7 @@ Retrieves the boolean property from the selected configuration domain.
 
 Example:
 
-_classpath:domain1.properties_
+{{classpath:domain1.properties}}
 
 | stringProperty=string value
 | integerProperty=100

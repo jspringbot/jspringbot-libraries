@@ -1,19 +1,19 @@
 Contains keywords to access values in properties file. This library if useful for creating domain based variables.
 
-Please see the example {{jspringbot-config}} project.
+Please see the example {{Config Library}} project.
 
-{jspringbot:sample-config}
+{{jspringbot-github:sample-config|Sample Project}}
 
 == Examples ==
 
 *Assume we have the following properties:*
 
-_classpath:variables.properties_
+{{classpath:variables.properties}}
 
 | url=http://localhost:8080/
 | property1=property1 value
 
-_classpath:sample.properties_
+{{classpath:sample.properties}}
 
 | sample.property1=sample property 1 value
 | sample.property2=sample property 2 value
@@ -21,7 +21,7 @@ _classpath:sample.properties_
 | sample.amount=5.35
 | sample.is.enable.config=true
 
-*Spring configuration code snippet (spring-config.xml):*
+*Spring configuration code snippet ({{spring-config.xml}}):*
 
 |   <bean name="configHelper" class="org.jspringbot.keyword.config.ConfigHelper" init-method="init">
 |     <property name="domains">
@@ -35,11 +35,11 @@ _classpath:sample.properties_
 *Sample Test Usage:*
 
 | `Select Config Domain` | variable                      |                              |
-| ${url}=                | `Get Config String Property`  | url                          |
-| ${property1}=          | `Get Config String Property`  | property1                    |
+| ${url}=                | `Get Config Property`  | url                          |
+| ${property1}=          | `Get Config Property`  | property1                    |
 | `Select Config Domain` | sample                        |                              |
-| ${sample1}=            | `Get Config String Property`  | sample.property1             |
-| ${sample2}=            | `Get Config String Property`  | sample.property2             |
+| ${sample1}=            | `Get Config Property`  | sample.property1             |
+| ${sample2}=            | `Get Config Property`  | sample.property2             |
 | ${timeout}=            | `Get Config Long Property`    | sample.timeout               |
 | ${amount}=             | `Get Config Double Property`  | sample.amount                |
 | ${configEnabled}=      | `Get Config Boolean Property` | sample.is.enable.config      |

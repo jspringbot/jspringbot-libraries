@@ -1,12 +1,12 @@
-Switch the currently selected domain configuration.
+Switch the selected domain configuration to the given domain argument.
 
 Example:
 
-_classpath:domain1.properties_
+{{classpath:domain1.properties}}
 
 | property1=domain1 property1 value
 
-_classpath:domain2.properties_
+{{classpath:domain2.properties}}
 
 | property1=domain2 property1 value
 
