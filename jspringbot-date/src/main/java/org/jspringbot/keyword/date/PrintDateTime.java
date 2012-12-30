@@ -24,11 +24,19 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Print Date Time", description = "Prints the date time to string given the set format.")
+@KeywordInfo(
+        name = "Print Date Time",
+        parameters = {"format=default"},
+        description = "Prints the date time to string given the set format."
+)
 public class PrintDateTime extends AbstractDateKeyword {
 
     @Override
-    public Object execute(Object[] params) throws IOException {
+    public Object executeInternal(Object[] params) throws IOException {
+        if(params.length > 0) {
+            return helper.printDateTime(String.valueOf(params[0]));
+        }
+
         return helper.printDateTime();
     }
 }

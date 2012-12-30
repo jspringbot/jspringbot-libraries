@@ -16,20 +16,18 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.date;
+package org.jspringbot.keyword.i18n;
 
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
 @Component
-@KeywordInfo(name = "Set Date Time Zone", description = "Set the date time zone given the time zone id.", parameters = {"timeZoneId"})
-public class SetDateTimeZone extends AbstractDateKeyword {
+@KeywordInfo(name = "Get i18n Message", description = "Get Message.", parameters = {"code"})
+public class GetI18nMessage extends Abstracti18nKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) throws IOException {
-        helper.setDateTimeZone(String.valueOf(params[0]));
+    public Object execute(Object[] params) {
+        i18nHelper.getMessage(String.valueOf(params[0]));
 
         return null;
     }

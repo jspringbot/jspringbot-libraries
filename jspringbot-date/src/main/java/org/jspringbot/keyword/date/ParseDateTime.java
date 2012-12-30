@@ -16,20 +16,31 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.i18n;
+package org.jspringbot.keyword.date;
 
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Set Language", description = "Set Language.", parameters = {"language"})
-public class SetLanguage extends Abstracti18nKeyword {
+@KeywordInfo(
+        name = "Parse Date Time",
+        parameters = {"dateString", "format=Default"},
+        description = "Parses the given date time."
+)
+public class ParseDateTime extends AbstractDateKeyword {
 
     @Override
-    public Object execute(Object[] params) {
-        i18nHelper.setLanguage(String.valueOf(params[0]));
+    public Object executeInternal(Object[] params) throws IOException {
+        if(params.length > 1) {
+            helper.parseDateTime(String.valueOf(params[0]), String.valueOf(params[1]));
 
-        return null;
+            return null;
+        }
+
+        helper.parseDateTime(String.valueOf(params[0]));
+
+        return  null;
     }
 }

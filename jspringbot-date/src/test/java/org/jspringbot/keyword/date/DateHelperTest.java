@@ -24,6 +24,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import static junit.framework.Assert.assertNotNull;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring-date.xml"})
 public class DateHelperTest {
@@ -33,6 +35,6 @@ public class DateHelperTest {
 
     @Test
     public void testPrint() throws Exception {
-        System.out.println(helper.printDateTime());
+        assertNotNull(helper.printDateTime());
     }
 }

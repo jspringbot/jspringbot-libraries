@@ -21,13 +21,14 @@ package org.jspringbot.keyword.i18n;
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
+
 @Component
-@KeywordInfo(name = "Get Message", description = "Get Message.", parameters = {"code"})
-public class GetMessage extends Abstracti18nKeyword {
+@KeywordInfo(name = "Set i18n Language", description = "Set Language.", parameters = {"language"})
+public class SetI18nLanguage extends Abstracti18nKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        i18nHelper.getMessage(String.valueOf(params[0]));
+        i18nHelper.setLanguage(String.valueOf(params[0]));
 
         return null;
     }

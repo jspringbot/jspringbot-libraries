@@ -28,7 +28,7 @@ import java.io.IOException;
 public class AddDateTimeDays extends AbstractDateKeyword {
 
     @Override
-    public Object execute(Object[] params) throws IOException {
+    public Object executeInternal(Object[] params) throws IOException {
         helper.plusDays(Integer.parseInt(String.valueOf(params[0])));
 
         return null;

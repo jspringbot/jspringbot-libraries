@@ -18,19 +18,24 @@
 
 package org.jspringbot.keyword.date;
 
+import org.jspringbot.Keyword;
 import org.jspringbot.KeywordInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-
 @Component
-@KeywordInfo(name = "Set Date Time Zone", description = "Set the date time zone given the time zone id.", parameters = {"timeZoneId"})
-public class SetDateTimeZone extends AbstractDateKeyword {
+@KeywordInfo(
+        name = "Format Date Time",
+        parameters = {"format=Default"},
+        description = "Format the date time to string given the set format."
+)
+public class FormatDateTime implements Keyword {
+
+    @Autowired
+    private PrintDateTime printer;
 
     @Override
-    public Object executeInternal(Object[] params) throws IOException {
-        helper.setDateTimeZone(String.valueOf(params[0]));
-
-        return null;
+    public Object execute(Object[] params) throws Exception {
+        return printer.execute(params);
     }
 }

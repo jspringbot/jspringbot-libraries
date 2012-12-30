@@ -45,7 +45,7 @@
   <dependencies>
     <dependency>
       <groupId>org.jspringbot</groupId>
-      <artifactId>jspringbot-syntax-highlight</artifactId>
+      <artifactId>jspringbot-pretty-logger</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>

@@ -34,68 +34,75 @@ public class DateHelper {
     private String formatterPattern = "yyyy-MM-dd HH:mm:ss zz";
 
     public void setDateTimeZone(String timeZoneId) {
-
-        LOG.createAppender()
-                .appendBold("Set Date Time Zone:")
-                .appendProperty("Time Zone ID", timeZoneId)
-                .log();
+        LOG.keywordAppender().appendProperty("Time Zone ID", timeZoneId);
 
         currentTimeZone = DateTimeZone.forID(timeZoneId);
     }
 
     public void setDateTimeFormat(String pattern) {
-        LOG.createAppender()
-                .appendBold("Set Date Time Format:")
-                .appendProperty("Pattern", pattern)
-                .log();
+        LOG.keywordAppender().appendProperty("Pattern", pattern);
 
         DateTimeFormat.forPattern(pattern);
     }
 
-    public String printDateTime() {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(formatterPattern);
+    public void parseDateTime(String dateStr) {
+        parseDateTime(dateStr, formatterPattern);
+    }
+
+    public void parseDateTime(String dateStr, String pattern) {
+        LOG.keywordAppender()
+                .appendProperty("Date String", dateStr)
+                .appendProperty("Parse Pattern", pattern);
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(pattern);
+        current = dateTimeFormatter.parseDateTime(dateStr);
+
+        // show the log for print
+        printDateTime();
+    }
+
+    public String printDateTime(String pattern) {
+        LOG.keywordAppender()
+                .appendProperty("Print Pattern", formatterPattern)
+                .appendProperty("Print Time Zone ID", currentTimeZone.getID());
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(pattern);
         DateTime dt = current.withZone(currentTimeZone);
 
         String formattedValue = dateTimeFormatter.print(dt);
 
-        LOG.createAppender()
-                .appendBold("Print Date Time:")
-                .appendProperty("Pattern", formatterPattern)
-                .appendProperty("Time Zone ID", currentTimeZone.getID())
-                .appendProperty("Print", formattedValue)
-                .log();
+        LOG.keywordAppender().appendProperty("Print Value", formattedValue);
 
         return formattedValue;
+    }
+
+
+    public String printDateTime() {
+        return printDateTime(formatterPattern);
     }
 
     public void resetDateTime() {
         current = new DateTime();
 
-        LOG.createAppender()
-                .appendBold("Reset Date Time:")
-                .appendProperty("Pattern", formatterPattern)
-                .appendProperty("Time Zone ID", currentTimeZone.getID())
-                .appendProperty("Print", printDateTime())
-                .log();
+        // show the log for print
+        printDateTime();
     }
 
     public void plusDays(int days) {
+        LOG.keywordAppender().appendProperty("Added Days", days);
+
         current = current.plusDays(days);
 
-        LOG.createAppender()
-                .appendBold("Add Date Time Days:")
-                .appendProperty("Days", days)
-                .appendProperty("Print", printDateTime())
-                .log();
+        // show the log for print
+        printDateTime();
     }
 
     public void minusDays(int days) {
+        LOG.keywordAppender().appendProperty("Subtract Days", days);
+
         current = current.minusDays(days);
 
-        LOG.createAppender()
-                .appendBold("Subtract Date Time Days:")
-                .appendProperty("Days", days)
-                .appendProperty("Print", printDateTime())
-                .log();
+        // show the log for print
+        printDateTime();
     }
 }

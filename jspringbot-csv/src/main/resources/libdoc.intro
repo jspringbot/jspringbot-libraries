@@ -2,15 +2,15 @@ Contains keywords to parse and query a CSV string or resource.
 
 *Example CSV Resource (classpath:employee.csv)*
 
-| *Name*   | *Department*  | *Position*  | *Age* |
-| Alvin  | Development | CEO       | 29  |
-| Shiela | Development | Developer | 27  |
-| Master | Development | CFO       | 23  |
-| Warren | Research    | QA        | 21  |
+| *Name* | *Department* | *Position* | *Age* |
+| Alvin  | Development  | CEO        | 29    |
+| Shiela | Development  | Developer  | 27    |
+| Master | Development  | CFO        | 23    |
+| Warren | Research     | QA         | 21    |
 
 *Example CSV Resource (classpath:department.csv)*
 
-| *Name*         | *Description*                         |
+| *Name*       | *Description*                       |
 | Development  | This is the development department. |
 | Research     | This is the research department.    |
 
