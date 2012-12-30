@@ -9,11 +9,9 @@ public abstract class AbstractHighlightKeyword implements Keyword {
             HighlightKeywordLogger.createAppender(getClass());
 
             return executeInternal(params);
-        } catch(Exception e) {
+        } finally {
             HighlightKeywordLogger.appender().log();
             HighlightKeywordLogger.clear();
-
-            throw e;
         }
     }
 
