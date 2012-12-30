@@ -29,6 +29,7 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
     public static final int WORD_WRAP_LENGTH = 120;
 
+
     public static HighlightRobotLogger getLogger(Class clazz) {
         return new HighlightRobotLogger(clazz);
     }
@@ -41,7 +42,15 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         return new HtmlAppender(this);
     }
 
-    public class HtmlAppender {
+    public HtmlAppender keywordAppender() {
+        if(HighlightKeywordLogger.appender() == null) {
+            throw new IllegalStateException("Not in keyword logger scope");
+        }
+
+        return HighlightKeywordLogger.appender();
+    }
+
+    public static class HtmlAppender {
         private StringBuilder buf = new StringBuilder();
 
         private StringBuilder code = new StringBuilder();
@@ -62,10 +71,9 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
         private JSpringBotLogger logger;
 
-        private HtmlAppender(JSpringBotLogger logger) {
+        HtmlAppender(JSpringBotLogger logger) {
             this.logger = logger;
         }
-
 
         public HtmlAppender append(String msg, Object... args) {
             if(args != null && args.length > 0) {
