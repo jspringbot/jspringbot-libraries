@@ -18,24 +18,25 @@
 
 package org.jspringbot.keyword.date;
 
-import org.jspringbot.Keyword;
 import org.jspringbot.KeywordInfo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
 
 @Component
 @KeywordInfo(
         name = "Format Date Time",
-        parameters = {"format=Default"},
+        parameters = {"format=$CurrentDateTimeFormat"},
         description = "Format the date time to string given the set format."
 )
-public class FormatDateTime implements Keyword {
-
-    @Autowired
-    private PrintDateTime printer;
+public class FormatDateTime extends AbstractDateKeyword {
 
     @Override
-    public Object execute(Object[] params) throws Exception {
-        return printer.execute(params);
+    public Object executeInternal(Object[] params) throws IOException {
+        if(params.length > 0) {
+            return helper.formatDateTime(String.valueOf(params[0]));
+        }
+
+        return helper.formatDateTime();
     }
 }

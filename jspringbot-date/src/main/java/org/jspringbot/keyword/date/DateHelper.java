@@ -58,10 +58,10 @@ public class DateHelper {
         current = dateTimeFormatter.parseDateTime(dateStr);
 
         // show the log for print
-        printDateTime();
+        formatDateTime();
     }
 
-    public String printDateTime(String pattern) {
+    public String formatDateTime(String pattern) {
         LOG.keywordAppender()
                 .appendProperty("Print Pattern", formatterPattern)
                 .appendProperty("Print Time Zone ID", currentTimeZone.getID());
@@ -71,21 +71,21 @@ public class DateHelper {
 
         String formattedValue = dateTimeFormatter.print(dt);
 
-        LOG.keywordAppender().appendProperty("Print Value", formattedValue);
+        LOG.keywordAppender().appendProperty("Print Result", formattedValue);
 
         return formattedValue;
     }
 
 
-    public String printDateTime() {
-        return printDateTime(formatterPattern);
+    public String formatDateTime() {
+        return formatDateTime(formatterPattern);
     }
 
     public void resetDateTime() {
         current = new DateTime();
 
         // show the log for print
-        printDateTime();
+        formatDateTime();
     }
 
     public void plusDays(int days) {
@@ -94,7 +94,7 @@ public class DateHelper {
         current = current.plusDays(days);
 
         // show the log for print
-        printDateTime();
+        formatDateTime();
     }
 
     public void minusDays(int days) {
@@ -103,6 +103,6 @@ public class DateHelper {
         current = current.minusDays(days);
 
         // show the log for print
-        printDateTime();
+        formatDateTime();
     }
 }

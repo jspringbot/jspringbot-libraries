@@ -35,6 +35,6 @@ public class DateHelperTest {
 
     @Test
     public void testPrint() throws Exception {
-        assertNotNull(helper.printDateTime());
+        assertNotNull(helper.formatDateTime());
     }
 }

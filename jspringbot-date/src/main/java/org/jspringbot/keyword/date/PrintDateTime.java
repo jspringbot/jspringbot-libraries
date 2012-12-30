@@ -26,7 +26,7 @@ import java.io.IOException;
 @Component
 @KeywordInfo(
         name = "Print Date Time",
-        parameters = {"format=default"},
+        parameters = {"format=$CurrentDateTimeFormat"},
         description = "Prints the date time to string given the set format."
 )
 public class PrintDateTime extends AbstractDateKeyword {
@@ -34,9 +34,9 @@ public class PrintDateTime extends AbstractDateKeyword {
     @Override
     public Object executeInternal(Object[] params) throws IOException {
         if(params.length > 0) {
-            return helper.printDateTime(String.valueOf(params[0]));
+            return helper.formatDateTime(String.valueOf(params[0]));
         }
 
-        return helper.printDateTime();
+        return helper.formatDateTime();
     }
 }
