@@ -44,7 +44,9 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
     public KeywordAppender keywordAppender() {
         if(HighlightKeywordLogger.appender() == null) {
-            throw new IllegalStateException("Not in keyword logger scope");
+            warn("Not in keyword logger scope.");
+
+            return new KeywordAppender(createAppender());
         }
 
         return new KeywordAppender(HighlightKeywordLogger.appender());
