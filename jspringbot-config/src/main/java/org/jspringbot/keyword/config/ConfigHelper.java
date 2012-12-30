@@ -71,19 +71,35 @@ public class ConfigHelper {
     }
 
     public Boolean getBooleanProperty(String key) {
-        return Boolean.valueOf(getProperty(key));
+        Boolean value = Boolean.valueOf(getProperty(key));
+
+        LOG.keywordAppender().appendProperty("Boolean Value", value);
+
+        return value;
     }
 
     public Long getLongProperty(String key) {
-        return Long.valueOf(getProperty(key));
+        Long value = Long.valueOf(getProperty(key));
+
+        LOG.keywordAppender().appendProperty("Long Value", value);
+
+        return value;
     }
 
     public Integer getIntegerProperty(String key) {
-        return Integer.valueOf(getProperty(key));
+        Integer value = Integer.valueOf(getProperty(key));
+
+        LOG.keywordAppender().appendProperty("Integer Value", value);
+
+        return value;
     }
 
     public Double getDoubleProperty(String key) {
-        return Double.valueOf(getProperty(key));
+        Double value = Double.valueOf(getProperty(key));
+
+        LOG.keywordAppender().appendProperty("Double Value", value);
+
+        return value;
     }
 
     public String getProperty(String key) {
@@ -101,7 +117,7 @@ public class ConfigHelper {
             throw new IllegalArgumentException(String.format("No property found for key '%s'", key));
         }
 
-        LOG.keywordAppender().appendProperty("Value", properties.getProperty(key));
+        LOG.keywordAppender().appendProperty("String Value", properties.getProperty(key));
 
         return properties.getProperty(key);
     }
