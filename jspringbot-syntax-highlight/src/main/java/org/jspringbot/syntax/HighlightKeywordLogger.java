@@ -12,7 +12,7 @@ class HighlightKeywordLogger {
         KeywordInfo keywordInfo = AnnotationUtils.findAnnotation(keywordClass, KeywordInfo.class);
 
         HtmlAppender appender = new HtmlAppender(JSpringBotLogger.getLogger(keywordClass));
-        appender.appendBold(keywordInfo.name());
+        appender.appendBold(keywordInfo.name() + ":");
 
         APPENDER_THREAD_LOCAL.set(appender);
     }
