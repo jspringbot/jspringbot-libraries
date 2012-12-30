@@ -42,12 +42,12 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         return new HtmlAppender(this);
     }
 
-    public HtmlAppender keywordAppender() {
+    public KeywordAppender keywordAppender() {
         if(HighlightKeywordLogger.appender() == null) {
             throw new IllegalStateException("Not in keyword logger scope");
         }
 
-        return HighlightKeywordLogger.appender();
+        return new KeywordAppender(HighlightKeywordLogger.appender());
     }
 
     public static class HtmlAppender {

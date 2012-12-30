@@ -1,15 +1,14 @@
 package org.jspringbot.syntax;
 
-import org.jspringbot.JSpringBotLogger;
 import org.jspringbot.Keyword;
 
 public abstract class AbstractHighlightKeyword implements Keyword {
     @Override
     public Object execute(Object[] params) throws Exception {
         try {
-            HighlightKeywordLogger.createAppender(JSpringBotLogger.getLogger(getClass()));
+            HighlightKeywordLogger.createAppender(getClass());
 
-            return executeInternal();
+            return executeInternal(params);
         } catch(Exception e) {
             HighlightKeywordLogger.appender().log();
             HighlightKeywordLogger.clear();
@@ -18,5 +17,5 @@ public abstract class AbstractHighlightKeyword implements Keyword {
         }
     }
 
-    protected abstract Object executeInternal() throws Exception;
+    protected abstract Object executeInternal(Object[] params) throws Exception;
 }
