@@ -111,7 +111,20 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             if(properties.length() > 0) {
                 properties.append("\n");
             }
-            properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringEscapeUtils.escapeJava(String.valueOf(value)))));
+
+            if(Number.class.isInstance(value)) {
+                if(Long.class.isInstance(value) || Integer.class.isInstance(value) || Byte.class.isInstance(value) || Short.class.isInstance(value)) {
+                    properties.append(hardWordWrap(String.format("%s = %d", property, ((Number) value).longValue())));
+                } else {
+                    properties.append(hardWordWrap(String.format("%s = %f", property, ((Number) value).doubleValue())));
+                }
+            } else if(Boolean.class.isInstance(value)) {
+                properties.append(hardWordWrap(String.format("%s = %s", property, String.valueOf(value))));
+            } else if(Character.class.isInstance(value)) {
+                properties.append(hardWordWrap(String.format("%s = '%s'", property, String.valueOf(value))));
+            } else {
+                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringEscapeUtils.escapeJava(String.valueOf(value)))));
+            }
 
             return this;
         }
