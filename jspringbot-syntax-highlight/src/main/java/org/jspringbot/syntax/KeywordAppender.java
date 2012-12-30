@@ -6,7 +6,7 @@ import org.jspringbot.syntax.HighlightRobotLogger.HtmlAppender;
 import java.util.Arrays;
 
 public class KeywordAppender {
-    private static JSpringBotLogger LOG = JSpringBotLogger.getLogger(KeywordAppender.class);
+    private static final JSpringBotLogger LOG = JSpringBotLogger.getLogger(KeywordAppender.class);
 
     private HtmlAppender appender;
 
