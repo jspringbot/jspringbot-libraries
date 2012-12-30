@@ -41,7 +41,7 @@ public class ConfigHelperTest {
     public void testSample() throws Exception {
         configHelper.selectDomain("sample");
 
-        assertEquals("value", configHelper.getStringProperty("sample"));
+        assertEquals("value", configHelper.getProperty("sample"));
     }
 
 

@@ -31,7 +31,7 @@ import org.springframework.stereotype.Component;
 public class GetConfigBooleanProperty extends AbstractConfigKeyword{
 
     @Override
-    public Object execute(Object[] params) {
-        return Boolean.parseBoolean(helper.getStringProperty(String.valueOf(params[0])));
+    public Object executeInternal(Object[] params) {
+        return helper.getBooleanProperty(String.valueOf(params[0]));
     }
 }

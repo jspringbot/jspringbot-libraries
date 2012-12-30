@@ -27,10 +27,10 @@ import org.springframework.stereotype.Component;
         parameters = {"selectedDomain"},
         description = "classpath:desc/SelectConfigDomain.txt"
 )
-public class SelectConfigDomain extends AbstractConfigKeyword{
+public class SelectConfigDomain extends AbstractConfigKeyword {
 
     @Override
-    public Object execute(Object[] params) {
+    public Object executeInternal(Object[] params) {
         helper.selectDomain(String.valueOf(params[0]));
 
         return null;

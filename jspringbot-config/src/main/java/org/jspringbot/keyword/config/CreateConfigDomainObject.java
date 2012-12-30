@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
 public class CreateConfigDomainObject extends AbstractConfigKeyword {
 
     @Override
-    public Object execute(Object[] params) {
-        return helper.createDomainWrapper(String.valueOf(params[0]));
+    public Object executeInternal(Object[] params) {
+        return helper.createDomainObject(String.valueOf(params[0]));
     }
 }

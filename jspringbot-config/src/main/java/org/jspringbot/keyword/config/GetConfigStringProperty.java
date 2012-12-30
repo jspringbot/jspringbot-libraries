@@ -31,7 +31,7 @@ import org.springframework.stereotype.Component;
 public class GetConfigStringProperty extends AbstractConfigKeyword{
 
     @Override
-    public Object execute(Object[] params) {
-        return helper.getStringProperty(String.valueOf(params[0]));
+    public Object executeInternal(Object[] params) {
+        return helper.getProperty(String.valueOf(params[0]));
     }
 }

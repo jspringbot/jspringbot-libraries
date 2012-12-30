@@ -18,6 +18,7 @@
 
 package org.jspringbot.keyword.config;
 
+import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ import java.util.Map;
 import java.util.Properties;
 
 public class ConfigHelper {
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ConfigHelper.class);
 
     protected Map<String, Resource> domains;
 
@@ -49,6 +51,8 @@ public class ConfigHelper {
     }
 
     public void selectDomain(String selectedDomain) {
+        LOG.keywordAppender().appendProperty("Selected Domain", selectedDomain);
+
         if (!domainProperties.containsKey(selectedDomain)) {
             throw new IllegalArgumentException(String.format("Unsupported selected domain '%s'", selectedDomain));
         }
@@ -56,7 +60,9 @@ public class ConfigHelper {
         this.selectedDomain = selectedDomain;
     }
 
-    public ConfigDomainObject createDomainWrapper(String selectedDomain) {
+    public ConfigDomainObject createDomainObject(String selectedDomain) {
+        LOG.keywordAppender().appendProperty("Domain", selectedDomain);
+
         if (!domainProperties.containsKey(selectedDomain)) {
             throw new IllegalArgumentException(String.format("Unsupported selected domain '%s'", selectedDomain));
         }
@@ -64,7 +70,27 @@ public class ConfigHelper {
         return new ConfigDomainObject(selectedDomain, domainProperties.get(selectedDomain));
     }
 
-    public String getStringProperty(String key) {
+    public Boolean getBooleanProperty(String key) {
+        return Boolean.valueOf(getProperty(key));
+    }
+
+    public Long getLongProperty(String key) {
+        return Long.valueOf(getProperty(key));
+    }
+
+    public Integer getIntegerProperty(String key) {
+        return Integer.valueOf(getProperty(key));
+    }
+
+    public Double getDoubleProperty(String key) {
+        return Double.valueOf(getProperty(key));
+    }
+
+    public String getProperty(String key) {
+        LOG.keywordAppender()
+                .appendProperty("Current Selected Domain", selectedDomain)
+                .appendProperty("Key", key);
+
         if (selectedDomain == null) {
             throw new IllegalStateException("No domain selected");
         }
@@ -74,6 +100,8 @@ public class ConfigHelper {
         if (!properties.containsKey(key)) {
             throw new IllegalArgumentException(String.format("No property found for key '%s'", key));
         }
+
+        LOG.keywordAppender().appendProperty("Value", properties.getProperty(key));
 
         return properties.getProperty(key);
     }

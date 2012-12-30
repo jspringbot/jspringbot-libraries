@@ -3,7 +3,6 @@ package org.jspringbot.keyword.config;
 import java.util.Properties;
 
 public class ConfigDomainObject {
-
     private Properties properties;
 
     private String selectedDomain;
