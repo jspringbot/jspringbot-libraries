@@ -107,6 +107,28 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return WordUtils.wrap(str, WORD_WRAP_LENGTH, "\n    ", true);
         }
 
+        public HtmlAppender appendArguments(Object[] params) {
+            if(params == null) {
+                appendProperty("Keyword Arguments", null);
+
+                return this;
+            } else if(params.length == 0) {
+                append("Keyword Arguments", "Array length is 0");
+
+                return this;
+            }
+
+            for(int i = 0; i < params.length; i++) {
+                if(params[i] != null) {
+                    appendProperty("Keyword Argument Class [" + i + "]", params[i].getClass().getName());
+                }
+
+                appendProperty("Keyword Argument Value [" + i + "]", params[i]);
+            }
+
+            return this;
+        }
+
         public HtmlAppender appendProperty(String property, Object value) {
             if(properties.length() > 0) {
                 properties.append("\n");
