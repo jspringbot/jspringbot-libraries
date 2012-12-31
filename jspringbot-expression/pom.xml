@@ -31,11 +31,11 @@
   </parent>
 
   <groupId>org.jspringbot</groupId>
-  <artifactId>jspringbot-argument</artifactId>
+  <artifactId>jspringbot-expression</artifactId>
   <version>1.0-SNAPSHOT</version>
 
   <packaging>jar</packaging>
-  <name>jspringbot-argument</name>
+  <name>jspringbot-expression</name>
 
   <properties>
     <libdoc.name>JSpringBot Argument Library</libdoc.name>
