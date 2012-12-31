@@ -18,6 +18,7 @@
 
 package org.jspringbot.keyword.expression.engine;
 
+import de.odysseus.el.util.SimpleResolver;
 import org.jspringbot.keyword.expression.engine.function.SupportedFunctionsManager;
 
 import javax.el.ELContext;
@@ -32,7 +33,7 @@ import java.util.Map;
  */
 public class DefaultELContext extends ELContext {
 
-    private ELResolver resolver = new DefaultResolver();
+    private ELResolver resolver = new SimpleResolver();
 
     private DefaultVariableMapper variableMapper = new DefaultVariableMapper();
 

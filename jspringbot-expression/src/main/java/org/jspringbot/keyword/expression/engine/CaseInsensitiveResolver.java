@@ -32,7 +32,7 @@ import javax.el.PropertyNotWritableException;
  * This also do case insensitive property resolving.
  * </p>
  */
-public class DefaultResolver extends SimpleResolver {
+public class CaseInsensitiveResolver extends SimpleResolver {
 
     @Override
     public void setValue(ELContext context, Object base, Object property, Object value) throws NullPointerException, PropertyNotFoundException, PropertyNotWritableException, ELException {
