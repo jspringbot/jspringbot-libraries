@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(
-        name = "Evaluate Expression Should Be True",
+        name = "Evaluate Expression Should Be False",
         parameters = {"expression"},
         description = "classpath:desc/EvaluateExpression.txt"
 )
