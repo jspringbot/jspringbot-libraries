@@ -4,7 +4,7 @@ When no locale was set using the `Set i18n Locale` keyword, this will use the ma
 
 Example:
 
-{{Messages_en.properties}} - English language messages.
+{{classpath:Messages_en.properties}} - English language messages.
 
 | login.field.username=User Name
 | login.field.password=Password
