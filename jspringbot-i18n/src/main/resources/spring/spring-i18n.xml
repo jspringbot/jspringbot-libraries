@@ -25,7 +25,7 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <description>Robot i18l Keywords</description>
+  <description>Robot i18n Keywords</description>
 
   <bean name="i18nHelper" class="org.jspringbot.keyword.i18n.I18nHelper">
     <constructor-arg ref="messageSource"/>
@@ -34,10 +34,20 @@
   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
     <property name="basenames">
       <list>
-        <value>ApplicationResources</value>
+        <value>Messages</value>
       </list>
     </property>
     <property name="useCodeAsDefaultMessage" value="true"/>
+  </bean>
+
+  <bean name="i18nExpressionHandler"
+        class="org.jspringbot.keyword.i18n.I18nExpressionHandler">
+    <constructor-arg ref="i18nHelper"/>
+  </bean>
+
+  <bean name="i18nExpressionHandlerRegistryBean"
+        class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+    <constructor-arg ref="i18nExpressionHandler"/>
   </bean>
 
   <!-- Scan components -->

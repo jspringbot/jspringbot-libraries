@@ -86,19 +86,21 @@ Where:
 
 *To enable add the following to {{spring-config.xml}}:*
 
-|  <bean name="configExpressionHandler" class="org.jspringbot.keyword.config.ConfigExpressionHandler">
+|  <bean name="configExpressionHandler"
+|        class="org.jspringbot.keyword.config.ConfigExpressionHandler">
 |    <constructor-arg ref="configHelper"/>
 |  </bean>
 |
-|  <bean name="configExpressionHandlerRegistryBean" class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+|  <bean name="configExpressionHandlerRegistryBean"
+|         class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
 |    <constructor-arg ref="configExpressionHandler"/>
 |  </bean>
 
 
 *Sample Test Usage:*
 
-| `Select Config Domain` | variable                      |
-| `Evaluate Expression`  | \#{config:url}                | # output the result to log
+| `Select Config Domain` | variable                      |                            |
+| `Evaluate Expression`  | \#{config:url}                | # output the result to log |
 
 =>
 

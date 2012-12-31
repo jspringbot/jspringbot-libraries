@@ -6,13 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class VariableProviderManager {
-    private Map<String, VariableProviderRegistryBean> handlers;
+    private ApplicationContext context;
 
     public VariableProviderManager(ApplicationContext context) {
-        handlers = context.getBeansOfType(VariableProviderRegistryBean.class);
+        this.context = context;
     }
 
     public Map<String, Object> getVariables() {
+        Map<String, VariableProviderRegistryBean> handlers = context.getBeansOfType(VariableProviderRegistryBean.class);
         Map<String, Object> variables = new HashMap<String, Object>();
         for(VariableProviderRegistryBean bean : handlers.values()) {
             variables.putAll(bean.getHandler().getVariables());

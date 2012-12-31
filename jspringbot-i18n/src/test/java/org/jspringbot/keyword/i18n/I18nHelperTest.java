@@ -18,6 +18,7 @@
 
 package org.jspringbot.keyword.i18n;
 
+import org.jspringbot.keyword.expression.ExpressionHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static junit.framework.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:spring-i18n.xml"})
+@ContextConfiguration(locations={"classpath:spring-i18n-test.xml"})
 public class I18nHelperTest {
 
     @Autowired
     private I18nHelper helper;
+
+    @Autowired
+    protected ExpressionHelper expressionHelper;
 
     @Test
     public void testDefaultMessage() throws Exception {
@@ -77,6 +81,26 @@ public class I18nHelperTest {
 
         assertEquals("Japanese Login Success", dictionary.get("login.success"));
         assertEquals("Japanese Login Failure", dictionary.get("login.failure"));
+    }
 
+    @Test
+    public void testExpressionSupport() throws Exception {
+        helper.setLocale("ja_JP");
+
+        expressionHelper.evaluationShouldBe("#{i18n:locale:language}", "ja");
+        expressionHelper.evaluationShouldBe("#{i18n:locale:country}", "JP");
+        expressionHelper.evaluationShouldBe("#{i18n:locale:displayCountry}", "Japan");
+        expressionHelper.evaluationShouldBe("#{i18n:locale:displayLanguage}", "Japanese");
+
+        expressionHelper.evaluationShouldBe("#{i18n:login.success}", "Japanese Login Success");
+        expressionHelper.evaluationShouldBe("#{i18n:login.failure}", "Japanese Login Failure");
+        expressionHelper.evaluationShouldBe("#{i18n:en:login.success}", "English Login Success");
+        expressionHelper.evaluationShouldBe("#{i18n:en:login.failure}", "English Login Failure");
+        expressionHelper.evaluationShouldBe("#{i18n:zh:login.success}", "Chinese Login Success");
+        expressionHelper.evaluationShouldBe("#{i18n:zh:login.failure}", "Chinese Login Failure");
+
+        // ensure that locale was not changed
+        expressionHelper.evaluationShouldBe("#{i18n:login.success}", "Japanese Login Success");
+        expressionHelper.evaluationShouldBe("#{i18n:login.failure}", "Japanese Login Failure");
     }
 }

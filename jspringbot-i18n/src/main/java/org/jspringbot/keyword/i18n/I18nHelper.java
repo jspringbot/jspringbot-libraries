@@ -95,7 +95,7 @@ public class I18nHelper {
 
         LOG.keywordAppender().appendProperty("Locale Language", locale.getLanguage());
 
-        return locale.getDisplayLanguage();
+        return locale.getLanguage();
     }
 
     public String getCountry() {
@@ -103,10 +103,23 @@ public class I18nHelper {
 
         LOG.keywordAppender().appendProperty("Locale Country", locale.getCountry());
 
-        return locale.getDisplayCountry();
+        return locale.getCountry();
     }
 
     public I18nObject createI18nObject() {
         return new I18nObject(messages);
+    }
+
+    public String getMessage(String localeID, String messageCode) {
+        Locale old = getLocale();
+
+        try {
+            Locale locale = I18nUtil.getLocaleFromString(localeID);
+            LocaleContextHolder.setLocale(locale);
+
+            return getMessage(messageCode);
+        } finally {
+            LocaleContextHolder.setLocale(old);
+        }
     }
 }

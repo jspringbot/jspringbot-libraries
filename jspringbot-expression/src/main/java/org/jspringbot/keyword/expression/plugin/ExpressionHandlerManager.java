@@ -7,13 +7,13 @@ import java.util.Map;
 
 public class ExpressionHandlerManager {
 
-    private Map<String, ExpressionHandlerRegistryBean> handlers;
+    private ApplicationContext context;
 
     private ExpressionHandler defaultHandler;
 
     public ExpressionHandlerManager(ApplicationContext context, ExpressionHandler defaultHandler) {
+        this.context = context;
         this.defaultHandler = defaultHandler;
-        handlers = context.getBeansOfType(ExpressionHandlerRegistryBean.class);
     }
 
     public Object defaultEvaluation(String expression) throws Exception {
@@ -21,6 +21,8 @@ public class ExpressionHandlerManager {
     }
 
     public Object evaluation(String prefix, String expression) throws Exception {
+        Map<String, ExpressionHandlerRegistryBean> handlers = context.getBeansOfType(ExpressionHandlerRegistryBean.class);
+
         for(ExpressionHandlerRegistryBean bean : handlers.values()) {
             if(StringUtils.equals(bean.getHandler().getPrefix(), prefix)) {
                 return bean.getHandler().evaluate(expression);
