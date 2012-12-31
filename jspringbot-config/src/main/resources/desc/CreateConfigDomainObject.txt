@@ -2,11 +2,11 @@ Create and return a configuration domain object. With this object, you can retri
 
 | *Method* | *Description* |
 | getDomain | Returns the associated domain. |
-| get      | _[ property ]_ Returns the property {{String}} value. |
-| getInteger | _[ property ]_ Returns the property {{Integer}} value. |
-| getLong | _[ property ]_ Returns the property {{Long}} value. |
-| getDouble | _[ property ]_ Returns the property {{Double}} value. |
-| getBoolean | _[ property ]_ Returns the property {{Boolean}} value. |
+| get _[ property ]_      | Returns the property {{String}} value. |
+| getInteger _[ property ]_ | Returns the property {{Integer}} value. |
+| getLong _[ property ]_ | Returns the property {{Long}} value. |
+| getDouble _[ property ]_ | Returns the property {{Double}} value. |
+| getBoolean _[ property ]_ | Returns the property {{Boolean}} value. |
 
 Example:
 

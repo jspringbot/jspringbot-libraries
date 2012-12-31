@@ -3,7 +3,7 @@ Creates an object to retrieve the messages from.
 This following table shows the available methods.
 
 | *Method* | *Description* |
-| get      | _[ messageCode ]_ Retrieves message for the selected locale given the {{messageCode}}. |
+| get _[ messageCode ]_  | Retrieves message for the selected locale given the {{messageCode}}. |
 | getDisplayCountry | Returns the display country. |
 | getDisplayLanguage | Returns the display language. |
 | getLanguage | Returns the language locale code. |
