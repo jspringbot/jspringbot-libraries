@@ -215,7 +215,7 @@ Here are the two ways to use the keywords to retrieve the messages.
 =>
 
 | ${i18n.get('login.page.title')} = "Login Page"           *# -> (1) After locale set 'en'*
-| ${v.get('login.field.username')} = "User Name"
+| ${i18n.get('login.field.username')} = "User Name"
 | ${i18n.get('login.field.password')} = "Password"
 | ${i18n.getDisplayLanguage()} = "English"
 | ${i18n.getLocaleLanguage()} = "en"
