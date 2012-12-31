@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(
-        name = "Add Argument Variable",
+        name = "Add Expression Variable",
         parameters = {"key", "object"},
         description = "classpath:desc/AddExpressionVariable.txt"
 )

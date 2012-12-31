@@ -66,7 +66,6 @@ public class ExpressionHelper implements ApplicationContextAware {
 
     public void evaluationShouldBe(String expression, Object expected) throws Exception {
         LOG.keywordAppender()
-                .appendProperty("Base Expression", expression)
                 .appendProperty("Expected Result", expected);
 
         Object value = evaluate(expression);
@@ -77,9 +76,6 @@ public class ExpressionHelper implements ApplicationContextAware {
     }
 
     public void evaluationShouldBeNull(String expression) throws Exception {
-        LOG.keywordAppender()
-                .appendProperty("Base Expression", expression);
-
         Object value = evaluate(expression);
 
         if(value != null) {
@@ -88,9 +84,6 @@ public class ExpressionHelper implements ApplicationContextAware {
     }
 
     public void evaluationShouldNotBeNull(String expression) throws Exception {
-        LOG.keywordAppender()
-                .appendProperty("Base Expression", expression);
-
         Object value = evaluate(expression);
 
         if(value == null) {
@@ -99,8 +92,6 @@ public class ExpressionHelper implements ApplicationContextAware {
     }
 
     public void evaluationShouldBeTrue(String expression) throws Exception {
-        LOG.keywordAppender().appendProperty("Base Expression", expression);
-
         Object value = evaluate(expression);
 
         if(value == null) {
@@ -117,8 +108,6 @@ public class ExpressionHelper implements ApplicationContextAware {
     }
 
     public void evaluationShouldBeFalse(String expression) throws Exception {
-        LOG.keywordAppender().appendProperty("Base Expression", expression);
-
         Object value = evaluate(expression);
 
         if(value == null) {
@@ -185,12 +174,18 @@ public class ExpressionHelper implements ApplicationContextAware {
 
         @Override
         public Object evaluate(String expression) throws Exception {
+            LOG.keywordAppender().appendProperty("Expression Handler", "Expression Language (JUEL)");
+
+            for(Map.Entry<String, Object> var : getVariables().entrySet()) {
+                LOG.keywordAppender().appendProperty(String.format("Expression Variable [%s]", var.getKey()), var.getValue());
+            }
+
             DefaultELContext context = new DefaultELContext(functionManager, getVariables());
             TreeValueExpression expr = (TreeValueExpression) factory.createValueExpression(context, String.format("${%s}", expression), Object.class);
 
             Object result = expr.getValue(context);
 
-            LOG.keywordAppender().appendProperty("EL Expression", expression);
+
             LOG.keywordAppender().appendProperty("EL Evaluation Result", result);
 
             return result;

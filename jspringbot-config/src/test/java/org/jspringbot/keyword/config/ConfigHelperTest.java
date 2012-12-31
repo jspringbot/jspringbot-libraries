@@ -19,6 +19,7 @@
 package org.jspringbot.keyword.config;
 
 
+import org.jspringbot.keyword.expression.ExpressionHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +38,25 @@ public class ConfigHelperTest {
     @Autowired
     protected ConfigHelper configHelper;
 
+    @Autowired
+    protected ExpressionHelper expressionHelper;
+
     @Test
     public void testSample() throws Exception {
         configHelper.selectDomain("sample");
 
         assertEquals("value", configHelper.getProperty("sample"));
+    }
+
+    @Test
+    public void testConfigExpression() throws Exception {
+        configHelper.selectDomain("sample");
+        assertEquals("value", expressionHelper.evaluate("#{config:sample}"));
+        assertEquals("property value", expressionHelper.evaluate("#{config:sample:property}"));
+        assertEquals("http://someurl.com", expressionHelper.evaluate("#{config:robot-variables:url}"));
+
+        assertEquals(true, expressionHelper.evaluate("#{config:sample:booleanProperty:boolean}"));
+        assertEquals(100, expressionHelper.evaluate("#{config:robot-variables:integerProperty:integer}"));
     }
 
 

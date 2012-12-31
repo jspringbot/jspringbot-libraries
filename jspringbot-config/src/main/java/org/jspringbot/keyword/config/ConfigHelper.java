@@ -35,6 +35,14 @@ public class ConfigHelper {
 
     private String selectedDomain;
 
+    public boolean hasDomain(String domain) {
+        return domainProperties.containsKey(domain);
+    }
+
+    public String getSelectedDomain() {
+        return selectedDomain;
+    }
+
     public void setDomains(Map<String, Resource> domains) {
         this.domains = domains;
     }
@@ -60,14 +68,22 @@ public class ConfigHelper {
         this.selectedDomain = selectedDomain;
     }
 
-    public ConfigDomainObject createDomainObject(String selectedDomain) {
-        LOG.keywordAppender().appendProperty("Domain", selectedDomain);
+    ConfigDomainObject createDomainObjectInternal() {
+        return createDomainObjectInternal(selectedDomain);
+    }
 
+    ConfigDomainObject createDomainObjectInternal(String selectedDomain) {
         if (!domainProperties.containsKey(selectedDomain)) {
             throw new IllegalArgumentException(String.format("Unsupported selected domain '%s'", selectedDomain));
         }
 
         return new ConfigDomainObject(selectedDomain, domainProperties.get(selectedDomain));
+    }
+
+    public ConfigDomainObject createDomainObject(String selectedDomain) {
+        LOG.keywordAppender().appendProperty("Domain", selectedDomain);
+
+        return createDomainObjectInternal(selectedDomain);
     }
 
     public Boolean getBooleanProperty(String key) {

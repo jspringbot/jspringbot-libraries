@@ -26,18 +26,29 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <description>jSpringBot Config Keywords</description>
+  <description>jSpringBot Config Keywords</description>
 
-    <bean name="configHelper" class="org.jspringbot.keyword.config.ConfigHelper" init-method="init">
-        <property name="domains">
-            <map>
-                <entry key="robot-variables" value="classpath:variables.properties"/>
-                <entry key="sample" value="classpath:sample.properties"/>
-            </map>
-        </property>
-    </bean>
+  <import resource="classpath:spring/spring-expression.xml"/>
 
-    <!-- Scan components -->
-    <ctx:component-scan base-package="org.jspringbot.keyword.config" />
-    <ctx:annotation-config/>
+  <bean name="configHelper" class="org.jspringbot.keyword.config.ConfigHelper" init-method="init">
+    <property name="domains">
+      <map>
+        <entry key="robot-variables" value="classpath:variables.properties"/>
+        <entry key="sample" value="classpath:sample.properties"/>
+      </map>
+    </property>
+  </bean>
+
+  <bean name="configExpressionHandler" class="org.jspringbot.keyword.config.ConfigExpressionHandler">
+    <constructor-arg ref="configHelper"/>
+  </bean>
+
+  <bean name="configExpressionHandlerRegistryBean"
+        class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+    <constructor-arg ref="configExpressionHandler"/>
+  </bean>
+
+  <!-- Scan components -->
+  <ctx:component-scan base-package="org.jspringbot.keyword.config"/>
+  <ctx:annotation-config/>
 </beans>

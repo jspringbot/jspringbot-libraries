@@ -72,3 +72,38 @@ Please see the example {{Config Library}} project.
 | ${sample.getInteger('sample.timeout')} = 5000                   # integer type
 | ${sample.getDouble('sample.amount')} = 5.35                     # double type
 | ${sample.getBoolean('sample.is.enable.config')} = true          # boolean type
+
+== Expression Support ==
+
+{{Config Library}} has a custom jSpringBot expression language. The expression supported is as follows {{html:<code>}}#{config[:domain]:property[:type]}{{html:</code>}}.
+
+Where:
+
+- {{domain}} is optional, will use the default selection if not available.
+- {{type}} is optional, will be {{string}} by default.
+
+{{html:<div class="alert alert-danger">}} {{html:<strong>}}Important!{{html:</strong>}} The config expression is only available for jSpringBot Library keywords. {{html:</div>}}
+
+*To enable add the following to {{spring-config.xml}}:*
+
+|  <bean name="configExpressionHandler" class="org.jspringbot.keyword.config.ConfigExpressionHandler">
+|    <constructor-arg ref="configHelper"/>
+|  </bean>
+|
+|  <bean name="configExpressionHandlerRegistryBean" class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+|    <constructor-arg ref="configExpressionHandler"/>
+|  </bean>
+
+
+*Sample Test Usage:*
+
+| `Select Config Domain` | variable                      |
+| `Evaluate Expression`  | \#{config:url}                | # output the result to log
+
+=>
+
+| \#{config:url} = "http://localhost:8080/"
+| \#{config:property1} = "property1 value"
+| \#{config:sample:sample.property1} = "sample property 1 value"
+| \#{config:sample:sample.timeout:integer} = 5000                # integer type
+| \#{config:sample:sample.is.enable.config:boolean} = true       # boolean type
