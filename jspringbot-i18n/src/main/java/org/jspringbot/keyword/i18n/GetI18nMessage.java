@@ -24,15 +24,17 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Get i18n Message",
-        parameters = {"messageCode"},
+        parameters = {"messageCode", "localeID=$CurrentLocale"},
         description = "classpath:desc/GetI18nMessage.txt"
 )
 public class GetI18nMessage extends Abstracti18nKeyword {
 
     @Override
     public Object executeInternal(Object[] params) {
-        i18nHelper.getMessage(String.valueOf(params[0]));
+        if(params.length > 1) {
+            return i18nHelper.getMessage(String.valueOf(params[0]), String.valueOf(params[1]));
+        }
 
-        return null;
+        return i18nHelper.getMessage(String.valueOf(params[0]));
     }
 }

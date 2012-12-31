@@ -34,6 +34,8 @@ public class I18nExpressionHandler extends AbstractSimpleExpressionHandler {
                 } else if(StringUtils.equalsIgnoreCase(tokens[1], "displayLanguage")) {
                     return helper.getDisplayLanguage();
                 }
+
+                throw new IllegalArgumentException(String.format("Syntax error for i18 locale property '%s' unknown.", tokens[1]));
             }
 
             return helper.getMessage(tokens[0], tokens[1]);

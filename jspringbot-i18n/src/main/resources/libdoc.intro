@@ -194,16 +194,18 @@ Here are the two ways to use the keywords to retrieve the messages.
 
 *Using `Get i18n Message` Keyword*
 
-| `Set i18n Locale`  | en                 |                      |
-| ${loginTitle}=     | `Get i18n Message` | login.page.title     |
-| ${loginUserName}=  | `Get i18n Message` | login.field.username |
-| ${loginPassword}=  | `Get i18n Message` | login.field.password |
+| `Set i18n Locale`    | en                 |                        |     |
+| ${loginTitle}=       | `Get i18n Message` | login.page.title       |     |
+| ${loginUserName}=    | `Get i18n Message` | login.field.username   |     |
+| ${loginPassword}=    | `Get i18n Message` | login.field.password   |     |
+| ${jaLoginPassword}=  | `Get i18n Message` | login.field.password | ja  |
 
 =>
 
 | ${loginTitle} = "Login Page"
 | ${loginUserName} = "User Name"
 | ${loginPassword} = "Password"
+| ${jaLoginPassword} = "{{unicode:\u30D1\u30B9\u30EF\u30FC\u30C9}}"
 
 *Using `Create i18n Object` Keyword*
 
