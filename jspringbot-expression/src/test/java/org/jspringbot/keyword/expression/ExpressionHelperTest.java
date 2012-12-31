@@ -31,7 +31,7 @@ public class ExpressionHelperTest {
     private EvaluateExpressionShouldBeFalse falseEvaluator;
 
     @Autowired
-    private EvaluateExpressionShouldBe equalEvaluator;
+    private EvaluateExpressionShouldBeEqual equalEvaluator;
 
     @Autowired
     private AddExpressionVariable addVariable;
