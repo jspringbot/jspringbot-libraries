@@ -14,6 +14,14 @@ public class KeywordAppender {
         this.appender = appender;
     }
 
+    public boolean isSilent() {
+        return appender.isSilent();
+    }
+
+    public void setSilent(boolean silent) {
+        appender.setSilent(silent);
+    }
+
     public KeywordAppender append(String msg, Object... args) {
         if(appender == null) {
             LOG.info(msg, args);
