@@ -94,6 +94,7 @@ public class ExpressionHelperTest {
         evaluateAsTrue("#{col:isNotEmpty($1)}", items);
         evaluateEquals("#{col:size(items)}", 1);
 
+        evaluateEquals("#{f:eval('#{col:size($1)}')}", 1.0f, items);
         items.add("test2");
 
         evaluateEquals("#{col:size(items)}", 2);
