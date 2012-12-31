@@ -53,6 +53,8 @@ public class ExpressionHelper implements ApplicationContextAware {
 
     private VariableProviderManager variableManager;
 
+    private ELExpressionHandler defaultHandler = new ELExpressionHandler();
+
     public ExpressionHelper(ExpressionFactory factory) {
         this.factory = factory;
     }
@@ -60,7 +62,7 @@ public class ExpressionHelper implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext context) throws BeansException {
         functionManager = new SupportedFunctionsManager(context);
-        expressionManager = new ExpressionHandlerManager(context, new ELExpressionHandler());
+        expressionManager = new ExpressionHandlerManager(context, defaultHandler);
         variableManager = new VariableProviderManager(context);
     }
 
@@ -70,7 +72,11 @@ public class ExpressionHelper implements ApplicationContextAware {
 
         Object value = evaluate(expression);
 
-        if(!expected.equals(value)) {
+        if(expected == null && value == null) {
+            return;
+        }
+
+        if(expected == null || value == null || !silentEvaluate(expected).equals(value)) {
             throw new IllegalArgumentException("Evaluation was not expected.");
         }
     }
@@ -121,6 +127,14 @@ public class ExpressionHelper implements ApplicationContextAware {
         if(!Boolean.FALSE.equals(value)) {
             throw new IllegalArgumentException("Evaluation was not false.");
         }
+    }
+
+    public Object silentEvaluate(Object param) throws Exception {
+        if(String.class.isInstance(param) && isSupported((String) param)) {
+            return evaluate((String) param);
+        }
+
+        return param;
     }
 
     public Object evaluate(String expression) throws Exception {

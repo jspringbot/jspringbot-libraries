@@ -71,11 +71,25 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
         private JSpringBotLogger logger;
 
+        private boolean silent = false;
+
         HtmlAppender(JSpringBotLogger logger) {
             this.logger = logger;
         }
 
+        public boolean isSilent() {
+            return silent;
+        }
+
+        public void setSilent(boolean silent) {
+            this.silent = silent;
+        }
+
         public HtmlAppender append(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(args != null && args.length > 0) {
                 buf.append(String.format(msg, args));
             } else {
@@ -86,6 +100,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendBold(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
             buf.append("<b>");
             append(msg, args);
             buf.append("</b>");
@@ -94,6 +112,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendPropertyStringArray(String name, String[] values) {
+            if(isSilent()) {
+                return this;
+            }
+
             for(int i = 0; i < values.length; i++) {
                 appendProperty(name + "[" + i + "]", values[i]);
             }
@@ -106,6 +128,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendArguments(Object[] params) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(params == null) {
                 appendProperty("Keyword Arguments", null);
 
@@ -128,6 +154,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendProperty(String property, Object value) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(properties.length() > 0) {
                 properties.append("\n");
             }
@@ -150,6 +180,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendText(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(args != null && args.length > 0) {
                 text.append(String.format(msg, args));
             } else {
@@ -160,6 +194,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendCode(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(args != null && args.length > 0) {
                 code.append(String.format(msg, args));
             } else {
@@ -170,6 +208,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendXML(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(args != null && args.length > 0) {
                 xml.append(String.format(msg, args));
             } else {
@@ -180,6 +222,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendSQL(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(args != null && args.length > 0) {
                 sql.append(String.format(msg, args));
             } else {
@@ -190,6 +236,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendJavascript(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(args != null && args.length > 0) {
                 javascript.append(String.format(msg, args));
             } else {
@@ -200,6 +250,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendCss(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(args != null && args.length > 0) {
                 css.append(String.format(msg, args));
             } else {
@@ -210,6 +264,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendJSON(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
             if(args != null && args.length > 0) {
                 json.append(String.format(msg, args));
             } else {
@@ -220,6 +278,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public void log() {
+            if(isSilent()) {
+                return;
+            }
+
             if(code.length() > 0) {
                 buf.append(HighlighterUtils.INSTANCE.highlightNormal(code.toString()));
             }

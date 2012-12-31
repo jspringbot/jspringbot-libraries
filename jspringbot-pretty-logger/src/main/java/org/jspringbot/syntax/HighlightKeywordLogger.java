@@ -24,5 +24,4 @@ class HighlightKeywordLogger {
     static void clear() {
         APPENDER_THREAD_LOCAL.remove();
     }
-
 }
