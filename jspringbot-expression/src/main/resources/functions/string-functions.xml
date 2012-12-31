@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <name>contains</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean contains(java.lang.String, java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>equals</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean equals(java.lang.String, java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>endsWith</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean endsWith(java.lang.String, java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>startsWith</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean startsWith(java.lang.String, java.lang.String)</function-signature>
+  </function>
+</functions>

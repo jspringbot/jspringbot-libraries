@@ -123,5 +123,6 @@
     <module>jspringbot-test-data</module>
     <module>jspringbot-db</module>
     <module>jspringbot-i18n</module>
+    <module>jspringbot-expression</module>
   </modules>
 </project>
