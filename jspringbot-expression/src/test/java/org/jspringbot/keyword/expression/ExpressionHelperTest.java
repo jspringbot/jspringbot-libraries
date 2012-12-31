@@ -36,29 +36,28 @@ public class ExpressionHelperTest {
     @Autowired
     private AddExpressionVariable addVariable;
 
-
     @Autowired
     private ApplicationContext context;
 
 
-    private Object evaluate(String expression) throws Exception {
-        return evaluator.execute(new Object[] {expression});
+    private Object evaluate(Object... values) throws Exception {
+        return evaluator.execute(values);
     }
 
-    private void evaluateEquals(String expression, Object value) throws Exception {
-        equalEvaluator.execute(new Object[] {expression, value});
+    private void evaluateEquals(Object... values) throws Exception {
+        equalEvaluator.execute(values);
     }
 
     private void addVariable(String name, Object value) throws Exception {
         addVariable.execute(new Object[] {name, value});
     }
 
-    private void evaluateAsTrue(String expression) throws Exception {
-        trueEvaluator.execute(new Object[] {expression});
+    private void evaluateAsTrue(Object... values) throws Exception {
+        trueEvaluator.execute(values);
     }
 
-    private void evaluateAsFalse(String expression) throws Exception {
-        falseEvaluator.execute(new Object[] {expression});
+    private void evaluateAsFalse(Object... values) throws Exception {
+        falseEvaluator.execute(values);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -86,9 +85,13 @@ public class ExpressionHelperTest {
         evaluateAsTrue("#{col:isEmpty(items)}");
         evaluateAsFalse("#{col:isNotEmpty(items)}");
 
+        evaluateAsTrue("#{col:isEmpty($1)}", items);
+        evaluateAsFalse("#{col:isNotEmpty($1)}", items);
+
         items.add("test");
 
         evaluateAsTrue("#{col:isNotEmpty(items)}");
+        evaluateAsTrue("#{col:isNotEmpty($1)}", items);
         evaluateEquals("#{col:size(items)}", 1);
 
         items.add("test2");

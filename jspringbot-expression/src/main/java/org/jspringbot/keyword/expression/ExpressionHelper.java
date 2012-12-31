@@ -34,7 +34,10 @@ import javax.el.ValueExpression;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -55,6 +58,8 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     private VariableProviderManager variableManager;
 
     private ELExpressionHandler defaultHandler = new ELExpressionHandler();
+
+    private Map<String, Object> currentVariables = new HashMap<String, Object>();
 
     public ExpressionHelper(ExpressionFactory factory) {
         this.factory = factory;
@@ -138,6 +143,34 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
         return param;
     }
 
+    private void initVariables(List<Object> variables) throws Exception {
+        currentVariables.clear();
+
+        for (int i = 0; i < variables.size(); i++) {
+            currentVariables.put(String.format("$%d", i + 1), silentEvaluate(variables.get(i)));
+        }
+    }
+
+    public Object variableScope(List<Object> variables, Callable<Object> callable) throws Exception {
+        try {
+            initVariables(variables);
+
+            return callable.call();
+        } finally {
+            currentVariables.clear();
+        }
+    }
+
+    public void variableScope(List<Object> variables, Runnable runnable) throws Exception {
+        try {
+            initVariables(variables);
+
+            runnable.run();
+        } finally {
+            currentVariables.clear();
+        }
+    }
+
     public Object evaluate(String expression) throws Exception {
         LOG.keywordAppender().appendProperty("Base Expression", expression);
 
@@ -167,7 +200,9 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     }
 
     private Map<String, Object> getVariables() {
-        return variableManager.getVariables();
+        currentVariables.putAll(variableManager.getVariables());
+
+        return currentVariables;
     }
 
     public Object getValue(Object result) {
