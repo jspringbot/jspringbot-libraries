@@ -5,59 +5,17 @@
     <prefix>map</prefix>
     <name>getObject</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Object getObject(java.util.Map,java.lang.Object,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getObject1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Object getObject(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getBoolean</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Boolean getBoolean(java.util.Map,java.lang.Object,java.lang.Boolean)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getBoolean1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Boolean getBoolean(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
-    <name>getByte</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Byte getByte(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getByte1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Byte getByte(java.util.Map,java.lang.Object,java.lang.Byte)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getShort</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Short getShort(java.util.Map,java.lang.Object,java.lang.Short)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getShort1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Short getShort(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
     <name>getLong</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Long getLong(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getLong1</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Long getLong(java.util.Map,java.lang.Object,java.lang.Long)</function-signature>
   </function>
@@ -65,23 +23,11 @@
     <prefix>map</prefix>
     <name>getFloat</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Float getFloat(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getFloat1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Float getFloat(java.util.Map,java.lang.Object,java.lang.Float)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getDouble</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Double getDouble(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getDouble1</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Double getDouble(java.util.Map,java.lang.Object,java.lang.Double)</function-signature>
   </function>
@@ -93,79 +39,13 @@
   </function>
   <function>
     <prefix>map</prefix>
-    <name>putAll</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map putAll(java.util.Map,java.lang.Object[])</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
     <name>getInteger</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Integer getInteger(java.util.Map,java.lang.Object,java.lang.Integer)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getInteger1</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Integer getInteger(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
-    <name>synchronizedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map synchronizedMap(java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>unmodifiableMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map unmodifiableMap(java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>unmodifiableSortedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map unmodifiableSortedMap(java.util.SortedMap)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>synchronizedSortedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map synchronizedSortedMap(java.util.SortedMap)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map getMap(java.util.Map,java.lang.Object,java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getMap1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map getMap(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getNumber</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Number getNumber(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getNumber1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.Number getNumber(java.util.Map,java.lang.Object,java.lang.Number)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
     <name>getString</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.lang.String getString(java.util.Map,java.lang.Object,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getString1</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.String getString(java.util.Map,java.lang.Object)</function-signature>
   </function>
@@ -173,19 +53,7 @@
     <prefix>map</prefix>
     <name>getBooleanValue</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>boolean getBooleanValue(java.util.Map,java.lang.Object,boolean)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getBooleanValue1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>boolean getBooleanValue(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>toMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map toMap(java.util.ResourceBundle)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
@@ -195,61 +63,19 @@
   </function>
   <function>
     <prefix>map</prefix>
-    <name>getByteValue</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>byte getByteValue(java.util.Map,java.lang.Object,byte)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getByteValue1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>byte getByteValue(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getShortValue</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>short getShortValue(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getShortValue1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>short getShortValue(java.util.Map,java.lang.Object,short)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
     <name>getIntValue</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>int getIntValue(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
-    <name>getIntValue1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>int getIntValue(java.util.Map,java.lang.Object,int)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
     <name>getLongValue</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>long getLongValue(java.util.Map,java.lang.Object,long)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getLongValue1</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>long getLongValue(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getFloatValue</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>float getFloatValue(java.util.Map,java.lang.Object,float)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getFloatValue1</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>float getFloatValue(java.util.Map,java.lang.Object)</function-signature>
   </function>
@@ -258,137 +84,5 @@
     <name>getDoubleValue</name>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>double getDoubleValue(java.util.Map,java.lang.Object)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>getDoubleValue1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>double getDoubleValue(java.util.Map,java.lang.Object,double)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>toProperties</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Properties toProperties(java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>verbosePrint</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>void verbosePrint(java.io.PrintStream,java.lang.Object,java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>debugPrint</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>void debugPrint(java.io.PrintStream,java.lang.Object,java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>invertMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map invertMap(java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>safeAddToMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>void safeAddToMap(java.util.Map,java.lang.Object,java.lang.Object) throws java.lang.NullPointerException</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>predicatedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map predicatedMap(java.util.Map,org.apache.commons.collections.Predicate,org.apache.commons.collections.Predicate)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>typedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map typedMap(java.util.Map,java.lang.Class,java.lang.Class)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>transformedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map transformedMap(java.util.Map,org.apache.commons.collections.Transformer,org.apache.commons.collections.Transformer)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>fixedSizeMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map fixedSizeMap(java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>lazyMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map lazyMap(java.util.Map,org.apache.commons.collections.Transformer)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>lazyMap1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map lazyMap(java.util.Map,org.apache.commons.collections.Factory)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>orderedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map orderedMap(java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>multiValueMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map multiValueMap(java.util.Map,org.apache.commons.collections.Factory)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>multiValueMap1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map multiValueMap(java.util.Map,java.lang.Class)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>multiValueMap2</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.Map multiValueMap(java.util.Map)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>predicatedSortedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.SortedMap predicatedSortedMap(java.util.SortedMap,org.apache.commons.collections.Predicate,org.apache.commons.collections.Predicate)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>typedSortedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.SortedMap typedSortedMap(java.util.SortedMap,java.lang.Class,java.lang.Class)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>transformedSortedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.SortedMap transformedSortedMap(java.util.SortedMap,org.apache.commons.collections.Transformer,org.apache.commons.collections.Transformer)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>fixedSizeSortedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.SortedMap fixedSizeSortedMap(java.util.SortedMap)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>lazySortedMap</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.SortedMap lazySortedMap(java.util.SortedMap,org.apache.commons.collections.Factory)</function-signature>
-  </function>
-  <function>
-    <prefix>map</prefix>
-    <name>lazySortedMap1</name>
-    <function-class>org.apache.commons.collections.MapUtils</function-class>
-    <function-signature>java.util.SortedMap lazySortedMap(java.util.SortedMap,org.apache.commons.collections.Transformer)</function-signature>
   </function>
 </functions>

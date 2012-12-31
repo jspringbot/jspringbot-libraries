@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <prefix>escape</prefix>
+    <name>escapeJava</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String escapeJava(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>escapeJavaScript</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String escapeJavaScript(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>unescapeJava</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String unescapeJava(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>unescapeJavaScript</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String unescapeJavaScript(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>escapeHtml</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String escapeHtml(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>unescapeHtml</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String unescapeHtml(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>escapeXml</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String escapeXml(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>unescapeXml</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String unescapeXml(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>escapeSql</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String escapeSql(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>escapeCsv</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String escapeCsv(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>escape</prefix>
+    <name>unescapeCsv</name>
+    <function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+    <function-signature>java.lang.String unescapeCsv(java.lang.String)</function-signature>
+  </function>
+</functions>

@@ -59,7 +59,7 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
 
     private ELExpressionHandler defaultHandler = new ELExpressionHandler();
 
-    private Map<String, Object> currentVariables = new HashMap<String, Object>();
+    private Map<String, Object> scopeVariables = new HashMap<String, Object>();
 
     public ExpressionHelper(ExpressionFactory factory) {
         this.factory = factory;
@@ -144,10 +144,10 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     }
 
     private void initVariables(List<Object> variables) throws Exception {
-        currentVariables.clear();
+        scopeVariables.clear();
 
         for (int i = 0; i < variables.size(); i++) {
-            currentVariables.put(String.format("$%d", i + 1), silentEvaluate(variables.get(i)));
+            scopeVariables.put(String.format("$%d", i + 1), silentEvaluate(variables.get(i)));
         }
     }
 
@@ -157,7 +157,7 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
 
             return callable.call();
         } finally {
-            currentVariables.clear();
+            scopeVariables.clear();
         }
     }
 
@@ -167,7 +167,7 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
 
             runnable.run();
         } finally {
-            currentVariables.clear();
+            scopeVariables.clear();
         }
     }
 
@@ -200,9 +200,9 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     }
 
     private Map<String, Object> getVariables() {
-        currentVariables.putAll(variableManager.getVariables());
+        scopeVariables.putAll(variableManager.getVariables());
 
-        return currentVariables;
+        return scopeVariables;
     }
 
     public Object getValue(Object result) {

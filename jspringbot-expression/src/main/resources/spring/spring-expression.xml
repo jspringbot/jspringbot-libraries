@@ -32,6 +32,7 @@
     <constructor-arg>
       <list>
         <value>classpath:functions/string-functions.xml</value>
+        <value>classpath:functions/array-functions.xml</value>
         <value>classpath:functions/collection-functions.xml</value>
         <value>classpath:functions/map-functions.xml</value>
         <value>classpath:functions/math-functions.xml</value>
@@ -119,6 +120,7 @@
       <props>
         <prop key="javax.el.cacheSize">5000</prop>
         <prop key="javax.el.varArgs">true</prop>
+        <prop key="javax.el.methodInvocations ">true</prop>
       </props>
     </constructor-arg>
   </bean>

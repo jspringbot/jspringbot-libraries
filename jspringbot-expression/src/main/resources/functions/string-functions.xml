@@ -12,21 +12,6 @@
     <function-signature>int indexOf(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
-    <name>indexOf1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int indexOf(java.lang.String,java.lang.String,int)</function-signature>
-  </function>
-  <function>
-    <name>indexOf2</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int indexOf(java.lang.String,char)</function-signature>
-  </function>
-  <function>
-    <name>indexOf3</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int indexOf(java.lang.String,char,int)</function-signature>
-  </function>
-  <function>
     <name>length</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>int length(java.lang.String)</function-signature>
@@ -54,32 +39,7 @@
   <function>
     <name>lastIndexOf</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int lastIndexOf(java.lang.String,char,int)</function-signature>
-  </function>
-  <function>
-    <name>lastIndexOf1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int lastIndexOf(java.lang.String,java.lang.String,int)</function-signature>
-  </function>
-  <function>
-    <name>lastIndexOf2</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>int lastIndexOf(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>lastIndexOf3</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int lastIndexOf(java.lang.String,char)</function-signature>
-  </function>
-  <function>
-    <name>substring</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String substring(java.lang.String,int,int)</function-signature>
-  </function>
-  <function>
-    <name>substring1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String substring(java.lang.String,int)</function-signature>
   </function>
   <function>
     <name>replace</name>
@@ -87,39 +47,14 @@
     <function-signature>java.lang.String replace(java.lang.String,java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
-    <name>replace1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String replace(java.lang.String,java.lang.String,java.lang.String,int)</function-signature>
-  </function>
-  <function>
     <name>contains</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>boolean contains(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
-    <name>contains1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>boolean contains(java.lang.String,char)</function-signature>
-  </function>
-  <function>
     <name>split</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String[] split(java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>split1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] split(java.lang.String,java.lang.String,int)</function-signature>
-  </function>
-  <function>
-    <name>split2</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] split(java.lang.String,char)</function-signature>
-  </function>
-  <function>
-    <name>split3</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] split(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
     <name>trim</name>
@@ -130,56 +65,6 @@
     <name>remove</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String remove(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>remove1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String remove(java.lang.String,char)</function-signature>
-  </function>
-  <function>
-    <name>join</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String join(java.lang.Object[],java.lang.String,int,int)</function-signature>
-  </function>
-  <function>
-    <name>join1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String join(java.lang.Object[])</function-signature>
-  </function>
-  <function>
-    <name>join2</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String join(java.lang.Object[],char)</function-signature>
-  </function>
-  <function>
-    <name>join3</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String join(java.lang.Object[],char,int,int)</function-signature>
-  </function>
-  <function>
-    <name>join4</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String join(java.lang.Object[],java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>join5</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String join(java.util.Iterator,char)</function-signature>
-  </function>
-  <function>
-    <name>join6</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String join(java.util.Iterator,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>join7</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String join(java.util.Collection,char)</function-signature>
-  </function>
-  <function>
-    <name>join8</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String join(java.util.Collection,java.lang.String)</function-signature>
   </function>
   <function>
     <name>reverse</name>
@@ -249,11 +134,6 @@
   <function>
     <name>containsAny</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>boolean containsAny(java.lang.String,char[])</function-signature>
-  </function>
-  <function>
-    <name>containsAny1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>boolean containsAny(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
@@ -265,11 +145,6 @@
     <name>isBlank</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>boolean isBlank(java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>concatenate</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String concatenate(java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>isNotEmpty</name>
@@ -292,11 +167,6 @@
     <function-signature>java.lang.String strip(java.lang.String)</function-signature>
   </function>
   <function>
-    <name>strip1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String strip(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
     <name>stripToNull</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String stripToNull(java.lang.String)</function-signature>
@@ -317,16 +187,6 @@
     <function-signature>java.lang.String stripEnd(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
-    <name>stripAll</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] stripAll(java.lang.String[])</function-signature>
-  </function>
-  <function>
-    <name>stripAll1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] stripAll(java.lang.String[],java.lang.String)</function-signature>
-  </function>
-  <function>
     <name>ordinalIndexOf</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>int ordinalIndexOf(java.lang.String,java.lang.String,int)</function-signature>
@@ -339,52 +199,22 @@
   <function>
     <name>indexOfAny</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int indexOfAny(java.lang.String,char[])</function-signature>
-  </function>
-  <function>
-    <name>indexOfAny1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>int indexOfAny(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
-    <name>indexOfAny2</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int indexOfAny(java.lang.String,java.lang.String[])</function-signature>
-  </function>
-  <function>
     <name>indexOfAnyBut</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int indexOfAnyBut(java.lang.String,char[])</function-signature>
-  </function>
-  <function>
-    <name>indexOfAnyBut1</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>int indexOfAnyBut(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
     <name>containsOnly</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>boolean containsOnly(java.lang.String,char[])</function-signature>
-  </function>
-  <function>
-    <name>containsOnly1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>boolean containsOnly(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
     <name>containsNone</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>boolean containsNone(java.lang.String,char[])</function-signature>
-  </function>
-  <function>
-    <name>containsNone1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>boolean containsNone(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>lastIndexOfAny</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int lastIndexOfAny(java.lang.String,java.lang.String[])</function-signature>
   </function>
   <function>
     <name>mid</name>
@@ -417,11 +247,6 @@
     <function-signature>java.lang.String substringBetween(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
-    <name>substringBetween1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String substringBetween(java.lang.String,java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
     <name>substringsBetween</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String[] substringsBetween(java.lang.String,java.lang.String,java.lang.String)</function-signature>
@@ -432,24 +257,9 @@
     <function-signature>java.lang.String getNestedString(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
-    <name>getNestedString1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String getNestedString(java.lang.String,java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
     <name>splitByWholeSeparator</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] splitByWholeSeparator(java.lang.String,java.lang.String,int)</function-signature>
-  </function>
-  <function>
-    <name>splitByWholeSeparator1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String[] splitByWholeSeparator(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>splitByWholeSeparatorPreserveAllTokens</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] splitByWholeSeparatorPreserveAllTokens(java.lang.String,java.lang.String,int)</function-signature>
   </function>
   <function>
     <name>splitByWholeSeparatorPreserveAllTokens1</name>
@@ -459,22 +269,7 @@
   <function>
     <name>splitPreserveAllTokens</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] splitPreserveAllTokens(java.lang.String,java.lang.String,int)</function-signature>
-  </function>
-  <function>
-    <name>splitPreserveAllTokens1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String[] splitPreserveAllTokens(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>splitPreserveAllTokens2</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] splitPreserveAllTokens(java.lang.String,char)</function-signature>
-  </function>
-  <function>
-    <name>splitPreserveAllTokens3</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String[] splitPreserveAllTokens(java.lang.String)</function-signature>
   </function>
   <function>
     <name>splitByCharacterType</name>
@@ -522,24 +317,9 @@
     <function-signature>java.lang.String replaceOnce(java.lang.String,java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
-    <name>replaceEach</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String replaceEach(java.lang.String,java.lang.String[],java.lang.String[])</function-signature>
-  </function>
-  <function>
-    <name>replaceEachRepeatedly</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String replaceEachRepeatedly(java.lang.String,java.lang.String[],java.lang.String[])</function-signature>
-  </function>
-  <function>
     <name>replaceChars</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String replaceChars(java.lang.String,java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>replaceChars1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String replaceChars(java.lang.String,char,char)</function-signature>
   </function>
   <function>
     <name>overlayString</name>
@@ -550,41 +330,6 @@
     <name>overlay</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String overlay(java.lang.String,java.lang.String,int,int)</function-signature>
-  </function>
-  <function>
-    <name>chomp</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String chomp(java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>chomp1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String chomp(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>chompLast</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String chompLast(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>chompLast1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String chompLast(java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>getChomp</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String getChomp(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>prechomp</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String prechomp(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>getPrechomp</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String getPrechomp(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
     <name>chop</name>
@@ -599,47 +344,17 @@
   <function>
     <name>rightPad</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String rightPad(java.lang.String,int,char)</function-signature>
-  </function>
-  <function>
-    <name>rightPad1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String rightPad(java.lang.String,int)</function-signature>
-  </function>
-  <function>
-    <name>rightPad2</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String rightPad(java.lang.String,int,java.lang.String)</function-signature>
   </function>
   <function>
     <name>leftPad</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String leftPad(java.lang.String,int)</function-signature>
-  </function>
-  <function>
-    <name>leftPad1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String leftPad(java.lang.String,int,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>leftPad2</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String leftPad(java.lang.String,int,char)</function-signature>
   </function>
   <function>
     <name>center</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String center(java.lang.String,int,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>center1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String center(java.lang.String,int)</function-signature>
-  </function>
-  <function>
-    <name>center2</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String center(java.lang.String,int,char)</function-signature>
   </function>
   <function>
     <name>upperCase</name>
@@ -709,11 +424,6 @@
   <function>
     <name>defaultString</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String defaultString(java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>defaultString1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String defaultString(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
@@ -734,31 +444,11 @@
   <function>
     <name>abbreviate</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String abbreviate(java.lang.String,int,int)</function-signature>
-  </function>
-  <function>
-    <name>abbreviate1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String abbreviate(java.lang.String,int)</function-signature>
   </function>
   <function>
     <name>indexOfDifference</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int indexOfDifference(java.lang.String[])</function-signature>
-  </function>
-  <function>
-    <name>indexOfDifference1</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>int indexOfDifference(java.lang.String,java.lang.String)</function-signature>
-  </function>
-  <function>
-    <name>getCommonPrefix</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>java.lang.String getCommonPrefix(java.lang.String[])</function-signature>
-  </function>
-  <function>
-    <name>getLevenshteinDistance</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>int getLevenshteinDistance(java.lang.String,java.lang.String)</function-signature>
   </function>
 </functions>

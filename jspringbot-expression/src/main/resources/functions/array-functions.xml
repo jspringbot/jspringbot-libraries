@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <prefix>array</prefix>
+    <name>asList</name>
+    <function-class>java.util.Arrays</function-class>
+    <function-signature>java.util.List asList(java.lang.Object[])</function-signature>
+  </function>
+</functions>

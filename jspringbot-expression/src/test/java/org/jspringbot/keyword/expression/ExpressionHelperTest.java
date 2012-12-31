@@ -1,7 +1,7 @@
 package org.jspringbot.keyword.expression;
 
 import junitx.util.PrivateAccessor;
-import org.apache.commons.collections.MapUtils;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jspringbot.spring.ApplicationContextHolder;
 import org.junit.After;
 import org.junit.Before;
@@ -98,11 +98,21 @@ public class ExpressionHelperTest {
         items.add("test2");
 
         evaluateEquals("#{col:size(items)}", 2);
+
+    }
+
+    @Test
+    public void testVArgsAndMethod() throws Exception {
+        evaluateEquals("#{concat('1', '2', '3')}", "123");
+        evaluateEquals("#{join('-', '1', '2', '3')}", "1-2-3");
+        evaluateEquals("#{substring('alvin', 2)}", "vin");
+        evaluateEquals("#{substring('alvin', 2, 4)}", "vi");
+        evaluateEquals("#{'alvin'.length()}", 5);
     }
 
     @Test
     public void testCreateStringFunctionsXML() throws Exception {
-        new ClassStaticFunctionsPrinter(MapUtils.class).addPrefix("map").print(System.out);
+        new ClassStaticFunctionsPrinter(StringEscapeUtils.class).addPrefix("escape:").print(System.out);
     }
 
     @Before
