@@ -23,19 +23,16 @@ Example:
 
 _usage_
 
-| ${i18n}=                | `Create i18n Object` |
-| `Set i18n Locale`       | en                   |
-| *# -> (1) After locale set 'en'* |
-| `Set i18n Locale`       | ja                   |
-| *# -> (2) After locale set 'ja'* |
+| ${i18n}=                | `Create i18n Object` |                                  |
+| `Set i18n Locale`       | en                   | *# -> (1) After locale set 'en'* |
+| `Set i18n Locale`       | ja                   | *# -> (2) After locale set 'ja'* |
 
 =>
 
-| *# -> (1) After locale set 'en'*
-| ${i18n.get('login.page.title')} = "Login Page"
+| ${i18n.get('login.page.title')} = "Login Page"   *# -> (1) After locale set 'en'*
 | ${i18n.getDisplayLanguage()} = "English"
 | ${i18n.getLocaleLanguage()} = "en"
-| *# -> (2) After locale set 'ja'*
-| ${i18n.get('login.page.title')} = "{{unicode:\u30ED\u30B0\u30A4\u30F3\u30DA\u30FC\u30B8}}"
+|
+| ${i18n.get('login.page.title')} = "{{unicode:\u30ED\u30B0\u30A4\u30F3\u30DA\u30FC\u30B8}}"  *# -> (2) After locale set 'ja'*
 | ${i18n.getDisplayLanguage()} = "Japanese"
 | ${i18n.getLocaleLanguage()} = "ja"
