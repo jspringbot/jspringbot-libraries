@@ -55,12 +55,12 @@ public class ConfigHelperTest {
         assertEquals("property value", expressionHelper.evaluate("#{config:sample:property}"));
         assertEquals("http://someurl.com", expressionHelper.evaluate("#{config:robot-variables:url}"));
 
-        assertEquals(true, expressionHelper.evaluate("#{config:sample:booleanProperty:boolean}"));
-        assertEquals(100, expressionHelper.evaluate("#{config:robot-variables:integerProperty:integer}"));
+        assertEquals(true, expressionHelper.evaluate("#{b:config:sample:booleanProperty}"));
+        assertEquals(100, expressionHelper.evaluate("#{i:config:robot-variables:integerProperty}"));
 
         assertEquals(true, expressionHelper.evaluate("#{b:config:sample:booleanProperty}"));
 
-        expressionHelper.evaluationShouldBe("#{config:robot-variables:integerProperty:long}", "#{100}");
+        expressionHelper.evaluationShouldBe("#{l:config:robot-variables:integerProperty}", "#{100}");
     }
 
 
