@@ -1,0 +1,24 @@
+Retrieves the message for the current locale given the {{messageCode}}.
+
+When no locale was set using the `Set i18n Locale` keyword, this will use the machine locale settings.
+
+Example:
+
+{{Messages_en.properties}} - English language messages.
+
+| login.field.username=User Name
+| login.field.password=Password
+| login.page.title=Login Page
+
+_usage_
+
+| `Set i18n Locale`  | en                 |                      |
+| ${loginTitle}=     | `Get i18n Message` | login.page.title     |
+| ${loginUserName}=  | `Get i18n Message` | login.field.username |
+| ${loginPassword}=  | `Get i18n Message` | login.field.password |
+
+=>
+
+| ${loginTitle} = "Login Page"
+| ${loginUserName} = "User Name"
+| ${loginPassword} = "Password"

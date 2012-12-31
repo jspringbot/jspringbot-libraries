@@ -1,0 +1,28 @@
+Sets the i18n current locale given the {{localeID}}. This will use the default machine locale if not used.
+
+Please see the {{jspringbot-doc:i18n|#introduction}} introduction section for the supported locale IDs.
+
+Example:
+
+{{Messages_en.properties}} - English language messages.
+
+| login.page.title=Login Page
+
+{{Messages_ja.properties}} - Japanese language messages.
+
+| login.page.title=\u30ED\u30B0\u30A4\u30F3\u30DA\u30FC\u30B8
+
+
+_usage_
+
+| `Set i18n Locale`         | en                 |                      |
+| ${englishLoginTitle}=     | `Get i18n Message` | login.page.title     |
+| `Set i18n Locale`         | ja                 |                      |
+| ${japaneseLoginTitle}=    | `Get i18n Message` | login.page.title     |
+
+=>
+
+| ${englishLoginTitle} = "Login Page"
+| ${japaneseLoginTitle} = "{{unicode:\u30ED\u30B0\u30A4\u30F3\u30DA\u30FC\u30B8}}"
+
+

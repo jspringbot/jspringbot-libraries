@@ -22,11 +22,15 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get i18n Message", description = "Get Message.", parameters = {"code"})
+@KeywordInfo(
+        name = "Get i18n Message",
+        parameters = {"messageCode"},
+        description = "classpath:desc/GetI18nMessage.txt"
+)
 public class GetI18nMessage extends Abstracti18nKeyword {
 
     @Override
-    public Object execute(Object[] params) {
+    public Object executeInternal(Object[] params) {
         i18nHelper.getMessage(String.valueOf(params[0]));
 
         return null;

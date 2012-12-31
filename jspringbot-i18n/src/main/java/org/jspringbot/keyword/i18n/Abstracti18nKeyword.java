@@ -18,10 +18,10 @@
 
 package org.jspringbot.keyword.i18n;
 
-import org.jspringbot.Keyword;
+import org.jspringbot.syntax.AbstractHighlightKeyword;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class Abstracti18nKeyword implements Keyword {
+public abstract class Abstracti18nKeyword extends AbstractHighlightKeyword {
 
     @Autowired
     protected I18nHelper i18nHelper;

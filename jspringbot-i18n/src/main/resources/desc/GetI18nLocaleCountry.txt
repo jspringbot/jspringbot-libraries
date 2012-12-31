@@ -1,0 +1,17 @@
+Returns the current locale country.
+
+Please see the {{jspringbot-doc:i18n|#introduction}} introduction section for the supported locales.
+
+Example:
+
+_usage_
+
+| `Set i18n Locale`         | pt_PT              |
+| ${countryCode1}=          | `Get i18n Locale Country` |
+| `Set i18n Locale`         | el_CY              |
+| ${countryCode2}=          | `Get i18n Locale Country` |
+
+=>
+
+| ${countryCode1} = "PT"
+| ${countryCode2} = "CY"

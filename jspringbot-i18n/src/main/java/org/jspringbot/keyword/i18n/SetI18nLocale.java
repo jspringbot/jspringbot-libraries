@@ -16,22 +16,24 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.config;
-
+package org.jspringbot.keyword.i18n;
 
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
+
 @Component
 @KeywordInfo(
-        name = "Get Config String Property",
-        parameters = {"property"},
-        description = "Same as `Get Config Property`, this retrieves the string property from the selected configuration domain."
+        name = "Set i18n Locale",
+        parameters = {"localeID"},
+        description = "classpath:desc/SetI18nLocale.txt"
 )
-public class GetConfigStringProperty extends AbstractConfigKeyword{
+public class SetI18nLocale extends Abstracti18nKeyword {
 
     @Override
     public Object executeInternal(Object[] params) {
-        return helper.getProperty(String.valueOf(params[0]));
+        i18nHelper.setLocale(String.valueOf(params[0]));
+
+        return null;
     }
 }

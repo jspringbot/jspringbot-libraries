@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Get Config Long Property",
-        parameters = {"key"},
+        parameters = {"property"},
         description = "classpath:desc/GetConfigLongProperty.txt"
 )
 public class GetConfigLongProperty extends AbstractConfigKeyword{

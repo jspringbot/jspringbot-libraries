@@ -1,1 +1,235 @@
-Contains i18n related keywords.
+A test library for internationalization. For now this library contains keywords for messages with multilingual support.
+
+Multilingual messages will be placed on properties file which will be retrieved using the keywords.
+
+Please see the example {{i18n Library}} project.
+
+{{jspringbot-github:sample-i18n|Sample Project}}
+
+== Supported Locale ==
+
+The {{Locale ID}} has the following format {{language_country_variant}}.
+
+| *Locale ID* | *Language* | *Country* |
+| ja_JP | Japanese | Japan |
+| es_PE | Spanish | Peru |
+| en | English |  |
+| ja_JP_JP | Japanese | Japan |
+| es_PA | Spanish | Panama |
+| sr_BA | Serbian | Bosnia and Herzegovina |
+| mk | Macedonian |  |
+| es_GT | Spanish | Guatemala |
+| ar_AE | Arabic | United Arab Emirates |
+| no_NO | Norwegian | Norway |
+| sq_AL | Albanian | Albania |
+| bg | Bulgarian |  |
+| ar_IQ | Arabic | Iraq |
+| ar_YE | Arabic | Yemen |
+| hu | Hungarian |  |
+| pt_PT | Portuguese | Portugal |
+| el_CY | Greek | Cyprus |
+| ar_QA | Arabic | Qatar |
+| mk_MK | Macedonian | Macedonia |
+| sv | Swedish |  |
+| de_CH | German | Switzerland |
+| en_US | English | United States |
+| fi_FI | Finnish | Finland |
+| is | Icelandic |  |
+| cs | Czech |  |
+| en_MT | English | Malta |
+| sl_SI | Slovenian | Slovenia |
+| sk_SK | Slovak | Slovakia |
+| it | Italian |  |
+| tr_TR | Turkish | Turkey |
+| zh | Chinese |  |
+| th | Thai |  |
+| ar_SA | Arabic | Saudi Arabia |
+| no | Norwegian |  |
+| en_GB | English | United Kingdom |
+| sr_CS | Serbian | Serbia and Montenegro |
+| lt | Lithuanian |  |
+| ro | Romanian |  |
+| en_NZ | English | New Zealand |
+| no_NO_NY | Norwegian | Norway |
+| lt_LT | Lithuanian | Lithuania |
+| es_NI | Spanish | Nicaragua |
+| nl | Dutch |  |
+| ga_IE | Irish | Ireland |
+| fr_BE | French | Belgium |
+| es_ES | Spanish | Spain |
+| ar_LB | Arabic | Lebanon |
+| ko | Korean |  |
+| fr_CA | French | Canada |
+| et_EE | Estonian | Estonia |
+| ar_KW | Arabic | Kuwait |
+| sr_RS | Serbian | Serbia |
+| es_US | Spanish | United States |
+| es_MX | Spanish | Mexico |
+| ar_SD | Arabic | Sudan |
+| in_ID | Indonesian | Indonesia |
+| ru | Russian |  |
+| lv | Latvian |  |
+| es_UY | Spanish | Uruguay |
+| lv_LV | Latvian | Latvia |
+| iw | Hebrew |  |
+| pt_BR | Portuguese | Brazil |
+| ar_SY | Arabic | Syria |
+| hr | Croatian |  |
+| et | Estonian |  |
+| es_DO | Spanish | Dominican Republic |
+| fr_CH | French | Switzerland |
+| hi_IN | Hindi | India |
+| es_VE | Spanish | Venezuela |
+| ar_BH | Arabic | Bahrain |
+| en_PH | English | Philippines |
+| ar_TN | Arabic | Tunisia |
+| fi | Finnish |  |
+| de_AT | German | Austria |
+| es | Spanish |  |
+| nl_NL | Dutch | Netherlands |
+| es_EC | Spanish | Ecuador |
+| zh_TW | Chinese | Taiwan |
+| ar_JO | Arabic | Jordan |
+| be | Belarusian |  |
+| is_IS | Icelandic | Iceland |
+| es_CO | Spanish | Colombia |
+| es_CR | Spanish | Costa Rica |
+| es_CL | Spanish | Chile |
+| ar_EG | Arabic | Egypt |
+| en_ZA | English | South Africa |
+| th_TH | Thai | Thailand |
+| el_GR | Greek | Greece |
+| it_IT | Italian | Italy |
+| ca | Catalan |  |
+| hu_HU | Hungarian | Hungary |
+| fr | French |  |
+| en_IE | English | Ireland |
+| uk_UA | Ukrainian | Ukraine |
+| pl_PL | Polish | Poland |
+| fr_LU | French | Luxembourg |
+| nl_BE | Dutch | Belgium |
+| en_IN | English | India |
+| ca_ES | Catalan | Spain |
+| ar_MA | Arabic | Morocco |
+| es_BO | Spanish | Bolivia |
+| en_AU | English | Australia |
+| sr | Serbian |  |
+| zh_SG | Chinese | Singapore |
+| pt | Portuguese |  |
+| uk | Ukrainian |  |
+| es_SV | Spanish | El Salvador |
+| ru_RU | Russian | Russia |
+| ko_KR | Korean | South Korea |
+| vi | Vietnamese |  |
+| ar_DZ | Arabic | Algeria |
+| vi_VN | Vietnamese | Vietnam |
+| sr_ME | Serbian | Montenegro |
+| sq | Albanian |  |
+| ar_LY | Arabic | Libya |
+| ar | Arabic |  |
+| zh_CN | Chinese | China |
+| be_BY | Belarusian | Belarus |
+| zh_HK | Chinese | Hong Kong |
+| ja | Japanese |  |
+| iw_IL | Hebrew | Israel |
+| bg_BG | Bulgarian | Bulgaria |
+| in | Indonesian |  |
+| mt_MT | Maltese | Malta |
+| es_PY | Spanish | Paraguay |
+| sl | Slovenian |  |
+| fr_FR | French | France |
+| cs_CZ | Czech | Czech Republic |
+| it_CH | Italian | Switzerland |
+| ro_RO | Romanian | Romania |
+| es_PR | Spanish | Puerto Rico |
+| en_CA | English | Canada |
+| de_DE | German | Germany |
+| ga | Irish |  |
+| de_LU | German | Luxembourg |
+| de | German |  |
+| es_AR | Spanish | Argentina |
+| sk | Slovak |  |
+| ms_MY | Malay | Malaysia |
+| hr_HR | Croatian | Croatia |
+| en_SG | English | Singapore |
+| da | Danish |  |
+| mt | Maltese |  |
+| pl | Polish |  |
+| ar_OM | Arabic | Oman |
+| tr | Turkish |  |
+| th_TH_TH | Thai | Thailand |
+| el | Greek |  |
+| ms | Malay |  |
+| sv_SE | Swedish | Sweden |
+| da_DK | Danish | Denmark |
+| es_HN | Spanish | Honduras |
+
+== Examples ==
+
+Assume we have these multilingual messages resources.
+
+{{Messages_en.properties}} - English language messages.
+
+| login.field.username=User Name
+| login.field.password=Password
+| login.page.title=Login Page
+
+{{Messages_ja.properties}} - Japanese language messages.
+
+| login.field.username=\u30E6\u30FC\u30B6\u30FC\u540D
+| login.field.password=\u30D1\u30B9\u30EF\u30FC\u30C9
+| login.page.title=\u30ED\u30B0\u30A4\u30F3\u30DA\u30FC\u30B8
+
+{{Messages_es.properties}} - Spanish language messages.
+
+| login.field.username=Nombre de usuario
+| login.field.password=Contrase\u00F1a
+| login.page.title=La p\u00E1gina de inicio
+
+{{html:<div class="alert alert-info">}}
+{{html:<strong>}}Note!{{html:</strong>}} Use [http://rishida.net/tools/conversion/|rishida.net] for converting to unicode.
+{{html:</div>}}
+
+Here are the two ways to use the keywords to retrieve the messages.
+
+*Using `Get i18n Message` Keyword*
+
+| `Set i18n Locale`  | en                 |                      |
+| ${loginTitle}=     | `Get i18n Message` | login.page.title     |
+| ${loginUserName}=  | `Get i18n Message` | login.field.username |
+| ${loginPassword}=  | `Get i18n Message` | login.field.password |
+
+=>
+
+| ${loginTitle} = "Login Page"
+| ${loginUserName} = "User Name"
+| ${loginPassword} = "Password"
+
+*Using `Create i18n Object` Keyword*
+
+| ${i18n}=                | `Create i18n Object` |
+| `Set i18n Locale`       | en                   |
+| *# -> (1) After locale set 'en'* |
+| `Set i18n Locale`       | ja                   |
+| *# -> (2) After locale set 'ja'* |
+| `Set i18n Locale`       | ja                   |
+| *# -> (3) After locale set 'es_PR'* |
+
+=>
+
+| *# -> (1) After locale set 'en'*
+| ${i18n.get('login.page.title')} = "Login Page"
+| ${v.get('login.field.username')} = "User Name"
+| ${i18n.get('login.field.password')} = "Password"
+| ${i18n.getDisplayLanguage()} = "English"
+| ${i18n.getLocaleLanguage()} = "en"
+| *# -> (2) After locale set 'ja'*
+| ${i18n.get('login.page.title')} = "{{unicode:\u30ED\u30B0\u30A4\u30F3\u30DA\u30FC\u30B8}}"
+| ${i18n.get('login.field.username')} = "{{unicode:\u30E6\u30FC\u30B6\u30FC\u540D}}"
+| ${i18n.get('login.field.password')} = "{{unicode:\u30D1\u30B9\u30EF\u30FC\u30C9}}"
+| ${i18n.getDisplayLanguage()} = "Japanese"
+| ${i18n.getLocaleLanguage()} = "ja"
+| *# -> (3) After locale set 'es_PR'*
+| ${i18n.get('login.page.title')} = "{{unicode:La p\u00E1gina de inicio}}"
+| ${i18n.get('login.field.username')} = "Nombre de usuario"
+| ${i18n.get('login.field.password')} = "{{unicode:Contrase\u00F1a}}"

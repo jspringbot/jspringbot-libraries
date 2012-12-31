@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Get Config Double Property",
-        parameters = {"key"},
+        parameters = {"property"},
         description = "classpath:desc/GetConfigDoubleProperty.txt"
 )
 public class GetConfigDoubleProperty extends AbstractConfigKeyword{

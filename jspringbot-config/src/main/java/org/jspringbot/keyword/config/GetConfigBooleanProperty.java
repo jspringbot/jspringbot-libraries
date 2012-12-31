@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Get Config Boolean Property",
-        parameters = {"key"},
+        parameters = {"property"},
         description = "classpath:desc/GetConfigBooleanProperty.txt"
 )
 public class GetConfigBooleanProperty extends AbstractConfigKeyword{

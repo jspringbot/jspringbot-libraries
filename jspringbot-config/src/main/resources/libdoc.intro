@@ -1,4 +1,6 @@
-Contains keywords to access values in properties file. This library if useful for creating domain based variables.
+A test library providing keywords for accessing configuration files.
+
+Config is a jSpringBot library that contains keywords to access values in properties file. This library if useful for creating domain based variables.
 
 Please see the example {{Config Library}} project.
 

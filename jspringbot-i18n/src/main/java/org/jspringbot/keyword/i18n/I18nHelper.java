@@ -18,6 +18,8 @@
 
 package org.jspringbot.keyword.i18n;
 
+import org.apache.commons.lang.StringUtils;
+import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.MessageSourceAccessor;
@@ -26,6 +28,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class I18nHelper {
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(I18nHelper.class);
 
     private MessageSourceAccessor messages;
 
@@ -33,16 +36,77 @@ public class I18nHelper {
         this.messages = new MessageSourceAccessor(messageSource);
     }
 
-    public void setLanguage(String localeString) {
-        Locale locale = I18nUtil.getLocaleFromString(localeString);
+    public void setLocale(String localeID) {
+        LOG.keywordAppender().appendProperty("Locale ID", localeID);
+
+        Locale locale = I18nUtil.getLocaleFromString(localeID);
         LocaleContextHolder.setLocale(locale);
+
+        if(StringUtils.isNotBlank(locale.getDisplayCountry())) {
+            LOG.keywordAppender().appendProperty("Display Country", locale.getDisplayCountry());
+        }
+        if(StringUtils.isNotBlank(locale.getDisplayLanguage())) {
+            LOG.keywordAppender().appendProperty("Display Language", locale.getDisplayLanguage());
+        }
+    }
+
+    public Locale getLocale() {
+        return LocaleContextHolder.getLocale();
     }
 
     public String getMessage(String code) {
-        return messages.getMessage(code);
+        Locale locale = getLocale();
+        LOG.keywordAppender()
+                .appendProperty("Message Code", code)
+                .appendProperty("Locale ID", locale.toString());
+
+        if(StringUtils.isNotBlank(locale.getDisplayCountry())) {
+            LOG.keywordAppender().appendProperty("Display Country", locale.getDisplayCountry());
+        }
+        if(StringUtils.isNotBlank(locale.getDisplayLanguage())) {
+            LOG.keywordAppender().appendProperty("Display Language", locale.getDisplayLanguage());
+        }
+
+        String message = messages.getMessage(code);
+
+        LOG.keywordAppender().appendProperty("Message Value", message);
+
+        return message;
     }
 
-    public I18nDictionary createDictionary() {
-        return new I18nDictionary(messages);
+    public String getDisplayLanguage() {
+        Locale locale = getLocale();
+
+        LOG.keywordAppender().appendProperty("Display Language", locale.getDisplayLanguage());
+
+        return locale.getDisplayLanguage();
+    }
+
+    public String getDisplayCountry() {
+        Locale locale = getLocale();
+
+        LOG.keywordAppender().appendProperty("Display Country", locale.getDisplayCountry());
+
+        return locale.getDisplayCountry();
+    }
+
+    public String getLanguage() {
+        Locale locale = getLocale();
+
+        LOG.keywordAppender().appendProperty("Locale Language", locale.getLanguage());
+
+        return locale.getDisplayLanguage();
+    }
+
+    public String getCountry() {
+        Locale locale = getLocale();
+
+        LOG.keywordAppender().appendProperty("Locale Country", locale.getCountry());
+
+        return locale.getDisplayCountry();
+    }
+
+    public I18nObject createI18nObject() {
+        return new I18nObject(messages);
     }
 }

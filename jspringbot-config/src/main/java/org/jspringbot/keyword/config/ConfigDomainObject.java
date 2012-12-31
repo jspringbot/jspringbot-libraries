@@ -1,8 +1,12 @@
 package org.jspringbot.keyword.config;
 
+import org.jspringbot.syntax.HighlightRobotLogger;
+
 import java.util.Properties;
 
 public class ConfigDomainObject {
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ConfigDomainObject.class);
+
     private Properties properties;
 
     private String selectedDomain;
@@ -17,9 +21,16 @@ public class ConfigDomainObject {
     }
 
     public String get(String code) {
+        LOG.keywordAppender()
+                .appendProperty("Config Domain", selectedDomain)
+                .appendProperty("Config Key", code);
+
         if (!properties.containsKey(code)) {
             throw new IllegalArgumentException(String.format("No property found for key '%s'", code));
         }
+
+        LOG.keywordAppender()
+                .appendProperty("Config String Value", properties.getProperty(code));
 
         return properties.getProperty(code);
     }

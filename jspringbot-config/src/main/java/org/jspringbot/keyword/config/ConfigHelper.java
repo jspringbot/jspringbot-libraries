@@ -73,7 +73,7 @@ public class ConfigHelper {
     public Boolean getBooleanProperty(String key) {
         Boolean value = Boolean.valueOf(getProperty(key));
 
-        LOG.keywordAppender().appendProperty("Boolean Value", value);
+        LOG.keywordAppender().appendProperty("Property Boolean Value", value);
 
         return value;
     }
@@ -81,7 +81,7 @@ public class ConfigHelper {
     public Long getLongProperty(String key) {
         Long value = Long.valueOf(getProperty(key));
 
-        LOG.keywordAppender().appendProperty("Long Value", value);
+        LOG.keywordAppender().appendProperty("Property Long Value", value);
 
         return value;
     }
@@ -89,7 +89,7 @@ public class ConfigHelper {
     public Integer getIntegerProperty(String key) {
         Integer value = Integer.valueOf(getProperty(key));
 
-        LOG.keywordAppender().appendProperty("Integer Value", value);
+        LOG.keywordAppender().appendProperty("Property Integer Value", value);
 
         return value;
     }
@@ -97,7 +97,7 @@ public class ConfigHelper {
     public Double getDoubleProperty(String key) {
         Double value = Double.valueOf(getProperty(key));
 
-        LOG.keywordAppender().appendProperty("Double Value", value);
+        LOG.keywordAppender().appendProperty("Property Double Value", value);
 
         return value;
     }
@@ -105,7 +105,7 @@ public class ConfigHelper {
     public String getProperty(String key) {
         LOG.keywordAppender()
                 .appendProperty("Current Selected Domain", selectedDomain)
-                .appendProperty("Key", key);
+                .appendProperty("Property Key", key);
 
         if (selectedDomain == null) {
             throw new IllegalStateException("No domain selected");
@@ -117,7 +117,7 @@ public class ConfigHelper {
             throw new IllegalArgumentException(String.format("No property found for key '%s'", key));
         }
 
-        LOG.keywordAppender().appendProperty("String Value", properties.getProperty(key));
+        LOG.keywordAppender().appendProperty("Property String Value", properties.getProperty(key));
 
         return properties.getProperty(key);
     }

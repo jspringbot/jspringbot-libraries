@@ -42,16 +42,16 @@ public class I18nHelperTest {
 
     @Test
     public void testNonExistingLocale() throws Exception {
-        helper.setLanguage("ko");
+        helper.setLocale("ko");
         assertEquals("english message", helper.getMessage("message"));
     }
 
     @Test
     public void testEnglishMessage() throws Exception {
-        helper.setLanguage("en");
+        helper.setLocale("en");
         assertEquals("english message", helper.getMessage("message"));
 
-        I18nDictionary dictionary = helper.createDictionary();
+        I18nObject dictionary = helper.createI18nObject();
 
         assertEquals("English Login Success", dictionary.get("login.success"));
         assertEquals("English Login Failure", dictionary.get("login.failure"));
@@ -59,10 +59,10 @@ public class I18nHelperTest {
 
     @Test
     public void testChineseMessage() throws Exception {
-        helper.setLanguage("zh");
+        helper.setLocale("zh");
         assertEquals("chinese message", helper.getMessage("message"));
 
-        I18nDictionary dictionary = helper.createDictionary();
+        I18nObject dictionary = helper.createI18nObject();
 
         assertEquals("Chinese Login Success", dictionary.get("login.success"));
         assertEquals("Chinese Login Failure", dictionary.get("login.failure"));
@@ -70,10 +70,10 @@ public class I18nHelperTest {
 
     @Test
     public void testJapaneseMessage() throws Exception {
-        helper.setLanguage("ja");
+        helper.setLocale("ja");
         assertEquals("japanese message", helper.getMessage("message"));
 
-        I18nDictionary dictionary = helper.createDictionary();
+        I18nObject dictionary = helper.createI18nObject();
 
         assertEquals("Japanese Login Success", dictionary.get("login.success"));
         assertEquals("Japanese Login Failure", dictionary.get("login.failure"));

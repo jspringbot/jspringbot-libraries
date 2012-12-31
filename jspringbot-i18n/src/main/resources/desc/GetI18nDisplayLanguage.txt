@@ -1,0 +1,17 @@
+Returns the current locale display country.
+
+Please see the {{jspringbot-doc:i18n|#introduction}} introduction section for the supported locales.
+
+Example:
+
+_usage_
+
+| `Set i18n Locale`         | pt_PT              |
+| ${language1}=             | `Get i18n Display Language` |
+| `Set i18n Locale`         | el_CY              |
+| ${language2}=             | `Get i18n Display Language` |
+
+=>
+
+| ${language1} = "Portuguese"
+| ${language2} = "Greek"
