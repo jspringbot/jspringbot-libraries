@@ -2,23 +2,763 @@
 
 <functions>
   <function>
-    <name>contains</name>
-    <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>boolean contains(java.lang.String, java.lang.String)</function-signature>
-  </function>
-  <function>
     <name>equals</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>boolean equals(java.lang.String, java.lang.String)</function-signature>
+    <function-signature>boolean equals(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
-    <name>endsWith</name>
+    <name>indexOf</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>boolean endsWith(java.lang.String, java.lang.String)</function-signature>
+    <function-signature>int indexOf(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>indexOf1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOf(java.lang.String,java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>indexOf2</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOf(java.lang.String,char)</function-signature>
+  </function>
+  <function>
+    <name>indexOf3</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOf(java.lang.String,char,int)</function-signature>
+  </function>
+  <function>
+    <name>length</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int length(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isEmpty</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isEmpty(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>equalsIgnoreCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean equalsIgnoreCase(java.lang.String,java.lang.String)</function-signature>
   </function>
   <function>
     <name>startsWith</name>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
-    <function-signature>boolean startsWith(java.lang.String, java.lang.String)</function-signature>
+    <function-signature>boolean startsWith(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>endsWith</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean endsWith(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>lastIndexOf</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int lastIndexOf(java.lang.String,char,int)</function-signature>
+  </function>
+  <function>
+    <name>lastIndexOf1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int lastIndexOf(java.lang.String,java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>lastIndexOf2</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int lastIndexOf(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>lastIndexOf3</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int lastIndexOf(java.lang.String,char)</function-signature>
+  </function>
+  <function>
+    <name>substring</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String substring(java.lang.String,int,int)</function-signature>
+  </function>
+  <function>
+    <name>substring1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String substring(java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>replace</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String replace(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>replace1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String replace(java.lang.String,java.lang.String,java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>contains</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean contains(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>contains1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean contains(java.lang.String,char)</function-signature>
+  </function>
+  <function>
+    <name>split</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] split(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>split1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] split(java.lang.String,java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>split2</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] split(java.lang.String,char)</function-signature>
+  </function>
+  <function>
+    <name>split3</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] split(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>trim</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String trim(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>remove</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String remove(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>remove1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String remove(java.lang.String,char)</function-signature>
+  </function>
+  <function>
+    <name>join</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String join(java.lang.Object[],java.lang.String,int,int)</function-signature>
+  </function>
+  <function>
+    <name>join1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String join(java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <name>join2</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String join(java.lang.Object[],char)</function-signature>
+  </function>
+  <function>
+    <name>join3</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String join(java.lang.Object[],char,int,int)</function-signature>
+  </function>
+  <function>
+    <name>join4</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String join(java.lang.Object[],java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>join5</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String join(java.util.Iterator,char)</function-signature>
+  </function>
+  <function>
+    <name>join6</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String join(java.util.Iterator,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>join7</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String join(java.util.Collection,char)</function-signature>
+  </function>
+  <function>
+    <name>join8</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String join(java.util.Collection,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>reverse</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String reverse(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isWhitespace</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isWhitespace(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>clean</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String clean(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>escape</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String escape(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isAlpha</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isAlpha(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>left</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String left(java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>right</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String right(java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>difference</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String difference(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>repeat</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String repeat(java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>startsWithIgnoreCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean startsWithIgnoreCase(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>endsWithIgnoreCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean endsWithIgnoreCase(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>capitalize</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String capitalize(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>uncapitalize</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String uncapitalize(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>containsAny</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean containsAny(java.lang.String,char[])</function-signature>
+  </function>
+  <function>
+    <name>containsAny1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean containsAny(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isNotBlank</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isNotBlank(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isBlank</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isBlank(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>concatenate</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String concatenate(java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <name>isNotEmpty</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isNotEmpty(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>trimToNull</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String trimToNull(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>trimToEmpty</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String trimToEmpty(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>strip</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String strip(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>strip1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String strip(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>stripToNull</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String stripToNull(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>stripToEmpty</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String stripToEmpty(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>stripStart</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String stripStart(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>stripEnd</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String stripEnd(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>stripAll</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] stripAll(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>stripAll1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] stripAll(java.lang.String[],java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>ordinalIndexOf</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int ordinalIndexOf(java.lang.String,java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>containsIgnoreCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean containsIgnoreCase(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>indexOfAny</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOfAny(java.lang.String,char[])</function-signature>
+  </function>
+  <function>
+    <name>indexOfAny1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOfAny(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>indexOfAny2</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOfAny(java.lang.String,java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>indexOfAnyBut</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOfAnyBut(java.lang.String,char[])</function-signature>
+  </function>
+  <function>
+    <name>indexOfAnyBut1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOfAnyBut(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>containsOnly</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean containsOnly(java.lang.String,char[])</function-signature>
+  </function>
+  <function>
+    <name>containsOnly1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean containsOnly(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>containsNone</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean containsNone(java.lang.String,char[])</function-signature>
+  </function>
+  <function>
+    <name>containsNone1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean containsNone(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>lastIndexOfAny</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int lastIndexOfAny(java.lang.String,java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>mid</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String mid(java.lang.String,int,int)</function-signature>
+  </function>
+  <function>
+    <name>substringBefore</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String substringBefore(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>substringAfter</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String substringAfter(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>substringBeforeLast</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String substringBeforeLast(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>substringAfterLast</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String substringAfterLast(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>substringBetween</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String substringBetween(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>substringBetween1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String substringBetween(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>substringsBetween</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] substringsBetween(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>getNestedString</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String getNestedString(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>getNestedString1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String getNestedString(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>splitByWholeSeparator</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitByWholeSeparator(java.lang.String,java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>splitByWholeSeparator1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitByWholeSeparator(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>splitByWholeSeparatorPreserveAllTokens</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitByWholeSeparatorPreserveAllTokens(java.lang.String,java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>splitByWholeSeparatorPreserveAllTokens1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitByWholeSeparatorPreserveAllTokens(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>splitPreserveAllTokens</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitPreserveAllTokens(java.lang.String,java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>splitPreserveAllTokens1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitPreserveAllTokens(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>splitPreserveAllTokens2</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitPreserveAllTokens(java.lang.String,char)</function-signature>
+  </function>
+  <function>
+    <name>splitPreserveAllTokens3</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitPreserveAllTokens(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>splitByCharacterType</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitByCharacterType(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>splitByCharacterTypeCamelCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String[] splitByCharacterTypeCamelCase(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>deleteSpaces</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String deleteSpaces(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>deleteWhitespace</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String deleteWhitespace(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>removeStart</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String removeStart(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>removeStartIgnoreCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String removeStartIgnoreCase(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>removeEnd</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String removeEnd(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>removeEndIgnoreCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String removeEndIgnoreCase(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>replaceOnce</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String replaceOnce(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>replaceEach</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String replaceEach(java.lang.String,java.lang.String[],java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>replaceEachRepeatedly</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String replaceEachRepeatedly(java.lang.String,java.lang.String[],java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>replaceChars</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String replaceChars(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>replaceChars1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String replaceChars(java.lang.String,char,char)</function-signature>
+  </function>
+  <function>
+    <name>overlayString</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String overlayString(java.lang.String,java.lang.String,int,int)</function-signature>
+  </function>
+  <function>
+    <name>overlay</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String overlay(java.lang.String,java.lang.String,int,int)</function-signature>
+  </function>
+  <function>
+    <name>chomp</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String chomp(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>chomp1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String chomp(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>chompLast</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String chompLast(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>chompLast1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String chompLast(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>getChomp</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String getChomp(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>prechomp</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String prechomp(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>getPrechomp</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String getPrechomp(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>chop</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String chop(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>chopNewline</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String chopNewline(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>rightPad</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String rightPad(java.lang.String,int,char)</function-signature>
+  </function>
+  <function>
+    <name>rightPad1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String rightPad(java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>rightPad2</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String rightPad(java.lang.String,int,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>leftPad</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String leftPad(java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>leftPad1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String leftPad(java.lang.String,int,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>leftPad2</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String leftPad(java.lang.String,int,char)</function-signature>
+  </function>
+  <function>
+    <name>center</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String center(java.lang.String,int,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>center1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String center(java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>center2</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String center(java.lang.String,int,char)</function-signature>
+  </function>
+  <function>
+    <name>upperCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String upperCase(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>lowerCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String lowerCase(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>capitalise</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String capitalise(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>uncapitalise</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String uncapitalise(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>swapCase</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String swapCase(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>capitaliseAllWords</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String capitaliseAllWords(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>countMatches</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int countMatches(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isAlphaSpace</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isAlphaSpace(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isAlphanumeric</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isAlphanumeric(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isAlphanumericSpace</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isAlphanumericSpace(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isAsciiPrintable</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isAsciiPrintable(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isNumeric</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isNumeric(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>isNumericSpace</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>boolean isNumericSpace(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>defaultString</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String defaultString(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>defaultString1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String defaultString(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>defaultIfEmpty</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String defaultIfEmpty(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>reverseDelimited</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String reverseDelimited(java.lang.String,char)</function-signature>
+  </function>
+  <function>
+    <name>reverseDelimitedString</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String reverseDelimitedString(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>abbreviate</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String abbreviate(java.lang.String,int,int)</function-signature>
+  </function>
+  <function>
+    <name>abbreviate1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String abbreviate(java.lang.String,int)</function-signature>
+  </function>
+  <function>
+    <name>indexOfDifference</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOfDifference(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>indexOfDifference1</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int indexOfDifference(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>getCommonPrefix</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>java.lang.String getCommonPrefix(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>getLevenshteinDistance</name>
+    <function-class>org.apache.commons.lang.StringUtils</function-class>
+    <function-signature>int getLevenshteinDistance(java.lang.String,java.lang.String)</function-signature>
   </function>
 </functions>

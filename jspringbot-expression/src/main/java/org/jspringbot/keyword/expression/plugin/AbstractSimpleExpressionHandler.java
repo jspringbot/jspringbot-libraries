@@ -8,9 +8,9 @@ public abstract class AbstractSimpleExpressionHandler implements ExpressionHandl
     public abstract String getPrefix();
 
     @Override
-    public Object evaluate(String expression) {
+    public Object evaluate(String expression) throws Exception {
         return evaluateInternal(StringUtils.split(expression, ':'));
     }
 
-    protected abstract Object evaluateInternal(String[] tokens);
+    protected abstract Object evaluateInternal(String[] tokens) throws Exception;
 }

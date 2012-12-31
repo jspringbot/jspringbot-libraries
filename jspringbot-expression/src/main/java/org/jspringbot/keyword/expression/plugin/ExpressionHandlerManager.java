@@ -1,6 +1,7 @@
 package org.jspringbot.keyword.expression.plugin;
 
 import org.apache.commons.lang.StringUtils;
+import org.jspringbot.keyword.expression.ValueEvaluator;
 import org.springframework.context.ApplicationContext;
 
 import java.util.Map;
@@ -11,7 +12,10 @@ public class ExpressionHandlerManager {
 
     private ExpressionHandler defaultHandler;
 
-    public ExpressionHandlerManager(ApplicationContext context, ExpressionHandler defaultHandler) {
+    private ValueEvaluator evaluator;
+
+    public ExpressionHandlerManager(ValueEvaluator evaluator, ApplicationContext context, ExpressionHandler defaultHandler) {
+        this.evaluator = evaluator;
         this.context = context;
         this.defaultHandler = defaultHandler;
     }
@@ -25,7 +29,7 @@ public class ExpressionHandlerManager {
 
         for(ExpressionHandlerRegistryBean bean : handlers.values()) {
             if(StringUtils.equals(bean.getHandler().getPrefix(), prefix)) {
-                return bean.getHandler().evaluate(expression);
+                return evaluator.getValue(bean.getHandler().evaluate(expression));
             }
         }
 

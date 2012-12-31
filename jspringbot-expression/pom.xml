@@ -75,5 +75,11 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>junit-addons</groupId>
+      <artifactId>junit-addons</artifactId>
+      <version>${junit.addons.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>

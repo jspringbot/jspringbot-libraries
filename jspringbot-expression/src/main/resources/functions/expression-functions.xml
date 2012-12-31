@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <name>eval</name>
+    <function-class>org.jspringbot.keyword.expression.EvaluateExpressionUtils</function-class>
+    <function-signature>Object eval(java.lang.String)</function-signature>
+  </function>
+</functions>

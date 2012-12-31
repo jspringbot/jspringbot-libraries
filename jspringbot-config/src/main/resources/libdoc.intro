@@ -75,12 +75,12 @@ Please see the example {{Config Library}} project.
 
 == Expression Support ==
 
-{{Config Library}} has a custom jSpringBot expression language. The expression supported is as follows {{html:<code>}}#{config[:domain]:property[:type]}{{html:</code>}}.
+{{Config Library}} has a custom jSpringBot expression language. The expression supported is as follows {{html:<code>}}#{config[:domain]:property}{{html:</code>}}.
 
 Where:
 
 - {{domain}} is optional, will use the default selection if not available.
-- {{type}} is optional, will be {{string}} by default.
+- {{property}} is required, this is the config property.
 
 {{html:<div class="alert alert-danger">}} {{html:<strong>}}Important!{{html:</strong>}} The config expression is only available for jSpringBot Library keywords. {{html:</div>}}
 
@@ -107,5 +107,5 @@ Where:
 | \#{config:url} = "http://localhost:8080/"
 | \#{config:property1} = "property1 value"
 | \#{config:sample:sample.property1} = "sample property 1 value"
-| \#{config:sample:sample.timeout:integer} = 5000                # integer type
-| \#{config:sample:sample.is.enable.config:boolean} = true       # boolean type
+| \#{i:config:sample:sample.timeout} = 5000                # integer type
+| \#{b:config:sample:sample.is.enable.config} = true       # boolean type

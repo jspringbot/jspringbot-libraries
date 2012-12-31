@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 
 public final class StaticMethodUtils {
 
-    private static final Pattern METHOD_SIGNATURE_PATTERN = Pattern.compile("([a-z]+)\\s+([a-z$_]+)\\s*\\(\\s*(([a-z\\._$]+(\\s*,\\s*)?)+)\\)", Pattern.CASE_INSENSITIVE);
+    private static final Pattern METHOD_SIGNATURE_PATTERN = Pattern.compile("([a-z\\.\\[\\]]+)\\s+([a-z0-9$_]+)\\s*\\(\\s*(([a-z\\[\\]\\._$]+(\\s*,\\s*)?)+)\\)", Pattern.CASE_INSENSITIVE);
 
     public static Method getMethod(Class clazz, String methodSignature) {
         Matcher matcher = METHOD_SIGNATURE_PATTERN.matcher(methodSignature);

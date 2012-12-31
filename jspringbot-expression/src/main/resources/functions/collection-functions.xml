@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <prefix>col</prefix>
+    <name>get</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.lang.Object get(java.lang.Object,int)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>isEmpty</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean isEmpty(java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>addAll</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>void addAll(java.util.Collection,java.util.Enumeration)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>addAll1</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>void addAll(java.util.Collection,java.util.Iterator)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>addAll2</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>void addAll(java.util.Collection,java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>size</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>int size(java.lang.Object)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>transform</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>void transform(java.util.Collection,org.apache.commons.collections.Transformer)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>find</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.lang.Object find(java.util.Collection,org.apache.commons.collections.Predicate)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>synchronizedCollection</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection synchronizedCollection(java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>unmodifiableCollection</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection unmodifiableCollection(java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>removeAll</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection removeAll(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>retainAll</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection retainAll(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>exists</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean exists(java.util.Collection,org.apache.commons.collections.Predicate)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>cardinality</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>int cardinality(java.lang.Object,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>index</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.lang.Object index(java.lang.Object,java.lang.Object)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>index1</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.lang.Object index(java.lang.Object,int)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>subtract</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection subtract(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>maxSize</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>int maxSize(java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>union</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection union(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>intersection</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection intersection(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>select</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>void select(java.util.Collection,org.apache.commons.collections.Predicate,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>select1</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection select(java.util.Collection,org.apache.commons.collections.Predicate)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>filter</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>void filter(java.util.Collection,org.apache.commons.collections.Predicate)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>containsAny</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean containsAny(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>isFull</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean isFull(java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>isNotEmpty</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean isNotEmpty(java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>countMatches</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>int countMatches(java.util.Collection,org.apache.commons.collections.Predicate)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>disjunction</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection disjunction(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>getCardinalityMap</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Map getCardinalityMap(java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>isSubCollection</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean isSubCollection(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>isProperSubCollection</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean isProperSubCollection(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>isEqualCollection</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean isEqualCollection(java.util.Collection,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>forAllDo</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>void forAllDo(java.util.Collection,org.apache.commons.collections.Closure)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>selectRejected</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection selectRejected(java.util.Collection,org.apache.commons.collections.Predicate)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>selectRejected1</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>void selectRejected(java.util.Collection,org.apache.commons.collections.Predicate,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>collect</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection collect(java.util.Collection,org.apache.commons.collections.Transformer,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>collect1</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection collect(java.util.Iterator,org.apache.commons.collections.Transformer,java.util.Collection)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>collect2</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection collect(java.util.Iterator,org.apache.commons.collections.Transformer)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>collect3</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection collect(java.util.Collection,org.apache.commons.collections.Transformer)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>addIgnoreNull</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean addIgnoreNull(java.util.Collection,java.lang.Object)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>sizeIsEmpty</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>boolean sizeIsEmpty(java.lang.Object)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>reverseArray</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>void reverseArray(java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>predicatedCollection</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection predicatedCollection(java.util.Collection,org.apache.commons.collections.Predicate)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>typedCollection</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection typedCollection(java.util.Collection,java.lang.Class)</function-signature>
+  </function>
+  <function>
+    <prefix>col</prefix>
+    <name>transformedCollection</name>
+    <function-class>org.apache.commons.collections.CollectionUtils</function-class>
+    <function-signature>java.util.Collection transformedCollection(java.util.Collection,org.apache.commons.collections.Transformer)</function-signature>
+  </function>
+</functions>

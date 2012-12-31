@@ -57,6 +57,10 @@ public class ConfigHelperTest {
 
         assertEquals(true, expressionHelper.evaluate("#{config:sample:booleanProperty:boolean}"));
         assertEquals(100, expressionHelper.evaluate("#{config:robot-variables:integerProperty:integer}"));
+
+        assertEquals(true, expressionHelper.evaluate("#{b:config:sample:booleanProperty}"));
+
+        expressionHelper.evaluationShouldBe("#{config:robot-variables:integerProperty:long}", "#{100}");
     }
 
 

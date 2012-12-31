@@ -32,6 +32,10 @@
     <constructor-arg>
       <list>
         <value>classpath:functions/string-functions.xml</value>
+        <value>classpath:functions/collection-functions.xml</value>
+        <value>classpath:functions/map-functions.xml</value>
+        <value>classpath:functions/math-functions.xml</value>
+        <value>classpath:functions/expression-functions.xml</value>
       </list>
     </constructor-arg>
   </bean>
@@ -42,12 +46,72 @@
     <constructor-arg ref="defaultVariableProvider"/>
   </bean>
 
+  <bean id="expressionArgumentHandler" class="org.jspringbot.keyword.expression.ExpressionArgumentHandler">
+    <constructor-arg ref="expressionHelper"/>
+  </bean>
+
   <bean id="expressionArgumentHandlerRegistryBean" class="org.jspringbot.argument.ArgumentHandlerRegistryBean">
     <constructor-arg ref="expressionArgumentHandler"/>
   </bean>
 
-  <bean id="expressionArgumentHandler" class="org.jspringbot.keyword.expression.ExpressionArgumentHandler">
-    <constructor-arg ref="expressionHelper"/>
+  <bean id="integerExpressionHandlerRegistryBean" class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.expression.TypeExpressionHandler">
+        <constructor-arg index="0" value="i"/>
+        <constructor-arg index="1" ref="expressionHelper"/>
+        <constructor-arg index="2" value="java.lang.Integer"/>
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <bean id="longExpressionHandlerRegistryBean" class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.expression.TypeExpressionHandler">
+        <constructor-arg index="0" value="l"/>
+        <constructor-arg index="1" ref="expressionHelper"/>
+        <constructor-arg index="2" value="java.lang.Long"/>
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <bean id="stringExpressionHandlerRegistryBean" class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.expression.TypeExpressionHandler">
+        <constructor-arg index="0" value="s"/>
+        <constructor-arg index="1" ref="expressionHelper"/>
+        <constructor-arg index="2" value="java.lang.String"/>
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <bean id="floatExpressionHandlerRegistryBean" class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.expression.TypeExpressionHandler">
+        <constructor-arg index="0" value="f"/>
+        <constructor-arg index="1" ref="expressionHelper"/>
+        <constructor-arg index="2" value="java.lang.Float"/>
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <bean id="doubleExpressionHandlerRegistryBean" class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.expression.TypeExpressionHandler">
+        <constructor-arg index="0" value="d"/>
+        <constructor-arg index="1" ref="expressionHelper"/>
+        <constructor-arg index="2" value="java.lang.Double"/>
+      </bean>
+    </constructor-arg>
+  </bean>
+
+  <bean id="booleanExpressionHandlerRegistryBean" class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.expression.TypeExpressionHandler">
+        <constructor-arg index="0" value="b"/>
+        <constructor-arg index="1" ref="expressionHelper"/>
+        <constructor-arg index="2" value="java.lang.Boolean"/>
+      </bean>
+    </constructor-arg>
   </bean>
 
   <bean id="expressionFactory" class="de.odysseus.el.ExpressionFactoryImpl">

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <prefix>math</prefix>
+    <name>abs</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>long abs(long)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>abs1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double abs(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>abs2</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>float abs(float)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>abs3</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>int abs(int)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>sin</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double sin(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>cos</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double cos(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>tan</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double tan(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>atan2</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double atan2(double,double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>sqrt</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double sqrt(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>log</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double log(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>log10</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double log10(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>pow</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double pow(double,double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>exp</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double exp(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>min</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double min(double,double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>min1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>float min(float,float)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>min2</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>long min(long,long)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>min3</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>int min(int,int)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>max</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>float max(float,float)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>max1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>long max(long,long)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>max2</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>int max(int,int)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>max3</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double max(double,double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>scalb</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>float scalb(float,int)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>scalb1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double scalb(double,int)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>getExponent</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>int getExponent(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>getExponent1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>int getExponent(float)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>signum</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>float signum(float)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>signum1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double signum(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>asin</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double asin(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>acos</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double acos(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>atan</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double atan(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>toRadians</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double toRadians(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>toDegrees</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double toDegrees(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>cbrt</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double cbrt(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>IEEEremainder</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double IEEEremainder(double,double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>ceil</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double ceil(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>floor</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double floor(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>rint</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double rint(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>round</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>int round(float)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>round1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>long round(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>random</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double random()</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>ulp</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double ulp(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>ulp1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>float ulp(float)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>sinh</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double sinh(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>cosh</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double cosh(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>tanh</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double tanh(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>hypot</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double hypot(double,double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>expm1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double expm1(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>log1p</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double log1p(double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>copySign</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>float copySign(float,float)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>copySign1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double copySign(double,double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>nextAfter</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double nextAfter(double,double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>nextAfter1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>float nextAfter(float,double)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>nextUp</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>float nextUp(float)</function-signature>
+  </function>
+  <function>
+    <prefix>math</prefix>
+    <name>nextUp1</name>
+    <function-class>java.lang.Math</function-class>
+    <function-signature>double nextUp(double)</function-signature>
+  </function>
+</functions>

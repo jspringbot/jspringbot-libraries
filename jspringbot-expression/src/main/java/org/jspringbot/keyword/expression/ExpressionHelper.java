@@ -30,6 +30,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 
 import javax.el.ExpressionFactory;
+import javax.el.ValueExpression;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -37,7 +38,7 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ExpressionHelper implements ApplicationContextAware {
+public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
@@ -62,7 +63,7 @@ public class ExpressionHelper implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext context) throws BeansException {
         functionManager = new SupportedFunctionsManager(context);
-        expressionManager = new ExpressionHandlerManager(context, defaultHandler);
+        expressionManager = new ExpressionHandlerManager(this, context, defaultHandler);
         variableManager = new VariableProviderManager(context);
     }
 
@@ -77,7 +78,7 @@ public class ExpressionHelper implements ApplicationContextAware {
         }
 
         if(expected == null || value == null || !silentEvaluate(expected).equals(value)) {
-            throw new IllegalArgumentException("Evaluation was not expected.");
+            throw new IllegalArgumentException(String.format("Evaluation '%s' was not expected.", expression));
         }
     }
 
@@ -85,7 +86,7 @@ public class ExpressionHelper implements ApplicationContextAware {
         Object value = evaluate(expression);
 
         if(value != null) {
-            throw new IllegalArgumentException("Evaluation is not null.");
+            throw new IllegalArgumentException(String.format("Evaluation '%s' is not null.", expression));
         }
     }
 
@@ -93,7 +94,7 @@ public class ExpressionHelper implements ApplicationContextAware {
         Object value = evaluate(expression);
 
         if(value == null) {
-            throw new IllegalArgumentException("Evaluation is null.");
+            throw new IllegalArgumentException(String.format("Evaluation '%s' is null.", expression));
         }
     }
 
@@ -101,15 +102,15 @@ public class ExpressionHelper implements ApplicationContextAware {
         Object value = evaluate(expression);
 
         if(value == null) {
-            throw new IllegalArgumentException("Evaluation was not true.");
+            throw new IllegalArgumentException(String.format("Evaluation '%s' was not true.", expression));
         }
 
         if(!Boolean.class.isInstance(value)) {
-            throw new IllegalArgumentException("Evaluation was not true.");
+            throw new IllegalArgumentException(String.format("Evaluation '%s' was not true.", expression));
         }
 
         if(!Boolean.TRUE.equals(value)) {
-            throw new IllegalArgumentException("Evaluation was not true.");
+            throw new IllegalArgumentException(String.format("Evaluation '%s' was not true.", expression));
         }
     }
 
@@ -117,15 +118,15 @@ public class ExpressionHelper implements ApplicationContextAware {
         Object value = evaluate(expression);
 
         if(value == null) {
-            throw new IllegalArgumentException("Evaluation was not false.");
+            throw new IllegalArgumentException(String.format("Evaluation '%s' was not false.", expression));
         }
 
         if(!Boolean.class.isInstance(value)) {
-            throw new IllegalArgumentException("Evaluation was not false.");
+            throw new IllegalArgumentException(String.format("Evaluation '%s' was not false.", expression));
         }
 
         if(!Boolean.FALSE.equals(value)) {
-            throw new IllegalArgumentException("Evaluation was not false.");
+            throw new IllegalArgumentException(String.format("Evaluation '%s' was not false.", expression));
         }
     }
 
@@ -143,7 +144,7 @@ public class ExpressionHelper implements ApplicationContextAware {
         Matcher matcher = EXPRESSION_PATTERN.matcher(expression);
 
         if(!matcher.find()) {
-            throw new IllegalArgumentException("Invalid expression format.");
+            throw new IllegalArgumentException(String.format("Invalid expression format '%s'.", expression));
         }
 
         String content = matcher.group(1);
@@ -167,6 +168,13 @@ public class ExpressionHelper implements ApplicationContextAware {
 
     private Map<String, Object> getVariables() {
         return variableManager.getVariables();
+    }
+
+    public Object getValue(Object result) {
+        DefaultELContext context = new DefaultELContext(functionManager, getVariables());
+        ValueExpression expr = factory.createValueExpression(result, TypeExpressionHolder.get());
+
+        return expr.getValue(context);
     }
 
     public class ELExpressionHandler implements ExpressionHandler {
@@ -195,7 +203,7 @@ public class ExpressionHelper implements ApplicationContextAware {
             }
 
             DefaultELContext context = new DefaultELContext(functionManager, getVariables());
-            TreeValueExpression expr = (TreeValueExpression) factory.createValueExpression(context, String.format("${%s}", expression), Object.class);
+            TreeValueExpression expr = (TreeValueExpression) factory.createValueExpression(context, String.format("${%s}", expression), TypeExpressionHolder.get());
 
             Object result = expr.getValue(context);
 

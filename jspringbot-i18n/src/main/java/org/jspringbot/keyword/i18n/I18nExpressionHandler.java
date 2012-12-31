@@ -2,8 +2,11 @@ package org.jspringbot.keyword.i18n;
 
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.keyword.expression.plugin.AbstractSimpleExpressionHandler;
+import org.jspringbot.syntax.HighlightRobotLogger;
 
 public class I18nExpressionHandler extends AbstractSimpleExpressionHandler {
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(I18nExpressionHandler.class);
+
     public static final String EXPRESSION_PREFIX = "i18n";
 
     private I18nHelper helper;
@@ -19,6 +22,8 @@ public class I18nExpressionHandler extends AbstractSimpleExpressionHandler {
 
     @Override
     protected Object evaluateInternal(String[] tokens) {
+        LOG.keywordAppender().appendProperty("Expression Handler", "jSpringBot i18n");
+
         if(tokens.length == 1) {
             return helper.getMessage(tokens[0]);
         }
