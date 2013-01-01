@@ -25,7 +25,7 @@ public class TypeExpressionHandler implements ExpressionHandler {
     public Object evaluate(String expression) throws Exception {
         try {
             TypeExpressionHolder.push(clazz);
-            return helper.evaluate(String.format("#{%s}", expression));
+            return helper.evaluate(String.format("$[%s]", expression));
         } finally {
             TypeExpressionHolder.pop();
         }

@@ -2,9 +2,9 @@ A test library providing expression language support.
 
 This is a powerful library that expands its functionality to all jSpringBot library keywords.
 
-Please see the example {{Expression Library}} project.
+Please see the example {{Expression Library}} projects.
 
-{{jspringbot-github:sample-expression|Sample Project}}
+{{jspringbot-github:sample-expression|Simple Sample}} {{jspringbot-github:sample-config|Config Library Sample}}
 
 = Expression Language =
 
@@ -14,12 +14,12 @@ The EL allows page authors to use simple expressions to dynamically access data 
 
 EL makes it easy to define literal expressions of different types.
 
-| *Expression*          | *Type*        | *Result*        |
-| \#{'stringLiteral'}   | {{String}}    | {{'stringLiteral'}} |
-| \#{100}               | {{Long}}      | {{100l}}            |
-| \#{5.43}              | {{Double}}    | {{5.43}}            |
-| \#{true}              | {{Boolean}}   | {{true}}            |
-| \#{null}              |               | {{null}}            |
+| *Expression*         | *Type*        | *Result*            |
+| $['stringLiteral']   | {{String}}    | {{'stringLiteral'}} |
+| $[100]               | {{Long}}      | {{100l}}            |
+| $[5.43]              | {{Double}}    | {{5.43}}            |
+| $[true]              | {{Boolean}}   | {{true}}            |
+| $[null]              |               | {{null}}            |
 
 Literal expressions can be evaluated immediately or deferred and can be either value or method expressions.
 
@@ -65,19 +65,19 @@ The following words are reserved for the EL and should not be used as identifier
 | {{Map}} | _[ map ]_ | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/MapUtils.html|MapUtils] methods. |
 | {{Arrays}} | _[ array ]_ | For now only {{array:asList(*items)}} method is supported. |
 
-Aside from this a method {{eval(expr, *variable)}} method for doing expression language evaluation.
+Aside from these a methods, an added {{eval(expr, *variable)}} method is supported for doing expression language evaluation.
 
 == Converters ==
 
 Here are the converter syntax. These are helpful to minimize statements.
 
 | *Expression Format* | *Type*      |
-| \#{i:[expression]}  | {{Integer}} |
-| \#{l:[expression]}  | {{Long}}    |
-| \#{f:[expression]}  | {{Float}}   |
-| \#{d:[expression]}  | {{Double}}  |
-| \#{s:[expression]}  | {{String}}  |
-| \#{b:[expression]}  | {{Boolean}} |
+| $[i:{expression}]  | {{Integer}} |
+| $[l:{expression}]  | {{Long}}    |
+| $[f:{expression}]  | {{Float}}   |
+| $[d:{expression}]  | {{Double}}  |
+| $[s:{expression}]  | {{String}}  |
+| $[b:{expression}]  | {{Boolean}} |
 
 Where:
 
@@ -88,23 +88,23 @@ Where:
 The following table contains example expressions and the result of evaluating them:
 
 | *Expression* | *Result* |
-| \#{1 > (4/2) | {{false}} |
-| \#{4.0 >= 3} | {{true}} |
-| \#{100.0 == 100} | {{true}} |
-| \#{(10*10) ne 100} | {{false}} |
-| \#{'a' < 'b'} | {{true}} |
-| \#{'hip' gt 'hit'} | {{false}} |
-| \#{4 > 3} | {{true}} |
-| \#{1.2E4 + 1.4} | {{12001.4}} |
-| \#{3 div 4} | {{0.75}} |
-| \#{10 mod 4} | {{2l}} |
-| \#{b:concat('tr', 'ue')} | {{true}} |
-| \#{i:100} | Since {{100}} is {{Long}}, convert to {{Integer}} by prefixing {{i:}}. |
-| \#{i:5.43} | {{5}}. |
-| \#{f:5.43} | Since {{5.43}} is {{Double}}, convert to {{Float}} by prefixing {{f:}}. |
-| \#{not empty var1}} | {{false}} if the variable {{var1}} is {{null}} or an empty string. |
-| \#{contains('alvin', 'vin')} | {{true}} |
-| \#{i:eval($1 - $2, 6, 3)} | {{3}} |
-| \#{math:abs(-1)} | {{1l}} |
+| $[1 > (4/2) | {{false]} |
+| $[4.0 >= 3] | {{true}} |
+| $[100.0 == 100] | {{true}} |
+| $[(10*10) ne 100] | {{false}} |
+| $['a' < 'b'] | {{true}} |
+| $['hip' gt 'hit'] | {{false}} |
+| $[4 > 3] | {{true}} |
+| $[1.2E4 + 1.4] | {{12001.4}} |
+| $[3 div 4] | {{0.75}} |
+| $[10 mod 4] | {{2l}} |
+| $[b:concat('tr', 'ue')] | {{true}} |
+| $[i:100] | Since {{100}} is {{Long}}, convert to {{Integer}} by prefixing {{i:}}. |
+| $[i:5.43] | {{5}} |
+| $[f:5.43] | Since {{5.43}} is {{Double}}, convert to {{Float}} by prefixing {{f:}}. |
+| $[not empty var1]} | {{false}} if the variable {{var1}} is {{null}} or an empty string. |
+| $[contains('alvin', 'vin')] | {{true}} |
+| $[i:eval('$[$1 - $2]', 6, 3)} | {{3}} |
+| $[math:abs(-1)] | {{1l}} |
 
 

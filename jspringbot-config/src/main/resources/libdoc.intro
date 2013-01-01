@@ -100,14 +100,14 @@ Where:
 *Sample Test Usage:*
 
 | `Select Config Domain` | variable                      |                            |
-| `Evaluate Expression`  | \#{config:url}                | # output the result to log |
+| `Evaluate Expression`  | $[config:url]                | # output the result to log |
 
 =>
 
-| \#{config:url} = "http://localhost:8080/"
-| \#{config:property1} = "property1 value"
-| \#{config:sample:property1} = "sample property 1 value"
-| \#{i:config:sample:timeout} = 5000                # integer type
-| \#{b:config:sample:is.enable.config} = true       # boolean type
-| \#{d:config:sample:amount} = 5.35                 # double type
+| $[config:url] = "http://localhost:8080/"
+| $[config:property1] = "property1 value"
+| $[config:sample:property1] = "sample property 1 value"
+| $[i:config:sample:timeout] = 5000                # integer type
+| $[b:config:sample:is.enable.config] = true       # boolean type
+| $[d:config:sample:amount] = 5.35                 # double type
 

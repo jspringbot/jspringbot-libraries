@@ -42,7 +42,7 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
-    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("\\#\\{(.*)\\}", Pattern.CASE_INSENSITIVE);
+    private static final Pattern EXPRESSION_PATTERN = Pattern.compile("\\$\\[(.*)\\]", Pattern.CASE_INSENSITIVE);
 
     private static final Pattern PREFIX_EXPRESSION_PATTERN = Pattern.compile("([a-z0-9]+)\\:(.*)", Pattern.CASE_INSENSITIVE);
 

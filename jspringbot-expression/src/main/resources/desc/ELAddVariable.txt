@@ -6,11 +6,11 @@ Example:
 
 | `EL Add Variable`    |  var1            | hello                      |
 | `EL Add Variable`    |  var2            | world                      |
-| ${hw}=               | `EL Evaluate`    | \#{join(' ', var1, var2)}  |
-| `EL Add Variable`    |  var1            | \#{5}                      |
-| `EL Add Variable`    |  var2            | \#{6}                      |
-| ${sum}=              | `EL Evaluate`    | \#{var1 + var2}            |
-| `EL Should Be True`  | \#{11 eq ${sum}} |                            |
+| ${hw}=               | `EL Evaluate`    | $[join(' ', var1, var2)]  |
+| `EL Add Variable`    |  var1            | $[5]                      |
+| `EL Add Variable`    |  var2            | $[6]                      |
+| ${sum}=              | `EL Evaluate`    | $[var1 + var2]            |
+| `EL Should Be True`  | $[11 eq ${sum]} |                            |
 
 =>
 

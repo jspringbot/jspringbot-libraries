@@ -6,12 +6,12 @@ The variable identifiers are {{$1}}, {{$2}}, {{$3}} ... and so on depending on t
 
 Example:
 
-| ${sum}=           | `EL Evaluate`   | \#{1+1}                     |       |       |
-| ${gt}=            | `EL Evaluate`   | \#{$1 > $2}                 | \#{5} | \#{6} |
-| `EL Add Variable` |  var1           | hello                       |       |       |
-| `EL Add Variable` |  var2           | world                       |       |       |
-| ${hw}=            | `EL Evaluate`   | \#{concat(var1, ' ', var2)} |       |       |
-| ${hw2}=           | `EL Evaluate`   | \#{join('-', var1, var2)}   |       |       |
+| ${sum}=           | `EL Evaluate`   | $[1+1]                     |       |       |
+| ${gt}=            | `EL Evaluate`   | $[$1 > $2]                 | $[5]  | $[6]  |
+| `EL Add Variable` |  var1           | hello                      |       |       |
+| `EL Add Variable` |  var2           | world                      |       |       |
+| ${hw}=            | `EL Evaluate`   | $[concat(var1, ' ', var2)] |       |       |
+| ${hw2}=           | `EL Evaluate`   | $[join('-', var1, var2)]   |       |       |
 
 =>
 

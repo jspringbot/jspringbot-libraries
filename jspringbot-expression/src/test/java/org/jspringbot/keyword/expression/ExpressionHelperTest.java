@@ -67,62 +67,62 @@ public class ExpressionHelperTest {
 
     @Test
     public void testEvaluate() throws Exception {
-        assertEquals(2L, evaluate("#{1+1}"));
-        evaluateAsTrue("#{contains('alvin', 'vin')}");
-        evaluateEquals("#{100}", "#{100}");
-        evaluateEquals("#{i:'100'}", 100);
-        evaluateEquals("#{l:'100'}", 100l);
-        evaluateEquals("#{d:'100'}", 100.0);
-        evaluateEquals("#{f:'100'}", 100.0f);
-        evaluateEquals("#{s:100}", "100");
-        evaluateEquals("#{b:'false'}", false);
-        evaluateEquals("#{i:math:abs(-1)}", 1);
+        assertEquals(2L, evaluate("$[1+1]"));
+        evaluateAsTrue("$[contains('alvin', 'vin')]");
+        evaluateEquals("$[100]", "$[100]");
+        evaluateEquals("$[i:'100']", 100);
+        evaluateEquals("$[l:'100']", 100l);
+        evaluateEquals("$[d:'100']", 100.0);
+        evaluateEquals("$[f:'100']", 100.0f);
+        evaluateEquals("$[s:100]", "100");
+        evaluateEquals("$[b:'false']", false);
+        evaluateEquals("$[i:math:abs(-1)]", 1);
 
         List<String> items = new ArrayList<String>();
 
         addVariable("items", items);
-        evaluateAsTrue("#{col:isEmpty(items)}");
-        evaluateAsFalse("#{col:isNotEmpty(items)}");
+        evaluateAsTrue("$[col:isEmpty(items)]");
+        evaluateAsFalse("$[col:isNotEmpty(items)]");
 
-        evaluateAsTrue("#{col:isEmpty($1)}", items);
-        evaluateAsFalse("#{col:isNotEmpty($1)}", items);
+        evaluateAsTrue("$[col:isEmpty($1)]", items);
+        evaluateAsFalse("$[col:isNotEmpty($1)]", items);
 
         items.add("test");
 
-        evaluateAsTrue("#{col:isNotEmpty(items)}");
-        evaluateAsTrue("#{col:isNotEmpty($1)}", items);
-        evaluateEquals("#{col:size(items)}", 1);
+        evaluateAsTrue("$[col:isNotEmpty(items)]");
+        evaluateAsTrue("$[col:isNotEmpty($1)]", items);
+        evaluateEquals("$[col:size(items)]", 1);
 
         items.add("test2");
 
-        evaluateEquals("#{col:size(items)}", 2);
+        evaluateEquals("$[col:size(items)]", 2);
 
     }
 
     @Test
     public void testEval() throws Exception {
-        evaluateEquals("#{l:eval('#{i:100}')}", 100l);
+        evaluateEquals("$[l:eval('$[i:100]')]", 100l);
 
         List<String> items = new ArrayList<String>();
         items.add("test");
 
-        evaluateEquals("#{f:eval('#{col:size($1)}')}", 1.0f, items);
-        evaluateEquals("#{eval('#{$2 - $3}', 6, 5) eq col:size($1)}", true, items);
+        evaluateEquals("$[f:eval('$[col:size($1)]')]", 1.0f, items);
+        evaluateEquals("$[eval('$[$2 - $3]', 6, 5) eq col:size($1)]", true, items);
     }
 
     @Test
     public void testVArgsAndMethod() throws Exception {
-        evaluateEquals("#{concat('1', '2', '3')}", "123");
-        evaluateEquals("#{join('-', '1', '2', '3')}", "1-2-3");
-        evaluateEquals("#{substring('alvin', 2)}", "vin");
-        evaluateEquals("#{substring('alvin', 2, 4)}", "vi");
-        evaluateEquals("#{'alvin'.length()}", 5);
-        evaluateEquals("#{b:concat('tr', 'ue')}", true);
+        evaluateEquals("$[concat('1', '2', '3')]", "123");
+        evaluateEquals("$[join('-', '1', '2', '3')]", "1-2-3");
+        evaluateEquals("$[substring('alvin', 2)]", "vin");
+        evaluateEquals("$[substring('alvin', 2, 4)]", "vi");
+        evaluateEquals("$['alvin'.length()]", 5);
+        evaluateEquals("$[b:concat('tr', 'ue')]", true);
     }
 
     @Test
     public void testNesting() throws Exception {
-        evaluateEquals("#{i:l:f:d:5.6}", 5);
+        evaluateEquals("$[i:l:f:d:5.6]", 5);
     }
 
     @Test

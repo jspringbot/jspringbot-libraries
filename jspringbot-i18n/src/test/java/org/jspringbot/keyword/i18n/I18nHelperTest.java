@@ -87,20 +87,20 @@ public class I18nHelperTest {
     public void testExpressionSupport() throws Exception {
         helper.setLocale("ja_JP");
 
-        expressionHelper.evaluationShouldBe("#{i18n:locale:language}", "ja");
-        expressionHelper.evaluationShouldBe("#{i18n:locale:country}", "JP");
-        expressionHelper.evaluationShouldBe("#{i18n:locale:displayCountry}", "Japan");
-        expressionHelper.evaluationShouldBe("#{i18n:locale:displayLanguage}", "Japanese");
+        expressionHelper.evaluationShouldBe("$[i18n:locale:language]", "ja");
+        expressionHelper.evaluationShouldBe("$[i18n:locale:country]", "JP");
+        expressionHelper.evaluationShouldBe("$[i18n:locale:displayCountry]", "Japan");
+        expressionHelper.evaluationShouldBe("$[i18n:locale:displayLanguage]", "Japanese");
 
-        expressionHelper.evaluationShouldBe("#{i18n:login.success}", "Japanese Login Success");
-        expressionHelper.evaluationShouldBe("#{i18n:login.failure}", "Japanese Login Failure");
-        expressionHelper.evaluationShouldBe("#{i18n:en:login.success}", "English Login Success");
-        expressionHelper.evaluationShouldBe("#{i18n:en:login.failure}", "English Login Failure");
-        expressionHelper.evaluationShouldBe("#{i18n:zh:login.success}", "Chinese Login Success");
-        expressionHelper.evaluationShouldBe("#{i18n:zh:login.failure}", "Chinese Login Failure");
+        expressionHelper.evaluationShouldBe("$[i18n:login.success]", "Japanese Login Success");
+        expressionHelper.evaluationShouldBe("$[i18n:login.failure]", "Japanese Login Failure");
+        expressionHelper.evaluationShouldBe("$[i18n:en:login.success]", "English Login Success");
+        expressionHelper.evaluationShouldBe("$[i18n:en:login.failure]", "English Login Failure");
+        expressionHelper.evaluationShouldBe("$[i18n:zh:login.success]", "Chinese Login Success");
+        expressionHelper.evaluationShouldBe("$[i18n:zh:login.failure]", "Chinese Login Failure");
 
         // ensure that locale was not changed
-        expressionHelper.evaluationShouldBe("#{i18n:login.success}", "Japanese Login Success");
-        expressionHelper.evaluationShouldBe("#{i18n:login.failure}", "Japanese Login Failure");
+        expressionHelper.evaluationShouldBe("$[i18n:login.success]", "Japanese Login Success");
+        expressionHelper.evaluationShouldBe("$[i18n:login.failure]", "Japanese Login Failure");
     }
 }

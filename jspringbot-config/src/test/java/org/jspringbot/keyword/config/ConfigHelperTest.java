@@ -51,16 +51,16 @@ public class ConfigHelperTest {
     @Test
     public void testConfigExpression() throws Exception {
         configHelper.selectDomain("sample");
-        assertEquals("value", expressionHelper.evaluate("#{config:sample}"));
-        assertEquals("property value", expressionHelper.evaluate("#{config:sample:property}"));
-        assertEquals("http://someurl.com", expressionHelper.evaluate("#{config:robot-variables:url}"));
+        assertEquals("value", expressionHelper.evaluate("$[config:sample]"));
+        assertEquals("property value", expressionHelper.evaluate("$[config:sample:property]"));
+        assertEquals("http://someurl.com", expressionHelper.evaluate("$[config:robot-variables:url]"));
 
-        assertEquals(true, expressionHelper.evaluate("#{b:config:sample:booleanProperty}"));
-        assertEquals(100, expressionHelper.evaluate("#{i:config:robot-variables:integerProperty}"));
+        assertEquals(true, expressionHelper.evaluate("$[b:config:sample:booleanProperty]"));
+        assertEquals(100, expressionHelper.evaluate("$[i:config:robot-variables:integerProperty]"));
 
-        assertEquals(true, expressionHelper.evaluate("#{b:config:sample:booleanProperty}"));
+        assertEquals(true, expressionHelper.evaluate("$[b:config:sample:booleanProperty]"));
 
-        expressionHelper.evaluationShouldBe("#{l:config:robot-variables:integerProperty}", "#{100}");
+        expressionHelper.evaluationShouldBe("$[l:config:robot-variables:integerProperty]", "$[100]");
     }
 
 
