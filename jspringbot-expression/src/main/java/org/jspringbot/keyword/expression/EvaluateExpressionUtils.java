@@ -3,6 +3,9 @@ package org.jspringbot.keyword.expression;
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.spring.ApplicationContextHolder;
 
+import java.util.Arrays;
+import java.util.concurrent.Callable;
+
 public class EvaluateExpressionUtils {
 
     private static ExpressionHelper getHelper() {
@@ -13,8 +16,17 @@ public class EvaluateExpressionUtils {
         return ApplicationContextHolder.get().getBean(ExpressionHelper.class);
     }
 
-    public static Object eval(String expression) throws Exception {
-        return getHelper().evaluate(expression);
+    public static Object eval(final String expression, Object... args) throws Exception {
+        if(args == null || args.length == 0) {
+            return getHelper().evaluate(expression);
+        }
+
+        return getHelper().variableScope(Arrays.asList(args), new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                return getHelper().evaluate(expression);
+            }
+        });
     }
 
     public static String join(String separator, Object... strs) {

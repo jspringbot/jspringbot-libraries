@@ -1,1 +1,110 @@
-A test library providing argument evaluation support.
+A test library providing expression language support.
+
+This is a powerful library that expands its functionality to all jSpringBot library keywords.
+
+Please see the example {{Expression Library}} project.
+
+{{jspringbot-github:sample-expression|Sample Project}}
+
+= Expression Language =
+
+The EL allows page authors to use simple expressions to dynamically access data from library components.
+
+== Literal Expressions ==
+
+EL makes it easy to define literal expressions of different types.
+
+| *Expression*          | *Type*        | *Result*        |
+| \#{'stringLiteral'}   | {{String}}    | {{'stringLiteral'}} |
+| \#{100}               | {{Long}}      | {{100l}}            |
+| \#{5.43}              | {{Double}}    | {{5.43}}            |
+| \#{true}              | {{Boolean}}   | {{true}}            |
+| \#{null}              |               | {{null}}            |
+
+Literal expressions can be evaluated immediately or deferred and can be either value or method expressions.
+
+== Operators ==
+
+The EL provides the following operators, which can be used in your expressions:
+
+- *Arithmetic:* {{+}}, {{-}} (binary), {{*}}, {{/}} and {{div}}, {{%}} and {{mod}}, {{-}} (unary)
+- *Relational:* {{==}}, {{eq}}, {{!=}}, {{ne}}, {{<}}, {{lt}}, {{>}}, {{gt}}, {{<=}}, {{ge}}, {{>=}}, {{le}}. Comparisons can be made against other values or against Boolean, string, integer, or floating-point literals.
+- *Empty:* The {{empty}} operator is a prefix operation that can be used to determine whether a value is {{null}} or {{empty}}.
+- *Conditional:* {{A ? B : C}}. Evaluate {{B}} or {{C}}, depending on the result of the evaluation of {{A}}.
+
+The precedence of operators highest to lowest, left to right is as follows:
+
+- {{[] .}}
+- {{()}} (used to change the precedence of operators)
+- {{-}} (unary) {{not ! empty}}
+- {{* / div % mod}}
+- {{+ -}} (binary)
+- {{< > <= >= lt gt le ge}}
+- {{== != eq ne}}
+- {{&& and}}
+- {{|| or}}
+- {{? :}}
+
+== Reserved Words ==
+
+The following words are reserved for the EL and should not be used as identifiers:
+
+| {{and}} | {{or}} | {{not}} | {{eq}} |
+| {{ne}} | {{lt}} | {{gt}} | {{le}} |
+| {{ge}} | {{true}} | {{false}} | {{null}} |
+| {{instanceof}} | {{empty}} | {{div}} | {{mod}} |
+
+== Functions ==
+
+{{Expression Library}} has a rich set of functions for manipulating data of different types.
+
+| *Type* | *Prefix* | *Description* |
+| {{String}} | | Supported most of [http://commons.apache.org/lang/api-2.5/org/apache/commons/lang/StringUtils.html|StringUtils] and [http://commons.apache.org/lang/api-2.4/org/apache/commons/lang/StringEscapeUtils.html|StringEscapeUtils] methods. |
+| {{Math}} | _[ math ]_ |  Supported most of [http://docs.oracle.com/javase/6/docs/api/java/lang/Math.html|Math] methods. |
+| {{Collection}} | _[ col ]_ | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/CollectionUtils.html|CollectionUtils] methods. |
+| {{Map}} | _[ map ]_ | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/MapUtils.html|MapUtils] methods. |
+| {{Arrays}} | _[ array ]_ | For now only {{array:asList(*items)}} method is supported. |
+
+Aside from this a method {{eval(expr, *variable)}} method for doing expression language evaluation.
+
+== Converters ==
+
+Here are the converter syntax. These are helpful to minimize statements.
+
+| *Expression Format* | *Type*      |
+| \#{i:[expression]}  | {{Integer}} |
+| \#{l:[expression]}  | {{Long}}    |
+| \#{f:[expression]}  | {{Float}}   |
+| \#{d:[expression]}  | {{Double}}  |
+| \#{s:[expression]}  | {{String}}  |
+| \#{b:[expression]}  | {{Boolean}} |
+
+Where:
+
+- {{expression}} is the expression statement even for expression formats defined by other supported libraries.
+
+== Examples ==
+
+The following table contains example expressions and the result of evaluating them:
+
+| *Expression* | *Result* |
+| \#{1 > (4/2) | {{false}} |
+| \#{4.0 >= 3} | {{true}} |
+| \#{100.0 == 100} | {{true}} |
+| \#{(10*10) ne 100} | {{false}} |
+| \#{'a' < 'b'} | {{true}} |
+| \#{'hip' gt 'hit'} | {{false}} |
+| \#{4 > 3} | {{true}} |
+| \#{1.2E4 + 1.4} | {{12001.4}} |
+| \#{3 div 4} | {{0.75}} |
+| \#{10 mod 4} | {{2l}} |
+| \#{b:concat('tr', 'ue')} | {{true}} |
+| \#{i:100} | Since {{100}} is {{Long}}, convert to {{Integer}} by prefixing {{i:}}. |
+| \#{i:5.43} | {{5}}. |
+| \#{f:5.43} | Since {{5.43}} is {{Double}}, convert to {{Float}} by prefixing {{f:}}. |
+| \#{not empty var1}} | {{false}} if the variable {{var1}} is {{null}} or an empty string. |
+| \#{contains('alvin', 'vin')} | {{true}} |
+| \#{i:eval($1 - $2, 6, 3)} | {{3}} |
+| \#{math:abs(-1)} | {{1l}} |
+
+

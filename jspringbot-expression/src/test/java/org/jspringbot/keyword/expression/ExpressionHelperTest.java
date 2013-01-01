@@ -22,19 +22,19 @@ import static junit.framework.Assert.assertEquals;
 public class ExpressionHelperTest {
 
     @Autowired
-    private EvaluateExpression evaluator;
+    private ELEvaluate evaluator;
 
     @Autowired
-    private EvaluateExpressionShouldBeTrue trueEvaluator;
+    private ELShouldBeTrue trueEvaluator;
 
     @Autowired
-    private EvaluateExpressionShouldBeFalse falseEvaluator;
+    private ELShouldBeFalse falseEvaluator;
 
     @Autowired
-    private EvaluateExpressionShouldBeEqual equalEvaluator;
+    private ELShouldBeEqual equalEvaluator;
 
     @Autowired
-    private AddExpressionVariable addVariable;
+    private ELAddVariable addVariable;
 
     @Autowired
     private ApplicationContext context;
@@ -76,7 +76,6 @@ public class ExpressionHelperTest {
         evaluateEquals("#{f:'100'}", 100.0f);
         evaluateEquals("#{s:100}", "100");
         evaluateEquals("#{b:'false'}", false);
-        evaluateEquals("#{l:eval('#{i:100}')}", 100l);
         evaluateEquals("#{i:math:abs(-1)}", 1);
 
         List<String> items = new ArrayList<String>();
@@ -94,11 +93,21 @@ public class ExpressionHelperTest {
         evaluateAsTrue("#{col:isNotEmpty($1)}", items);
         evaluateEquals("#{col:size(items)}", 1);
 
-        evaluateEquals("#{f:eval('#{col:size($1)}')}", 1.0f, items);
         items.add("test2");
 
         evaluateEquals("#{col:size(items)}", 2);
 
+    }
+
+    @Test
+    public void testEval() throws Exception {
+        evaluateEquals("#{l:eval('#{i:100}')}", 100l);
+
+        List<String> items = new ArrayList<String>();
+        items.add("test");
+
+        evaluateEquals("#{f:eval('#{col:size($1)}')}", 1.0f, items);
+        evaluateEquals("#{eval('#{$2 - $3}', 6, 5) eq col:size($1)}", true, items);
     }
 
     @Test
@@ -108,6 +117,12 @@ public class ExpressionHelperTest {
         evaluateEquals("#{substring('alvin', 2)}", "vin");
         evaluateEquals("#{substring('alvin', 2, 4)}", "vi");
         evaluateEquals("#{'alvin'.length()}", 5);
+        evaluateEquals("#{b:concat('tr', 'ue')}", true);
+    }
+
+    @Test
+    public void testNesting() throws Exception {
+        evaluateEquals("#{i:l:f:d:5.6}", 5);
     }
 
     @Test

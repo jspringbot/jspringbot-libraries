@@ -24,10 +24,10 @@ public class TypeExpressionHandler implements ExpressionHandler {
     @Override
     public Object evaluate(String expression) throws Exception {
         try {
-            TypeExpressionHolder.set(clazz);
+            TypeExpressionHolder.push(clazz);
             return helper.evaluate(String.format("#{%s}", expression));
         } finally {
-            TypeExpressionHolder.remove();
+            TypeExpressionHolder.pop();
         }
     }
 

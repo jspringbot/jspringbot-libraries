@@ -9,24 +9,24 @@ import java.util.List;
 
 @Component
 @KeywordInfo(
-        name = "Evaluate Expression Should Be Null",
-        parameters = {"expression", "*variables"},
-        description = "classpath:desc/EvaluateExpression.txt"
+        name = "EL Should Be Equal",
+        parameters = {"expression", "expected", "*variables"},
+        description = "classpath:desc/ELEvaluate.txt"
 )
-public class EvaluateExpressionShouldBeNull extends AbstractExpressionKeyword {
+public class ELShouldBeEqual extends AbstractExpressionKeyword {
     @Override
     protected Object executeInternal(final Object[] params) throws Exception {
         List<Object> variables = new ArrayList<Object>();
 
-        if (params.length > 1) {
-            variables.addAll(Arrays.asList(params).subList(1, params.length));
+        if (params.length > 2) {
+            variables.addAll(Arrays.asList(params).subList(2, params.length));
         }
 
         helper.variableScope(variables, new Runnable() {
             @Override
             public void run() {
                 try {
-                    helper.evaluationShouldBeNull(String.valueOf(params[0]));
+                    helper.evaluationShouldBe(String.valueOf(params[0]), params[1]);
                 } catch (RuntimeException e) {
                     throw e;
                 } catch (Exception e) {

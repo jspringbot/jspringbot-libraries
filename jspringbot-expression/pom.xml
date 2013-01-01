@@ -38,8 +38,8 @@
   <name>jspringbot-expression</name>
 
   <properties>
-    <libdoc.name>JSpringBot Argument Library</libdoc.name>
-    <libdoc.output>JSpringBotArgumentLibrary.html</libdoc.output>
+    <libdoc.name>JSpringBot Expression Library</libdoc.name>
+    <libdoc.output>JSpringBotExpressionLibrary.html</libdoc.output>
   </properties>
 
   <dependencies>

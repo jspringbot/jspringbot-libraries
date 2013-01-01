@@ -9,11 +9,11 @@ import java.util.List;
 
 @Component
 @KeywordInfo(
-        name = "Evaluate Expression Should Not Be Null",
+        name = "EL Should Be False",
         parameters = {"expression", "*variables"},
-        description = "classpath:desc/EvaluateExpression.txt"
+        description = "classpath:desc/ELEvaluate.txt"
 )
-public class EvaluateExpressionShouldNotBeNull extends AbstractExpressionKeyword {
+public class ELShouldBeFalse extends AbstractExpressionKeyword {
     @Override
     protected Object executeInternal(final Object[] params) throws Exception {
         List<Object> variables = new ArrayList<Object>();
@@ -26,7 +26,7 @@ public class EvaluateExpressionShouldNotBeNull extends AbstractExpressionKeyword
             @Override
             public void run() {
                 try {
-                    helper.evaluationShouldNotBeNull(String.valueOf(params[0]));
+                    helper.evaluationShouldBeFalse(String.valueOf(params[0]));
                 } catch (RuntimeException e) {
                     throw e;
                 } catch (Exception e) {

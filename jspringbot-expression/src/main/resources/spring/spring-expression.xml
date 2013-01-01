@@ -28,7 +28,7 @@
 
   <description>jSpringBot Expression Keywords</description>
 
-  <bean id="stringFunctions" class="org.jspringbot.keyword.expression.engine.function.SupportedFunctionRegistryBean">
+  <bean id="baseFunctions" class="org.jspringbot.keyword.expression.engine.function.SupportedFunctionRegistryBean">
     <constructor-arg>
       <list>
         <value>classpath:functions/string-functions.xml</value>

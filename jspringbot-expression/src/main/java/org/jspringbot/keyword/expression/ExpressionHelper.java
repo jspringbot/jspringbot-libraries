@@ -31,9 +31,6 @@ import org.springframework.context.ApplicationContextAware;
 
 import javax.el.ExpressionFactory;
 import javax.el.ValueExpression;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,8 +55,6 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     private VariableProviderManager variableManager;
 
     private ELExpressionHandler defaultHandler = new ELExpressionHandler();
-
-    private Map<String, Object> scopeVariables = new HashMap<String, Object>();
 
     public ExpressionHelper(ExpressionFactory factory) {
         this.factory = factory;
@@ -144,30 +139,36 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     }
 
     private void initVariables(List<Object> variables) throws Exception {
-        scopeVariables.clear();
-
-        for (int i = 0; i < variables.size(); i++) {
-            scopeVariables.put(String.format("$%d", i + 1), silentEvaluate(variables.get(i)));
+        Map<String, Object> scopedVariables = ScopedVariableHolder.peek();
+        int i = 0;
+        while(scopedVariables.containsKey(String.format("$%d", i + 1))) {
+            i++;
+        }
+        for (Object variable : variables) {
+            ScopedVariableHolder.peek().put(String.format("$%d", i + 1), silentEvaluate(variable));
+            i++;
         }
     }
 
     public Object variableScope(List<Object> variables, Callable<Object> callable) throws Exception {
         try {
+            ScopedVariableHolder.push(new HashMap<String, Object>());
             initVariables(variables);
 
             return callable.call();
         } finally {
-            scopeVariables.clear();
+            ScopedVariableHolder.pop();
         }
     }
 
     public void variableScope(List<Object> variables, Runnable runnable) throws Exception {
         try {
+            ScopedVariableHolder.push(new HashMap<String, Object>());
             initVariables(variables);
 
             runnable.run();
         } finally {
-            scopeVariables.clear();
+            ScopedVariableHolder.pop();
         }
     }
 
@@ -200,14 +201,17 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     }
 
     private Map<String, Object> getVariables() {
-        scopeVariables.putAll(variableManager.getVariables());
+        Map<String, Object> variables = new HashMap<String, Object>();
 
-        return scopeVariables;
+        variables.putAll(ScopedVariableHolder.peek());
+        variables.putAll(variableManager.getVariables());
+
+        return variables;
     }
 
     public Object getValue(Object result) {
         DefaultELContext context = new DefaultELContext(functionManager, getVariables());
-        ValueExpression expr = factory.createValueExpression(result, TypeExpressionHolder.get());
+        ValueExpression expr = factory.createValueExpression(result, TypeExpressionHolder.peek());
 
         return expr.getValue(context);
     }
@@ -219,16 +223,6 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
             throw new UnsupportedOperationException("This is the default handler. This method should not be called.");
         }
 
-        private String dump(TreeValueExpression expression) throws IOException {
-            StringWriter sw = new StringWriter();
-            PrintWriter pw = new PrintWriter(sw);
-            expression.dump(pw);
-            pw.close();
-            sw.close();
-
-            return sw.toString();
-        }
-
         @Override
         public Object evaluate(String expression) throws Exception {
             LOG.keywordAppender().appendProperty("Expression Handler", "Expression Language (JUEL)");
@@ -238,7 +232,7 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
             }
 
             DefaultELContext context = new DefaultELContext(functionManager, getVariables());
-            TreeValueExpression expr = (TreeValueExpression) factory.createValueExpression(context, String.format("${%s}", expression), TypeExpressionHolder.get());
+            TreeValueExpression expr = (TreeValueExpression) factory.createValueExpression(context, String.format("${%s}", expression), TypeExpressionHolder.peek());
 
             Object result = expr.getValue(context);
 

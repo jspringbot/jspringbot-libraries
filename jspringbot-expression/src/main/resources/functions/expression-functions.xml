@@ -4,7 +4,7 @@
   <function>
     <name>eval</name>
     <function-class>org.jspringbot.keyword.expression.EvaluateExpressionUtils</function-class>
-    <function-signature>Object eval(java.lang.String)</function-signature>
+    <function-signature>Object eval(java.lang.String,java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>concat</name>

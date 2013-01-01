@@ -21,16 +21,31 @@ package org.jspringbot.keyword.expression;
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.Callable;
+
 @Component
 @KeywordInfo(
-        name = "Clear Expression Variable",
-        description = "classpath:desc/ClearExpressionVariable.txt"
+        name = "EL Evaluate",
+        parameters = {"expression", "*variables"},
+        description = "classpath:desc/ELEvaluate.txt"
 )
-public class ClearExpressionVariable extends AbstractExpressionKeyword {
+public class ELEvaluate extends AbstractExpressionKeyword {
     @Override
-    protected Object executeInternal(Object[] params) throws Exception {
-        defaultVariableProvider.clear();
+    protected Object executeInternal(final Object[] params) throws Exception {
+        List<Object> variables = new ArrayList<Object>();
 
-        return null;
+        if (params.length > 1) {
+            variables.addAll(Arrays.asList(params).subList(1, params.length));
+        }
+
+        return helper.variableScope(variables, new Callable<Object>() {
+            @Override
+            public Object call() throws Exception {
+                return helper.evaluate(String.valueOf(params[0]));
+            }
+        });
     }
 }

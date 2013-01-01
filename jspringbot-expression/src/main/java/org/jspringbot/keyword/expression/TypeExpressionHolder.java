@@ -1,21 +1,33 @@
 package org.jspringbot.keyword.expression;
 
-public class TypeExpressionHolder {
-    private static final ThreadLocal<Class> EXPECTED_TYPE = new ThreadLocal<Class>();
+import java.util.Stack;
 
-    public static void set(Class clazz) {
-        EXPECTED_TYPE.set(clazz);
+class TypeExpressionHolder {
+    private static final ThreadLocal<Stack<Class>> EXPECTED_TYPE = new ThreadLocal<Stack<Class>>() {{
+        set(new Stack<Class>());
+    }};
+
+    static void push(Class clazz) {
+        EXPECTED_TYPE.get().push(clazz);
     }
 
-    public static Class get() {
-        if(EXPECTED_TYPE.get() != null) {
-            return EXPECTED_TYPE.get();
+    static Class peek() {
+        if(!EXPECTED_TYPE.get().isEmpty()) {
+            return EXPECTED_TYPE.get().peek();
         }
 
         return Object.class;
     }
 
-    public static void remove() {
+    static Class pop() {
+        if(!EXPECTED_TYPE.get().isEmpty()) {
+            return EXPECTED_TYPE.get().pop();
+        }
+
+        return Object.class;
+    }
+
+    static void remove() {
         EXPECTED_TYPE.remove();
     }
 }

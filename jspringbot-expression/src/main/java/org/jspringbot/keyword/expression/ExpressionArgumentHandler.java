@@ -13,7 +13,10 @@ public class ExpressionArgumentHandler implements ArgumentHandler {
 
     @Override
     public boolean isSupported(String keyword, Object parameter) {
-        return !StringUtils.startsWith(keyword, "Evaluate Expression") && String.class.isInstance(parameter) && helper.isSupported((String) parameter);
+        return !StringUtils.startsWith(keyword, "EL Evaluate") &&
+                !StringUtils.startsWith(keyword, "EL Should") &&
+                String.class.isInstance(parameter) &&
+                helper.isSupported((String) parameter);
     }
 
     @Override

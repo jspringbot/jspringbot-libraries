@@ -17,11 +17,11 @@ Please see the example {{Config Library}} project.
 
 {{classpath:sample.properties}}
 
-| sample.property1=sample property 1 value
-| sample.property2=sample property 2 value
-| sample.timeout=5000
-| sample.amount=5.35
-| sample.is.enable.config=true
+| property1=sample property 1 value
+| property2=sample property 2 value
+| timeout=5000
+| amount=5.35
+| is.enable.config=true
 
 *Spring configuration code snippet ({{spring-config.xml}}):*
 
@@ -36,15 +36,15 @@ Please see the example {{Config Library}} project.
 
 *Sample Test Usage:*
 
-| `Select Config Domain` | variable                      |                              |
-| ${url}=                | `Get Config Property`  | url                          |
-| ${property1}=          | `Get Config Property`  | property1                    |
-| `Select Config Domain` | sample                        |                              |
-| ${sample1}=            | `Get Config Property`  | sample.property1             |
-| ${sample2}=            | `Get Config Property`  | sample.property2             |
-| ${timeout}=            | `Get Config Long Property`    | sample.timeout               |
-| ${amount}=             | `Get Config Double Property`  | sample.amount                |
-| ${configEnabled}=      | `Get Config Boolean Property` | sample.is.enable.config      |
+| `Select Config Domain` | variable                      |                       |
+| ${url}=                | `Get Config Property`         | url                   |
+| ${property1}=          | `Get Config Property`         | property1             |
+| `Select Config Domain` | sample                        |                       |
+| ${sample1}=            | `Get Config Property`         | property1             |
+| ${sample2}=            | `Get Config Property`         | property2             |
+| ${timeout}=            | `Get Config Long Property`    | timeout               |
+| ${amount}=             | `Get Config Double Property`  | amount                |
+| ${configEnabled}=      | `Get Config Boolean Property` | is.enable.config      |
 
 =>
 
@@ -67,11 +67,11 @@ Please see the example {{Config Library}} project.
 | ${variable.get('url')} = "http://localhost:8080/"
 | ${variable.get('property1')} = "property1 value"
 | ${sample.getDomain()} = "sample"
-| ${sample.get('sample.property1')} = "sample property 1 value"
-| ${sample.get('sample.property2')} = "sample property 2 value"
-| ${sample.getInteger('sample.timeout')} = 5000                   # integer type
-| ${sample.getDouble('sample.amount')} = 5.35                     # double type
-| ${sample.getBoolean('sample.is.enable.config')} = true          # boolean type
+| ${sample.get('property1')} = "sample property 1 value"
+| ${sample.get('property2')} = "sample property 2 value"
+| ${sample.getInteger('timeout')} = 5000                   # integer type
+| ${sample.getDouble('amount')} = 5.35                     # double type
+| ${sample.getBoolean('is.enable.config')} = true          # boolean type
 
 == Expression Support ==
 
@@ -106,6 +106,8 @@ Where:
 
 | \#{config:url} = "http://localhost:8080/"
 | \#{config:property1} = "property1 value"
-| \#{config:sample:sample.property1} = "sample property 1 value"
-| \#{i:config:sample:sample.timeout} = 5000                # integer type
-| \#{b:config:sample:sample.is.enable.config} = true       # boolean type
+| \#{config:sample:property1} = "sample property 1 value"
+| \#{i:config:sample:timeout} = 5000                # integer type
+| \#{b:config:sample:is.enable.config} = true       # boolean type
+| \#{d:config:sample:amount} = 5.35                 # double type
+

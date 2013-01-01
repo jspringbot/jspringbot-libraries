@@ -23,11 +23,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(
-        name = "Add Expression Variable",
-        parameters = {"key", "object"},
-        description = "classpath:desc/AddExpressionVariable.txt"
+        name = "EL Add Variable",
+        parameters = {"name", "value"},
+        description = "classpath:desc/ELAddVariable.txt"
 )
-public class AddExpressionVariable extends AbstractExpressionKeyword {
+public class ELAddVariable extends AbstractExpressionKeyword {
     @Override
     protected Object executeInternal(Object[] params) throws Exception {
         defaultVariableProvider.add(String.valueOf(params[0]), params[1]);
