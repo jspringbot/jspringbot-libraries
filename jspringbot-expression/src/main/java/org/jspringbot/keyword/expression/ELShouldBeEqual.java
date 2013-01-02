@@ -11,7 +11,7 @@ import java.util.List;
 @KeywordInfo(
         name = "EL Should Be Equal",
         parameters = {"expression", "expected", "*variables"},
-        description = "classpath:desc/ELEvaluate.txt"
+        description = "classpath:desc/ELShouldBeEqual.txt"
 )
 public class ELShouldBeEqual extends AbstractExpressionKeyword {
     @Override

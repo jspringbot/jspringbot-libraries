@@ -40,14 +40,13 @@
     <property name="useCodeAsDefaultMessage" value="true"/>
   </bean>
 
-  <bean name="i18nExpressionHandler"
-        class="org.jspringbot.keyword.i18n.I18nExpressionHandler">
-    <constructor-arg ref="i18nHelper"/>
-  </bean>
-
   <bean name="i18nExpressionHandlerRegistryBean"
         class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
-    <constructor-arg ref="i18nExpressionHandler"/>
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.i18n.I18nExpressionHandler">
+        <constructor-arg ref="i18nHelper"/>
+      </bean>
+    </constructor-arg>
   </bean>
 
   <!-- Scan components -->

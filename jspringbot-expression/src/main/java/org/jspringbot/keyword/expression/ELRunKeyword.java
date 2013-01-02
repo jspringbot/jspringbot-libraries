@@ -16,22 +16,20 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.config;
-
+package org.jspringbot.keyword.expression;
 
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(
-        name = "Get Config Boolean Property",
-        parameters = {"property"},
-        description = "classpath:desc/GetConfigBooleanProperty.txt"
+        name = "EL Run Keyword",
+        parameters = {"keyword", "*arguments"},
+        description = "classpath:desc/ELRunKeyword.txt"
 )
-public class GetConfigBooleanProperty extends AbstractConfigKeyword {
-
+public class ELRunKeyword extends AbstractExpressionKeyword {
     @Override
-    public Object executeInternal(Object[] params) {
-        return helper.getBooleanProperty(String.valueOf(params[0]));
+    protected Object executeInternal(final Object[] params) throws Exception {
+        return null;
     }
 }

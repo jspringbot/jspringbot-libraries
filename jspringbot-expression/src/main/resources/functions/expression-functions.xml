@@ -7,6 +7,11 @@
     <function-signature>Object eval(java.lang.String,java.lang.Object[])</function-signature>
   </function>
   <function>
+    <name>var</name>
+    <function-class>org.jspringbot.keyword.expression.EvaluateExpressionUtils</function-class>
+    <function-signature>Object robotVar(java.lang.String)</function-signature>
+  </function>
+  <function>
     <name>concat</name>
     <function-class>org.jspringbot.keyword.expression.EvaluateExpressionUtils</function-class>
     <function-signature>java.lang.String concat(java.lang.Object[])</function-signature>

@@ -1,10 +1,14 @@
 A test library providing expression language support.
 
-This is a powerful library that expands its functionality to all jSpringBot library keywords.
+With this library enabled all jSpringBot library keywords within scope will have expression language support.
 
 Please see the example {{Expression Library}} projects.
 
-{{jspringbot-github:sample-expression|Simple Sample}} {{jspringbot-github:sample-config|Config Library Sample}}
+| *Example Projects* | *Description* |
+| {{jspringbot-github-simple:sample-expression|Simple Sample}} | A test project demonstrating the {{Expression Library}} keywords. |
+| {{jspringbot-github-simple:sample-config|Config Library Sample}} | A test project demonstrating {{jspringbot-doc:config}} expression support and its keywords. |
+
+{{html:<div class="alert alert-danger">}} {{html:<strong>}}Important!{{html:</strong>}} The expression language is ONLY available for jSpringBot Library keywords. {{html:</div>}}
 
 = Expression Language =
 
@@ -88,7 +92,7 @@ Where:
 The following table contains example expressions and the result of evaluating them:
 
 | *Expression* | *Result* |
-| $[1 > (4/2) | {{false]} |
+| $[1 > (4/2)] | {{false}} |
 | $[4.0 >= 3] | {{true}} |
 | $[100.0 == 100] | {{true}} |
 | $[(10*10) ne 100] | {{false}} |
@@ -102,9 +106,9 @@ The following table contains example expressions and the result of evaluating th
 | $[i:100] | Since {{100}} is {{Long}}, convert to {{Integer}} by prefixing {{i:}}. |
 | $[i:5.43] | {{5}} |
 | $[f:5.43] | Since {{5.43}} is {{Double}}, convert to {{Float}} by prefixing {{f:}}. |
-| $[not empty var1]} | {{false}} if the variable {{var1}} is {{null}} or an empty string. |
+| $[not empty var1] | {{false}} if the variable {{var1}} is {{null}} or an empty string. |
 | $[contains('alvin', 'vin')] | {{true}} |
-| $[i:eval('$[$1 - $2]', 6, 3)} | {{3}} |
+| $[i:eval('$[$1 - $2]', 6, 3)] | {{3}} |
 | $[math:abs(-1)] | {{1l}} |
 
 

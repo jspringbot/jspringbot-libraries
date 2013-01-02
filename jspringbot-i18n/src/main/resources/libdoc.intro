@@ -254,14 +254,13 @@ Where:
 
 *The following code snippet enables the expression support {{classpath:spring/spring-i18n.xml}}:*
 
-|  <bean name="configExpressionHandler"
-|        class="org.jspringbot.keyword.config.ConfigExpressionHandler">
-|    <constructor-arg ref="configHelper"/>
-|  </bean>
-|
-|  <bean name="configExpressionHandlerRegistryBean"
-|         class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
-|    <constructor-arg ref="configExpressionHandler"/>
+|  <bean name="i18nExpressionHandlerRegistryBean"
+|        class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
+|    <constructor-arg>
+|      <bean class="org.jspringbot.keyword.i18n.I18nExpressionHandler">
+|        <constructor-arg ref="i18nHelper"/>
+|      </bean>
+|    </constructor-arg>
 |  </bean>
 
 *Sample Test Usage:*

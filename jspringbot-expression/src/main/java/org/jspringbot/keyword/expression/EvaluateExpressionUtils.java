@@ -1,12 +1,19 @@
 package org.jspringbot.keyword.expression;
 
 import org.apache.commons.lang.StringUtils;
+import org.jspringbot.MainContextHolder;
+import org.jspringbot.PythonUtils;
 import org.jspringbot.spring.ApplicationContextHolder;
+import org.jspringbot.syntax.HighlightRobotLogger;
+import org.python.util.PythonInterpreter;
 
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 
 public class EvaluateExpressionUtils {
+
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
+
 
     private static ExpressionHelper getHelper() {
         if(ApplicationContextHolder.get() == null) {
@@ -27,6 +34,38 @@ public class EvaluateExpressionUtils {
                 return getHelper().evaluate(expression);
             }
         });
+    }
+
+    public static Object robotVar(String name) throws NoSuchFieldException, IllegalAccessException {
+        if(MainContextHolder.get() == null) {
+            throw new IllegalStateException("Not running on robot framework runtime.");
+        }
+
+        String robotVarName = String.format("\\${%s}", name);
+
+        PythonInterpreter interpreter = MainContextHolder.get().getBean(PythonInterpreter.class);
+        interpreter.set("name", robotVarName);
+        interpreter.exec(
+                "from robot.libraries.BuiltIn import BuiltIn\n" +
+                "result= BuiltIn().get_variable_value(name)\n"
+        );
+
+
+        Object result = interpreter.get("result");
+
+        if(result != null) {
+            LOG.keywordAppender().appendProperty(String.format("robotVarClass('%s')", name), result.getClass());
+        } else {
+            LOG.keywordAppender().appendProperty(String.format("robotVar('%s')", name), null);
+            return null;
+        }
+
+        Object javaObject = PythonUtils.toJava(result);
+
+        LOG.keywordAppender().appendProperty(String.format("robotVarJavaClass('%s')", name), javaObject.getClass());
+        LOG.keywordAppender().appendProperty(String.format("robotVar('%s')", name), javaObject);
+
+        return javaObject;
     }
 
     public static String join(String separator, Object... strs) {
