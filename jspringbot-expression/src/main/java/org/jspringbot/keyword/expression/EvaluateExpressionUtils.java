@@ -62,7 +62,10 @@ public class EvaluateExpressionUtils {
 
         Object javaObject = PythonUtils.toJava(result);
 
-        LOG.keywordAppender().appendProperty(String.format("robotVarJavaClass('%s')", name), javaObject.getClass());
+        if(javaObject != null) {
+            LOG.keywordAppender().appendProperty(String.format("robotVarJavaClass('%s')", name), javaObject.getClass());
+        }
+
         LOG.keywordAppender().appendProperty(String.format("robotVar('%s')", name), javaObject);
 
         return javaObject;
