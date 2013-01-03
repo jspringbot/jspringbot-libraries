@@ -54,7 +54,7 @@ public class EvaluateExpressionUtils {
         Object result = interpreter.get("result");
 
         if(result != null) {
-            LOG.keywordAppender().appendProperty(String.format("robotVarClass('%s')", name), result.getClass());
+            LOG.keywordAppender().appendProperty(String.format("robotVar('%s')", name), result.getClass());
         } else {
             LOG.keywordAppender().appendProperty(String.format("robotVar('%s')", name), null);
             return null;
@@ -63,7 +63,7 @@ public class EvaluateExpressionUtils {
         Object javaObject = PythonUtils.toJava(result);
 
         if(javaObject != null) {
-            LOG.keywordAppender().appendProperty(String.format("robotVarJavaClass('%s')", name), javaObject.getClass());
+            LOG.keywordAppender().appendProperty(String.format("robotVar('%s')", name), javaObject.getClass());
         }
 
         LOG.keywordAppender().appendProperty(String.format("robotVar('%s')", name), javaObject);

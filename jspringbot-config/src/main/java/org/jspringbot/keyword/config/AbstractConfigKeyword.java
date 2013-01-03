@@ -20,10 +20,10 @@ package org.jspringbot.keyword.config;
 
 
 
-import org.jspringbot.syntax.AbstractHighlightKeyword;
+import org.jspringbot.Keyword;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractConfigKeyword extends AbstractHighlightKeyword {
+public abstract class AbstractConfigKeyword implements Keyword {
 
     @Autowired
     protected ConfigHelper helper;

@@ -32,7 +32,7 @@ import java.io.IOException;
 public class PrintDateTime extends AbstractDateKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) throws IOException {
+    public Object execute(Object[] params) throws IOException {
         if(params.length > 0) {
             return helper.formatDateTime(String.valueOf(params[0]));
         }

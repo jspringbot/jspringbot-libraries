@@ -28,10 +28,10 @@ import org.springframework.stereotype.Component;
         parameters = {"property"},
         description = "Same as `Get Config Property`, this retrieves the string property from the selected configuration domain."
 )
-public class GetConfigStringProperty extends AbstractConfigKeyword{
+public class GetConfigStringProperty extends AbstractConfigKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) {
+    public Object execute(Object[] params) {
         return helper.getProperty(String.valueOf(params[0]));
     }
 }

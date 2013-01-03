@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
 public class GetI18nDisplayCountry extends Abstracti18nKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) {
+    public Object execute(Object[] params) {
         return i18nHelper.getDisplayCountry();
     }
 }

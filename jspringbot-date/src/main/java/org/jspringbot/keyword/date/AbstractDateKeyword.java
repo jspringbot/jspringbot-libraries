@@ -18,10 +18,10 @@
 
 package org.jspringbot.keyword.date;
 
-import org.jspringbot.syntax.AbstractHighlightKeyword;
+import org.jspringbot.Keyword;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class AbstractDateKeyword extends AbstractHighlightKeyword {
+public abstract class AbstractDateKeyword implements Keyword {
 
     @Autowired
     protected DateHelper helper;

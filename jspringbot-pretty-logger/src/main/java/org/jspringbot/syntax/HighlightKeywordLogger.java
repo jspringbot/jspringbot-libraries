@@ -1,18 +1,14 @@
 package org.jspringbot.syntax;
 
 import org.jspringbot.JSpringBotLogger;
-import org.jspringbot.KeywordInfo;
 import org.jspringbot.syntax.HighlightRobotLogger.HtmlAppender;
-import org.springframework.core.annotation.AnnotationUtils;
 
 class HighlightKeywordLogger {
     public static final ThreadLocal<HtmlAppender> APPENDER_THREAD_LOCAL = new ThreadLocal<HtmlAppender>();
 
-    static void createAppender(Class keywordClass) {
-        KeywordInfo keywordInfo = AnnotationUtils.findAnnotation(keywordClass, KeywordInfo.class);
-
-        HtmlAppender appender = new HtmlAppender(JSpringBotLogger.getLogger(keywordClass));
-        appender.appendBold(keywordInfo.name() + ":");
+    static void createAppender(String keyword) {
+        HtmlAppender appender = new HtmlAppender(JSpringBotLogger.getLogger(HighlightKeywordLogger.class));
+        appender.appendBold(keyword + ":");
 
         APPENDER_THREAD_LOCAL.set(appender);
     }

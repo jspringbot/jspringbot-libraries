@@ -32,7 +32,7 @@ import java.io.IOException;
 public class ParseDateTime extends AbstractDateKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) throws IOException {
+    public Object execute(Object[] params) throws IOException {
         if(params.length > 1) {
             helper.parseDateTime(String.valueOf(params[0]), String.valueOf(params[1]));
 

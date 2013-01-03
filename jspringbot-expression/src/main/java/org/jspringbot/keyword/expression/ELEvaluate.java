@@ -34,7 +34,7 @@ import java.util.concurrent.Callable;
 )
 public class ELEvaluate extends AbstractExpressionKeyword {
     @Override
-    protected Object executeInternal(final Object[] params) throws Exception {
+    public Object execute(final Object[] params) throws Exception {
         List<Object> variables = new ArrayList<Object>();
 
         if (params.length > 1) {

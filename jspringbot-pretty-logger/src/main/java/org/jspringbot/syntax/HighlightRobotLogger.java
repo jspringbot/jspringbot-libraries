@@ -282,12 +282,12 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                 return;
             }
 
-            if(code.length() > 0) {
-                buf.append(HighlighterUtils.INSTANCE.highlightNormal(code.toString()));
-            }
-
             if(properties.length() > 0) {
                 buf.append(HighlighterUtils.INSTANCE.highlightText(properties.toString()));
+            }
+
+            if(code.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightNormal(code.toString()));
             }
 
             if(text.length() > 0) {

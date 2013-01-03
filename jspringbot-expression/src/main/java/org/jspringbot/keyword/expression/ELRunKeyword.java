@@ -39,7 +39,7 @@ public class ELRunKeyword extends AbstractExpressionKeyword {
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
     @Override
-    protected Object executeInternal(final Object[] params) throws Exception {
+    public Object execute(final Object[] params) throws Exception {
         if(MainContextHolder.get() == null) {
             throw new IllegalStateException("Not running on robot framework runtime.");
         }

@@ -31,7 +31,7 @@ import org.springframework.stereotype.Component;
 public class SetI18nLocale extends Abstracti18nKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) {
+    public Object execute(Object[] params) {
         i18nHelper.setLocale(String.valueOf(params[0]));
 
         return null;

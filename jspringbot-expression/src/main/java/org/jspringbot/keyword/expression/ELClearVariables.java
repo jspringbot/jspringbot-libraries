@@ -28,7 +28,7 @@ import org.springframework.stereotype.Component;
 )
 public class ELClearVariables extends AbstractExpressionKeyword {
     @Override
-    protected Object executeInternal(Object[] params) throws Exception {
+    public Object execute(Object[] params) throws Exception {
         defaultVariableProvider.clear();
 
         return null;

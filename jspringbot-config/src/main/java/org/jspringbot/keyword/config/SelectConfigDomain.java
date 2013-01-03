@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
 public class SelectConfigDomain extends AbstractConfigKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) {
+    public Object execute(Object[] params) {
         helper.selectDomain(String.valueOf(params[0]));
 
         return null;

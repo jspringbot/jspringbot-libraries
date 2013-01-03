@@ -7,9 +7,10 @@ The variable identifiers are {{$1}}, {{$2}}, {{$3}} ... and so on depending on t
 
 Example:
 
-|       | `EL Add Variable`    |  var1                       | hello        |         |         |
-|       | `EL Add Variable`    |  var2                       | world        |         |         |
-| {{3}} | `EL Should Be Equal` | $[concat(var1, ' ', var2)]  | hello world  |         |         |
-| {{4}} | `EL Should Be Equal` | $[concat($1, ' ', $2)]      | hello world  | $[var1] | $[var2] |
+|       | `EL Should Be Equal` | $[i:eval('$[$1 - $2]', 6, 3)] | $[i:3]       |         |         |
+|       | `EL Add Variable`    |  var1                         | hello        |
+|       | `EL Add Variable`    |  var2                         | world        |
+| {{3}} | `EL Should Be Equal` | $[concat(var1, ' ', var2)]    | hello world  |
+| {{4}} | `EL Should Be Equal` | $[concat($1, ' ', $2)]        | hello world  | $[var1] | $[var2] |
 
 Line {{3}} and {{4}} does the same thing.

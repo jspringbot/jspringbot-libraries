@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
 )
 public class ELAddVariable extends AbstractExpressionKeyword {
     @Override
-    protected Object executeInternal(Object[] params) throws Exception {
+    public Object execute(Object[] params) throws Exception {
         defaultVariableProvider.add(String.valueOf(params[0]), params[1]);
 
         return null;

@@ -8,8 +8,6 @@ Please see the example {{Expression Library}} projects.
 | {{jspringbot-github-simple:sample-expression|Simple Sample}} | A test project demonstrating the {{Expression Library}} keywords. |
 | {{jspringbot-github-simple:sample-config|Config Library Sample}} | A test project demonstrating {{jspringbot-doc:config}} expression support and its keywords. |
 
-{{html:<div class="alert alert-danger">}} {{html:<strong>}}Important!{{html:</strong>}} The expression language is ONLY available for jSpringBot Library keywords. {{html:</div>}}
-
 = Expression Language =
 
 The EL allows page authors to use simple expressions to dynamically access data from library components.
@@ -69,7 +67,11 @@ The following words are reserved for the EL and should not be used as identifier
 | {{Map}} | _[ map ]_ | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/MapUtils.html|MapUtils] methods. |
 | {{Arrays}} | _[ array ]_ | For now only {{array:asList(*items)}} method is supported. |
 
-Aside from these a methods, an added {{eval(expr, *variable)}} method is supported for doing expression language evaluation.
+*Additional Methods:*
+
+| *Method* | *Description* |
+| {{eval(expression, *variable)}} | This will evaluate the given expression and variables. |
+| {{var(variable)}} | This will return the robot variable given the name. |
 
 == Converters ==
 
@@ -110,5 +112,19 @@ The following table contains example expressions and the result of evaluating th
 | $[contains('alvin', 'vin')] | {{true}} |
 | $[i:eval('$[$1 - $2]', 6, 3)] | {{3}} |
 | $[math:abs(-1)] | {{1l}} |
+
+{{var(variable)}}
+
+| ${string}=           | `Set Variable`                         | some string |   |   |   |
+| ${integer}=          | `Convert To Integer`                   | 100         |
+| ${boolean}=          | `Convert To Boolean`                   | true        |
+| @{list} =            | `Create List`                          | a           | b | c |   |
+| ${dictionary} =      | `Create Dictionary`                    | a           | 1 | b | 2 |
+| `EL Should Be True`  | $[var('integer') eq 100]               |
+| `EL Should Be True`  | $[var('boolean')]                      |
+| `EL Should Be True`  | $[var('list')[0] eq 'a']               |
+| `EL Should Be True`  | $[var('dictionary')['a'] eq '1']       |
+| `EL Should Be Equal` | $[i:eval('$[$1 - $2]', 6, 3)]          | $[i:3]      |
+
 
 

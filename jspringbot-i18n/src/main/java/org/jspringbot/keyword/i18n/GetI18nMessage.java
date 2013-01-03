@@ -30,7 +30,7 @@ import org.springframework.stereotype.Component;
 public class GetI18nMessage extends Abstracti18nKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) {
+    public Object execute(Object[] params) {
         if(params.length > 1) {
             return i18nHelper.getMessage(String.valueOf(params[0]), String.valueOf(params[1]));
         }

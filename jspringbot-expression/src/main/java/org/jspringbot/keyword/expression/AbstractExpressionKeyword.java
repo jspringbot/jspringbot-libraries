@@ -18,13 +18,13 @@
 
 package org.jspringbot.keyword.expression;
 
+import org.jspringbot.Keyword;
 import org.jspringbot.keyword.expression.plugin.DefaultVariableProviderImpl;
-import org.jspringbot.syntax.AbstractHighlightKeyword;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 
-public abstract class AbstractExpressionKeyword extends AbstractHighlightKeyword {
+public abstract class AbstractExpressionKeyword implements Keyword {
 
     @Autowired
     protected ExpressionHelper helper;

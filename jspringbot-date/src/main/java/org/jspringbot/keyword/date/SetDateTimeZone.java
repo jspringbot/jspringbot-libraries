@@ -28,7 +28,7 @@ import java.io.IOException;
 public class SetDateTimeZone extends AbstractDateKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) throws IOException {
+    public Object execute(Object[] params) throws IOException {
         helper.setDateTimeZone(String.valueOf(params[0]));
 
         return null;

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class CreateI18nObject extends Abstracti18nKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) {
+    public Object execute(Object[] params) {
         return i18nHelper.createI18nObject();
     }
 

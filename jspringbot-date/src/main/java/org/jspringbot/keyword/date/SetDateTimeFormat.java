@@ -28,7 +28,7 @@ import java.io.IOException;
 public class SetDateTimeFormat extends AbstractDateKeyword {
 
     @Override
-    public Object executeInternal(Object[] params) throws IOException {
+    public Object execute(Object[] params) throws IOException {
         helper.setDateTimeFormat(String.valueOf(params[0]));
 
         return null;
