@@ -61,6 +61,10 @@ public class XMLHelper {
         this.document = document;
     }
 
+    public Document getDocument() {
+        return document;
+    }
+
     /**
      * XPath Text Content Should be Equal
      */

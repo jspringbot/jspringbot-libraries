@@ -32,7 +32,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:spring-xml.xml"})
+@ContextConfiguration(locations={"classpath:spring-test.xml"})
 public class XMLHelperTest {
     @Autowired
     private XMLHelper helper;

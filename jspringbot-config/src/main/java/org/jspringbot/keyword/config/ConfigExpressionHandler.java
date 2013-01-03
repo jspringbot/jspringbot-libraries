@@ -20,7 +20,7 @@ public class ConfigExpressionHandler extends AbstractSimpleExpressionHandler {
     }
 
     @Override
-    protected Object evaluateInternal(String[] tokens) {
+    protected Object evaluateInternal(String expression, String[] tokens) {
         LOG.keywordAppender().appendProperty("Expression Handler", "jSpringBot Config");
 
         if(tokens.length == 1) {
@@ -33,6 +33,6 @@ public class ConfigExpressionHandler extends AbstractSimpleExpressionHandler {
             return domain.get(tokens[1]);
         }
 
-        throw new IllegalArgumentException("Syntax error for config type expression.");
+        throw new IllegalArgumentException(String.format("Syntax error for config type '%s' expression.", expression));
     }
 }

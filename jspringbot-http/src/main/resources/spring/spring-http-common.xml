@@ -23,5 +23,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <import resource="classpath:spring/spring-date.xml"/>
+  <description>jSpringBot Common Beans</description>
+
+  <bean name="connectionManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager">
+    <property name="defaultMaxPerRoute" value="2"/>
+    <property name="maxTotal" value="2"/>
+  </bean>
+
+  <bean name="httpClient" class="org.apache.http.impl.client.DefaultHttpClient">
+    <constructor-arg ref="connectionManager"/>
+  </bean>
 </beans>

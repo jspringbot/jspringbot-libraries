@@ -19,22 +19,17 @@
   -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:ctx="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="
-       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
   <description>jSpringBot XML Keywords</description>
 
-  <bean name="xmlHelper" class="org.jspringbot.keyword.xml.XMLHelper"/>
+  <import resource="classpath:spring/spring-expression.xml"/>
+  <import resource="classpath:spring/spring-xml.xml"/>
 
   <bean name="sampleResources" class="org.jspringbot.keyword.xml.SampleResources">
     <property name="sampleXML" value="classpath:sample.xml"/>
   </bean>
-
-  <!-- Scan components -->
-  <ctx:component-scan base-package="org.jspringbot.keyword.xml"/>
-  <ctx:annotation-config/>
 </beans>
 

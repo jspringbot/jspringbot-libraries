@@ -26,27 +26,19 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <description>jSpringBot Http Keywords</description>
+  <description>jSpringBot Http Keywords</description>
 
-    <import resource="spring-xml.xml"/>
-    <import resource="spring-json.xml"/>
+  <import resource="spring-http-common.xml" />
+  <import resource="classpath:spring/spring-json.xml" />
+  <import resource="classpath:spring/spring-xml.xml" />
 
-    <bean name="connectionManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager">
-        <property name="defaultMaxPerRoute" value="2"/>
-        <property name="maxTotal" value="2"/>
-    </bean>
+  <bean name="httpHelper" class="org.jspringbot.keyword.http.HTTPHelper">
+    <constructor-arg ref="httpClient"/>
+    <property name="jsonHelper" ref="jsonHelper"/>
+    <property name="xmlHelper" ref="xmlHelper"/>
+  </bean>
 
-    <bean name="httpClient" class="org.apache.http.impl.client.DefaultHttpClient">
-        <constructor-arg ref="connectionManager"/>
-    </bean>
-
-    <bean name="httpHelper" class="org.jspringbot.keyword.http.HTTPHelper">
-        <constructor-arg ref="httpClient"/>
-        <property name="jsonHelper" ref="jsonHelper"/>
-        <property name="xmlHelper" ref="xmlHelper"/>
-    </bean>
-
-    <!-- Scan components -->
-    <ctx:component-scan base-package="org.jspringbot.keyword.http" />
-    <ctx:annotation-config/>
+  <!-- Scan components -->
+  <ctx:component-scan base-package="org.jspringbot.keyword.http" />
+  <ctx:annotation-config/>
 </beans>

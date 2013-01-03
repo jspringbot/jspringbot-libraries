@@ -14,12 +14,7 @@ public class EvaluateExpressionUtils {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
-
     private static ExpressionHelper getHelper() {
-        if(ApplicationContextHolder.get() == null) {
-            throw new IllegalStateException("Not under jSpringBot context.");
-        }
-
         return ApplicationContextHolder.get().getBean(ExpressionHelper.class);
     }
 

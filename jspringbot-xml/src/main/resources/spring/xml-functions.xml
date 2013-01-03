@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <name>attr</name>
+    <prefix>xml</prefix>
+    <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
+    <function-signature>java.lang.String attr(java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <name>elements</name>
+    <prefix>xml</prefix>
+    <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
+    <function-signature>java.util.List elements(java.lang.String)</function-signature>
+  </function>
+</functions>

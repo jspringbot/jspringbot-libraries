@@ -39,13 +39,13 @@
     </property>
   </bean>
 
-  <bean name="configExpressionHandler" class="org.jspringbot.keyword.config.ConfigExpressionHandler">
-    <constructor-arg ref="configHelper"/>
-  </bean>
-
   <bean name="configExpressionHandlerRegistryBean"
         class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
-    <constructor-arg ref="configExpressionHandler"/>
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.config.ConfigExpressionHandler">
+        <constructor-arg ref="configHelper"/>
+      </bean>
+    </constructor-arg>
   </bean>
 
   <!-- Scan components -->

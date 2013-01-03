@@ -25,7 +25,7 @@ public class ExpressionArgumentHandler implements ArgumentHandler {
         try {
             return helper.evaluate(expression);
         } catch (Exception e) {
-            throw new IllegalArgumentException(String.format("Unable to evaluate expression '%s'.", expression));
+            throw new IllegalArgumentException(String.format("Unable to evaluate expression '%s'.", expression), e);
         }
     }
 }

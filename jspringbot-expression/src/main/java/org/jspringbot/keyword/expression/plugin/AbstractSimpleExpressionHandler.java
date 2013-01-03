@@ -9,8 +9,8 @@ public abstract class AbstractSimpleExpressionHandler implements ExpressionHandl
 
     @Override
     public Object evaluate(String expression) throws Exception {
-        return evaluateInternal(StringUtils.split(expression, ':'));
+        return evaluateInternal(expression, StringUtils.split(expression, ':'));
     }
 
-    protected abstract Object evaluateInternal(String[] tokens) throws Exception;
+    protected abstract Object evaluateInternal(String expression, String[] tokens) throws Exception;
 }

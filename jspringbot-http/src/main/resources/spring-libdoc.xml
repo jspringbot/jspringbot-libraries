@@ -19,29 +19,9 @@
   -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:ctx="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans.xsd
-                           http://www.springframework.org/schema/context
-                           http://www.springframework.org/schema/context/spring-context.xsd">
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <description>jSpringBot Http Keywords</description>
-
-    <bean name="connectionManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager">
-        <property name="defaultMaxPerRoute" value="2"/>
-        <property name="maxTotal" value="2"/>
-    </bean>
-
-    <bean name="httpClient" class="org.apache.http.impl.client.DefaultHttpClient">
-        <constructor-arg ref="connectionManager"/>
-    </bean>
-
-    <bean name="httpHelper" class="org.jspringbot.keyword.http.HTTPHelper">
-        <constructor-arg ref="httpClient"/>
-    </bean>
-
-    <!-- Scan components -->
-    <ctx:component-scan base-package="org.jspringbot.keyword.http" />
-    <ctx:annotation-config/>
+    <import resource="spring/spring-http-only.xml"/>
 </beans>

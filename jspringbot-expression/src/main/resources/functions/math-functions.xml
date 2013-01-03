@@ -235,12 +235,12 @@
     <function-class>java.lang.Math</function-class>
     <function-signature>long round(double)</function-signature>
   </function>
-  <function>
-    <prefix>math</prefix>
-    <name>random</name>
-    <function-class>java.lang.Math</function-class>
-    <function-signature>double random()</function-signature>
-  </function>
+  <!--<function>-->
+    <!--<prefix>math</prefix>-->
+    <!--<name>random</name>-->
+    <!--<function-class>java.lang.Math</function-class>-->
+    <!--<function-signature>double random()</function-signature>-->
+  <!--</function>-->
   <function>
     <prefix>math</prefix>
     <name>ulp</name>

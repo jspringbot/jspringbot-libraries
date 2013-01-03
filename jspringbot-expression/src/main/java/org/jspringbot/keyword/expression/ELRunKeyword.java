@@ -38,6 +38,36 @@ import java.util.List;
 public class ELRunKeyword extends AbstractExpressionKeyword {
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
+    public static Object runKeyword(String keyword, Object... params) {
+        PythonInterpreter interpreter = MainContextHolder.get().getBean(PythonInterpreter.class);
+        interpreter.set("keyword", keyword);
+        interpreter.set("args", params);
+
+        interpreter.exec(
+                "from robot.libraries.BuiltIn import BuiltIn\n" +
+                        "result= BuiltIn().run_keyword(keyword, *args)\n"
+        );
+
+        Object result = interpreter.get("result");
+
+        if(result != null) {
+            LOG.keywordAppender().appendProperty(String.format("runKeyword('%s')", keyword), result.getClass());
+        } else {
+            LOG.keywordAppender().appendProperty(String.format("runKeyword('%s')", keyword), null);
+            return null;
+        }
+
+        Object javaObject = PythonUtils.toJava(result);
+
+        if(javaObject != null) {
+            LOG.keywordAppender().appendProperty(String.format("runKeyword('%s')", keyword), javaObject.getClass());
+        }
+
+        LOG.keywordAppender().appendProperty(String.format("runKeyword('%s')", keyword), javaObject);
+
+        return javaObject;
+    }
+
     @Override
     public Object execute(final Object[] params) throws Exception {
         if(MainContextHolder.get() == null) {
@@ -52,32 +82,6 @@ public class ELRunKeyword extends AbstractExpressionKeyword {
 
         String name = String.valueOf(params[0]);
 
-        PythonInterpreter interpreter = MainContextHolder.get().getBean(PythonInterpreter.class);
-        interpreter.set("keyword", name);
-        interpreter.set("args", variables.toArray());
-
-        interpreter.exec(
-                "from robot.libraries.BuiltIn import BuiltIn\n" +
-                        "result= BuiltIn().run_keyword(keyword, *args)\n"
-        );
-
-        Object result = interpreter.get("result");
-
-        if(result != null) {
-            LOG.keywordAppender().appendProperty(String.format("runKeyword('%s')", name), result.getClass());
-        } else {
-            LOG.keywordAppender().appendProperty(String.format("runKeyword('%s')", name), null);
-            return null;
-        }
-
-        Object javaObject = PythonUtils.toJava(result);
-
-        if(javaObject != null) {
-            LOG.keywordAppender().appendProperty(String.format("runKeyword('%s')", name), javaObject.getClass());
-        }
-
-        LOG.keywordAppender().appendProperty(String.format("runKeyword('%s')", name), javaObject);
-
-        return javaObject;
+        return runKeyword(name, variables.toArray());
     }
 }

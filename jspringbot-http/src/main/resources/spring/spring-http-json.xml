@@ -19,9 +19,24 @@
   -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:ctx="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
 
-  <import resource="classpath:spring/spring-date.xml"/>
+  <description>jSpringBot Http Keywords</description>
+
+  <import resource="spring-http-common.xml" />
+  <import resource="classpath:spring/spring-json.xml" />
+
+  <bean name="httpHelper" class="org.jspringbot.keyword.http.HTTPHelper">
+    <constructor-arg ref="httpClient"/>
+    <property name="jsonHelper" ref="jsonHelper"/>
+  </bean>
+
+  <!-- Scan components -->
+  <ctx:component-scan base-package="org.jspringbot.keyword.http" />
+  <ctx:annotation-config/>
 </beans>

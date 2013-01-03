@@ -21,7 +21,7 @@ public class I18nExpressionHandler extends AbstractSimpleExpressionHandler {
     }
 
     @Override
-    protected Object evaluateInternal(String[] tokens) {
+    protected Object evaluateInternal(String expression, String[] tokens) {
         LOG.keywordAppender().appendProperty("Expression Handler", "jSpringBot i18n");
 
         if(tokens.length == 1) {
@@ -46,6 +46,6 @@ public class I18nExpressionHandler extends AbstractSimpleExpressionHandler {
             return helper.getMessage(tokens[0], tokens[1]);
         }
 
-        throw new IllegalArgumentException("Syntax error for i18 expression.");
+        throw new IllegalArgumentException(String.format("Syntax error for i18 expression '%s'.", expression));
     }
 }

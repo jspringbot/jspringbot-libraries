@@ -33,7 +33,7 @@ import java.util.Arrays;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:sample-json.xml"})
+@ContextConfiguration(locations={"classpath:spring-test.xml"})
 public class JSONCreatorTest {
 
     @Autowired

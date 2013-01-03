@@ -27,7 +27,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import static junit.framework.Assert.assertNotNull;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:spring-date.xml"})
+@ContextConfiguration(locations={"classpath:spring-test.xml"})
 public class DateHelperTest {
 
     @Autowired

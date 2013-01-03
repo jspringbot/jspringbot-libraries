@@ -25,12 +25,20 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <description>jSpringBot XML Keywords</description>
+  <description>jSpringBot XML Keywords</description>
 
-    <bean name="xmlHelper" class="org.jspringbot.keyword.xml.XMLHelper"/>
+  <bean name="xmlHelper" class="org.jspringbot.keyword.xml.XMLHelper"/>
 
-    <!-- Scan components -->
-    <ctx:component-scan base-package="org.jspringbot.keyword.xml" />
-    <ctx:annotation-config/>
+  <bean id="xmlFunctions" class="org.jspringbot.keyword.expression.engine.function.SupportedFunctionRegistryBean">
+    <constructor-arg>
+      <list>
+        <value>classpath:spring/xml-functions.xml</value>
+      </list>
+    </constructor-arg>
+  </bean>
+
+  <!-- Scan components -->
+  <ctx:component-scan base-package="org.jspringbot.keyword.xml"/>
+  <ctx:annotation-config/>
 </beans>
 
