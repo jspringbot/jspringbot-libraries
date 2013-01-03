@@ -61,6 +61,35 @@ public class XMLUtils {
         throw new IllegalArgumentException("Expected 'xml:attr(attrName)' or 'xml:attr(element, attrName)' or 'xml:attr(xpath, attrName)'.");
     }
 
+    public static String text(Object... args) throws TransformerException {
+        if(Element.class.isInstance(args[0])) {
+            Element element = (Element) args[0];
+            String result = element.getTextContent();
+
+            LOG.keywordAppender().appendProperty("Result", result);
+
+            return result;
+        } else if(String.class.isInstance(args[0])) {
+            String xpath = (String) args[0];
+
+            LOG.keywordAppender().appendProperty("Xpath", xpath);
+
+            List<Element> els = elements(xpath);
+
+            if(CollectionUtils.isEmpty(els)) {
+                throw new IllegalArgumentException(String.format("No elements found for xpath '%s'.", xpath));
+            }
+
+            String result = els.iterator().next().getTextContent();
+
+            LOG.keywordAppender().appendProperty("Result", result);
+
+            return result;
+        }
+
+        throw new IllegalArgumentException("Expected 'xml:text(element)' 'xml:text(xpath)'.");
+    }
+
     public static List<Element> elements(String xpath) throws TransformerException {
         return getHelper().getXpathElements(xpath);
     }

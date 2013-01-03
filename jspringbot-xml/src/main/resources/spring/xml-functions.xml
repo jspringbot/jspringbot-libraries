@@ -8,6 +8,12 @@
     <function-signature>java.lang.String attr(java.lang.Object[])</function-signature>
   </function>
   <function>
+    <name>text</name>
+    <prefix>xml</prefix>
+    <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
+    <function-signature>java.lang.String text(java.lang.Object[])</function-signature>
+  </function>
+  <function>
     <name>elements</name>
     <prefix>xml</prefix>
     <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
