@@ -57,7 +57,7 @@ public class JSONUtils {
             return getHelper().getJsonValue(jsonPath);
         }
 
-        return null;
+        throw new IllegalArgumentException("Expected 'json:property(propertyName)' or 'json:property(jsonObject, propertyName)' or 'json:property(jsonPath, propertyName)'.");
     }
 
 }
