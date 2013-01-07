@@ -6,33 +6,39 @@ Please see the example {{Config Library}} project.
 
 {{jspringbot-github:sample-config|Sample Project}}
 
+== Configuration Files ==
+
+The configuration files are properties file with name and value pair. The configuration files are auto detected using two ways.
+
+*1. Using {{classpath:config.properties}}*
+
+| domain_name=resource
+
+where:
+
+- {{domain_name}} = is the domain name
+- {{resource}} = the domain configuration file resource
+
+*2. Using the {{classpath:config/}} directory*
+
+All configuration files in this directory will be auto detected where the filename without the extension is the domain.
+
 == Examples ==
 
 *Assume we have the following properties:*
 
-{{classpath:variables.properties}}
+{{classpath:config/variables.properties}}
 
 | url=http://localhost:8080/
 | property1=property1 value
 
-{{classpath:sample.properties}}
+{{classpath:config/sample.properties}}
 
 | property1=sample property 1 value
 | property2=sample property 2 value
 | timeout=5000
 | amount=5.35
 | is.enable.config=true
-
-*Spring configuration code snippet ({{spring-config.xml}}):*
-
-|   <bean name="configHelper" class="org.jspringbot.keyword.config.ConfigHelper" init-method="init">
-|     <property name="domains">
-|       <map>
-|         <entry key="variables" value="classpath:variables.properties"/>
-|         <entry key="sample" value="classpath:sample.properties"/>
-|       </map>
-|     </property>
-|   </bean>
 
 *Sample Test Usage:*
 
@@ -84,22 +90,10 @@ Where:
 
 {{html:<div class="alert alert-danger">}} {{html:<strong>}}Important!{{html:</strong>}} The config expression is only available for jSpringBot Library keywords. {{html:</div>}}
 
-*To enable add the following to {{spring-config.xml}}:*
-
-|  <bean name="configExpressionHandlerRegistryBean"
-|        class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
-|    <constructor-arg>
-|      <bean class="org.jspringbot.keyword.config.ConfigExpressionHandler">
-|        <constructor-arg ref="configHelper"/>
-|      </bean>
-|    </constructor-arg>
-|  </bean>
-
-
 *Sample Test Usage:*
 
-| `Select Config Domain` | variable                      |                            |
-| `Evaluate Expression`  | $[config:url]                | # output the result to log |
+| `Select Config Domain` | variable       |                            |
+| `Evaluate Expression`  | $[config:url]  | # output the result to log |
 
 =>
 

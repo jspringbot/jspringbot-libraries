@@ -3,19 +3,48 @@ package org.jspringbot.keyword.expression;
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.MainContextHolder;
 import org.jspringbot.PythonUtils;
+import org.jspringbot.keyword.expression.plugin.DefaultVariableProviderImpl;
 import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.python.util.PythonInterpreter;
 
 import java.util.Arrays;
 import java.util.concurrent.Callable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class EvaluateExpressionUtils {
+public class ELUtils {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
+    public static final Pattern PATTERN = Pattern.compile("\\$\\{[^\\}]+\\}", Pattern.CASE_INSENSITIVE);
+
     private static ExpressionHelper getHelper() {
         return ApplicationContextHolder.get().getBean(ExpressionHelper.class);
+    }
+
+    private static DefaultVariableProviderImpl getVariables() {
+        return (DefaultVariableProviderImpl) ApplicationContextHolder.get().getBean("defaultVariableProvider");
+    }
+
+    public static String replaceVars(String string) throws Exception {
+        StringBuilder buf = new StringBuilder(string);
+        Matcher matcher = PATTERN.matcher(buf);
+
+        int startIndex = 0;
+        while(matcher.find(startIndex)) {
+            String name = matcher.group(1);
+
+            String value = String.valueOf(getVariables().getVariables().get(name));
+            if(value == null) {
+                value = String.valueOf(robotVar(name));
+            }
+
+            buf.replace(matcher.start(), matcher.end(), value);
+            startIndex = matcher.end();
+        }
+
+        return buf.toString();
     }
 
     public static Object eval(final String expression, Object... args) throws Exception {

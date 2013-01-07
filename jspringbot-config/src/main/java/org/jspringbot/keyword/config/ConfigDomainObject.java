@@ -32,7 +32,7 @@ public class ConfigDomainObject {
         LOG.keywordAppender()
                 .appendProperty("Config String Value", properties.getProperty(code));
 
-        return properties.getProperty(code);
+        return ConfigHelper.evaluate(properties.getProperty(code));
     }
 
     public Boolean getBoolean(String code) {

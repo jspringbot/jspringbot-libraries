@@ -30,7 +30,7 @@ public class JSONUtils {
     }
 
     public static Object property(Object... args) throws TransformerException {
-        if(args[0] == null && args.length == 2 && String.class.isInstance(args[0])) {
+        if(args[0] == null && args.length == 2 && String.class.isInstance(args[1])) {
             return property(args[1]);
         } else if(JSONObject.class.isInstance(args[0]) && args.length == 2) {
             JSONObject obj = (JSONObject) args[0];

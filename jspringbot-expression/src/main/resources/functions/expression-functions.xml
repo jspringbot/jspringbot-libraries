@@ -3,27 +3,32 @@
 <functions>
   <function>
     <name>eval</name>
-    <function-class>org.jspringbot.keyword.expression.EvaluateExpressionUtils</function-class>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>Object eval(java.lang.String,java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>var</name>
-    <function-class>org.jspringbot.keyword.expression.EvaluateExpressionUtils</function-class>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>Object robotVar(java.lang.String)</function-signature>
   </function>
   <function>
+    <name>replaceVars</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>java.lang.String replaceVars(java.lang.String)</function-signature>
+  </function>
+  <function>
     <name>concat</name>
-    <function-class>org.jspringbot.keyword.expression.EvaluateExpressionUtils</function-class>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String concat(java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>join</name>
-    <function-class>org.jspringbot.keyword.expression.EvaluateExpressionUtils</function-class>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String join(java.lang.String, java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>substring</name>
-    <function-class>org.jspringbot.keyword.expression.EvaluateExpressionUtils</function-class>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String substring(java.lang.String,java.lang.Integer[])</function-signature>
   </function>
 </functions>

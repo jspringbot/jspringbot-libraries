@@ -18,10 +18,15 @@
 
 package org.jspringbot.keyword.config;
 
+import org.apache.commons.lang.StringUtils;
+import org.jspringbot.keyword.expression.ELUtils;
+import org.jspringbot.keyword.expression.ExpressionHelper;
+import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceEditor;
 
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -29,9 +34,7 @@ import java.util.Properties;
 public class ConfigHelper {
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ConfigHelper.class);
 
-    protected Map<String, Resource> domains;
-
-    protected Map<String, Properties> domainProperties;
+    private Map<String, Properties> domainProperties = new HashMap<String, Properties>();
 
     private String selectedDomain;
 
@@ -43,18 +46,75 @@ public class ConfigHelper {
         return selectedDomain;
     }
 
-    public void setDomains(Map<String, Resource> domains) {
-        this.domains = domains;
+    private void addProperties(String domain, File file) throws IOException {
+        String filename = file.getName();
+
+        Properties properties = new Properties();
+
+        if(StringUtils.endsWith(filename, ".properties")) {
+            properties.load(new FileReader(file));
+        } else if(StringUtils.endsWith(filename, ".xml")) {
+            properties.loadFromXML(new FileInputStream(file));
+        }
+
+        domainProperties.put(domain, properties);
     }
 
     public void init() throws IOException {
-        domainProperties = new HashMap<String, Properties>(domains.size());
+        ResourceEditor editor = new ResourceEditor();
+        editor.setAsText("classpath:config/");
+        Resource configDirResource = (Resource) editor.getValue();
 
-        for (Map.Entry<String, Resource> entry : domains.entrySet()) {
-            Properties properties = new Properties();
-            properties.load(entry.getValue().getInputStream());
+        if(configDirResource != null) {
+            try {
+                File configDir = configDirResource.getFile();
 
-            domainProperties.put(entry.getKey(), properties);
+                if(configDir.isDirectory()) {
+                    File[] propertiesFiles = configDir.listFiles(new FileFilter() {
+                        @Override
+                        public boolean accept(File file) {
+                            return StringUtils.endsWith(file.getName(), ".properties") || StringUtils.endsWith(file.getName(), ".xml");
+                        }
+                    });
+
+                    for(File propFile : propertiesFiles) {
+                        String filename = propFile.getName();
+                        String name = StringUtils.substring(filename, 0, StringUtils.indexOf(filename, "."));
+
+                        addProperties(name, propFile);
+                    }
+                }
+            } catch(IOException ignore) {
+            }
+        }
+
+        editor.setAsText("classpath:config.properties");
+        Resource configPropertiesResource = (Resource) editor.getValue();
+
+
+        if(configPropertiesResource != null) {
+            try {
+                File configPropertiesFile = configPropertiesResource.getFile();
+
+                if(configPropertiesFile.isFile()) {
+                    Properties configs = new Properties();
+
+                    configs.load(new FileReader(configPropertiesFile));
+
+                    for(Map.Entry entry : configs.entrySet()) {
+                        String name = (String) entry.getKey();
+                        editor.setAsText(String.valueOf(entry.getValue()));
+
+                        try {
+                            Resource resource = (Resource) editor.getValue();
+                            addProperties(name, resource.getFile());
+                        } catch(Exception e) {
+                            throw new IOException(String.format("Unable to load config '%s'.", name), e);
+                        }
+                    }
+                }
+            } catch(IOException ignore) {
+            }
         }
     }
 
@@ -118,6 +178,17 @@ public class ConfigHelper {
         return value;
     }
 
+    public static String evaluate(String value) {
+        try {
+            // ensure that expression is enabled
+            ApplicationContextHolder.get().getBean(ExpressionHelper.class);
+
+            return ELUtils.replaceVars(value);
+        } catch (Exception e) {
+            return value;
+        }
+    }
+
     public String getProperty(String key) {
         LOG.keywordAppender()
                 .appendProperty("Current Selected Domain", selectedDomain)
@@ -135,6 +206,6 @@ public class ConfigHelper {
 
         LOG.keywordAppender().appendProperty("Property String Value", properties.getProperty(key));
 
-        return properties.getProperty(key);
+        return evaluate(properties.getProperty(key));
     }
 }

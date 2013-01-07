@@ -6,13 +6,13 @@ Please see the {{jspringbot-doc:i18n|#introduction}} introduction section for th
 
 Example:
 
-{{classpath:Messages_en.properties}} - English language messages.
+{{Messages_en.properties}} - English language messages.
 
 | login.field.username=User Name
 | login.field.password=Password
 | login.page.title=Login Page
 
-{{classpath:Messages_ja.properties}} - Japanese language messages.
+{{Messages_ja.properties}} - Japanese language messages.
 
 | login.field.username=\u30E6\u30FC\u30B6\u30FC\u540D
 

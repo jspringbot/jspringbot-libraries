@@ -28,16 +28,7 @@
 
   <description>jSpringBot Config Keywords</description>
 
-  <import resource="classpath:spring/spring-expression.xml"/>
-
-  <bean name="configHelper" class="org.jspringbot.keyword.config.ConfigHelper" init-method="init">
-    <property name="domains">
-      <map>
-        <entry key="robot-variables" value="classpath:variables.properties"/>
-        <entry key="sample" value="classpath:sample.properties"/>
-      </map>
-    </property>
-  </bean>
+  <bean name="configHelper" class="org.jspringbot.keyword.config.ConfigHelper" init-method="init"/>
 
   <bean name="configExpressionHandlerRegistryBean"
         class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">

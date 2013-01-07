@@ -6,10 +6,12 @@ The variable identifiers are {{$1}}, {{$2}}, {{$3}} ... and so on depending on t
 
 Example:
 
-| `EL Add Variable`   |  var1                    | hello                      |
-| `EL Add Variable`   |  var2                    | world                      |
-| `EL Should Be True` | $[contains(var1, 'lo')]  |                            |
-| `EL Should Be True` | $[1+1 eq 2]              |                            |
-| `EL Should Be True` | $[$1 eq true]            | $[b:'true']                |
-| `EL Should Be True` | $[empty '']              |                            |
-| `EL Should Be True` | $[not empty var1]        |                            |
+| `EL Add Variable`    |  var1                      | hello                      |
+| `EL Add Variable`    |  var2                      | world                      |
+| `EL Should Be False` | $[contains(var1, 'alvin')] |                            |
+| `EL Should Be False` | $[1+1 ne 2]                |                            |
+| `EL Should Be False` | $[$1 eq false]             | $[b:'true']                |
+| `EL Should Be False` | $[not empty '']            |                            |
+| `EL Should Be False` | $[empty var1]              |                            |
+
+See also `EL Should Be True`.

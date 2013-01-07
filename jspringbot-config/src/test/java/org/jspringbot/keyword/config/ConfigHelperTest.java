@@ -32,7 +32,7 @@ import static junit.framework.Assert.assertEquals;
  * Test for {@link org.jspringbot.keyword.config.ConfigHelper} class.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:sample-config.xml"})
+@ContextConfiguration(locations={"classpath:spring-test.xml"})
 public class ConfigHelperTest {
 
     @Autowired
@@ -40,6 +40,14 @@ public class ConfigHelperTest {
 
     @Autowired
     protected ExpressionHelper expressionHelper;
+
+    @Test
+    public void testConfigDir() throws Exception {
+        configHelper.selectDomain("a");
+        assertEquals("a value", configHelper.getProperty("a"));
+        configHelper.selectDomain("b");
+        assertEquals("b value", configHelper.getProperty("b"));
+    }
 
     @Test
     public void testSample() throws Exception {

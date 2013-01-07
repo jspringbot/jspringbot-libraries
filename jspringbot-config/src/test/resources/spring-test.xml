@@ -23,5 +23,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <import resource="spring/spring-config.xml"/>
+  <import resource="classpath:spring/spring-expression.xml"/>
+  <import resource="classpath:spring/spring-config.xml"/>
 </beans>

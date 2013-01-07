@@ -2,7 +2,7 @@ Retrieves the integer property from the selected configuration domain.
 
 Example:
 
-{{classpath:domain1.properties}}
+{{classpath:config/domain1.properties}}
 
 | stringProperty=string value
 | integerProperty=100

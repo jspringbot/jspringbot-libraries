@@ -27,8 +27,8 @@ import java.util.Collection;
 @Component
 @KeywordInfo(
         name = "EL Run Keyword For Each",
-        parameters = {"keyword", "name", "list"},
-        description = "classpath:desc/ELForEachRunKeyword.txt"
+        parameters = {"keyword", "itemName", "itemList"},
+        description = "classpath:desc/ELRunKeywordForEach.txt"
 )
 public class ELRunKeywordForEach extends AbstractExpressionKeyword {
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);

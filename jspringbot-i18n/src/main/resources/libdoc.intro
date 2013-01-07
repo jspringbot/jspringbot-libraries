@@ -164,23 +164,36 @@ The {{Locale ID}} has the following format {{language_country_variant}}.
 | da_DK | Danish | Denmark |
 | es_HN | Spanish | Honduras |
 
+== Messages Files ==
+
+All resources with format {{Messages_[localeID].properties}} will be loaded as messages i18n file.
+
+Example:
+
+| src/
+|   test/
+|     resources/
+|       Messages_en.properties
+|       Messages_ja.properties
+|       Messages_es_PR.properties
+
 == Examples ==
 
 Assume we have these multilingual messages resources.
 
-{{classpath:Messages_en.properties}} - English language messages.
+{{Messages_en.properties}} - English language messages.
 
 | login.field.username=User Name
 | login.field.password=Password
 | login.page.title=Login Page
 
-{{classpath:Messages_ja.properties}} - Japanese language messages.
+{{Messages_ja.properties}} - Japanese language messages.
 
 | login.field.username=\u30E6\u30FC\u30B6\u30FC\u540D
 | login.field.password=\u30D1\u30B9\u30EF\u30FC\u30C9
 | login.page.title=\u30ED\u30B0\u30A4\u30F3\u30DA\u30FC\u30B8
 
-{{classpath:Messages_es.properties}} - Spanish language messages.
+{{Messages_es_PR.properties}} - Spanish language messages.
 
 | login.field.username=Nombre de usuario
 | login.field.password=Contrase\u00F1a
@@ -251,17 +264,6 @@ Where:
 - {{messageCode}} the i18n message code.
 
 {{html:<div class="alert alert-danger">}} {{html:<strong>}}Important!{{html:</strong>}} The i18n expression is only available for jSpringBot Library keywords. {{html:</div>}}
-
-*The following code snippet enables the expression support {{classpath:spring/spring-i18n.xml}}:*
-
-|  <bean name="i18nExpressionHandlerRegistryBean"
-|        class="org.jspringbot.keyword.expression.plugin.ExpressionHandlerRegistryBean">
-|    <constructor-arg>
-|      <bean class="org.jspringbot.keyword.i18n.I18nExpressionHandler">
-|        <constructor-arg ref="i18nHelper"/>
-|      </bean>
-|    </constructor-arg>
-|  </bean>
 
 *Sample Test Usage:*
 

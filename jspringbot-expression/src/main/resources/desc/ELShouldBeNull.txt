@@ -1,0 +1,14 @@
+Evaluates the given EL {{expression}} with {{*variables}}, and this fails if the evaluation is not {{null}}.
+
+The variable identifiers are {{$1}}, {{$2}}, {{$3}} ... and so on depending on the number.
+
+*Note:* The {{*variables}} can be an EL expression as well.
+
+Example:
+
+| `EL Add Variable`    | nullVar    | $[null]  |
+| `EL Should Be Null`  | $[null]    |
+| `EL Should Be Null`  | $[$1]      | $[null]  |
+| `EL Should Be Null`  | $[nullVar] |
+
+See also `EL Should Not Be Null`.
