@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:ctx="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    <property name="locations">
+      <list>
+        <value>classpath:jspringbot.properties</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="${db.jdbc.driverClassName}"/>
+    <property name="url" value="${db.jdbc.url}"/>
+    <property name="username" value="${db.jdbc.username}"/>
+    <property name="password" value="${db.jdbc.password}"/>
+    <property name="maxActive" value="2"/>
+    <property name="maxWait" value="1000"/>
+    <property name="poolPreparedStatements" value="true"/>
+    <property name="defaultAutoCommit" value="true"/>
+  </bean>
+
+  <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <property name="dataSource" ref="dataSource"/>
+    <property name="hibernateProperties">
+      <value>
+        hibernate.dialect=${db.hibernate.dialect}
+      </value>
+    </property>
+  </bean>
+
+  <bean name="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
+    <property name="sessionFactory" ref="sessionFactory"/>
+  </bean>
+
+  <bean name="dbHelper" class="org.jspringbot.keyword.db.DbHelper" init-method="init" destroy-method="rollback">
+    <constructor-arg ref="sessionFactory"/>
+    <property name="useSchemaSyntax" value="${db.switch.schema.statement:use %s}"/>
+  </bean>
+
+  <!-- Scan components -->
+  <ctx:component-scan base-package="org.jspringbot.keyword.db"/>
+  <ctx:annotation-config/>
+</beans>

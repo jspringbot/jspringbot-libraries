@@ -19,14 +19,15 @@
 package org.jspringbot.keyword.db;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.hibernate.*;
 import org.hibernate.jdbc.Work;
 import org.hibernate.type.Type;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceEditor;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -36,6 +37,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DbHelper {
+
+    private static final Logger LOGGER = Logger.getLogger(DbHelper.class);
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(DbHelper.class);
 
@@ -51,7 +54,7 @@ public class DbHelper {
 
     protected List records;
 
-    protected Properties externalQueries;
+    protected Properties externalQueries = new Properties();
 
     protected String schema;
 
@@ -67,18 +70,80 @@ public class DbHelper {
         this.useSchemaSyntax = useSchemaSyntax;
     }
 
-    public void setQuerySource(Resource source) {
-        try {
-            externalQueries = new Properties();
+    private void addExternalQueries(File file) throws IOException {
+        String filename = file.getName();
 
-            if(StringUtils.endsWithIgnoreCase(source.getFilename(), "xml")) {
-                externalQueries.loadFromXML(source.getInputStream());
-            } else {
-                externalQueries.load(new InputStreamReader(source.getInputStream()));
-            }
-        } catch (IOException e) {
-            throw new IllegalStateException("Error loading queries.");
+        Properties properties = new Properties();
+
+        if(StringUtils.endsWith(filename, ".properties")) {
+            properties.load(new FileReader(file));
+        } else if(StringUtils.endsWith(filename, ".xml")) {
+            properties.loadFromXML(new FileInputStream(file));
         }
+
+        externalQueries.putAll(properties);
+    }
+
+    public void init() {
+        ResourceEditor editor = new ResourceEditor();
+        editor.setAsText("classpath:db-queries/");
+        Resource dbDirResource = (Resource) editor.getValue();
+
+        boolean hasDBDirectory = true;
+        boolean hasDBProperties = true;
+
+        if(dbDirResource != null) {
+            try {
+                File configDir = dbDirResource.getFile();
+
+                if(configDir.isDirectory()) {
+                    File[] propertiesFiles = configDir.listFiles(new FileFilter() {
+                        @Override
+                        public boolean accept(File file) {
+                            return StringUtils.endsWith(file.getName(), ".properties") || StringUtils.endsWith(file.getName(), ".xml");
+                        }
+                    });
+
+                    for(File propFile : propertiesFiles) {
+                        addExternalQueries(propFile);
+                    }
+                }
+            } catch(IOException ignore) {
+                hasDBDirectory = false;
+            }
+        }
+
+        editor.setAsText("classpath:db-queries.properties");
+        Resource dbPropertiesResource = (Resource) editor.getValue();
+
+        if(dbPropertiesResource != null) {
+            try {
+                if(dbPropertiesResource.getFile().isFile()) {
+                    addExternalQueries(dbPropertiesResource.getFile());
+                }
+            } catch(IOException e) {
+                hasDBProperties = false;
+            }
+        }
+
+        editor.setAsText("classpath:db-queries.xml");
+        Resource dbXMLResource = (Resource) editor.getValue();
+
+        if(dbXMLResource != null && !hasDBProperties) {
+            try {
+                if(dbXMLResource.getFile().isFile()) {
+                    addExternalQueries(dbXMLResource.getFile());
+                }
+            } catch(IOException e) {
+                hasDBProperties = false;
+            }
+        }
+
+        if(!hasDBDirectory && !hasDBProperties) {
+            LOGGER.warn("No query sources found.");
+        }
+
+        begin();
     }
 
     public void begin() {

@@ -23,5 +23,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <import resource="spring-test.xml"/>
+  <description>jSpringBot DB Keywords</description>
+
+  <import resource="spring/spring-db.xml"/>
+
+  <bean id="versionStrategy" class="com.carbonfive.db.migration.SimpleVersionStrategy"/>
+
+  <bean class="com.carbonfive.db.migration.DataSourceMigrationManager" init-method="migrate">
+    <constructor-arg ref="dataSource"/>
+    <property name="versionStrategy" ref="versionStrategy"/>
+  </bean>
 </beans>

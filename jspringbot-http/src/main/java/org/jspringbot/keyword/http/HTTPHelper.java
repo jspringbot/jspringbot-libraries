@@ -37,7 +37,6 @@ import org.apache.http.impl.auth.BasicScheme;
 import org.apache.http.impl.client.AbstractHttpClient;
 import org.apache.http.impl.client.BasicAuthCache;
 import org.apache.http.impl.client.BasicCookieStore;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
@@ -96,9 +95,6 @@ public class HTTPHelper {
     public HTTPHelper(AbstractHttpClient client) {
         this.client = client;
         newSession();
-    }
-
-    public HTTPHelper(DefaultHttpClient defaultHttpClient, JSONHelper jsonHelper) {
     }
 
     public void setJsonHelper(JSONHelper jsonHelper) {
@@ -185,7 +181,6 @@ public class HTTPHelper {
      * @throws java.net.URISyntaxException
      */
     public void createRequest(String paramUrl, String method) throws MalformedURLException, URISyntaxException {
-
         uri = new URL(paramUrl).toURI();
         targetHost = new HttpHost(uri.getHost(), uri.getPort(), uri.getScheme());
 
