@@ -19,12 +19,20 @@
 package org.jspringbot.keyword.config;
 
 
+import junitx.util.PrivateAccessor;
 import org.jspringbot.keyword.expression.ExpressionHelper;
+import org.jspringbot.keyword.expression.plugin.DefaultVariableProviderImpl;
+import org.jspringbot.spring.ApplicationContextHolder;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.annotation.Resource;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -40,6 +48,12 @@ public class ConfigHelperTest {
 
     @Autowired
     protected ExpressionHelper expressionHelper;
+
+    @Resource
+    protected DefaultVariableProviderImpl defaultVariableProvider;
+
+    @Autowired
+    private ApplicationContext context;
 
     @Test
     public void testConfigDir() throws Exception {
@@ -69,7 +83,22 @@ public class ConfigHelperTest {
         assertEquals(true, expressionHelper.evaluate("$[b:config:sample:booleanProperty]"));
 
         expressionHelper.evaluationShouldBe("$[l:config:robot-variables:integerProperty]", "$[100]");
+
     }
 
+    @Test
+    public void testConfigExpressionReplacement() throws Exception {
+        defaultVariableProvider.add("var1", "var1Value");
+        expressionHelper.evaluationShouldBe("$[config:b:var]", "var1Value/a");
+    }
 
+    @Before
+    public void setUp() throws Throwable {
+        PrivateAccessor.invoke(ApplicationContextHolder.class, "set", new Class[] {ApplicationContext.class}, new Object[] {context});
+    }
+
+    @After
+    public void tearDown() throws Throwable {
+        PrivateAccessor.invoke(ApplicationContextHolder.class, "remove", new Class[]{}, new Object[]{});
+    }
 }

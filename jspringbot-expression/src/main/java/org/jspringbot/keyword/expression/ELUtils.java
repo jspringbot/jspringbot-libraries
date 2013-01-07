@@ -17,7 +17,7 @@ public class ELUtils {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
-    public static final Pattern PATTERN = Pattern.compile("\\$\\{[^\\}]+\\}", Pattern.CASE_INSENSITIVE);
+    public static final Pattern PATTERN = Pattern.compile("\\$\\{([^\\}]+)\\}", Pattern.CASE_INSENSITIVE);
 
     private static ExpressionHelper getHelper() {
         return ApplicationContextHolder.get().getBean(ExpressionHelper.class);
@@ -32,17 +32,22 @@ public class ELUtils {
         Matcher matcher = PATTERN.matcher(buf);
 
         int startIndex = 0;
-        while(matcher.find(startIndex)) {
+        while(startIndex < buf.length() && matcher.find(startIndex)) {
             String name = matcher.group(1);
 
-            String value = String.valueOf(getVariables().getVariables().get(name));
+            Object value = getVariables().getVariables().get(name);
+            LOG.keywordAppender().appendProperty("Replacement EL Value ['" + name + "']", value);
             if(value == null) {
-                value = String.valueOf(robotVar(name));
+                value = robotVar(name);
+                LOG.keywordAppender().appendProperty("Replacement Robot Value ['" + name + "']", value);
             }
 
-            buf.replace(matcher.start(), matcher.end(), value);
+            buf.replace(matcher.start(), matcher.end(), String.valueOf(value));
             startIndex = matcher.end();
         }
+
+        LOG.keywordAppender().appendProperty(String.format("Replacement [%s]", string), buf.toString());
+
 
         return buf.toString();
     }

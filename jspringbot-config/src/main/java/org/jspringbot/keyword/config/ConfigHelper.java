@@ -19,6 +19,7 @@
 package org.jspringbot.keyword.config;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.jspringbot.keyword.expression.ELUtils;
 import org.jspringbot.keyword.expression.ExpressionHelper;
 import org.jspringbot.spring.ApplicationContextHolder;
@@ -32,6 +33,8 @@ import java.util.Map;
 import java.util.Properties;
 
 public class ConfigHelper {
+    private static final Logger LOGGER = Logger.getLogger(ConfigHelper.class);
+
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ConfigHelper.class);
 
     private Map<String, Properties> domainProperties = new HashMap<String, Properties>();
@@ -84,7 +87,8 @@ public class ConfigHelper {
                         addProperties(name, propFile);
                     }
                 }
-            } catch(IOException ignore) {
+            } catch(IOException e) {
+                LOGGER.warn(e.getMessage(), e);
             }
         }
 
@@ -113,7 +117,8 @@ public class ConfigHelper {
                         }
                     }
                 }
-            } catch(IOException ignore) {
+            } catch(IOException e) {
+                LOGGER.warn(e.getMessage(), e);
             }
         }
     }
@@ -185,6 +190,8 @@ public class ConfigHelper {
 
             return ELUtils.replaceVars(value);
         } catch (Exception e) {
+            LOGGER.warn(e.getMessage(), e);
+
             return value;
         }
     }
