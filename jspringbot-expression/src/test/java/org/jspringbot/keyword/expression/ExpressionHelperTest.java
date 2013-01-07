@@ -76,7 +76,7 @@ public class ExpressionHelperTest {
         evaluateEquals("$[f:'100']", 100.0f);
         evaluateEquals("$[s:100]", "100");
         evaluateEquals("$[b:'false']", false);
-        evaluateEquals("$[i:math:abs(-1)]", 1);
+        evaluateEquals("$[i:math:absLong(-1)]", 1);
 
         List<String> items = new ArrayList<String>();
 
