@@ -17,7 +17,9 @@ public class XMLUtils {
     }
 
     public static String attr(Object... args) throws TransformerException {
-        if(Element.class.isInstance(args[0])) {
+        if(args[0] == null && String.class.isInstance(args[1]) && args.length == 2) {
+            return attr(args[1]);
+        } else if(Element.class.isInstance(args[0])) {
             Element element = (Element) args[0];
             String attribute = (String) args[1];
             String result = element.getAttribute(attribute);

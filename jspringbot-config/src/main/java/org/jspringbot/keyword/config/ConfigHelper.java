@@ -68,6 +68,9 @@ public class ConfigHelper {
         editor.setAsText("classpath:config/");
         Resource configDirResource = (Resource) editor.getValue();
 
+        boolean hasConfigDirectory = true;
+        boolean hasConfigProperties = true;
+
         if(configDirResource != null) {
             try {
                 File configDir = configDirResource.getFile();
@@ -88,7 +91,7 @@ public class ConfigHelper {
                     }
                 }
             } catch(IOException e) {
-                LOGGER.warn(e.getMessage(), e);
+                hasConfigDirectory = false;
             }
         }
 
@@ -118,8 +121,12 @@ public class ConfigHelper {
                     }
                 }
             } catch(IOException e) {
-                LOGGER.warn(e.getMessage(), e);
+                hasConfigProperties = false;
             }
+        }
+
+        if(!hasConfigDirectory && !hasConfigProperties) {
+            LOGGER.warn("No configuration found.");
         }
     }
 
