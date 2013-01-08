@@ -1,0 +1,14 @@
+This keyword will clear all variables added using the `EL Add Global Variable` keyword.
+
+Example:
+
+| `EL Add Global Variable`    |  var1            | hello                           |
+| `EL Add Global Variable`    |  var2            | world                           |
+| ${hw}=               | `EL Evaluate`    | $[join(' ', var1, var2)]        |
+| `EL Clear Global Variables` |                  |                                 |
+| `EL Evaluate`        | $[var1]          | *# fail none existing variable* |
+
+=>
+
+| ${hw} = 'hello world'
+| # Would fail on second use of `EL Evaluate` since have used a variable that does not exist.

@@ -1,0 +1,14 @@
+This will `Run Keyword` for random arrangement of the items in the given list.
+
+Example:
+
+| ${items}=                   | `Create List`             | item1 | item2    | item3 |
+| `EL Run Keyword For Random` | Process Item              | 2     | item     | ${items} |
+|                           |
+| *** Keywords ***          |
+| Process Item              |
+|     ${item}=              | `EL Evaluate`  | $[item] |
+|     Log                   | ${item}        |
+
+This will loop the {{items}} randomly and call  {{Process Item}} keyword for each items.
+Each call will have an EL variable named {{item}}.

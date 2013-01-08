@@ -1,0 +1,18 @@
+Adds or replaces a global variable given the {{name}} and {{value}}.
+
+The added variables will be retained, unless `EL Global Clear Variables` keyword was used.
+
+Example:
+
+| `EL Add Global Variable`    |  var1            | hello                      |
+| `EL Add Global Variable`    |  var2            | world                      |
+| ${hw}=               | `EL Evaluate`    | $[join(' ', var1, var2)]   |
+| `EL Add Global Variable`    |  var1            | $[5]                       |
+| `EL Add Global Variable`    |  var2            | $[6]                       |
+| ${sum}=              | `EL Evaluate`    | $[var1 + var2]             |
+| `EL Should Be True`  | $[11 eq ${sum}]  |                            |
+
+=>
+
+| ${hw} = 'hello world'
+| ${sum} = 11              # long type
