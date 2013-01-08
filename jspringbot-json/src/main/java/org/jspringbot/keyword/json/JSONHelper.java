@@ -23,6 +23,7 @@ import antlr.TokenStreamException;
 import com.jayway.jsonpath.JsonPath;
 import com.sdicons.json.model.JSONValue;
 import com.sdicons.json.parser.JSONParser;
+import org.apache.commons.lang.Validate;
 import org.jspringbot.syntax.HighlightRobotLogger;
 
 import javax.script.ScriptEngine;
@@ -38,6 +39,14 @@ public class JSONHelper {
     protected  String jsonString;
 
     protected ScriptEngine engine;
+
+    public void reset() {
+        jsonString = null;
+    }
+
+    public void validate() {
+        Validate.notNull(jsonString, "jsonString was not set.");
+    }
 
     public void setJsonString(String jsonString) {
         try {
@@ -65,6 +74,8 @@ public class JSONHelper {
 
     @SuppressWarnings("unchecked")
     public List<Object> getJsonValues(String jsonExpression) {
+        validate();
+
         Object jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
 
         List items;
@@ -85,6 +96,8 @@ public class JSONHelper {
     }
 
     public Object getJsonValue(String jsonExpression) {
+        validate();
+
         Object jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
 
         if(jsonValue instanceof List) {
@@ -131,7 +144,9 @@ public class JSONHelper {
         }
     }
 
-    public int getJsonArrayLength(String jsonExpression) {
+    public int getJsonListLength(String jsonExpression) {
+        validate();
+
         try {
             ScriptEngineManager manager = new ScriptEngineManager();
             engine = manager.getEngineByName("JavaScript");
@@ -153,7 +168,7 @@ public class JSONHelper {
     }
 
     public void jsonArrayLengthShouldBe(String jsonExpression, int expectedLength) {
-        int length = getJsonArrayLength(jsonExpression);
+        int length = getJsonListLength(jsonExpression);
         if (length != expectedLength) {
             throw new IllegalStateException(String.format("Json Array length should be %s but was %s", expectedLength, length));
         }
