@@ -26,8 +26,8 @@
   <description>jSpringBot Common Beans</description>
 
   <bean name="connectionManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager">
-    <property name="defaultMaxPerRoute" value="2"/>
-    <property name="maxTotal" value="2"/>
+    <property name="defaultMaxPerRoute" value="5"/>
+    <property name="maxTotal" value="5"/>
   </bean>
 
   <bean name="httpClient" class="org.apache.http.impl.client.DefaultHttpClient">

@@ -124,6 +124,7 @@ public class HTTPHelper {
             jsonHelper.reset();
         }
 
+        consume();
         params = new LinkedList<NameValuePair>();
         headers = new LinkedList<NameValuePair>();
         status = null;
@@ -138,7 +139,6 @@ public class HTTPHelper {
         this.context = new BasicHttpContext();
         BasicCookieStore cookieStore = new BasicCookieStore();
         context.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
-
 
         reset();
     }
