@@ -56,7 +56,7 @@ public class ELRunKeywordForRandom extends AbstractExpressionKeyword {
         }
 
         Collections.shuffle(indices);
-        for(int i = 0; i < indices.size() || i < random; i++) {
+        for(int i = 0; i < indices.size() && i < random; i++) {
             LOG.keywordAppender().appendProperty("Random index", indices.get(i));
 
             Object item = items.get(indices.get(i));
