@@ -22,8 +22,8 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Projected Count", description = "Get the projected count.")
-public class GetProjectedCount extends AbstractDBKeyword {
+@KeywordInfo(name = "Get DB Projected Count", description = "Get the DB projected count.")
+public class GetDBProjectedCount extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {

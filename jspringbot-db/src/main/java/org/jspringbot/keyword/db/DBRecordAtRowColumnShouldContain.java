@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Create Query By Name", description = "Create Query By Name.", parameters = {"queryName"})
-public class CreateQueryByName extends AbstractDBKeyword {
+@KeywordInfo(name = "DB Record At Row Column Should Contain", description = "DB Record At Row Column Should Contain.", parameters = {"rowNum","columnNum","expectedValue"})
+public class DBRecordAtRowColumnShouldContain extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.createQueryByName(String.valueOf(params[0]));
+        helper.recordAtRowColumnShouldContain(Integer.parseInt(String.valueOf(params[0])), Integer.parseInt(String.valueOf(params[1])), params[2]);
 
         return null;
     }

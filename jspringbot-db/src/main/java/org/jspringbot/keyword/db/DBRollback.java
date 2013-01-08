@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Record At Column Should Contain", description = "Record At Column Should Contain.", parameters = {"columnNum","expectedValue"})
-public class RecordAtColumnShouldContain extends AbstractDBKeyword {
+@KeywordInfo(name = "DB Rollback", description = "DB Rollback.")
+public class DBRollback extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.recordAtColumnShouldContain(Integer.parseInt(String.valueOf(params[0])), params[1]);
+        helper.rollback();
 
         return null;
     }

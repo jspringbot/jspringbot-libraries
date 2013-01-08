@@ -22,11 +22,13 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Record At Row Column", description = "Retrieve the record given the row index and column index.", parameters = {"rowNum","columnNum"})
-public class GetRecordAtRowColumn extends AbstractDBKeyword {
+@KeywordInfo(name = "Set DB Integer Parameter", description = "Sets DB Integer Parameter.", parameters = {"key","value"})
+public class SetDBIntegerParameter extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        return helper.getRecordAtRowColumn(Integer.parseInt(String.valueOf(params[0])), Integer.parseInt(String.valueOf(params[1])));
+        helper.setIntegerParameter(String.valueOf(params[0]), Integer.parseInt(String.valueOf(params[1])));
+
+        return null;
     }
 }

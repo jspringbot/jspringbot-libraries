@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Commit", description = "Commits transaction and closes the session.")
-public class Commit extends AbstractDBKeyword {
+@KeywordInfo(name = "Set DB Parameter List", description = "Sets DB Parameter List.", parameters = {"key","parameterList"})
+public class SetDBParameterList extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.commit();
+        helper.setParameterList(String.valueOf(params[0]), params[1]);
 
         return null;
     }

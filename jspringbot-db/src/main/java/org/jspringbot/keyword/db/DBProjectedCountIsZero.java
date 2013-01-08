@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Rollback", description = "Rollback.")
-public class Rollback extends AbstractDBKeyword {
+@KeywordInfo(name = "DB Projected Count Is Zero", description = "DB Projected Count Is Zero.")
+public class DBProjectedCountIsZero extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.rollback();
+        helper.projectedCountIsZero();
 
         return null;
     }

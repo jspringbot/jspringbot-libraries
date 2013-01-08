@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Projected Count Should Be Equal", description = "Record Count Should Be Equal.", parameters = {"expectedCount"})
-public class ProjectedCountShouldBeEqual extends AbstractDBKeyword {
+@KeywordInfo(name = "DBBegin", description = "Opens a DB session and begins a transaction.")
+public class DBBegin extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.projectedCountShouldBeEqual(Integer.parseInt(String.valueOf(params[0])));
+        helper.begin();
 
         return null;
     }

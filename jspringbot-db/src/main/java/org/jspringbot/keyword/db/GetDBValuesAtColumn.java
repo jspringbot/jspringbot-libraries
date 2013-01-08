@@ -22,13 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Begin", description = "Opens a session and begins a transaction.")
-public class Begin extends AbstractDBKeyword {
+@KeywordInfo(name = "Get Db Values At Column", description = "Get DB Values At Column.", parameters = {"columnNum"})
+public class GetDBValuesAtColumn extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.begin();
-
-        return null;
+        return helper.getValuesAtColumn(Integer.parseInt(String.valueOf(params[0])));
     }
 }

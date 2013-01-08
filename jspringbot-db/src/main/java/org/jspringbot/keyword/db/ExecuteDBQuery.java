@@ -22,12 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Projected Count Is Not Zero", description = "Projected Count Is Not Zero.")
-public class ProjectedCountIsNotZero extends AbstractDBKeyword {
+@KeywordInfo(name = "Execute DB Query", description = "Executes DB Query.")
+public class ExecuteDBQuery extends AbstractDBKeyword {
 
-    @Override
     public Object execute(Object[] params) {
-        helper.projectedCountIsNotZero();
+        helper.executeQuery();
 
         return null;
     }

@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Record Should Not Be Empty", description = "Record Should Not Be Empty.")
-public class RecordShouldNotBeEmpty extends AbstractDBKeyword {
+@KeywordInfo(name = "Create DB Query", description = "Create DB Query.", parameters = {"queryString"})
+public class CreateDBQuery extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.recordShouldNotBeEmpty();
+        helper.createQuery(String.valueOf(params[0]));
 
         return null;
     }

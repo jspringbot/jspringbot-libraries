@@ -22,11 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Unique Result", description = "Returns the query unique result.")
-public class GetUniqueResult extends AbstractDBKeyword {
+@KeywordInfo(name = "Execute DB Update", description = "Executes DB Update.")
+public class ExecuteDBUpdate extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        return helper.getUniqueResult();
+        return helper.executeUpdate();
     }
 }
+

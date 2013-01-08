@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Set String Parameter", description = "Sets String Parameter.", parameters = {"key","value"})
-public class SetStringParameter extends AbstractDBKeyword {
+@KeywordInfo(name = "DB Projected Count Is Not Zero", description = "DB Projected Count Is Not Zero.")
+public class DBProjectedCountIsNotZero extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.setStringParameter(String.valueOf(params[0]), String.valueOf(params[1]));
+        helper.projectedCountIsNotZero();
 
         return null;
     }

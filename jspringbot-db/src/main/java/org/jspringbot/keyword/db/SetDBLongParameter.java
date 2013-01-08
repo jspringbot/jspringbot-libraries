@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Set Integer Parameter", description = "Sets Integer Parameter.", parameters = {"key","value"})
-public class SetIntegerParameter extends AbstractDBKeyword {
+@KeywordInfo(name = "Set DB Long Parameter", description = "Sets DB Long Parameter.", parameters = {"key","value"})
+public class SetDBLongParameter extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.setIntegerParameter(String.valueOf(params[0]), Integer.parseInt(String.valueOf(params[1])));
+        helper.setLongParameter(String.valueOf(params[0]), Long.valueOf(String.valueOf(params[1])));
 
         return null;
     }

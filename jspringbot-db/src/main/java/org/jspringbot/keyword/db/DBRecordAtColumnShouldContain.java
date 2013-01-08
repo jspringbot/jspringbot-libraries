@@ -22,12 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Set Parameter List", description = "Sets Parameter List.", parameters = {"key","parameterList"})
-public class SetParameterList extends AbstractDBKeyword {
+@KeywordInfo(name = "DB Record At Column Should Contain", description = "DB Record At Column Should Contain.", parameters = {"columnNum","expectedValue"})
+public class DBRecordAtColumnShouldContain extends AbstractDBKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.setParameterList(String.valueOf(params[0]), params[1]);
+        helper.recordAtColumnShouldContain(Integer.parseInt(String.valueOf(params[0])), params[1]);
 
         return null;
     }
