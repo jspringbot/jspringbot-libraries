@@ -41,7 +41,7 @@ public class XMLHelperTest {
     private SampleResources resources;
 
     @Autowired
-    private GetXPathElementTextContent getXPathElementTextContentKeyword;
+    private GetXMLXPathElementTextContent getXPathElementTextContentKeyword;
 
     @Test
     public void testGetXpathElements() throws Exception {

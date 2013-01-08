@@ -35,10 +35,10 @@ import java.io.IOException;
 import java.io.StringReader;
 
 @Component
-@KeywordInfo(name = "Get XPath Element Text Content", description = "Get XPath Element Text Content", parameters = {"element", "xpathExpression"})
-public class GetXPathElementTextContent extends AbstractXMLKeyword {
+@KeywordInfo(name = "Get XML XPath Element Text Content", description = "Get XML XPath Element Text Content", parameters = {"element", "xpathExpression"})
+public class GetXMLXPathElementTextContent extends AbstractXMLKeyword {
 
-    public static final JSpringBotLogger LOG = JSpringBotLogger.getLogger(GetXPathElementTextContent.class);
+    public static final JSpringBotLogger LOG = JSpringBotLogger.getLogger(GetXMLXPathElementTextContent.class);
 
     @Override
     public Object execute(Object[] params) throws ParserConfigurationException, IOException, SAXException {

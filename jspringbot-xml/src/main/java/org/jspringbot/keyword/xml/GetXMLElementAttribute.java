@@ -10,10 +10,10 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Get Element Attribute", description = "Get Element Attribute", parameters = {"element", "attributeName"})
-public class GetElementAttribute  extends AbstractXMLKeyword {
+@KeywordInfo(name = "Get XML Element Attribute", description = "Get XML Element Attribute", parameters = {"element", "attributeName"})
+public class GetXMLElementAttribute extends AbstractXMLKeyword {
 
-    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(GetElementAttribute.class);
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(GetXMLElementAttribute.class);
 
     @Override
     public Object execute(Object[] params) throws ParserConfigurationException, IOException, SAXException {

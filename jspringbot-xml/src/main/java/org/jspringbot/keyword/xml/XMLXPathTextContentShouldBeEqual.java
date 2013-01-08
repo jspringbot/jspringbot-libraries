@@ -18,30 +18,23 @@
 
 package org.jspringbot.keyword.xml;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
-import org.w3c.dom.Element;
 
 import javax.xml.transform.TransformerException;
-import java.util.List;
 
 @Component
-@KeywordInfo(name = "Get XPath Elements", description = "Get XPath Elements.", parameters = {"xpathExpression"})
-public class GetXPathElements extends AbstractXMLKeyword{
+@KeywordInfo(name = "XML XPath Text Content Should Be Equal", description = "XML XPath Text Content Should Be Equal.", parameters = {"xpathExpression", "expectedValue"})
+public class XMLXPathTextContentShouldBeEqual extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
         try {
-            List<Element> elements = helper.getXpathElements(String.valueOf(params[0]));
-
-            if(CollectionUtils.isEmpty(elements)) {
-                throw new IllegalArgumentException(String.format("No element fount for xpath expression '%s'.", params[0]));
-            }
-
-            return elements;
+            helper.xpathTextContentShouldBeEqual(String.valueOf(params[0]), String.valueOf(params[1]));
         } catch (TransformerException e) {
-            throw new IllegalArgumentException(String.format("Error while getting element for xpath expression %s'.", params[0]));
+            throw new IllegalStateException(e.getMessage(), e);
         }
+
+        return null;
     }
 }

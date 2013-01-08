@@ -24,15 +24,17 @@ import org.springframework.stereotype.Component;
 import javax.xml.transform.TransformerException;
 
 @Component
-@KeywordInfo(name = "Get XPath Single Text Content", description = "Get XPath Single Text Content.", parameters = {"xpathExpression"})
-public class GetXPathSingleTextContent extends AbstractXMLKeyword{
+@KeywordInfo(name = "XML XPath Should Match X Times", description = "XML XPath Should Match X Times.", parameters = {"xpathExpression", "numberOfTimes"})
+public class XMLXPathShouldMatchXTimes extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
         try {
-            return helper.getXPathSingleTextContent(String.valueOf(params[0]));
+            helper.xpathShouldMatchXTimes(String.valueOf(params[0]), Integer.parseInt(String.valueOf(params[1])));
         } catch (TransformerException e) {
-            throw new IllegalArgumentException(String.format("Error while getting text content for xpath expression %s'.", params[0]));
+             throw new IllegalStateException(e.getMessage(), e);
         }
+
+        return null;
     }
 }

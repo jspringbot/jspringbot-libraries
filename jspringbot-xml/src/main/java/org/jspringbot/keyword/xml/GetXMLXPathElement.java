@@ -18,21 +18,30 @@
 
 package org.jspringbot.keyword.xml;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
+import org.w3c.dom.Element;
 
 import javax.xml.transform.TransformerException;
+import java.util.List;
 
 @Component
-@KeywordInfo(name = "Get XPath Match Count", description = "Get XPath Match Count", parameters = {"xpathExpression"})
-public class GetXPathMatchCount extends AbstractXMLKeyword{
+@KeywordInfo(name = "Get XML XPath Element", description = "Get XML XPath Element.", parameters = {"xpathExpression"})
+public class GetXMLXPathElement extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
         try {
-            return helper.getXpathMatchCount(String.valueOf(params[0]));
+            List<Element> elements = helper.getXpathElements(String.valueOf(params[0]));
+
+            if(CollectionUtils.isEmpty(elements)) {
+                throw new IllegalArgumentException(String.format("No Element fount for xpath expression '%s'.", params[0]));
+            }
+
+            return elements.iterator().next();
         } catch (TransformerException e) {
-             throw new IllegalStateException(e.getMessage(), e);
+            throw new IllegalArgumentException(String.format("Error while getting element for xpath expression %s'.", params[0]));
         }
     }
 }

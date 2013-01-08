@@ -24,17 +24,15 @@ import org.springframework.stereotype.Component;
 import javax.xml.transform.TransformerException;
 
 @Component
-@KeywordInfo(name = "XPath Text Content Should Be Equal", description = "XPath Text Content Should Be Equal.", parameters = {"xpathExpression", "expectedValue"})
-public class XPathTextContentShouldBeEqual extends AbstractXMLKeyword{
+@KeywordInfo(name = "Get XML XPath Text Contents", description = "Get XML XPath Text Contents.", parameters = {"xpathExpression"})
+public class GetXMLXPathTextContents extends AbstractXMLKeyword{
 
     @Override
     public Object execute(Object[] params) {
         try {
-            helper.xpathTextContentShouldBeEqual(String.valueOf(params[0]), String.valueOf(params[1]));
+            return helper.getXpathTextContents(String.valueOf(params[0]));
         } catch (TransformerException e) {
-            throw new IllegalStateException(e.getMessage(), e);
+            throw new IllegalArgumentException(String.format("Error while getting text content for xpath expression %s'.", params[0]));
         }
-
-        return null;
     }
 }
