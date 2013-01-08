@@ -64,7 +64,7 @@
     </dependency>
     <dependency>
       <groupId>org.jspringbot</groupId>
-      <artifactId>jspringbot-pretty-logger</artifactId>
+      <artifactId>jspringbot-expression</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>
@@ -89,6 +89,12 @@
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
       <version>2.1</version>
+    </dependency>
+    <dependency>
+      <groupId>junit-addons</groupId>
+      <artifactId>junit-addons</artifactId>
+      <version>${junit.addons.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

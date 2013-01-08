@@ -18,13 +18,24 @@
 
 package org.jspringbot.keyword.date;
 
+import junitx.util.PrivateAccessor;
+import org.jspringbot.keyword.expression.ExpressionHelper;
+import org.jspringbot.spring.ApplicationContextHolder;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+
 import static junit.framework.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring-test.xml"})
@@ -33,8 +44,39 @@ public class DateHelperTest {
     @Autowired
     private DateHelper helper;
 
+    @Autowired
+    protected ExpressionHelper expressionHelper;
+
+    @Autowired
+    private ApplicationContext context;
+
     @Test
     public void testPrint() throws Exception {
         assertNotNull(helper.formatDateTime());
+    }
+
+    @Test
+    public void testExpression() throws Exception {
+        helper.setDateTimeFormat("yyyy-MM-dd HH:mm:ss");
+        expressionHelper.evaluate("$[date:parse('2013-02-08', 'yyyy-MM-dd')]");
+        expressionHelper.evaluationShouldBe("$[date:current('+1d +1y -1M')]", "2014-01-09 00:00:00");
+        assertTrue(Date.class.isInstance(expressionHelper.evaluate("$[date:toSQLDate()]")));
+        assertTrue(Time.class.isInstance(expressionHelper.evaluate("$[date:toSQLTime()]")));
+        assertTrue(Timestamp.class.isInstance(expressionHelper.evaluate("$[date:toSQLTimestamp()]")));
+
+        assertTrue(Date.class.isInstance(expressionHelper.evaluate("$[date:toSQLDate('2013-03-08', 'yyyy-MM-dd')]")));
+        assertTrue(Time.class.isInstance(expressionHelper.evaluate("$[date:toSQLTime()]")));
+        assertTrue(Timestamp.class.isInstance(expressionHelper.evaluate("$[date:toSQLTimestamp()]")));
+
+    }
+
+    @Before
+    public void setUp() throws Throwable {
+        PrivateAccessor.invoke(ApplicationContextHolder.class, "set", new Class[]{ApplicationContext.class}, new Object[]{context});
+    }
+
+    @After
+    public void tearDown() throws Throwable {
+        PrivateAccessor.invoke(ApplicationContextHolder.class, "remove", new Class[]{}, new Object[]{});
     }
 }

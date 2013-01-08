@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <name>now</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String now(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>current</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String current(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>midnight</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String midnight(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>parse</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String parse(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>toUtilDate</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.util.Date toUtilDate(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>toSQLDate</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.sql.Date toSQLDate(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>toSQLTime</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.sql.Time toSQLTime(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>toSQLTimestamp</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.sql.Timestamp toSQLTimestamp(java.lang.String[])</function-signature>
+  </function>
+</functions>

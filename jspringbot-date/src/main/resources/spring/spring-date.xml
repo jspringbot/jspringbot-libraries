@@ -30,6 +30,14 @@
 
   <bean name="dateHelper" class="org.jspringbot.keyword.date.DateHelper"/>
 
+  <bean id="dateFunctions" class="org.jspringbot.keyword.expression.engine.function.SupportedFunctionRegistryBean">
+    <constructor-arg>
+      <list>
+        <value>classpath:spring/date-functions.xml</value>
+      </list>
+    </constructor-arg>
+  </bean>
+
   <!-- Scan components -->
   <ctx:component-scan base-package="org.jspringbot.keyword.date" />
   <ctx:annotation-config/>

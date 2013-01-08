@@ -24,6 +24,11 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.jspringbot.syntax.HighlightRobotLogger;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Date;
+
+
 public class DateHelper {
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(DateHelper.class);
 
@@ -43,13 +48,64 @@ public class DateHelper {
         LOG.keywordAppender().appendProperty("Pattern", pattern);
 
         DateTimeFormat.forPattern(pattern);
+        this.formatterPattern = pattern;
     }
 
-    public void parseDateTime(String dateStr) {
-        parseDateTime(dateStr, formatterPattern);
+    public DateTime getCurrent() {
+        return current;
     }
 
-    public void parseDateTime(String dateStr, String pattern) {
+
+    public DateTimeZone getCurrentTimeZone() {
+        return currentTimeZone;
+    }
+
+    public String getFormatterPattern() {
+        return formatterPattern;
+    }
+
+    public String parseDateTime(String dateStr) {
+        return parseDateTime(dateStr, formatterPattern);
+    }
+
+    public Date getUtilDate() {
+        DateTime dt = current.withZone(currentTimeZone);
+
+        return new Date(dt.getMillis());
+    }
+
+    public java.sql.Date getSQLDate() {
+        DateTime dt = current.withZone(currentTimeZone);
+
+        return new java.sql.Date(dt.getMillis());
+    }
+
+    public Time getSQLTime() {
+        DateTime dt = current.withZone(currentTimeZone);
+
+        return new Time(dt.getMillis());
+    }
+
+    public Timestamp getSQLTimestamp() {
+        DateTime dt = current.withZone(currentTimeZone);
+
+        return new Timestamp(dt.getMillis());
+    }
+
+    public DateTime getParseDateTime(String dateStr) {
+        return getParseDateTime(dateStr, formatterPattern);
+    }
+
+    public DateTime getParseDateTime(String dateStr, String pattern) {
+        LOG.keywordAppender()
+                .appendProperty("Date String", dateStr)
+                .appendProperty("Parse Pattern", pattern);
+
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(pattern);
+        return dateTimeFormatter.parseDateTime(dateStr);
+    }
+
+    public String parseDateTime(String dateStr, String pattern) {
         LOG.keywordAppender()
                 .appendProperty("Date String", dateStr)
                 .appendProperty("Parse Pattern", pattern);
@@ -58,7 +114,7 @@ public class DateHelper {
         current = dateTimeFormatter.parseDateTime(dateStr);
 
         // show the log for print
-        formatDateTime();
+        return formatDateTime();
     }
 
     public String formatDateTime(String pattern) {
