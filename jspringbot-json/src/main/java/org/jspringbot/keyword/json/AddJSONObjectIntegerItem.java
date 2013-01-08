@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Add JSON Object Integer Item", description = "Add JSON Object Integer Item.", parameters = {"name", "value"})
+@KeywordInfo(
+        name = "Add JSON Object Integer Item",
+        parameters = {"name", "value"},
+        description = "classpath:desc/AddJSONObjectIntegerItem.txt"
+)
 public class AddJSONObjectIntegerItem extends AbstractJSONKeyword {
 
     @Override

@@ -18,15 +18,26 @@
 
 package org.jspringbot.keyword.json;
 
+import net.minidev.json.JSONObject;
 import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get JSON Array Length", description = "Returns JSON array length of the given expression.", parameters = {"jsonExpression"})
-public class GetJSONArrayLength extends AbstractJSONKeyword{
+@KeywordInfo(
+        name = "Get JSON Property Value",
+        parameters = {"jsonObject", "property"},
+        description = "Returns JSON property value for obj given key."
+)
+public class GetJSONPropertyValue extends AbstractJSONKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        return helper.getJsonArrayLength(String.valueOf(params[0]));
+        if(params[0] == null) {
+            return helper.getJsonValue(String.valueOf(params[1]));
+        }
+
+        JSONObject obj = (JSONObject) params[0];
+
+        return obj.get(String.valueOf(params[1]));
     }
 }

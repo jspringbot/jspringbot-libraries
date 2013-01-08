@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "End JSON Object", description = "Ends creation of JSON Object.")
+@KeywordInfo(
+        name = "End JSON Object",
+        description = "classpath:desc/EndJSONObject.txt"
+)
 public class EndJSONObject extends AbstractJSONKeyword {
 
     @Override

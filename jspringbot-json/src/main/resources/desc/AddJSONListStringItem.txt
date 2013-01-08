@@ -1,0 +1,17 @@
+Adds the string {{value}} to the current JSON List.
+
+Example:
+
+| `Start JSON Object`         |         |
+| `Start JSON List`           | names   |
+| `Add JSON List String Item` | alvin   |
+| `Add JSON List String Item` | shiela  |
+| `Add JSON List String Item` | ashier  |
+| `End JSON List`             |
+| `End JSON Object`           |
+
+{{Get Created JSON String}}
+
+| {
+|    "names": ["alvin", "shiela", "ashier"]
+| }

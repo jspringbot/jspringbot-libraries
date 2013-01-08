@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Add JSON List Boolean Item", description = "Add JSON List Boolean Item.", parameters = {"value"})
+@KeywordInfo(
+        name = "Add JSON List Boolean Item",
+        parameters = {"value"},
+        description = "classpath:desc/AddJSONListBooleanItem.txt"
+)
 public class AddJSONListBooleanItem extends AbstractJSONKeyword {
 
     @Override

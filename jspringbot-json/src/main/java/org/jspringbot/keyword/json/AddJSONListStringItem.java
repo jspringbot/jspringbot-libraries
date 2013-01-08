@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Add JSON List String Item", description = "Add JSON List String Item.", parameters = {"value"})
+@KeywordInfo(
+        name = "Add JSON List String Item",
+        parameters = {"value"},
+        description = "classpath:desc/AddJSONListStringItem.txt"
+)
 public class AddJSONListStringItem extends AbstractJSONKeyword {
 
     @Override

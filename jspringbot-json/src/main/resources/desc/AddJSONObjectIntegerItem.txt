@@ -1,0 +1,17 @@
+Adds a integer property given the {{name}} and {{value}} to the current JSON Object.
+
+Example:
+
+| `Start JSON Object`            |         |
+| `Add JSON Object String Item`  | name    | config1
+| `Add JSON Object Integer Item` | timeout | 1000
+| `Add JSON Object Boolean Item` | enabled | true
+| `End JSON Object`              |
+
+{{Get Created JSON String}}
+
+| {
+|    "name": "config1"
+|    "timeout": 1000
+|    "enabled": true
+| }
