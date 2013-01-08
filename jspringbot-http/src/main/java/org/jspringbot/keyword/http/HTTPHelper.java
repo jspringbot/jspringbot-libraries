@@ -115,12 +115,32 @@ public class HTTPHelper {
         }
     }
 
+    public void reset() {
+        if(xmlHelper != null) {
+            xmlHelper.reset();
+        }
+
+        if(jsonHelper != null) {
+            jsonHelper.reset();
+        }
+
+        params = new LinkedList<NameValuePair>();
+        headers = new LinkedList<NameValuePair>();
+        status = null;
+        responseString = null;
+        responseEntity = null;
+        response = null;
+    }
+
     public void newSession() {
         LOG.info("Created New HTTP Session.");
 
         this.context = new BasicHttpContext();
         BasicCookieStore cookieStore = new BasicCookieStore();
         context.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
+
+
+        reset();
     }
 
     /**
@@ -212,12 +232,7 @@ public class HTTPHelper {
             consume();
         }
 
-        params = new LinkedList<NameValuePair>();
-        headers = new LinkedList<NameValuePair>();
-        status = null;
-        responseString = null;
-        responseEntity = null;
-        response = null;
+        reset();
     }
 
     /**

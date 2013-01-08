@@ -18,20 +18,20 @@
 
 package org.jspringbot.keyword.expression;
 
-import org.jspringbot.Keyword;
-import org.jspringbot.keyword.expression.plugin.DefaultVariableProviderImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.jspringbot.KeywordInfo;
+import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+@Component
+@KeywordInfo(
+        name = "EL Add Global Variable",
+        parameters = {"name", "value"},
+        description = "classpath:desc/ELAddGlobalVariable.txt"
+)
+public class ELGlobalAddVariable extends AbstractExpressionKeyword {
+    @Override
+    public Object execute(Object[] params) throws Exception {
+        globalVariableProvider.add(String.valueOf(params[0]), params[1]);
 
-public abstract class AbstractExpressionKeyword implements Keyword {
-
-    @Autowired
-    protected ExpressionHelper helper;
-
-    @Resource
-    protected DefaultVariableProviderImpl defaultVariableProvider;
-
-    @Resource
-    protected DefaultVariableProviderImpl globalVariableProvider;
+        return null;
+    }
 }

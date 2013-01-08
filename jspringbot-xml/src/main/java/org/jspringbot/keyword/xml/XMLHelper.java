@@ -21,6 +21,7 @@ package org.jspringbot.keyword.xml;
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import com.sun.org.apache.xpath.internal.XPathAPI;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.Validate;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.jspringbot.syntax.HighlighterUtils;
 import org.w3c.dom.Document;
@@ -42,6 +43,15 @@ public class XMLHelper {
     protected String xmlString;
 
     protected Document document;
+
+    public void reset() {
+        xmlString = null;
+        document = null;
+    }
+
+    public void validate() {
+        Validate.notNull(xmlString, "xmlString was not set.");
+    }
 
     public void setXmlString(String xmlString) throws IOException, SAXException {
         this.xmlString = xmlString;
@@ -84,7 +94,6 @@ public class XMLHelper {
     }
 
     public int getXpathMatchCount(String xpathExpression) throws TransformerException {
-
         int nodeLength = getNodeList(xpathExpression).getLength();
 
         LOG.createAppender()
@@ -115,6 +124,8 @@ public class XMLHelper {
      * Get Xpath Single Text Contents
      */
     public String getXPathSingleTextContent(String xpathExpression) throws TransformerException {
+        validate();
+
         Element element = (Element) XPathAPI.selectSingleNode(document, xpathExpression);
 
         if (element == null) {
@@ -177,6 +188,8 @@ public class XMLHelper {
     }
 
     private NodeList getNodeList(String xpathExpression) throws TransformerException {
+        validate();
+
         NodeList nodeList = XPathAPI.selectNodeList(document, xpathExpression);
         if (nodeList == null) {
             throw new IllegalArgumentException(String.format("Xpath Expression '%s' not found.", xpathExpression));

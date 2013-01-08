@@ -1,6 +1,6 @@
 Adds or replaces a variable given the {{name}} and {{value}}.
 
-The added variables will be retained, unless `EL Clear Variables` keyword was used.
+This will clear the variables after a test case completion or when the `EL Clear Variables` keyword was invoked.
 
 Example:
 

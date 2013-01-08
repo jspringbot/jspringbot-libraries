@@ -41,6 +41,18 @@
     </constructor-arg>
   </bean>
 
+  <bean name="variableLifeCycle" class="org.jspringbot.lifecycle.LifeCycleHandlerRegistryBean">
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.expression.VariableLifeCycleHandler"/>
+    </constructor-arg>
+  </bean>
+
+  <bean id="globalVariableProvider" class="org.jspringbot.keyword.expression.plugin.DefaultVariableProviderImpl"/>
+
+  <bean id="globalVariableProviderRegistryBean" class="org.jspringbot.keyword.expression.plugin.VariableProviderRegistryBean">
+    <constructor-arg ref="globalVariableProvider"/>
+  </bean>
+
   <bean id="defaultVariableProvider" class="org.jspringbot.keyword.expression.plugin.DefaultVariableProviderImpl"/>
 
   <bean id="defaultVariableProviderRegistryBean" class="org.jspringbot.keyword.expression.plugin.VariableProviderRegistryBean">
