@@ -22,11 +22,17 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Created JSON String", description = "Returns the JSON string created.")
-public class GetCreatedJSONString extends AbstractJSONKeyword {
+@KeywordInfo(
+        name = "JSON List Length Should Be Equal",
+        parameters = {"jsonExpression", "expectedLength"},
+        description = "classpath:desc/JSONListLengthShouldBeEqual.txt"
+)
+public class JSONListLengthShouldBeEqual extends AbstractJSONKeyword {
 
     @Override
-    public Object execute(Object[] params) throws Exception {
-        return creator.getCreatedJSONString();
+    public Object execute(Object[] params) {
+        helper.jsonArrayLengthShouldBe(String.valueOf(params[0]), Integer.valueOf(String.valueOf(params[1])));
+
+        return null;
     }
 }

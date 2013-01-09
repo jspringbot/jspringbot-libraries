@@ -1,4 +1,4 @@
-JSON creation keyword that ends the last started JSON Object.
+JSON creation keyword that starts a JSON Object. When added as object property then provide the {{name}}. |
 
 Example:
 

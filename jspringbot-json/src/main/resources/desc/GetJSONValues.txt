@@ -1,0 +1,24 @@
+This will return the values of the given the {{jsonExpression}}.
+
+Example:
+
+| {
+|    "name": "alvin",
+|    "addresses" : [
+|       {"type": "home", "location": "Baguio City"},
+|       {"type": "billing", "location": "Makati City"}
+|    ]
+| }
+
+usage
+
+| ${types}= | `Get JSON Values`  | addresses[*].type |
+| ${locations}= | `Get JSON Values`  | addresses[*].location |
+| ${addresses}= | `Get JSON Values`  | addresses[*] |
+
+=>
+
+| ${types} = ["home", "billing"]
+| ${locations} = ["Baguio City", "Makati City"]
+| ${addresses} = [address, address]              # address is the jsonObject with two properties.
+

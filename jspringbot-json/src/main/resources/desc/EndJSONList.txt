@@ -1,4 +1,4 @@
-Ends the started JSON List.
+JSON creation keyword that ends the started JSON List.
 
 Example:
 
@@ -9,8 +9,9 @@ Example:
 | `Add JSON List Boolean Item` | true    |
 | `End JSON List`              |
 | `End JSON Object`            |
+| ${jsonString}=                 | `Create JSON String` |
 
-{{Get Created JSON String}}
+{{jsonString}}:
 
 | {
 |    "enabled": [true, false, true]

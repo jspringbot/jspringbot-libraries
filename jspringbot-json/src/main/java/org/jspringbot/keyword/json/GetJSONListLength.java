@@ -24,8 +24,8 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Get JSON List Length",
-        description = "Returns JSON list length of the given json path expression.",
-        parameters = {"jsonExpression"}
+        parameters = {"jsonExpression"},
+        description = "classpath:desc/GetJSONListLength.txt"
 )
 public class GetJSONListLength extends AbstractJSONKeyword {
 

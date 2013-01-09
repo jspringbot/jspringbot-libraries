@@ -22,12 +22,15 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get JSON Values", description = "Returns JSON Values.", parameters = {"jsonExpression"})
+@KeywordInfo(
+        name = "Get JSON Values",
+        parameters = {"jsonExpression"},
+        description = "classpath:desc/GetJSONValues.txt"
+)
 public class GetJSONValues extends AbstractJSONKeyword{
 
     @Override
     public Object execute(Object[] params) {
         return helper.getJsonValues(String.valueOf(params[0]));
-
     }
 }

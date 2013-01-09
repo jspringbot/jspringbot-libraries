@@ -228,10 +228,6 @@ public class HTTPHelper {
             throw new IllegalArgumentException(String.format("Unknown http method '%s' for url '%s'.", method, paramUrl));
         }
 
-        if (responseEntity != null) {
-            consume();
-        }
-
         reset();
     }
 

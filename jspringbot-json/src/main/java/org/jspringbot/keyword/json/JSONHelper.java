@@ -156,7 +156,7 @@ public class JSONHelper {
             int length = ((Number) engine.get("jsonExpr")).intValue();
 
             LOG.createAppender()
-                    .appendBold("Get JSON Array Length:")
+                    .appendBold("Get JSON List Length:")
                     .appendProperty("Json Expression", jsonExpression)
                     .appendProperty("Length", length)
                     .log();

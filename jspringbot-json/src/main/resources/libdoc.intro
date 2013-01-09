@@ -56,8 +56,9 @@ Use these keywords to generate the output below.
 | `Add JSON Object String Item` | price   | $[d:19.95] |
 | `End JSON Object`             |
 | `End JSON Object`             |
+| ${jsonString}=                | `Create JSON String` |
 
-*{{Get Created JSON String}}*
+{{jsonString}}:
 
 | {
 |   "bicycle": {
@@ -88,8 +89,9 @@ Use these keywords to generate the output below.
 | `End JSON Object`             |
 | `Start JSON List`             |
 | `End JSON Object`             |
+| ${jsonString}=                | `Create JSON String` |
 
-*{{Get Created JSON String}}*
+{{jsonString}}:
 
 | {
 |   "book": [
@@ -144,8 +146,7 @@ Below shows the exposed JSON methods:
 
 | `EL Should Be Equal`      | $[json:property('book[1].category')]  | reference    |                            |
 | `EL Should Be Equal`      | $[json:property('book[1].price')]     | $[d:8.95]    |
-| `EL Should Be Equal`      | $[json:property(books[1], 'author')]  | Nigel Rees   |
-| `EL Should Be Equal`      | $[json:property('book[1]', 'author')] | Evelyn Waugh |
+| `EL Should Be Equal`      | $[json:property('book[1]', 'author')] | Nigel Rees   |
 | `EL Run Keyword For Each` | Process Book                          | book         | $[json:objects('book[*]')] |
 
 {{Process Book Keyword}}

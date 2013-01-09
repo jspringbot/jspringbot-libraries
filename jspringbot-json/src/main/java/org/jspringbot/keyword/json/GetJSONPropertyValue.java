@@ -25,15 +25,15 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Get JSON Property Value",
-        parameters = {"jsonObject", "property"},
-        description = "Returns JSON property value for obj given key."
+        parameters = {"jsonObject/property", "*property"},
+        description = "classpath:desc/GetJSONPropertyValue.txt"
 )
 public class GetJSONPropertyValue extends AbstractJSONKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        if(params[0] == null) {
-            return helper.getJsonValue(String.valueOf(params[1]));
+        if(String.class.isInstance(params[0])) {
+            return helper.getJsonValue(String.valueOf(params[0]));
         }
 
         JSONObject obj = (JSONObject) params[0];

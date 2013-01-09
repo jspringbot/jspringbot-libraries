@@ -1,0 +1,11 @@
+Asserts that the JSON list length of the given {{jsonExpression}} is equal to the provided {{expectedLength}}.
+
+Example:
+
+| {
+|   "names": ["alvin", "shiela", "ashier"]
+| }
+
+usage
+
+| `JSON List Length Should Be` | names | 3  |

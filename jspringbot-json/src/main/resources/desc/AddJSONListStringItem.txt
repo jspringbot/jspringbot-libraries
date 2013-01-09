@@ -1,4 +1,4 @@
-Adds the string {{value}} to the current JSON List.
+JSON creation keyword that adds the string {{value}} to the current JSON List.
 
 Example:
 
@@ -9,8 +9,9 @@ Example:
 | `Add JSON List String Item` | ashier  |
 | `End JSON List`             |
 | `End JSON Object`           |
+| ${jsonString}=                 | `Create JSON String` |
 
-{{Get Created JSON String}}
+{{jsonString}}:
 
 | {
 |    "names": ["alvin", "shiela", "ashier"]

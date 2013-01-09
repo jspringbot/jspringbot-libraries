@@ -1,4 +1,4 @@
-Adds the integer {{value}} to the current JSON List.
+JSON creation keyword that adds the integer {{value}} to the current JSON List.
 
 Example:
 
@@ -9,8 +9,9 @@ Example:
 | `Add JSON List Integer Item` | 4       |
 | `End JSON List`              |
 | `End JSON Object`            |
+| ${jsonString}=                 | `Create JSON String` |
 
-{{Get Created JSON String}}
+{{jsonString}}:
 
 | {
 |    "indices": [1, 12, 4]

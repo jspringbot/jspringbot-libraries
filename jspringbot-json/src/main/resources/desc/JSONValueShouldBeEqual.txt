@@ -1,0 +1,20 @@
+Asserts that the JSON value of the given {{jsonExpression}} is equal to the provided {{expectedValue}}.
+
+Example:
+
+| {
+|    "name": "alvin",
+|    "addresses" : [
+|       {"type": "home", "location": "Baguio City"},
+|       {"type": "billing", "location": "Makati City"}
+|    ]
+| }
+
+usage
+
+| `JSON Value Should Be Equal`  | name                  | alvin         |
+| `JSON Value Should Be Equal`  | addresses[1].type     | home          |
+| `JSON Value Should Be Equal`  | addresses[2].type     | billing       |
+| `JSON Value Should Be Equal`  | addresses[1].location | Baguio City   |
+| `JSON Value Should Be Equal`  | addresses[2].location | Makati City   |
+| `JSON Value Should Be Equal`  | addresses[*].type     | home          |

@@ -23,7 +23,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Start JSON List", description = "Starts creating a JSON List.", parameters = {"name=NONE"})
+@KeywordInfo(
+        name = "Start JSON List",
+        parameters = {"name=NONE"},
+        description = "classpath:desc/StartJSONList.txt"
+)
 public class StartJSONList extends AbstractJSONKeyword {
 
     @Override

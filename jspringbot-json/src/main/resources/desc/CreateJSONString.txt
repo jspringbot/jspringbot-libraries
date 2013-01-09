@@ -1,0 +1,18 @@
+Returns the JSON string created.
+
+The following are the creation keywords:
+
+| *Keyword* | *Description* |
+| `Start JSON List` | This starts a JSON List. When added as object property then provide the {{name}}. |
+| `Start JSON Object` | This starts a JSON Object. When added as object property then provide the {{name}}. |
+| `Add JSON List String Item` | Adds the string {{value}} to the current JSON List. |
+| `Add JSON List Integer Item` | Adds the integer {{value}} to the current JSON List. |
+| `Add JSON List Boolean Item` | Adds the boolean {{value}} to the current JSON List. |
+| `Add JSON Object String Item` | Adds a string property given the {{name}} and {{value}} to the current JSON Object. |
+| `Add JSON Object Integer Item` | Adds a integer property given the {{name}} and {{value}} to the current JSON Object. |
+| `Add JSON Object Boolean Item` | Adds a boolean property given the {{name}} and {{value}} to the current JSON Object. |
+| `End JSON List` | Ends the started JSON List. |
+| `End JSON Object` | Ends the started JSON Object. |
+
+Please see the {{jspringbot-doc:json|#introduction}} introduction for other examples.
+

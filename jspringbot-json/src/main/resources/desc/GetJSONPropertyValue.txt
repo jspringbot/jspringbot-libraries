@@ -1,0 +1,36 @@
+This will return the object property given the {{jsonObject}} and its {{property}}. If {{jsonObject}} is not provided this will return the root {{property}}.
+
+Example:
+
+| {
+|    "name": "alvin",
+|    "addresses" : [
+|       {"type": "home", "location": "Baguio City"},
+|       {"type": "billing", "location": "Makati City"}
+|    ]
+| }
+
+usage
+
+| ${name}=     | `Get JSON Property Value`  | name |    |    |
+| ${nameAlso}= | `Get JSON Value`  | name |
+| @{addresses}= | `Get JSON Values` | addresses[*] |
+| :FOR | ${address} | IN | @{addresses} |
+|      | ${type}=  | `Get JSON Property Value` | ${address} | type |
+|      | ${location}=  | `Get JSON Property Value` | ${address} | location |
+|      | Log Many  | ${type} | ${location} |
+
+=>
+
+| ${name} = "alvin"
+| ${nameAlso} = "alvin"
+| #
+| # First Loop
+| ${type} = "home"
+| ${location} = "Baguio City"
+| #
+| # Second Loop
+| ${type} = "billing"
+| ${location} = "Makati City"
+
+See also `Get JSON Value`.
