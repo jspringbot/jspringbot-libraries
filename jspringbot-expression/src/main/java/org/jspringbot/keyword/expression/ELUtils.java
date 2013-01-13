@@ -5,6 +5,7 @@ import org.apache.commons.lang.StringUtils;
 import org.jspringbot.MainContextHolder;
 import org.jspringbot.PythonUtils;
 import org.jspringbot.keyword.expression.plugin.DefaultVariableProviderImpl;
+import org.jspringbot.keyword.expression.plugin.VariableProviderManager;
 import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.python.util.PythonInterpreter;
@@ -37,8 +38,8 @@ public class ELUtils {
         return ApplicationContextHolder.get().getBean(ExpressionHelper.class);
     }
 
-    private static DefaultVariableProviderImpl getVariables() {
-        return (DefaultVariableProviderImpl) ApplicationContextHolder.get().getBean("defaultVariableProvider");
+    private static VariableProviderManager getVariables() {
+        return new VariableProviderManager(ApplicationContextHolder.get());
     }
 
     public static String replaceVars(String string) throws Exception {
