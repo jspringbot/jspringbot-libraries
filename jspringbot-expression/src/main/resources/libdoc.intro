@@ -72,6 +72,8 @@ The following words are reserved for the EL and should not be used as identifier
 | *Method* | *Description* |
 | {{eval(expression, *variable)}} | This will evaluate the given expression and variables. |
 | {{var(variable)}} | This will return the robot variable given the name. |
+| {{replaceVar(str)}} | This replace all robot variables and EL variables from the given string. Variables in this format {{html:<code>}}${elOrRobot}{{html:</code>}}. |
+| {{resource(resourceAsText)}} | This return the resource text as string. |
 
 == Converters ==
 

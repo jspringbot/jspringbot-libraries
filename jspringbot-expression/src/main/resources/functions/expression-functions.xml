@@ -12,6 +12,11 @@
     <function-signature>Object robotVar(java.lang.String)</function-signature>
   </function>
   <function>
+    <name>resource</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>java.lang.String resource(java.lang.String)</function-signature>
+  </function>
+  <function>
     <name>replaceVars</name>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String replaceVars(java.lang.String)</function-signature>

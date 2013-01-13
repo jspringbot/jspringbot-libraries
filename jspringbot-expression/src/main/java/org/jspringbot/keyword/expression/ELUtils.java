@@ -1,5 +1,6 @@
 package org.jspringbot.keyword.expression;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.MainContextHolder;
 import org.jspringbot.PythonUtils;
@@ -7,7 +8,10 @@ import org.jspringbot.keyword.expression.plugin.DefaultVariableProviderImpl;
 import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.python.util.PythonInterpreter;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceEditor;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
@@ -18,6 +22,16 @@ public class ELUtils {
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
     public static final Pattern PATTERN = Pattern.compile("\\$\\{([^\\}]+)\\}", Pattern.CASE_INSENSITIVE);
+
+    public String resource(String resourceAsText) throws Exception {
+        ResourceEditor editor = new ResourceEditor();
+        editor.setAsText(resourceAsText);
+
+        Resource resource = (Resource) editor.getValue();
+        String resourceString = IOUtils.toString(resource.getInputStream());
+
+        return replaceVars(resourceString);
+    }
 
     private static ExpressionHelper getHelper() {
         return ApplicationContextHolder.get().getBean(ExpressionHelper.class);
