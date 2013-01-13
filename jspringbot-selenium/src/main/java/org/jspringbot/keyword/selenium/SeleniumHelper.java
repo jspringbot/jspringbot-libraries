@@ -493,7 +493,7 @@ public class SeleniumHelper {
                 .appendProperty("Expected Text", expectedText)
                 .log();
 
-        if (!StringUtils.equals(expectedText, actualText)) {
+        if (!StringUtils.equals(StringUtils.trim(expectedText), StringUtils.trim(actualText))) {
             throw new AssertionError("The text of element is not as expected.");
         }
     }
