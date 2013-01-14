@@ -39,6 +39,10 @@ Enables support to access and execute command on a remote machine over an SSH co
 
 Contains support to parse and query a CSV string or resource using CSVLibrary.
 
+#### Expresssions
+
+Added support for expression language to all jspringbot library keywords.
+
 #### Other Utilities
 
 Other utilities like TestDataLibrary that enable create of test-data on a csv file.
