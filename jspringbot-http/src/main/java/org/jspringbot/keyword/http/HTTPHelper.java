@@ -92,6 +92,8 @@ public class HTTPHelper {
 
     protected XMLHelper xmlHelper;
 
+    protected BasicCookieStore cookieStore;
+
     public HTTPHelper(AbstractHttpClient client) {
         this.client = client;
         newSession();
@@ -137,7 +139,7 @@ public class HTTPHelper {
         LOG.info("Created New HTTP Session.");
 
         this.context = new BasicHttpContext();
-        BasicCookieStore cookieStore = new BasicCookieStore();
+        cookieStore = new BasicCookieStore();
         context.setAttribute(ClientContext.COOKIE_STORE, cookieStore);
 
         reset();
@@ -405,7 +407,7 @@ public class HTTPHelper {
 
 
     public String getCookieValue(String name) {
-        List<Cookie> cookies = client.getCookieStore().getCookies();
+        List<Cookie> cookies = cookieStore.getCookies();
 
         String cookieValue = null;
         for(Cookie cookie : cookies) {
