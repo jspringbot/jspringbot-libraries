@@ -157,6 +157,10 @@ public class ElementFinder {
         return filterElements(driver.findElements(By.linkText(linkText)), tagName, attributes);
     }
 
+    public static WebElement findByPartialLinkText(WebDriver driver, String linkText, String tagName, Map<String,String> attributes) {
+        return filterElements(driver.findElements(By.partialLinkText(linkText)), tagName, attributes);
+    }
+
     public static WebElement findByCSS(WebDriver driver, String cssSelector, String tagName, Map<String,String> attributes) {
         return filterElements(driver.findElements(By.cssSelector(cssSelector)), tagName, attributes);
     }
@@ -248,6 +252,13 @@ public class ElementFinder {
             @Override
             public WebElement find(WebDriver driver, String locator, String tagName, Map<String, String> attributes) {
                 return findByLinkText(driver, locator, tagName, attributes);
+            }
+        },
+
+        PARTIAL_TEXT("partial") {
+            @Override
+            public WebElement find(WebDriver driver, String locator, String tagName, Map<String, String> attributes) {
+                return findByPartialLinkText(driver, locator, tagName, attributes);
             }
         };
 
