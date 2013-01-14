@@ -85,7 +85,7 @@ public class HighlighterUtils {
     }
 
     public String highlight(String code, String type, boolean linenumber) {
-        return StringEscapeUtils.escapeHtml(code);
+        return "\n" + StringEscapeUtils.escapeHtml(code);
 
 //        interpreter.set("code", code);
 //        interpreter.set("type", type);

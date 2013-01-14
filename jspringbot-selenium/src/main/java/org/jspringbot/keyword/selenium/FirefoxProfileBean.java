@@ -18,9 +18,11 @@
 
 package org.jspringbot.keyword.selenium;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
+import java.io.IOException;
 
 public class FirefoxProfileBean {
     private FirefoxProfile profile;
@@ -29,8 +31,12 @@ public class FirefoxProfileBean {
         this.profile = profile;
     }
 
-    public void setDownloadDirectory(String downloadDirectory) {
+    public void setDownloadDirectory(String downloadDirectory) throws IOException {
         File dir = new File(downloadDirectory);
+        if(dir.isDirectory()) {
+            FileUtils.deleteDirectory(dir);
+        }
+
         if(!dir.isDirectory()) {
             dir.mkdirs();
         }
