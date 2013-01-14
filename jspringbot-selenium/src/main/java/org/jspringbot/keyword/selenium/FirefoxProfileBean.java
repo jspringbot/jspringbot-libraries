@@ -25,20 +25,22 @@ import java.io.File;
 import java.io.IOException;
 
 public class FirefoxProfileBean {
-    private FirefoxProfile profile;
+    protected FirefoxProfile profile;
+
+    protected File downloadDir;
 
     public FirefoxProfileBean(FirefoxProfile profile) {
         this.profile = profile;
     }
 
     public void setDownloadDirectory(String downloadDirectory) throws IOException {
-        File dir = new File(downloadDirectory);
-        if(dir.isDirectory()) {
-            FileUtils.deleteDirectory(dir);
+        downloadDir = new File(downloadDirectory);
+        if(downloadDir.isDirectory()) {
+            FileUtils.deleteDirectory(downloadDir);
         }
 
-        if(!dir.isDirectory()) {
-            dir.mkdirs();
+        if(!downloadDir.isDirectory()) {
+            downloadDir.mkdirs();
         }
 
         profile.setPreference("browser.download.folderList", 2);
