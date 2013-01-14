@@ -25,12 +25,48 @@
 
   <description>jSpringBot Common Beans</description>
 
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    <property name="locations">
+      <list>
+        <value>classpath:jspringbot.properties</value>
+      </list>
+    </property>
+  </bean>
+
   <bean name="connectionManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager">
-    <property name="defaultMaxPerRoute" value="5"/>
-    <property name="maxTotal" value="5"/>
+    <property name="defaultMaxPerRoute" value="${http.max.connection.per.route:5}"/>
+    <property name="maxTotal" value="${http.max.connection.total:10}"/>
+  </bean>
+
+  <bean name="httpParams" class="org.apache.http.params.BasicHttpParams"/>
+
+  <bean class="org.apache.http.params.HttpConnectionParamBean">
+    <constructor-arg ref="httpParams"/>
+    <property name="connectionTimeout" value="${http.connection.timeout:10000}"/>
+    <property name="soTimeout" value="${http.socket.timeout:30000}"/>
+    <property name="linger" value="${http.socket.linger:-1}"/>
+    <property name="socketBufferSize" value="${http.socket.buffer-size:8192}"/>
+    <property name="tcpNoDelay" value="${http.tcp.nodelay:true}"/>
+  </bean>
+
+  <bean class="org.apache.http.client.params.ClientParamBean">
+    <constructor-arg ref="httpParams"/>
+    <property name="allowCircularRedirects" value="${http.allow.circular.redirect:true}"/>
+    <property name="handleRedirects" value="${http.handle.redirects:true}"/>
   </bean>
 
   <bean name="httpClient" class="org.apache.http.impl.client.DefaultHttpClient">
     <constructor-arg ref="connectionManager"/>
+    <constructor-arg ref="httpParams"/>
+  </bean>
+
+  <bean name="httpLifeCycle" class="org.jspringbot.lifecycle.LifeCycleHandlerRegistryBean">
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.http.HTTPLifeCycleHandler">
+        <property name="newSessionOnStartSuite" value="${http.start.suite.new.session:false}"/>
+        <property name="newSessionOnStartTest" value="${http.start.test.new.session:false}"/>
+      </bean>
+    </constructor-arg>
   </bean>
 </beans>
