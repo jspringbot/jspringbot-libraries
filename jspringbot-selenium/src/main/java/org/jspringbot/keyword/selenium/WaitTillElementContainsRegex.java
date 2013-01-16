@@ -22,14 +22,12 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Contain Image",
-             description = "Verifies image identified by locator is found from current page.",
-             parameters = {"locator"})
-public class PageShouldContainImage extends AbstractSeleniumKeyword {
+@KeywordInfo(name = "Wait Till Element Contains Regex", description = "Waits until element specified with locator that contains regex appears on current page or timeout expires.", parameters = {"locator", "regex","poll","timeout"})
+public class WaitTillElementContainsRegex extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.pageShouldContainImage(String.valueOf(params[0]));
+        helper.waitTillElementContainsRegex(String.valueOf(params[0]), String.valueOf(params[1]), Long.parseLong(String.valueOf(params[2])), Long.parseLong(String.valueOf(params[3])));
 
         return null;
     }

@@ -4,7 +4,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.MainContextHolder;
 import org.jspringbot.PythonUtils;
-import org.jspringbot.keyword.expression.plugin.DefaultVariableProviderImpl;
 import org.jspringbot.keyword.expression.plugin.VariableProviderManager;
 import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
@@ -12,7 +11,8 @@ import org.python.util.PythonInterpreter;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
 
-import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Arrays;
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
@@ -24,7 +24,7 @@ public class ELUtils {
 
     public static final Pattern PATTERN = Pattern.compile("\\$\\{([^\\}]+)\\}", Pattern.CASE_INSENSITIVE);
 
-    public String resource(String resourceAsText) throws Exception {
+    public static String resource(String resourceAsText) throws Exception {
         ResourceEditor editor = new ResourceEditor();
         editor.setAsText(resourceAsText);
 
@@ -40,6 +40,10 @@ public class ELUtils {
 
     private static VariableProviderManager getVariables() {
         return new VariableProviderManager(ApplicationContextHolder.get());
+    }
+
+    public static String concatMillis(String name) {
+        return name + System.currentTimeMillis();
     }
 
     public static String replaceVars(String string) throws Exception {
@@ -131,5 +135,17 @@ public class ELUtils {
         }
 
         throw new IllegalArgumentException("No startIndex provided.");
+    }
+
+    public static Double parseDouble(String str, String format) throws ParseException {
+        DecimalFormat formatter = new DecimalFormat(format);
+
+        return formatter.parse(str).doubleValue();
+    }
+
+    public static String formatDouble(Double amount, String format) {
+        DecimalFormat formatter = new DecimalFormat(format);
+
+        return formatter.format(amount);
     }
 }

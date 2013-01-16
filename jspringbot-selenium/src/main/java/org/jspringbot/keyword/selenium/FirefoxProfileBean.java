@@ -23,6 +23,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class FirefoxProfileBean {
     protected FirefoxProfile profile;
@@ -53,5 +54,15 @@ public class FirefoxProfileBean {
 
     public void setDownloadSaveToDisk(String mimeType) {
         profile.setPreference("browser.helperApps.neverAsk.saveToDisk", mimeType);
+    }
+
+    public void setExtension(File extensionToInstall) throws IOException {
+        profile.addExtension(extensionToInstall);
+    }
+
+    public void setExtensions(List<File> extensionToInstalls) throws IOException {
+        for(File extensionToInstall : extensionToInstalls) {
+            profile.addExtension(extensionToInstall);
+        }
     }
 }

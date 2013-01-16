@@ -32,6 +32,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SeleniumHelper {
 
@@ -1238,6 +1240,10 @@ public class SeleniumHelper {
         driver.switchTo().defaultContent();
     }
 
+    public void selectWindow(String windowName) {
+        driver.switchTo().window(windowName);
+    }
+
     public void submitForm(String locator) {
         LOG.info("Submitting form '%s'.", locator);
 
@@ -1277,6 +1283,68 @@ public class SeleniumHelper {
             Thread.sleep(pollMillis);
         } catch (InterruptedException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void waitTillElementContainsRegex(String locator, String regex, long pollMillis, long timeoutMillis) {
+        long start = System.currentTimeMillis();
+        long elapse = -1;
+        WebElement el;
+
+        do {
+            if(elapse != -1) {
+                try {
+                    Thread.sleep(pollMillis);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            el = finder.find(locator, false);
+            elapse = System.currentTimeMillis() - start;
+
+            // only set el to none null if text is found.
+            if(el != null) {
+                Pattern pattern = Pattern.compile(regex);
+                Matcher matcher = pattern.matcher(el.getText());
+
+                if(!matcher.find()) {
+                    el = null;
+                }
+            }
+        } while(el == null && elapse < timeoutMillis);
+
+        if(el == null) {
+            throw new IllegalStateException(String.format("timeout for locating '%s' (%d ms) reached.", locator, timeoutMillis));
+        }
+    }
+
+
+    public void waitTillElementContainsText(String locator, String text, long pollMillis, long timeoutMillis) {
+        long start = System.currentTimeMillis();
+        long elapse = -1;
+        WebElement el;
+
+        do {
+            if(elapse != -1) {
+                try {
+                    Thread.sleep(pollMillis);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            el = finder.find(locator, false);
+            elapse = System.currentTimeMillis() - start;
+
+            // only set el to none null if text is found.
+            if(el != null && !StringUtils.contains(el.getText(), text)) {
+                el = null;
+            }
+        } while(el == null && elapse < timeoutMillis);
+
+        if(el == null) {
+            throw new IllegalStateException(String.format("timeout for locating '%s' (%d ms) reached.", locator, timeoutMillis));
         }
     }
 
@@ -1644,5 +1712,4 @@ public class SeleniumHelper {
     public boolean hasElement(String locator) {
         return finder.find(locator, false) != null;
     }
-
 }

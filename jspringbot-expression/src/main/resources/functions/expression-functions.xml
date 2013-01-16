@@ -12,6 +12,21 @@
     <function-signature>Object robotVar(java.lang.String)</function-signature>
   </function>
   <function>
+    <name>concatMillis</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>java.lang.String concatMillis(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>parseDouble</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>java.lang.String parseDouble(java.lang.String, java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>formatDouble</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>java.lang.String formatDouble(java.lang.Double, java.lang.String)</function-signature>
+  </function>
+  <function>
     <name>resource</name>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String resource(java.lang.String)</function-signature>
