@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:ctx="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <description>Robot Selenium Keywords</description>
+
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    <property name="locations">
+      <list>
+        <value>classpath:jspringbot.properties</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="profile" class="org.openqa.selenium.firefox.FirefoxProfile"/>
+
+  <bean class="org.jspringbot.keyword.selenium.FirefoxProfileBean">
+    <constructor-arg ref="profile"/>
+    <property name="downloadDirectory" value="${selenium.download.directory:/tmp/jspringbot}"/>
+    <property name="downloadShowWhenStarting" value="false"/>
+    <property name="downloadSaveToDisk" value="${selenium.autosave.content.type}"/>
+  </bean>
+
+  <bean id="webdriver" class="org.openqa.selenium.firefox.FirefoxDriver" destroy-method="stopClient">
+    <constructor-arg ref="profile"/>
+  </bean>
+
+  <bean class="org.jspringbot.keyword.selenium.WebDriverWaitBean">
+    <constructor-arg ref="webdriver"/>
+    <property name="implicitWaitInSeconds" value="${selenium.implicit.wait:30}"/>
+  </bean>
+
+  <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelper">
+    <constructor-arg ref="webdriver"/>
+    <property name="screenCaptureDir" value="${selenium.screenshot.folder}"/>
+  </bean>
+
+  <!-- Scan components -->
+  <ctx:component-scan base-package="org.jspringbot.keyword.selenium"/>
+  <ctx:annotation-config/>
+</beans>

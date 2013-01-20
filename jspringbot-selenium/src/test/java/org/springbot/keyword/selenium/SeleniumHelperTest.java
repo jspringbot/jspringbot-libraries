@@ -31,7 +31,7 @@ import java.io.IOException;
 
 @Ignore
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath:spring-selenium.xml"})
+@ContextConfiguration(locations={"classpath:spring-test.xml"})
 public class SeleniumHelperTest {
 
     @Autowired
