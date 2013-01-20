@@ -1240,6 +1240,14 @@ public class SeleniumHelper {
         driver.switchTo().defaultContent();
     }
 
+    public List<String> getWindowHandles() {
+        return new ArrayList<String>(driver.getWindowHandles());
+    }
+
+    public String getWindowHandle() {
+        return driver.getWindowHandle();
+    }
+
     public void selectWindow(String windowName) {
         driver.switchTo().window(windowName);
     }
@@ -1468,7 +1476,7 @@ public class SeleniumHelper {
         String xpath = String.format("//input[@type='radio' and @name='%s' and (@value='%s' or @id='%s')]", groupName, value, value);
         LOG.info("Radio group locator: " + xpath);
 
-        return ElementFinder.findByXpath(driver,xpath,null,null);
+        return ElementFinder.findByXpath(driver, xpath, null, null);
     }
 
     /*
