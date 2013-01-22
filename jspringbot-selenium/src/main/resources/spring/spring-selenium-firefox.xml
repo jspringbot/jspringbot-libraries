@@ -19,7 +19,10 @@
     </property>
   </bean>
 
-  <bean id="profile" class="org.openqa.selenium.firefox.FirefoxProfile"/>
+  <bean id="profile" class="org.openqa.selenium.firefox.FirefoxProfile">
+    <property name="acceptUntrustedCertificates" value="${selenium.accept.untrusted.certificates:true}"/>
+    <property name="assumeUntrustedCertificateIssuer" value="${selenium.accept.untrusted.certificates:false}"/>
+  </bean>
 
   <bean class="org.jspringbot.keyword.selenium.FirefoxProfileBean">
     <constructor-arg ref="profile"/>
@@ -28,8 +31,19 @@
     <property name="downloadSaveToDisk" value="${selenium.autosave.content.type}"/>
   </bean>
 
+  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>
+
+  <bean class="org.jspringbot.keyword.selenium.DesiredCapabilitiesBean">
+    <constructor-arg ref="desiredCapabilities"/>
+    <property name="firefoxProfile" ref="profile"/>
+    <property name="proxy" value="${selenium.proxy:none}"/>
+    <property name="httpProxy" value="${selenium.http.proxy:none}"/>
+    <property name="httpsProxy" value="${selenium.https.proxy:none}"/>
+    <property name="sslProxy" value="${selenium.ssl.proxy:none}"/>
+  </bean>
+
   <bean id="webdriver" class="org.openqa.selenium.firefox.FirefoxDriver" destroy-method="stopClient">
-    <constructor-arg ref="profile"/>
+    <constructor-arg ref="desiredCapabilities"/>
   </bean>
 
   <bean class="org.jspringbot.keyword.selenium.WebDriverWaitBean">
