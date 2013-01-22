@@ -5,13 +5,13 @@
     <name>objects</name>
     <prefix>json</prefix>
     <function-class>org.jspringbot.keyword.json.JSONUtils</function-class>
-    <function-signature>java.util.List objects(java.lang.String)</function-signature>
+    <function-signature>java.util.List objects(java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>object</name>
     <prefix>json</prefix>
     <function-class>org.jspringbot.keyword.json.JSONUtils</function-class>
-    <function-signature>net.minidev.json.JSONObject object(java.lang.String)</function-signature>
+    <function-signature>net.minidev.json.JSONObject object(java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>property</name>
