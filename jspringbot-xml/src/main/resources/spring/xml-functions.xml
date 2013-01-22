@@ -17,6 +17,12 @@
     <name>elements</name>
     <prefix>xml</prefix>
     <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
-    <function-signature>java.util.List elements(java.lang.String)</function-signature>
+    <function-signature>java.util.List elements(java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <name>element</name>
+    <prefix>xml</prefix>
+    <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
+    <function-signature>org.w3c.dom.Element element(java.lang.Object[])</function-signature>
   </function>
 </functions>

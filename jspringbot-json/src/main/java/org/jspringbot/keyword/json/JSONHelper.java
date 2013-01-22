@@ -23,6 +23,7 @@ import antlr.TokenStreamException;
 import com.jayway.jsonpath.JsonPath;
 import com.sdicons.json.model.JSONValue;
 import com.sdicons.json.parser.JSONParser;
+import net.minidev.json.JSONObject;
 import org.apache.commons.lang.Validate;
 import org.jspringbot.syntax.HighlightRobotLogger;
 
@@ -73,6 +74,28 @@ public class JSONHelper {
     }
 
     @SuppressWarnings("unchecked")
+    public List<Object> getJsonValues(JSONObject jsonObject, String jsonExpression) {
+        validate();
+
+        Object jsonValue = JsonPath.read(jsonObject.toJSONString(), "$." + jsonExpression);
+
+        List items;
+
+        if(jsonValue instanceof List) {
+            items = (List) jsonValue;
+        } else {
+            items = Arrays.asList(jsonValue);
+        }
+
+        LOG.createAppender()
+                .appendBold("Get JSON Values:")
+                .appendProperty("Json Expression", jsonExpression)
+                .appendProperty("Size", items.size())
+                .log();
+
+        return items;
+    }
+
     public List<Object> getJsonValues(String jsonExpression) {
         validate();
 

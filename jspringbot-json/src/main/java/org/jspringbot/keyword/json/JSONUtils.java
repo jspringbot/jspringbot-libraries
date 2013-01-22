@@ -15,8 +15,30 @@ public class JSONUtils {
         return ApplicationContextHolder.get().getBean(JSONHelper.class);
     }
 
-    public static List objects(String jsonPath) throws TransformerException {
-        return getHelper().getJsonValues(jsonPath);
+    public static Object object(Object... args) throws TransformerException {
+        List objs = objects(args);
+
+
+        if(CollectionUtils.isNotEmpty(objs)) {
+            return objs.iterator().next();
+        }
+
+        return null;
+    }
+
+    public static List objects(Object... args) throws TransformerException {
+        if(args.length == 2 && JSONObject.class.isInstance(args[0]) && String.class.isInstance(args[1])) {
+            JSONObject jsonObject = (JSONObject) args[0];
+            String jsonPath = (String) args[1];
+
+            return getHelper().getJsonValues(jsonObject, jsonPath);
+        } else if(String.class.isInstance(args[0])) {
+            String jsonPath = (String) args[0];
+
+            return getHelper().getJsonValues(jsonPath);
+        }
+
+        throw new IllegalArgumentException("Expected 'xml:objects(jsonObject, jsonPath)' or 'xml:objects(jsonPath)'.");
     }
 
     public static Object singleProperty(JSONObject obj, String propertyName) {

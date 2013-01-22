@@ -89,10 +89,31 @@ public class XMLUtils {
             return result;
         }
 
-        throw new IllegalArgumentException("Expected 'xml:text(element)' 'xml:text(xpath)'.");
+        throw new IllegalArgumentException("Expected 'xml:text(element)' or 'xml:text(xpath)'.");
     }
 
-    public static List<Element> elements(String xpath) throws TransformerException {
-        return getHelper().getXpathElements(xpath);
+    public static Element element(Object... args) throws TransformerException {
+        List<Element> elements = elements(args);
+
+        if(CollectionUtils.isNotEmpty(elements)) {
+            return elements.iterator().next();
+        }
+
+        return null;
+    }
+
+    public static List<Element> elements(Object... args) throws TransformerException {
+        if(args.length == 2 && Element.class.isInstance(args[0]) && String.class.isInstance(args[1])) {
+            Element element = (Element) args[0];
+            String xpath = (String) args[1];
+
+            return getHelper().getXpathElements(element, xpath);
+        } else if(String.class.isInstance(args[0])) {
+            String xpath = (String) args[0];
+
+            return getHelper().getXpathElements(xpath);
+        }
+
+        throw new IllegalArgumentException("Expected 'xml:elements(element, xpath)' or 'xml:elements(xpath)'.");
     }
 }

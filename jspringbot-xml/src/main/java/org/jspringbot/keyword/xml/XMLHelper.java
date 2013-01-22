@@ -187,21 +187,47 @@ public class XMLHelper {
         return list;
     }
 
-    private NodeList getNodeList(String xpathExpression) throws TransformerException {
+    /**
+     * Get Xpath Text Contents
+     */
+    public List<Element> getXpathElements(Element base, String xpathExpression) throws TransformerException {
+        NodeList nodeList = getNodeList(base, xpathExpression);
+        if (nodeList.getLength() == 0) {
+            return Collections.emptyList();
+        }
+
+        StringBuilder buf = new StringBuilder();
+        List<Element> list = new ArrayList<Element>();
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            Element element = (Element) nodeList.item(i);
+            list.add(element);
+            buf.append("<b>Element [").append(i).append("]:</b>").append(HighlighterUtils.INSTANCE.highlightXML(XMLFormatter.prettyPrint(element)));
+        }
+
+        LOG.pureHtml(buf.toString());
+
+        return list;
+    }
+
+    private NodeList getNodeList(Element base, String xpathExpression) throws TransformerException {
         validate();
 
-        NodeList nodeList = XPathAPI.selectNodeList(document, xpathExpression);
+        NodeList nodeList = XPathAPI.selectNodeList(base, xpathExpression);
         if (nodeList == null) {
             throw new IllegalArgumentException(String.format("Xpath Expression '%s' not found.", xpathExpression));
         }
 
         LOG.createAppender()
-            .appendBold("Get Node List:")
-            .appendProperty("Xpath Expression", xpathExpression)
-            .appendProperty("Number of Elements Found", nodeList.getLength())
-            .log();
+                .appendBold("Get Node List:")
+                .appendProperty("Xpath Expression", xpathExpression)
+                .appendProperty("Number of Elements Found", nodeList.getLength())
+                .log();
 
         return nodeList;
+    }
+
+    private NodeList getNodeList(String xpathExpression) throws TransformerException {
+        return getNodeList(document.getDocumentElement(), xpathExpression);
     }
 
 }
