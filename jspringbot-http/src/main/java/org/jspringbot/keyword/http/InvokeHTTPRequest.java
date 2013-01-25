@@ -33,7 +33,7 @@ public class InvokeHTTPRequest extends AbstractHTTPKeyword {
             httpHelper.invokeRequest();
         } catch (IOException e) {
             httpHelper.consume();
-            throw new IllegalArgumentException("Error while executing request.");
+            throw new IllegalArgumentException("Error while executing request.", e);
         }
 
         return null;

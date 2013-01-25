@@ -33,9 +33,9 @@ public class CreateHTTPRequest extends AbstractHTTPKeyword {
         try {
             httpHelper.createRequest(String.valueOf(params[0]), String.valueOf(params[1]));
         } catch (MalformedURLException e) {
-            throw new IllegalArgumentException(String.format("Expecting a valid Url '%s'.", params[0]));
+            throw new IllegalArgumentException(String.format("Expecting a valid Url '%s'.", params[0]), e);
         } catch (URISyntaxException e) {
-            throw new IllegalArgumentException(String.format("Expecting a valid Url '%s'.", params[0]));
+            throw new IllegalArgumentException(String.format("Expecting a valid Url '%s'.", params[0]), e);
         }
 
         return null;

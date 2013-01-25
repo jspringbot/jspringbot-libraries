@@ -34,7 +34,7 @@ public class HTTPResponseShouldContain extends AbstractHTTPKeyword {
                 httpHelper.responseShouldContain(String.valueOf(params[0]));
             } catch (IOException e) {
                 httpHelper.consume();
-                throw new IllegalArgumentException("Error while comparing response.");
+                throw new IllegalArgumentException("Error while comparing response.", e);
             }
         } else {
             throw new IllegalArgumentException("Expecting value for response comparison.");

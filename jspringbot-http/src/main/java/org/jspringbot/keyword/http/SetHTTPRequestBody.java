@@ -32,7 +32,7 @@ public class SetHTTPRequestBody extends AbstractHTTPKeyword {
         try {
             httpHelper.setRequestBody(String.valueOf(params[0]));
         } catch (UnsupportedEncodingException e) {
-            throw new IllegalStateException("Unsupported Encoding Exception");
+            throw new IllegalStateException("Unsupported Encoding Exception", e);
         }
 
         return null;
