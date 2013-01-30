@@ -1,13 +1,8 @@
 package org.jspringbot.syntax;
 
-import org.jspringbot.JSpringBotLogger;
 import org.jspringbot.syntax.HighlightRobotLogger.HtmlAppender;
 
-import java.util.Arrays;
-
 public class KeywordAppender {
-    private static final JSpringBotLogger LOG = JSpringBotLogger.getLogger(KeywordAppender.class);
-
     private HtmlAppender appender;
 
     KeywordAppender(HtmlAppender appender) {
@@ -24,7 +19,6 @@ public class KeywordAppender {
 
     public KeywordAppender append(String msg, Object... args) {
         if(appender == null) {
-            LOG.info(msg, args);
             return this;
         }
 
@@ -35,7 +29,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendBold(String msg, Object... args) {
         if(appender == null) {
-            LOG.info(msg, args);
             return this;
         }
 
@@ -46,7 +39,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendPropertyStringArray(String name, String[] values) {
         if(appender == null) {
-            LOG.info("%s = %s", name, Arrays.asList(values));
             return this;
         }
 
@@ -57,7 +49,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendProperty(String property, Object value) {
         if(appender == null) {
-            LOG.info("%s = %s", property, String.valueOf(value));
             return this;
         }
 
@@ -68,7 +59,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendText(String msg, Object... args) {
         if(appender == null) {
-            LOG.info(msg, args);
             return this;
         }
 
@@ -79,7 +69,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendCode(String msg, Object... args) {
         if(appender == null) {
-            LOG.info(msg, args);
             return this;
         }
 
@@ -90,7 +79,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendXML(String msg, Object... args) {
         if(appender == null) {
-            LOG.info(msg, args);
             return this;
         }
 
@@ -101,7 +89,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendSQL(String msg, Object... args) {
         if(appender == null) {
-            LOG.info(msg, args);
             return this;
         }
 
@@ -112,7 +99,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendJavascript(String msg, Object... args) {
         if(appender == null) {
-            LOG.info(msg, args);
             return this;
         }
 
@@ -123,7 +109,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendCss(String msg, Object... args) {
         if(appender == null) {
-            LOG.info(msg, args);
             return this;
         }
 
@@ -134,7 +119,6 @@ public class KeywordAppender {
 
     public KeywordAppender appendJSON(String msg, Object... args) {
         if(appender == null) {
-            LOG.info(msg, args);
             return this;
         }
 
