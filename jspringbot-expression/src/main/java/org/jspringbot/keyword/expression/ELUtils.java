@@ -11,6 +11,9 @@ import org.python.util.PythonInterpreter;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Arrays;
@@ -32,6 +35,15 @@ public class ELUtils {
         String resourceString = IOUtils.toString(resource.getInputStream());
 
         return replaceVars(resourceString);
+    }
+
+    public static String md5(String str) throws NoSuchAlgorithmException {
+        MessageDigest digest = MessageDigest.getInstance("MD5");
+        byte[] data = str.getBytes();
+        digest.update(data,0,data.length);
+        BigInteger i = new BigInteger(1,digest.digest());
+
+        return i.toString(16);
     }
 
     private static ExpressionHelper getHelper() {

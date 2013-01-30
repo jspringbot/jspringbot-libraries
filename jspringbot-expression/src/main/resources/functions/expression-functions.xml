@@ -17,6 +17,11 @@
     <function-signature>java.lang.String concatMillis(java.lang.String)</function-signature>
   </function>
   <function>
+    <name>md5</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>java.lang.String md5(java.lang.String)</function-signature>
+  </function>
+  <function>
     <name>parseDouble</name>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String parseDouble(java.lang.String, java.lang.String)</function-signature>

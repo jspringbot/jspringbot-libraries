@@ -121,6 +121,11 @@ public class ExpressionHelperTest {
     }
 
     @Test
+    public void testMd5() throws Exception {
+        evaluateEquals("$[md5('12345678')]", "25d55ad283aa400af464c76d713c07ad");
+    }
+
+    @Test
     public void testNesting() throws Exception {
         evaluateEquals("$[i:l:f:d:5.6]", 5);
     }
