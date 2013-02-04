@@ -193,6 +193,7 @@ public class DbHelper {
                 .log();
 
         query = session.createSQLQuery(queryString);
+        query.setCacheable(false);
 
         records = null;
     }

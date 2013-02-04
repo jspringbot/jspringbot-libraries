@@ -22,7 +22,7 @@
     <property name="url" value="${db.jdbc.url}"/>
     <property name="username" value="${db.jdbc.username}"/>
     <property name="password" value="${db.jdbc.password}"/>
-    <property name="maxActive" value="2"/>
+    <property name="maxActive" value="5"/>
     <property name="maxWait" value="1000"/>
     <property name="poolPreparedStatements" value="true"/>
     <property name="defaultAutoCommit" value="true"/>
