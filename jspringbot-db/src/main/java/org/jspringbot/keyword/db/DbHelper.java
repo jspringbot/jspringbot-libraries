@@ -240,6 +240,20 @@ public class DbHelper {
         query.setInteger(key, value);
     }
 
+    public void setDoubleParameter(String key, Double value) {
+        validateQuery();
+
+        LOG.createAppender()
+                .appendBold("Set Integer Parameter:")
+                .appendProperty("property", key)
+                .appendProperty("value", value)
+                .log();
+
+        literalSubstitution.put(key, String.valueOf(value));
+
+        query.setDouble(key, value);
+    }
+
     public void setLongParameter(String key, Long value) {
         validateQuery();
 
