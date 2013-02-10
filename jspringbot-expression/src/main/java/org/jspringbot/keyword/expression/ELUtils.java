@@ -17,6 +17,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -137,6 +138,12 @@ public class ELUtils {
 
     public static String concat(Object... strs) {
         return StringUtils.join(strs);
+    }
+
+    public static boolean in(String... strs) {
+        List<String> list = Arrays.asList(strs).subList(1,  strs.length);
+
+        return list.contains(strs[0]);
     }
 
     public static String substring(String str, Integer... index) {

@@ -56,4 +56,9 @@
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String substring(java.lang.String,java.lang.Integer[])</function-signature>
   </function>
+  <function>
+    <name>in</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>boolean in(java.lang.String[])</function-signature>
+  </function>
 </functions>

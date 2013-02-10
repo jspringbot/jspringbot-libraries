@@ -131,6 +131,12 @@ public class ExpressionHelperTest {
     }
 
     @Test
+    public void testIn() throws Exception {
+        evaluateAsTrue("$[in('alvin', 'hello', 'world', 'alvin')]");
+        evaluateAsFalse("$[in('alvin', 'hello', 'world')]");
+    }
+
+    @Test
     public void testCreateStringFunctionsXML() throws Exception {
         new ClassStaticFunctionsPrinter(StringEscapeUtils.class).addPrefix("escape:").print(System.out);
     }
