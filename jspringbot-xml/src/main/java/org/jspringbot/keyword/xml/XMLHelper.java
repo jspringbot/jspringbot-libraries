@@ -190,7 +190,7 @@ public class XMLHelper {
     /**
      * Get Xpath Text Contents
      */
-    public List<Element> getXpathElements(Element base, String xpathExpression) throws TransformerException {
+    public List<Element> getXpathElements(Element base, String xpathExpression) throws TransformerException, IOException, SAXException {
         NodeList nodeList = getNodeList(base, xpathExpression);
         if (nodeList.getLength() == 0) {
             return Collections.emptyList();
@@ -209,10 +209,20 @@ public class XMLHelper {
         return list;
     }
 
-    private NodeList getNodeList(Element base, String xpathExpression) throws TransformerException {
+    private NodeList getNodeList(Element base, String xpathExpression) throws TransformerException, IOException, SAXException {
         validate();
 
-        NodeList nodeList = XPathAPI.selectNodeList(base, xpathExpression);
+        String baseString = XMLFormatter.prettyPrint(base);
+
+        LOG.createAppender()
+                .appendBold("Node XML String:")
+                .appendXML(baseString)
+                .log();
+
+        DOMParser parser = new DOMParser();
+        parser.parse(new InputSource(new StringReader(baseString)));
+
+        NodeList nodeList = XPathAPI.selectNodeList(parser.getDocument(), xpathExpression);
         if (nodeList == null) {
             throw new IllegalArgumentException(String.format("Xpath Expression '%s' not found.", xpathExpression));
         }
@@ -227,7 +237,20 @@ public class XMLHelper {
     }
 
     private NodeList getNodeList(String xpathExpression) throws TransformerException {
-        return getNodeList(document.getDocumentElement(), xpathExpression);
+        validate();
+
+        NodeList nodeList = XPathAPI.selectNodeList(document, xpathExpression);
+        if (nodeList == null) {
+            throw new IllegalArgumentException(String.format("Xpath Expression '%s' not found.", xpathExpression));
+        }
+
+        LOG.createAppender()
+                .appendBold("Get Node List:")
+                .appendProperty("Xpath Expression", xpathExpression)
+                .appendProperty("Number of Elements Found", nodeList.getLength())
+                .log();
+
+        return nodeList;
     }
 
 }

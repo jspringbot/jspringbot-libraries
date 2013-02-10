@@ -64,13 +64,15 @@ public class XMLUtils {
     }
 
     public static String text(Object... args) throws TransformerException {
-        if(Element.class.isInstance(args[0])) {
+        if(Element.class.isInstance(args[0]) && args.length == 1) {
             Element element = (Element) args[0];
             String result = element.getTextContent();
 
             LOG.keywordAppender().appendProperty("Result", result);
 
             return result;
+        } else if(args.length == 2 && Element.class.isInstance(args[0]) && String.class.isInstance(args[1])) {
+            return element(args).getTextContent();
         } else if(String.class.isInstance(args[0])) {
             String xpath = (String) args[0];
 
