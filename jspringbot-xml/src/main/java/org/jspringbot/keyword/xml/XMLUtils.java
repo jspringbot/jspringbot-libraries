@@ -5,8 +5,10 @@ import org.jspringbot.keyword.expression.ExpressionHelper;
 import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
 import javax.xml.transform.TransformerException;
+import java.io.IOException;
 import java.util.List;
 
 public class XMLUtils {
@@ -16,7 +18,7 @@ public class XMLUtils {
         return ApplicationContextHolder.get().getBean(XMLHelper.class);
     }
 
-    public static String attr(Object... args) throws TransformerException {
+    public static String attr(Object... args) throws TransformerException, IOException, SAXException {
         if(args[0] == null && String.class.isInstance(args[1]) && args.length == 2) {
             return attr(args[1]);
         } else if(Element.class.isInstance(args[0])) {
@@ -63,7 +65,7 @@ public class XMLUtils {
         throw new IllegalArgumentException("Expected 'xml:attr(attrName)' or 'xml:attr(element, attrName)' or 'xml:attr(xpath, attrName)'.");
     }
 
-    public static String text(Object... args) throws TransformerException {
+    public static String text(Object... args) throws TransformerException, IOException, SAXException {
         if(Element.class.isInstance(args[0]) && args.length == 1) {
             Element element = (Element) args[0];
             String result = element.getTextContent();
@@ -94,7 +96,7 @@ public class XMLUtils {
         throw new IllegalArgumentException("Expected 'xml:text(element)' or 'xml:text(xpath)'.");
     }
 
-    public static Element element(Object... args) throws TransformerException {
+    public static Element element(Object... args) throws TransformerException, IOException, SAXException {
         List<Element> elements = elements(args);
 
         if(CollectionUtils.isNotEmpty(elements)) {
@@ -104,7 +106,7 @@ public class XMLUtils {
         return null;
     }
 
-    public static List<Element> elements(Object... args) throws TransformerException {
+    public static List<Element> elements(Object... args) throws TransformerException, IOException, SAXException {
         if(args.length == 2 && Element.class.isInstance(args[0]) && String.class.isInstance(args[1])) {
             Element element = (Element) args[0];
             String xpath = (String) args[1];
