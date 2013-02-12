@@ -23,6 +23,9 @@ import org.apache.log4j.Logger;
 import org.hibernate.*;
 import org.hibernate.jdbc.Work;
 import org.hibernate.type.Type;
+import org.jspringbot.keyword.expression.ELUtils;
+import org.jspringbot.keyword.expression.ExpressionHelper;
+import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
@@ -183,6 +186,19 @@ public class DbHelper {
         });
     }
 
+    public static String evaluate(String value) {
+        try {
+            // ensure that expression is enabled
+            ApplicationContextHolder.get().getBean(ExpressionHelper.class);
+
+            return ELUtils.replaceVars(value);
+        } catch (Exception e) {
+            LOGGER.warn(e.getMessage(), e);
+
+            return value;
+        }
+    }
+
     public void createQuery(String queryString) {
         validateSchema();
         literalSubstitution.clear();
@@ -192,7 +208,7 @@ public class DbHelper {
                 .appendSQL(SQLFormatter.prettyPrint(queryString))
                 .log();
 
-        query = session.createSQLQuery(queryString);
+        query = session.createSQLQuery(evaluate(queryString));
         query.setCacheable(false);
 
         records = null;
@@ -203,7 +219,7 @@ public class DbHelper {
             throw new IllegalArgumentException("query name not found in list.");
         }
 
-        String sql = externalQueries.getProperty(queryName);
+        String sql = evaluate(externalQueries.getProperty(queryName));
 
         LOG.createAppender()
                 .appendBold("Create Query By Name:")
@@ -325,7 +341,7 @@ public class DbHelper {
                 .appendProperty("type", type)
                 .log();
 
-        Field field = null;
+        Field field;
         try {
             field = Hibernate.class.getField(type);
             query.addScalar(name, (Type) field.get(Hibernate.class));
