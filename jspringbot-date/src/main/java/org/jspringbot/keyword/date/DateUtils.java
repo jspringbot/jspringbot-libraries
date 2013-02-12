@@ -75,6 +75,32 @@ public class DateUtils {
         return format(new DateMidnight(), "midnight", args);
     }
 
+    public static String firstDayOfYear(String... args) {
+        DateMidnight midnight = new DateMidnight();
+
+        midnight = midnight.withMonthOfYear(1);
+        midnight = midnight.withDayOfYear(1);
+
+        return format(midnight, "midnight", args);
+    }
+
+    public static String firstDayOfMonth(String... args) {
+        DateMidnight midnight = new DateMidnight();
+        midnight = midnight.withDayOfMonth(1);
+
+        return format(midnight, "midnight", args);
+    }
+
+    public static String lastDayOfMonth(String... args) {
+        DateMidnight midnight = new DateMidnight();
+        midnight = midnight.withMonthOfYear(midnight.getMonthOfYear() + 1);
+        midnight = midnight.withDayOfMonth(1);
+        midnight = midnight.minusDays(1);
+
+        return format(midnight, "midnight", args);
+    }
+
+
     public static String now(String... args) {
         return format(new DateTime(), "now", args);
     }

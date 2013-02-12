@@ -20,6 +20,24 @@
     <function-signature>java.lang.String midnight(java.lang.String[])</function-signature>
   </function>
   <function>
+    <name>firstDayOfYear</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String firstDayOfYear(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>firstDayOfMonth</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String firstDayOfMonth(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>lastDayOfMonth</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String lastDayOfMonth(java.lang.String[])</function-signature>
+  </function>
+  <function>
     <name>parse</name>
     <prefix>date</prefix>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>

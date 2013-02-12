@@ -68,6 +68,10 @@ public class DateHelperTest {
         assertTrue(Time.class.isInstance(expressionHelper.evaluate("$[date:toSQLTime()]")));
         assertTrue(Timestamp.class.isInstance(expressionHelper.evaluate("$[date:toSQLTimestamp()]")));
 
+        System.out.println(expressionHelper.evaluate("$[date:firstDayOfMonth()]"));
+        System.out.println(expressionHelper.evaluate("$[date:lastDayOfMonth()]"));
+        System.out.println(expressionHelper.evaluate("$[date:firstDayOfYear()]"));
+
     }
 
     @Before
