@@ -114,6 +114,8 @@ public class XMLUtils {
             String xpath = (String) args[1];
 
             return getHelper().getXpathElements(element, xpath);
+        } else if(args.length == 2 && args[0] == null && String.class.isInstance(args[1])) {
+            return elements(args[1]);
         } else if(String.class.isInstance(args[0])) {
             String xpath = (String) args[0];
 
