@@ -75,6 +75,8 @@ public class XMLUtils {
             return result;
         } else if(args.length == 2 && Element.class.isInstance(args[0]) && String.class.isInstance(args[1])) {
             return element(args).getTextContent();
+        } else if(args.length == 2 && args[0] == null && String.class.isInstance(args[1])) {
+            return text(args[1]);
         } else if(String.class.isInstance(args[0])) {
             String xpath = (String) args[0];
 
