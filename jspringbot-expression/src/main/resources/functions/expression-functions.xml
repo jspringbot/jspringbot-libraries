@@ -61,4 +61,14 @@
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>boolean in(java.lang.String[])</function-signature>
   </function>
+  <function>
+    <name>doCase</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>java.lang.Object doCase(java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <name>doMap</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>java.lang.Object doMap(java.lang.Object[])</function-signature>
+  </function>
 </functions>

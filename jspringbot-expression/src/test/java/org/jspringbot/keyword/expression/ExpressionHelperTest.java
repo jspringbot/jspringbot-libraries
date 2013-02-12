@@ -137,6 +137,20 @@ public class ExpressionHelperTest {
     }
 
     @Test
+    public void testDoCase() throws Exception {
+        evaluateEquals("$[doCase('var' eq 'var', 'value')]", "value");
+        evaluateEquals("$[doCase('var' eq 'not var', 'var', 'var' eq 'var', 'next var')]", "next var");
+        evaluateEquals("$[doCase('var' eq 'not var', 'var', 'var' eq 'not var', 'next var', 'default')]", "default");
+    }
+
+    @Test
+    public void testDoMap() throws Exception {
+        evaluateEquals("$[doMap('var', 'var', '1')]", "1");
+        evaluateEquals("$[doMap('var', 'hello', '1', 'var', '2')]", "2");
+        evaluateEquals("$[doMap('var', 'hello', '1', 'world', '2', '5')]", "5");
+    }
+
+    @Test
     public void testCreateStringFunctionsXML() throws Exception {
         new ClassStaticFunctionsPrinter(StringEscapeUtils.class).addPrefix("escape:").print(System.out);
     }

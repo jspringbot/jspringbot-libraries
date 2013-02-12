@@ -17,7 +17,9 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -145,6 +147,55 @@ public class ELUtils {
 
         return list.contains(strs[0]);
     }
+
+    public static Object doCase(Object... args) {
+        Object defaultValue = null;
+
+        Queue<Object> arguments = new LinkedList<Object>();
+        arguments.addAll(Arrays.asList(args));
+
+        while(!arguments.isEmpty()) {
+            if(arguments.size() > 1) {
+                boolean condition = (Boolean) arguments.remove();
+                Object value = arguments.remove();
+                if(condition) {
+                    return value;
+                }
+            } else {
+                // default
+                return arguments.remove();
+            }
+        }
+
+        return defaultValue;
+    }
+
+    public static Object doMap(Object... args) {
+        Object defaultValue = null;
+
+        Queue<Object> arguments = new LinkedList<Object>();
+        arguments.addAll(Arrays.asList(args));
+
+        Object variable = arguments.remove();
+
+        while(!arguments.isEmpty()) {
+            if(arguments.size() > 1) {
+                Object variableValue = arguments.remove();
+                Object mapValue = arguments.remove();
+                if(variable.equals(variableValue)) {
+                    return mapValue;
+                }
+            } else {
+                // default
+                return arguments.remove();
+            }
+        }
+
+        return defaultValue;
+    }
+
+
+
 
     public static String substring(String str, Integer... index) {
         if(index.length > 1) {
