@@ -16,10 +16,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,6 +26,8 @@ public class ELUtils {
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
     public static final Pattern PATTERN = Pattern.compile("\\$\\{([^\\}]+)\\}", Pattern.CASE_INSENSITIVE);
+
+    public static final String EXCLUDE_INDICES = "excludeIndices";
 
     public static String resource(String resourceAsText) throws Exception {
         ResourceEditor editor = new ResourceEditor();
@@ -55,6 +54,17 @@ public class ELUtils {
 
     private static VariableProviderManager getVariables() {
         return new VariableProviderManager(ApplicationContextHolder.get());
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<Long> getExcludeIndices() {
+        Map<String, Object> variables = ELUtils.getVariables().getVariables();
+
+        if(variables.containsKey(EXCLUDE_INDICES)) {
+            return (List<Long>) variables.get(EXCLUDE_INDICES);
+        }
+
+        return Collections.emptyList();
     }
 
     public static String concatMillis(String name) {
@@ -193,9 +203,6 @@ public class ELUtils {
 
         return defaultValue;
     }
-
-
-
 
     public static String substring(String str, Integer... index) {
         if(index.length > 1) {

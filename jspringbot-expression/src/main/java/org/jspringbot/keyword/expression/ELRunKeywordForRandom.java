@@ -24,7 +24,6 @@ import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,9 +54,16 @@ public class ELRunKeywordForRandom extends AbstractExpressionKeyword {
             indices.add(i);
         }
 
+        List<Long> excludeIndices = ELUtils.getExcludeIndices();
+
         Collections.shuffle(indices);
         for(int i = 0; i < indices.size() && i < random; i++) {
             LOG.keywordAppender().appendProperty("Random index", indices.get(i));
+
+            if(excludeIndices.contains(Long.valueOf(indices.get(i)))) {
+                defaultVariableProvider.add("excludedIndex", indices.get(i));
+                continue;
+            }
 
             Object item = items.get(indices.get(i));
             defaultVariableProvider.add("randomIndex", indices.get(i));

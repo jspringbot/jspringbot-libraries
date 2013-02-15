@@ -24,6 +24,7 @@ import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.List;
 
 @Component
 @KeywordInfo(
@@ -46,7 +47,16 @@ public class ELRunKeywordForEach extends AbstractExpressionKeyword {
             return null;
         }
 
-        for(Object item : items) {
+        List<Long> excludeIndices = ELUtils.getExcludeIndices();
+
+        for(Long i = 0l; i < items.size(); i++) {
+            Object item = items.iterator().next();
+
+            if(excludeIndices.contains(i)) {
+                defaultVariableProvider.add("excludedIndex", i);
+                continue;
+            }
+
             defaultVariableProvider.add(String.valueOf(params[1]), item);
             ELRunKeyword.runKeyword(String.valueOf(params[0]));
         }
