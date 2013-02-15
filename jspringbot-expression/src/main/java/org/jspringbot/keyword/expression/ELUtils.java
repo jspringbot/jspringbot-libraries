@@ -58,7 +58,7 @@ public class ELUtils {
 
     @SuppressWarnings("unchecked")
     public static List<Long> getExcludeIndices() {
-        Map<String, Object> variables = ELUtils.getVariables().getVariables();
+        Map<String, Object> variables = getVariables().getVariables();
 
         if(variables.containsKey(EXCLUDE_INDICES)) {
             return (List<Long>) variables.get(EXCLUDE_INDICES);
