@@ -86,8 +86,10 @@ public class ELUtils {
                 LOG.keywordAppender().appendProperty("Replacement Robot Value ['" + name + "']", value);
             }
 
-            buf.replace(matcher.start(), matcher.end(), String.valueOf(value));
-            startIndex = matcher.end();
+            String strValue = String.valueOf(value);
+
+            buf.replace(matcher.start(), matcher.end(), strValue);
+            startIndex = matcher.start() + strValue.length();
         }
 
         LOG.keywordAppender().appendProperty(String.format("Replacement [%s]", string), buf.toString());
