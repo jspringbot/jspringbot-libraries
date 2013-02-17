@@ -1,5 +1,6 @@
 package org.jspringbot.keyword.expression;
 
+import au.com.bytecode.opencsv.CSVReader;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.MainContextHolder;
@@ -11,6 +12,10 @@ import org.python.util.PythonInterpreter;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.StringReader;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -28,6 +33,9 @@ public class ELUtils {
     public static final Pattern PATTERN = Pattern.compile("\\$\\{([^\\}]+)\\}", Pattern.CASE_INSENSITIVE);
 
     public static final String EXCLUDE_INDICES = "excludeIndices";
+
+    private static final Map<String, Properties> inCache = new HashMap<String, Properties>();
+    public static final String IN_FILE_DEFAULT_LOCATION = "classpath:/expression/in.properties";
 
     public static String resource(String resourceAsText) throws Exception {
         ResourceEditor editor = new ResourceEditor();
@@ -158,6 +166,50 @@ public class ELUtils {
         List<String> list = Arrays.asList(strs).subList(1,  strs.length);
 
         return list.contains(strs[0]);
+    }
+
+    public static boolean inFile(String... args) throws IOException {
+        String location = IN_FILE_DEFAULT_LOCATION;
+        String key;
+        String compare;
+
+        if(args.length > 2) {
+            location = args[0];
+            key = args[1];
+            compare = args[2];
+        } else {
+            key = args[0];
+            compare = args[1];
+        }
+
+        Properties properties = getInProperties(location);
+
+        String inList = properties.getProperty(key);
+
+        CSVReader reader = new CSVReader(new StringReader(inList));
+        String[] items = reader.readNext();
+
+        return Arrays.asList(items).contains(compare);
+    }
+
+    private static Properties getInProperties(String location) throws IOException {
+        if(inCache.containsKey(location)) {
+            return inCache.get(location);
+        }
+
+        ResourceEditor editor = new ResourceEditor();
+
+        editor.setAsText(location);
+
+        Resource resource = (Resource) editor.getValue();
+        File inFile = resource.getFile();
+
+        Properties properties = new Properties();
+        properties.load(new FileReader(inFile));
+
+        inCache.put(location, properties);
+
+        return properties;
     }
 
     public static Object doCase(Object... args) {

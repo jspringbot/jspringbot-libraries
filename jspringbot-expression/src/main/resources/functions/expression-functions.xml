@@ -62,6 +62,11 @@
     <function-signature>boolean in(java.lang.String[])</function-signature>
   </function>
   <function>
+    <name>inFile</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>boolean inFile(java.lang.String[])</function-signature>
+  </function>
+  <function>
     <name>doCase</name>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.Object doCase(java.lang.Object[])</function-signature>
