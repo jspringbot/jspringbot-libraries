@@ -96,7 +96,6 @@ public class ExpressionHelperTest {
         items.add("test2");
 
         evaluateEquals("$[col:size(items)]", 2);
-
     }
 
     @Test
