@@ -4,12 +4,17 @@
   <function>
     <name>eval</name>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
-    <function-signature>Object eval(java.lang.String,java.lang.Object[])</function-signature>
+    <function-signature>java.lang.Object eval(java.lang.String,java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>var</name>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
-    <function-signature>Object robotVar(java.lang.String)</function-signature>
+    <function-signature>java.lang.Object robotVar(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <name>convertUnicode</name>
+    <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
+    <function-signature>java.lang.String convertUnicode(java.lang.String)</function-signature>
   </function>
   <function>
     <name>concatMillis</name>

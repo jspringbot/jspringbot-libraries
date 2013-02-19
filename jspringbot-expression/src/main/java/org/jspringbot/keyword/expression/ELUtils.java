@@ -279,4 +279,32 @@ public class ELUtils {
 
         return formatter.format(amount);
     }
+
+    public static String convertUnicode(String str) {
+        StringBuilder buf = new StringBuilder();
+
+        for(int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if(ch == '\\') {
+                String toConvert = str.substring(i, i + 6);
+
+                if(!str.startsWith("\\u")) {
+                    buf.append(ch);
+                    continue;
+                }
+
+                buf.append(_convertUnicode(toConvert));
+                i += 5;
+            } else {
+                buf.append(ch);
+            }
+        }
+
+        return buf.toString();
+
+    }
+
+    public static char _convertUnicode(String str) {
+        return (char) Integer.parseInt(str.substring(2), 16);
+    }
 }

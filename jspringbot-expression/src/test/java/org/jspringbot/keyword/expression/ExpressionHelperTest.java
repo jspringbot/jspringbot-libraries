@@ -151,6 +151,11 @@ public class ExpressionHelperTest {
     }
 
     @Test
+    public void testConvertUnicode() throws Exception {
+        evaluateEquals("$[convertUnicode('\\\\u632F\\\\u534E')]", "\u632F\u534E");
+    }
+
+    @Test
     public void testCreateStringFunctionsXML() throws Exception {
         new ClassStaticFunctionsPrinter(StringEscapeUtils.class).addPrefix("escape:").print(System.out);
     }

@@ -238,7 +238,7 @@ public class DbHelper {
                 .appendProperty("value", value)
                 .log();
 
-        literalSubstitution.put(key, String.format("'%s'", LiteralEscapeUtils.escapeString(value)));
+        literalSubstitution.put(key, String.format("'%s'", value));
 
         query.setString(key, value);
     }

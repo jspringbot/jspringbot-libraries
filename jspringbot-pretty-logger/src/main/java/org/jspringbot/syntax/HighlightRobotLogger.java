@@ -18,7 +18,6 @@
 
 package org.jspringbot.syntax;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.jspringbot.JSpringBotLogger;
@@ -174,7 +173,7 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             } else if(Character.class.isInstance(value)) {
                 properties.append(hardWordWrap(String.format("%s = '%s'", property, String.valueOf(value))));
             } else {
-                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringEscapeUtils.escapeJava(StringUtils.substring(String.valueOf(value), 0, 100)))));
+                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringUtils.substring(String.valueOf(value), 0, 100))));
             }
 
             return this;
