@@ -6,6 +6,7 @@ import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 
 import javax.xml.transform.TransformerException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JSONUtils {
@@ -24,6 +25,24 @@ public class JSONUtils {
         }
 
         return null;
+    }
+
+    public static List<String> propertyNames(String... args) throws TransformerException {
+        String path = "*";
+        JSONObject object;
+
+        if(args.length == 1 && String.class.isInstance(args[0])) {
+            path = args[0];
+        }
+
+
+        object = (JSONObject) getHelper().getJsonValue(path);
+
+        if(object == null) {
+            throw new IllegalStateException(String.format("Unable to find object keys given '%s'", path));
+        }
+
+        return new ArrayList<String>(object.keySet());
     }
 
     public static List objects(Object... args) throws TransformerException {

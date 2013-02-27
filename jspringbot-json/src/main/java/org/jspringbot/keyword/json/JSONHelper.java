@@ -118,8 +118,16 @@ public class JSONHelper {
         return items;
     }
 
+    public JSONObject getRoot() {
+        return JsonPath.read(jsonString, "$");
+    }
+
     public Object getJsonValue(String jsonExpression) {
         validate();
+
+        if(jsonExpression.equals("*")) {
+            return getRoot();
+        }
 
         Object jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
 

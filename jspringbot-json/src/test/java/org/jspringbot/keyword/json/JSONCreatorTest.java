@@ -46,6 +46,13 @@ public class JSONCreatorTest {
     private StartJSONObject startJSONObject;
 
     @Test
+    public void testRoot() throws Exception {
+        helper.setJsonString("{ \"pc1\" : \"S1\", \"bc1\" : \"H4\", \"pc2\" : \"H0\", \"bc2\" : \"HQ\", \"pcd\" : \"H5\", \"bcd\" : \"S4\" }");
+
+        System.out.println(helper.getRoot());
+    }
+
+    @Test
     public void testGetJsonValues() throws JSONException, TokenStreamException, RecognitionException {
         creator.startJSONObject();
         creator.startJSONObject("store");
