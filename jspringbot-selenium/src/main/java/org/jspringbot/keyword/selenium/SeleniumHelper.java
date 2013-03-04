@@ -507,7 +507,7 @@ public class SeleniumHelper {
         if(StringUtils.startsWith(code, "file:") || StringUtils.startsWith(code, "classpath:")) {
             appender.appendProperty("Resource", code);
             ResourceEditor editor = new ResourceEditor();
-            editor.setValue(code);
+            editor.setAsText(code);
             Resource resource = (Resource) editor.getValue();
 
             code = new String(IOUtils.toCharArray(resource.getInputStream()));
