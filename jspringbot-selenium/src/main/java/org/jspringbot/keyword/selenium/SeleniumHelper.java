@@ -464,6 +464,27 @@ public class SeleniumHelper {
         throw new AssertionError("Element should have contained class.");
     }
 
+    public void elementShouldContainType(String locator, String expectedTypeName) {
+        WebElement el = finder.find(locator, true);
+
+        String typeNames = el.getAttribute("type");
+
+        LOG.createAppender()
+                .appendBold("Element Should Contain Class:")
+                .appendCss(locator)
+                .appendProperty("Class Names", typeNames)
+                .appendProperty("Expected Type Name", expectedTypeName)
+                .log();
+
+        if(StringUtils.isNotEmpty(typeNames)) {
+            if(Arrays.asList(StringUtils.split(typeNames, " ")).contains(expectedTypeName)) {
+                return;
+            }
+        }
+
+        throw new AssertionError("Element should have contained type.");
+    }
+
     public void elementShouldNotContainClass(String locator, String expectedClassName) {
         WebElement el = finder.find(locator, true);
 
