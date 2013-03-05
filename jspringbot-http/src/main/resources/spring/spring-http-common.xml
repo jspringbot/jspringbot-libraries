@@ -34,7 +34,15 @@
     </property>
   </bean>
 
+  <bean name="schemeRegistry" class="org.apache.http.conn.scheme.SchemeRegistry"/>
+
+  <bean class="org.jspringbot.keyword.http.SchemeRegistryBean">
+    <constructor-arg ref="schemeRegistry"/>
+    <property name="allowUntrusted" value="${http.allow.untrusted:true}"/>
+  </bean>
+
   <bean name="connectionManager" class="org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager">
+    <constructor-arg ref="schemeRegistry"/>
     <property name="defaultMaxPerRoute" value="${http.max.connection.per.route:5}"/>
     <property name="maxTotal" value="${http.max.connection.total:10}"/>
   </bean>
