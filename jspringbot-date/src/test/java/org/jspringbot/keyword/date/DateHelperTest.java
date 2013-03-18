@@ -74,6 +74,12 @@ public class DateHelperTest {
 
     }
 
+    @Test
+    public void testName() throws Exception {
+        expressionHelper.evaluate("$[date:isoParse('2013-03-18T15:39:43.000+08:00')]");
+        expressionHelper.evaluationShouldBeTrue("$[date:isBeforeNow()]");
+    }
+
     @Before
     public void setUp() throws Throwable {
         PrivateAccessor.invoke(ApplicationContextHolder.class, "set", new Class[]{ApplicationContext.class}, new Object[]{context});

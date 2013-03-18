@@ -22,6 +22,7 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.jspringbot.syntax.HighlightRobotLogger;
 
 import java.sql.Time;
@@ -112,6 +113,17 @@ public class DateHelper {
 
         DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(pattern);
         current = dateTimeFormatter.parseDateTime(dateStr);
+
+        // show the log for print
+        return formatDateTime();
+    }
+
+    public String isoParseDateTime(String dateStr) {
+        LOG.keywordAppender()
+                .appendProperty("Date String", dateStr);
+
+        DateTimeFormatter fmt = ISODateTimeFormat.dateTime();
+        current = fmt.parseDateTime(dateStr);
 
         // show the log for print
         return formatDateTime();

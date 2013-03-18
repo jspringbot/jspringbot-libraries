@@ -62,6 +62,18 @@
     <function-signature>java.sql.Time toSQLTime(java.lang.String[])</function-signature>
   </function>
   <function>
+    <name>isBeforeNow</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.Boolean isBeforeNow(java.lang.String[])</function-signature>
+  </function>
+  <function>
+    <name>isoParse</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String isoParse(java.lang.String)</function-signature>
+  </function>
+  <function>
     <name>toSQLTimestamp</name>
     <prefix>date</prefix>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>

@@ -57,6 +57,10 @@ public class DateUtils {
         return getHelper().getSQLTimestamp();
     }
 
+    public static String isoParse(String dateString) {
+        return getHelper().isoParseDateTime(dateString);
+    }
+
     public static String parse(String... args) {
         if(args.length == 2) {
             return getHelper().parseDateTime(args[0], args[1]);
@@ -100,6 +104,9 @@ public class DateUtils {
         return format(midnight, "midnight", args);
     }
 
+    public static boolean isBeforeNow(String... args) {
+        return getHelper().getCurrent().isBeforeNow();
+    }
 
     public static String now(String... args) {
         return format(new DateTime(), "now", args);
