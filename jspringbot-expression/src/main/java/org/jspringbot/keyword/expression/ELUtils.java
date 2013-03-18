@@ -75,6 +75,10 @@ public class ELUtils {
         return Collections.emptyList();
     }
 
+    public static Long getMillis(String str) {
+        return System.currentTimeMillis();
+    }
+
     public static String concatMillis(String name) {
         return name + System.currentTimeMillis();
     }
