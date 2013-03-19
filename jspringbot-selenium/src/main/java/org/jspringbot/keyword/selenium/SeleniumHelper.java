@@ -879,6 +879,11 @@ public class SeleniumHelper {
                 appender.append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
                 options.get(i).click();
 
+                if(indices.size() == 1) {
+                    // single selection so skip checking
+                    // other options
+                    break;
+                }
             }
         }
 
@@ -901,6 +906,12 @@ public class SeleniumHelper {
             if(values.contains(option.getAttribute("value"))) {
                 appender.append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
                 options.get(i).click();
+
+                if(values.size() == 1) {
+                    // single selection so skip checking
+                    // other options
+                    break;
+                }
             }
         }
 
@@ -923,6 +934,12 @@ public class SeleniumHelper {
             if(labels.contains(option.getText())) {
                 appender.append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
                 options.get(i).click();
+
+                if(labels.size() == 1) {
+                    // single selection so skip checking
+                    // other options
+                    break;
+                }
             }
         }
 
