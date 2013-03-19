@@ -688,8 +688,18 @@ public class SeleniumHelper {
         if (selectedOptions.size() == 0) {
             throw new IllegalArgumentException(String.format("Select list with locator '%s' does not have any selected values",locator));
         }
-        return getValuesForOptions(selectedOptions);
 
+        return getValuesForOptions(selectedOptions);
+    }
+
+    public List<String> getSelectLabels(String locator) {
+        List<WebElement> selectOptions = getSelectListOptions(locator);
+
+        if (selectOptions.size() == 0) {
+            throw new IllegalArgumentException(String.format("Select list with locator '%s' does not have any values",locator));
+        }
+
+        return getLabelsForOptions(selectOptions);
     }
 
     public List<String> getSelectedListLabels(String locator) {
