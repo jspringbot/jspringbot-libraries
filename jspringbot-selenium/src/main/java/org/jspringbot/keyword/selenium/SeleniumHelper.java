@@ -1133,7 +1133,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContain(String text) {
         if (pageContains(text)) {
-            throw new AssertionError(String.format("Page should have contained text %s but did not.", text));
+            throw new AssertionError(String.format("Page should not have contained text %s but did.", text));
         } else {
             LOG.info(String.format("Current page contains text '%s'.", text));
         }
@@ -1141,7 +1141,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContainButton(String locator) {
         if(isElementPresent(locator, "button") || isElementPresent(locator, "input")) {
-            throw new AssertionError(String.format("Page should have contained button '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should not have contained button '%s' but did.", locator));
         }
 
         LOG.info(String.format("Current page contains button '%s'.", locator));
@@ -1149,7 +1149,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContainCheckbox(String locator) {
         if(isElementPresent(locator, "input", "type", "checkbox")) {
-            throw new AssertionError(String.format("Page should have contained checkbox '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should not have contained checkbox '%s' but did.", locator));
         }
 
         LOG.info(String.format("Current page contains checkbox '%s'.", locator));
@@ -1157,7 +1157,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContainElement(String locator) {
         if(isElementPresent(locator)) {
-            throw new AssertionError(String.format("Page should have contained element '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should not have contained element '%s' but did.", locator));
         }
 
         LOG.info(String.format("Current page contains element '%s'.", locator));
@@ -1165,7 +1165,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContainImage(String locator) {
         if(isElementPresent(locator,"img")) {
-            throw new AssertionError(String.format("Page should have contained image '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should not have contained image '%s' but did.", locator));
         }
 
         LOG.info(String.format("Current page contains image '%s'.", locator));
@@ -1173,7 +1173,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContainLink(String locator) {
         if(isElementPresent(locator,"a")) {
-            throw new AssertionError(String.format("Page should have contained link '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should not have contained link '%s' but did.", locator));
         }
 
         LOG.info(String.format("Current page contains link '%s'.", locator));
@@ -1181,7 +1181,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContainList(String locator) {
         if(isElementPresent(locator,"select")) {
-            throw new AssertionError(String.format("Page should have contained list '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should not have contained list '%s' but did.", locator));
         }
 
         LOG.info(String.format("Current page contains list '%s'.", locator));
@@ -1189,7 +1189,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContainRadio(String locator) {
         if(isElementPresent(locator, "input", "type", "radio")) {
-            throw new AssertionError(String.format("Page should have contained radio '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should not have contained radio '%s' but did.", locator));
         }
 
         LOG.info(String.format("Current page contains radio '%s'.", locator));
@@ -1197,7 +1197,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContainTextfield(String locator) {
         if(isElementPresent(locator, "input", "type", "text")) {
-            throw new AssertionError(String.format("Page should have contained textfield '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should not have contained textfield '%s' but did.", locator));
         }
 
         LOG.info(String.format("Current page contains textfield '%s'.", locator));
@@ -1205,7 +1205,7 @@ public class SeleniumHelper {
 
     public void pageShouldNotContainPassword(String locator) {
         if(isElementPresent(locator, "input", "type", "password")) {
-            throw new AssertionError(String.format("Page should have contained password field '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should not have contained password field '%s' but did.", locator));
         }
 
         LOG.info(String.format("Current page contains password field '%s'.", locator));
