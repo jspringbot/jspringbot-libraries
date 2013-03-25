@@ -36,7 +36,7 @@ public class ELRunKeywordIf extends AbstractExpressionKeyword {
 
     @Override
     public Object execute(final Object[] params) throws Exception {
-        if(Boolean.class.isInstance(params[0])) {
+        if(!Boolean.class.isInstance(params[0])) {
             throw new IllegalArgumentException("Expecting condition with boolean result on first argument.");
         }
 
