@@ -5,7 +5,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "HasElement", description = "Determines whether the given element exists.", parameters={"locator"})
+@KeywordInfo(
+        name = "HasElement",
+        parameters = {"locator"},
+        description = "classpath:desc/HasElement.txt"
+)
 public class HasElement extends AbstractSeleniumKeyword {
 
     public Object execute(Object[] params) {

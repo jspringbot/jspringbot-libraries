@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Title Should Be", description = " Verifies that current page title equals title.", parameters = {"title"})
+@KeywordInfo(
+        name = "Title Should Be",
+        parameters = {"title"},
+        description = "classpath:desc/TitleShouldBe.txt"
+)
 public class TitleShouldBe extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Not Contain Element", description = "Verifies element identified by locator is not found from current page.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Page Should Not Contain Element",
+        parameters = {"locator"},
+        description = "classpath:desc/PageShouldNotContainElement.txt"
+)
 public class PageShouldNotContainElement extends AbstractSeleniumKeyword {
 
     @Override

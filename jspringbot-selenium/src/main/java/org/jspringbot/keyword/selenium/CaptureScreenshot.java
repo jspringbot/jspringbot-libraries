@@ -24,7 +24,10 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Capture Screenshot", description = "Takes a screenshot of the entire screen and embeds it into the log.")
+@KeywordInfo(
+        name = "Capture Screenshot",
+        description = "classpath:desc/CaptureScreenshot.txt"
+)
 public class CaptureScreenshot extends AbstractSeleniumKeyword {
 
     @Override

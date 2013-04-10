@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Unselect Frame", description = "Sets the top frame as the current frame.")
+@KeywordInfo(
+        name = "Unselect Frame",
+        description = "classpath:desc/UnselectFrame.txt"
+)
 public class UnselectFrame extends AbstractSeleniumKeyword {
 
     @Override

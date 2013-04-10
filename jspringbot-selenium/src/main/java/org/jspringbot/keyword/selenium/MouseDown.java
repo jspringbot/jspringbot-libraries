@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Mouse Down", description = "Simulates pressing the left mouse button on the element specified by `locator`.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Mouse Down",
+        parameters = {"locator"},
+        description = "classpath:desc/MouseDown.txt"
+)
 public class MouseDown extends AbstractSeleniumKeyword {
 
     @Override

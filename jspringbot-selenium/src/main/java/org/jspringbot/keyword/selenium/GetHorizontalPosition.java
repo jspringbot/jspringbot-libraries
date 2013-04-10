@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Horizontal Position", description = "Returns horizontal position of element identified by locator.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Get Horizontal Position",
+        parameters = {"locator"},
+        description = "classpath:desc/GetHorizontalPosition.txt"
+)
 public class GetHorizontalPosition extends AbstractSeleniumKeyword {
 
     @Override

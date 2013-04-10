@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Double Click Element", description = "Double click element identified by `locator`", parameters={"locator"})
+@KeywordInfo(
+        name = "Double Click Element",
+        parameters = {"locator"},
+        description = "classpath:desc/DoubleClickElement.txt"
+)
 public class DoubleClickElement extends AbstractSeleniumKeyword {
 
     @Override

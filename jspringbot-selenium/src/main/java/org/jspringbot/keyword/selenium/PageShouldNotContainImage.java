@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Not Contain Image", description = "Verifies image identified by locator is not found from current page.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Page Should Not Contain Image",
+        parameters = {"locator"},
+        description = "classpath:desc/PageShouldNotContainImage.txt"
+)
 public class PageShouldNotContainImage extends AbstractSeleniumKeyword {
 
     @Override

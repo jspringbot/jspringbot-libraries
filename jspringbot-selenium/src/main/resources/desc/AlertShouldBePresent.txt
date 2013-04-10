@@ -1,0 +1,13 @@
+Adds a custom location strategy.
+
+strategy_name is the name of the strategy; a prefix used when addressing an element.
+
+function_definition is the JavaScript that will be called. It must return a DOM reference, an array with DOM references, or null.
+
+Together with the modified selenium-server.jar it can provide a new method of locating elements on the page. For example, a jQuery strategy can be added to locate elements given jQuery selector syntax.
+
+For jQuery selector setup see: http://code.google.com/p/robotframework-seleniumlibrary/wiki/jQueryElementSelectors
+
+Example:
+| Add Location Strategy         | jquery                    | return Selenium.prototype.locateElementByJQuerySelector(locator, inDocument, inWindow); |
+| Page Should Contain Element   | jquery=div.#data-table    |                                                                                         |

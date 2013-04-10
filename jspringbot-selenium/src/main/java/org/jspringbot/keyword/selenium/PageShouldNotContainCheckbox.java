@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Not Contain Checkbox", description = "Verifies checkbox identified by locator is not found from current page.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Page Should Not Contain Checkbox",
+        parameters = {"locator"},
+        description = "classpath:desc/PageShouldNotContainCheckbox.txt"
+)
 public class PageShouldNotContainCheckbox extends AbstractSeleniumKeyword {
 
     @Override

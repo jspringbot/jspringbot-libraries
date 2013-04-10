@@ -14,8 +14,8 @@ import java.io.File;
 @Component
 @KeywordInfo(
         name = "Download Should Exists",
-        description = "Checks if download file exists.",
-        parameters = {"filename"}
+        parameters = {"filename"},
+        description = "classpath:desc/DownloadShouldExists.txt"
 )
 public class DownloadShouldExists extends AbstractSeleniumKeyword implements ApplicationContextAware {
 

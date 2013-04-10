@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Wait Till Element Visible", description = "Waits until element specified with locator is visible on current page or timeout expires.", parameters = {"locator","poll","timeout"})
+@KeywordInfo(
+        name = "Wait Till Element Visible",
+        parameters = {"locator","poll","timeout"},
+        description = "classpath:desc/WaitTillElementVisible.txt"
+)
 public class WaitTillElementVisible extends AbstractSeleniumKeyword {
 
     public Object execute(Object[] params) {

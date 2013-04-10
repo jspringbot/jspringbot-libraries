@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Select Frame", description = "Sets frame identified by locator as current frame.", parameters={"locator"})
+@KeywordInfo(
+        name = "Select Frame",
+        parameters = {"locator"},
+        description = "classpath:desc/SelectFrame.txt"
+)
 public class SelectFrame extends AbstractSeleniumKeyword {
 
     @Override

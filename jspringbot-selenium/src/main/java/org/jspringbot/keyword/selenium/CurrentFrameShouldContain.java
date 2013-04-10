@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Current Frame Should Contain", description = "Verifies that current page contains text.", parameters={"text"})
+@KeywordInfo(
+        name = "Current Frame Should Contain",
+        parameters = {"text"},
+        description = "classpath:desc/CurrentFrameShouldContain.txt"
+)
 public class CurrentFrameShouldContain extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Cookie Value", description = "Returns value of cookie found with name.", parameters = {"cookieName"})
+@KeywordInfo(
+        name = "Get Cookie Value",
+        parameters = {"cookieName"},
+        description = "classpath:desc/GetCookieValue.txt"
+)
 public class GetCookieValue extends AbstractSeleniumKeyword {
 
     @Override

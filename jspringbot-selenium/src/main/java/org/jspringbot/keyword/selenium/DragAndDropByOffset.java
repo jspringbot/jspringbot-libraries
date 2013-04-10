@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Drag And Drop By Offset", description = "Drags element identified with locator by offset.", parameters = {"locatorSource", "xOffset", "yOffset"})
+@KeywordInfo(
+        name = "Drag And Drop By Offset",
+        parameters = {"locatorSource", "xOffset", "yOffset"},
+        description = "classpath:desc/DragAndDropByOffset.txt"
+)
 public class DragAndDropByOffset extends AbstractSeleniumKeyword {
 
     @Override

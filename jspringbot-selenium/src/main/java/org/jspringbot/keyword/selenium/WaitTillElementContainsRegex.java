@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Wait Till Element Contains Regex", description = "Waits until element specified with locator that contains regex appears on current page or timeout expires.", parameters = {"locator", "regex","poll","timeout"})
+@KeywordInfo(
+        name = "Wait Till Element Contains Regex",
+        parameters = {"locator", "regex","poll","timeout"},
+        description = "classpath:desc/WaitTillElementContainRegex.txt"
+)
 public class WaitTillElementContainsRegex extends AbstractSeleniumKeyword {
 
     @Override

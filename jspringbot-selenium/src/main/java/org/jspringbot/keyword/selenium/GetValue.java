@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Value", description = "Returns the value of element identified by locator.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Get Value",
+        parameters = {"locator"},
+        description = "classpath:desc/GetValue.txt"
+)
 public class GetValue extends AbstractSeleniumKeyword {
 
     @Override

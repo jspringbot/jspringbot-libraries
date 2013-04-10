@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Submit Form", description = "Submits a form identified by locator.", parameters={"locator"})
+@KeywordInfo(
+        name = "Submit Form",
+        parameters = {"locator"},
+        description = "classpath:desc/SubmitForm.txt"
+)
 public class SubmitForm extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Delete Cookie", description = "Deletes cookie matching name and options.", parameters = {"name"})
+@KeywordInfo(
+        name = "Delete Cookie",
+        parameters = {"name"},
+        description = "classpath:desc/DeleteCookie.txt"
+)
 public class DeleteCookie extends AbstractSeleniumKeyword {
 
     @Override

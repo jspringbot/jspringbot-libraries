@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Alert Message", description = "Returns the text of current JavaScript alert.")
+@KeywordInfo(
+        name = "Get Alert Message",
+        description = "classpath:desc/GetAlertMessage.txt"
+)
 public class GetAlertMessage extends AbstractSeleniumKeyword {
 
     @Override

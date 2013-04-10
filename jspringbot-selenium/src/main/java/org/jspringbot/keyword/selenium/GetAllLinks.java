@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get All Links", description = "Returns a list containing ids of all links found in current page.")
+@KeywordInfo(
+        name = "Get All Links",
+        description = "classpath:desc/GetAllLinks.txt"
+)
 public class GetAllLinks extends AbstractSeleniumKeyword {
 
     @Override

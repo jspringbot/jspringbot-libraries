@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = " Xpath Should Match X Times", description = "Verifies that the page contains the given number of elements located by the given xpath.", parameters = {"locator", "count"})
+@KeywordInfo(
+        name = " Xpath Should Match X Times",
+        parameters = {"locator", "count"},
+        description = "classpath:desc/XpathShouldMatchXTimes.txt"
+)
 public class XpathShouldMatchXTimes extends AbstractSeleniumKeyword {
 
     @Override

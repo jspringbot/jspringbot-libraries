@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Not Contain Password", description = "Verifies password field identified by locator is not found from current page.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Page Should Not Contain Password",
+        parameters = {"locator"},
+        description = "classpath:desc/PageShouldNotContainPassword.txt"
+)
 public class PageShouldNotContainPassword extends AbstractSeleniumKeyword {
 
     @Override

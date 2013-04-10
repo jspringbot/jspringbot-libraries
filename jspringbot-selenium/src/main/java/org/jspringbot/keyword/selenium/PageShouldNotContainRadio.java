@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Not Contain Radio", description = "Verifies radio button identified by locator is not found from current page.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Page Should Not Contain Radio",
+        parameters = {"locator"},
+        description = "classpath:desc/PageShouldNotContainRadio.txt"
+)
 public class PageShouldNotContainRadio extends AbstractSeleniumKeyword {
 
     @Override

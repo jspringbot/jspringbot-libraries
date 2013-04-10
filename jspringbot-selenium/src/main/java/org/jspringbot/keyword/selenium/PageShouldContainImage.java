@@ -22,9 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Contain Image",
-             description = "Verifies image identified by locator is found from current page.",
-             parameters = {"locator"})
+@KeywordInfo(
+        name = "Page Should Contain Image",
+        parameters = {"locator"},
+        description = "classpath:desc/PageShouldContainImage.txt"
+)
 public class PageShouldContainImage extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Css Should Match X Times", description = "Verifies that the page contains the given number of elements located by the given css.", parameters = {"locator", "count"})
+@KeywordInfo(
+        name = "Css Should Match X Times",
+        parameters = {"locator", "count"},
+        description = "classpath:desc/CssShouldMatchXTimes.txt"
+)
 public class CssShouldMatchXTimes extends AbstractSeleniumKeyword {
 
     @Override

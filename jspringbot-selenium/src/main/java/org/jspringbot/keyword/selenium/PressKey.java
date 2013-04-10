@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Press Key", description = "Simulates user pressing key on element identified by `locator`.", parameters = {"locator", "key"})
+@KeywordInfo(
+        name = "Press Key",
+        parameters = {"locator", "key"},
+        description = "classpath:desc/PressKey.txt"
+)
 public class PressKey extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Contain Password", description = "Verifies password field identified by locator is found from current page.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Page Should Contain Password",
+        parameters = {"locator"},
+        description = "classpath:desc/PageShouldContainPassword.txt"
+)
 public class PageShouldContainPassword extends AbstractSeleniumKeyword {
 
     @Override

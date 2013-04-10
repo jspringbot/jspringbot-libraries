@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Input Text", description = "Types the given text into text field identified by locator.", parameters = {"locator", "text"})
+@KeywordInfo(
+        name = "Input Text",
+        parameters = {"locator", "text"},
+        description = "classpath:desc/InputText.txt"
+)
 public class InputText extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Quit Browser", description = "Quits the open browsers.")
+@KeywordInfo(
+        name = "Quit Browser",
+        description = "classpath:desc/QuitBrowser.txt"
+)
 public class QuitBrowser extends AbstractSeleniumKeyword {
 
     @Override

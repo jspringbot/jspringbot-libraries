@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Reload Page", description = "Simulates user reloading page.")
+@KeywordInfo(
+        name = "Reload Page",
+        description = "classpath:desc/ReloadPage.txt"
+)
 public class ReloadPage extends AbstractSeleniumKeyword {
 
     @Override

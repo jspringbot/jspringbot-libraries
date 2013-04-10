@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Focus", description = "Sets focus to element identified by locator.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Focus",
+        parameters = {"locator"},
+        description = "classpath:desc/Focus.txt"
+)
 public class Focus extends AbstractSeleniumKeyword {
 
     @Override

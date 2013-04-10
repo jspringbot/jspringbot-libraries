@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "List Have No Selection", description = "List selection should be the given items for either option values or label.", parameters = {"locator"})
+@KeywordInfo(
+        name = "List Have No Selection",
+        parameters = {"locator"},
+        description = "classpath:desc/ListHaveNoSelection.txt"
+)
 public class ListHaveNoSelection extends AbstractSeleniumKeyword {
 
     @Override

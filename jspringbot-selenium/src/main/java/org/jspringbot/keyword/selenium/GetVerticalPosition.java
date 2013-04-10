@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Vertical Position", description = "Returns vertical position of element identified by locator.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Get Vertical Position",
+        parameters = {"locator"},
+        description = "classpath:desc/GetVerticalPosition.txt"
+)
 public class GetVerticalPosition extends AbstractSeleniumKeyword {
 
     @Override

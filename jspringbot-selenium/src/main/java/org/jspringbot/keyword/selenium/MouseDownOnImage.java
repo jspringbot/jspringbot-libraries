@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Mouse Down On Image", description = "Simulates a mouse down event on an image.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Mouse Down On Image",
+        parameters = {"locator"},
+        description = "classpath:desc/MouseDownOnImage.txt"
+)
 public class MouseDownOnImage extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Delay", description = "Delays speed.", parameters={"pollMillis"})
+@KeywordInfo(
+        name = "Delay",
+        parameters = {"pollMillis"},
+        description = "classpath:desc/Delay.txt"
+)
 public class Delay extends AbstractSeleniumKeyword {
 
     @Override

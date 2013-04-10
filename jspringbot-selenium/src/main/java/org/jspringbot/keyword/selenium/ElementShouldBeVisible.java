@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Element Should Be Visible", description = "Verifies that the element identified by locator is visible.", parameters={"locator"})
+@KeywordInfo(
+        name = "Element Should Be Visible",
+        parameters = {"locator"},
+        description = "classpath:desc/ElementShouldBeVisible.txt"
+)
 public class ElementShouldBeVisible extends AbstractSeleniumKeyword {
 
     @Override

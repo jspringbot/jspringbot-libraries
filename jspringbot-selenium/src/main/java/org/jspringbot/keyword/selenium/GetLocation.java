@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Location", description = "Returns the current location.")
+@KeywordInfo(
+        name = "Get Location",
+        description = "classpath:desc/GetLocation.txt"
+)
 public class GetLocation extends AbstractSeleniumKeyword {
 
     @Override

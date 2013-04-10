@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Element Should Be Disabled", description = "Verifies that element identified with locator is disabled.", parameters={"locator"})
+@KeywordInfo(
+        name = "Element Should Be Disabled",
+        parameters = {"locator"},
+        description = "classpath:desc/ElementShouldBeDisabled.txt"
+)
 public class ElementShouldBeDisabled extends AbstractSeleniumKeyword {
 
     @Override

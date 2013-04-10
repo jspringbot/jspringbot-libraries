@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Drag And Drop", description = "Drags element identified with locator.", parameters = {"locatorSource", "locatorDestination"})
+@KeywordInfo(
+        name = "Drag And Drop",
+        parameters = {"locatorSource", "locatorDestination"},
+        description = "classpath:desc/DragAndDrop.txt"
+)
 public class DragAndDrop extends AbstractSeleniumKeyword {
 
     @Override

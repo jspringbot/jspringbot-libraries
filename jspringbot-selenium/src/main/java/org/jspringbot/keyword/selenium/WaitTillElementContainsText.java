@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Wait Till Element Contains Text", description = "Waits until element specified with locator that contains text appears on current page or timeout expires.", parameters = {"locator", "text","poll","timeout"})
+@KeywordInfo(
+        name = "Wait Till Element Contains Text",
+        parameters = {"locator", "text","poll","timeout"},
+        description = "classpath:desc/WaitTillElementContainsText.txt"
+)
 public class WaitTillElementContainsText extends AbstractSeleniumKeyword {
 
     @Override

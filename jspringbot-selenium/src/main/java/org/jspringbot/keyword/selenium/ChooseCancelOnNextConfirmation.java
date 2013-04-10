@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Choose Cancel On Next Confirmation", description = "Cancel will be selected the next time Confirm Action is used.")
+@KeywordInfo(
+        name = "Choose Cancel On Next Confirmation",
+        description = "classpath:desc/ChooseCancelOnNextConfirmation.txt"
+)
 public class ChooseCancelOnNextConfirmation extends AbstractSeleniumKeyword {
 
     @Override

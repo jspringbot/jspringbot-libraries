@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Checkbox Should Be Selected", description = "Verifies checkbox identified by locator is selected/checked.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Checkbox Should Be Selected",
+        parameters = {"locator"},
+        description = "classpath:desc/CheckboxShouldBeSelected.txt"
+)
 public class CheckboxShouldBeSelected extends AbstractSeleniumKeyword {
 
     @Override

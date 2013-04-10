@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Go Back", description = "Simulates the user clicking the \"back\" button on their browser.")
+@KeywordInfo(
+        name = "Go Back",
+        description = "classpath:desc/GoBack.txt"
+)
 public class GoBack extends AbstractSeleniumKeyword {
 
     @Override

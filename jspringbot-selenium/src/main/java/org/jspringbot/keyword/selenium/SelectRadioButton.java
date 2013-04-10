@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Select Radio Button", description = "Sets selection of radio button group identified by group_name to value.", parameters={"groupName", "value"})
+@KeywordInfo(
+        name = "Select Radio Button",
+        parameters = {"groupName", "value"},
+        description = "classpath:desc/SelectRadioButton.txt"
+)
 public class SelectRadioButton extends AbstractSeleniumKeyword {
 
     @Override

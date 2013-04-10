@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Element Should Not Be Visible", description = "Verifies that the element identified by locator is NOT visible.", parameters={"locator"})
+@KeywordInfo(
+        name = "Element Should Not Be Visible",
+        parameters = {"locator"},
+        description = "classpath:desc/ElementShouldNotBeVisible.txt"
+)
 public class ElementShouldNotBeVisible extends AbstractSeleniumKeyword {
 
     @Override

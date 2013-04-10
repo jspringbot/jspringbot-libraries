@@ -25,7 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@KeywordInfo(name = "Select From List By Label", description = "select the list given the labels.", parameters = {"locator", "*labels"})
+@KeywordInfo(
+        name = "Select From List By Label",
+        parameters = {"locator", "*labels"},
+        description = "classpath:desc/SelectFromListByLabel.txt"
+)
 public class SelectFromListByLabel extends AbstractSeleniumKeyword {
 
     @Override

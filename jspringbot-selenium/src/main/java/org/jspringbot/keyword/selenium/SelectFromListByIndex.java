@@ -25,7 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@KeywordInfo(name = "Select From List By Index", description = "select the list given the indices.", parameters = {"locator", "*indices"})
+@KeywordInfo(
+        name = "Select From List By Index",
+        parameters = {"locator", "*indices"},
+        description = "classpath:desc/SelectFromListByIndex.txt"
+)
 public class SelectFromListByIndex extends AbstractSeleniumKeyword {
 
     @Override

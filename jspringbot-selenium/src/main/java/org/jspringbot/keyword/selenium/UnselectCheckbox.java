@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Unselect Checkbox", description = "Removes selection of checkbox identified by locator.", parameters={"locator"})
+@KeywordInfo(
+        name = "Unselect Checkbox",
+        parameters = {"locator"},
+        description = "classpath:desc/UnselectCheckbox.txt"
+)
 public class UnselectCheckbox extends AbstractSeleniumKeyword {
 
     @Override

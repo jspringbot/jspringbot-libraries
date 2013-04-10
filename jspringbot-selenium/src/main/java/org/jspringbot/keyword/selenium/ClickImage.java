@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Click Image", description = "Clicks an image found by locator.", parameters={"locator"})
+@KeywordInfo(
+        name = "Click Image",
+        parameters = {"locator"},
+        description = "classpath:desc/ClickImage.txt"
+)
 public class ClickImage extends AbstractSeleniumKeyword {
 
     @Override

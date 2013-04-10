@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Source", description = "Returns the entire html source of the current page or frame.")
+@KeywordInfo(
+        name = "Get Source",
+        description = "classpath:desc/GetSource.txt"
+)
 public class GetSource extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Assign Id To Element", description = "Assigns a temporary identifier to element specified by `locator`", parameters = {"id", "locator"})
+@KeywordInfo(
+        name = "Assign Id To Element",
+        parameters = {"id", "locator"},
+        description = "classpath:desc/AssignIdToElement.txt"
+)
 public class AssignIdToElement extends AbstractSeleniumKeyword {
 
     @Override

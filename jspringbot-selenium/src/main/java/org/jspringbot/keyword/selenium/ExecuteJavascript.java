@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Execute Javascript", description = "\tExecutes the given JavaScript code.", parameters = {"code"})
+@KeywordInfo(
+        name = "Execute Javascript",
+        parameters = {"code"},
+        description = "classpath:desc/ExecuteJavascript.txt"
+)
 public class ExecuteJavascript extends AbstractSeleniumKeyword {
 
     public Object execute(Object[] params) throws IOException {

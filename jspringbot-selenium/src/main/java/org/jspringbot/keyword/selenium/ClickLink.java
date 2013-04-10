@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Click Link", description = "Click Link.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Click Link",
+        parameters = {"locator"},
+        description = "classpath:desc/ClickLink.txt"
+)
 public class ClickLink extends AbstractSeleniumKeyword {
 
     @Override

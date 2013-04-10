@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Confirm Action", description = "Dismisses currently shown confirmation dialog.")
+@KeywordInfo(
+        name = "Confirm Action",
+        description = "classpath:desc/ConfirmAction.txt"
+)
 public class ConfirmAction extends AbstractSeleniumKeyword {
 
     @Override

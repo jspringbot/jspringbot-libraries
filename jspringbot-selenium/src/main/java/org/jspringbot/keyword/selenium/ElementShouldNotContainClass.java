@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Element Should Not Contain Class", description = "Verifies element identified by locator should not contains class.", parameters = {"locator", "className"})
+@KeywordInfo(
+        name = "Element Should Not Contain Class",
+        parameters = {"locator", "className"},
+        description = "classpath:desc/ElementShouldNotContainClass.txt"
+)
 public class ElementShouldNotContainClass extends AbstractSeleniumKeyword {
 
     @Override

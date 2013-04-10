@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Radio Button Should Not Be Selected", description = "Verifies radio button group identified by group_name has no selection.", parameters={"groupName"})
+@KeywordInfo(
+        name = "Radio Button Should Not Be Selected",
+        parameters = {"groupName"},
+        description = "classpath:desc/RadioButtonShouldNotBeSelected.txt"
+)
 public class RadioButtonShouldNotBeSelected extends AbstractSeleniumKeyword {
 
     @Override

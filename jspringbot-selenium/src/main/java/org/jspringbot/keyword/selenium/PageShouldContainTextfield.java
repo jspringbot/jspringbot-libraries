@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Contain Textfield", description = "Verifies text field identified by locator is found from current page.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Page Should Contain Textfield",
+        parameters = {"locator"},
+        description = "classpath:desc/PageShouldContainTextfield.txt"
+)
 public class PageShouldContainTextfield extends AbstractSeleniumKeyword {
 
     @Override

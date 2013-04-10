@@ -25,7 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@KeywordInfo(name = "List Selection By Label Should Be", description = "List selection should be the given option labels.", parameters = {"locator", "*labels"})
+@KeywordInfo(
+        name = "List Selection By Label Should Be",
+        parameters = {"locator", "*labels"},
+        description = "classpath:desc/ListSelectionByLabelShouldBe.txt"
+)
 public class ListSelectionByLabelShouldBe extends AbstractSeleniumKeyword {
 
     @Override

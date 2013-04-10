@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Select All From List", description = "Selects all values from multi-select list identified by locator.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Select All From List",
+        parameters = {"locator"},
+        description = "classpath:desc/SelectAllFromList.txt"
+)
 public class SelectAllFromList extends AbstractSeleniumKeyword {
 
     @Override

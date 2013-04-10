@@ -22,9 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Select Window",
-             description = "Select Window.",
-             parameters={"windowName"})
+@KeywordInfo(
+        name = "Select Window",
+        parameters = {"windowName"},
+        description = "classpath:desc/SelectWindow.txt"
+)
 public class SelectWindow extends AbstractSeleniumKeyword {
 
     @Override

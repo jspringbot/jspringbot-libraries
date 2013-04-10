@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Matching Xpath Count", description = "Returns number of elements matching xpath.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Get Matching Xpath Count",
+        parameters = {"locator"},
+        description = "classpath:desc/GetMatchingXpathCount.txt"
+)
 public class GetMatchingXpathCount extends AbstractSeleniumKeyword {
 
     @Override

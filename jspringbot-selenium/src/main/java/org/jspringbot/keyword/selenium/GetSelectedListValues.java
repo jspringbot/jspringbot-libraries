@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Selected List Values", description = "Returns the values of selected elements (as a list) from the select list identified by `locator`.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Get Selected List Values",
+        parameters = {"locator"},
+        description = "classpath:desc/GetSelectedListValues.txt"
+)
 public class GetSelectedListValues extends AbstractSeleniumKeyword {
 
     @Override

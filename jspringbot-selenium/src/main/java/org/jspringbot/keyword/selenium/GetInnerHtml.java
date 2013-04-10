@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Inner Html", description = "Returns inner HTML of element identified by locator..", parameters = {"locator"})
+@KeywordInfo(
+        name = "Get Inner Html",
+        parameters = {"locator"},
+        description = "classpath:desc/GetInnerHtml.txt"
+)
 public class GetInnerHtml extends AbstractSeleniumKeyword {
 
     @Override

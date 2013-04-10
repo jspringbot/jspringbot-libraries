@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Frame Should Contain Text", description = " Verifies frame identified by locator contains text.", parameters = {"locator", "text"})
+@KeywordInfo(
+        name = "Frame Should Contain Text",
+        parameters = {"locator", "text"},
+        description = "classpath:desc/FrameShouldContainText.txt"
+)
 public class FrameShouldContainText extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Element Should Contain Type", description = "Verifies element identified by locator contains expected type.", parameters = {"locator", "type name"})
+@KeywordInfo(
+        name = "Element Should Contain Type",
+        parameters = {"locator", "type name"},
+        description = "classpath:desc/ElementShouldContainType.txt"
+)
 public class ElementShouldContainType extends AbstractSeleniumKeyword {
 
     @Override

@@ -22,8 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Window Handles",
-             description = "Get Window Handles.")
+@KeywordInfo(
+        name = "Get Window Handles",
+        description = "classpath:desc/GetWindowHandles.txt"
+)
 public class GetWindowHandles extends AbstractSeleniumKeyword {
 
     @Override

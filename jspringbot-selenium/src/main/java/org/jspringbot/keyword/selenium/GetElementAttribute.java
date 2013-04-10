@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Element Attribute", description = "\tReturn value of element attribute.", parameters = {"attributeLocator"})
+@KeywordInfo(
+        name = "Get Element Attribute",
+        parameters = {"attributeLocator"},
+        description = "classpath:desc/GetElementAttribute.txt"
+)
 public class GetElementAttribute extends AbstractSeleniumKeyword {
 
     @Override

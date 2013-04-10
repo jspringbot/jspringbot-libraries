@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Contain", description = "Verifies that current page contains text.", parameters = {"text"})
+@KeywordInfo(
+        name = "Page Should Contain",
+        parameters = {"text"},
+        description = "classpath:desc/PageShouldContain.txt"
+)
 public class PageShouldContain extends AbstractSeleniumKeyword {
 
     @Override

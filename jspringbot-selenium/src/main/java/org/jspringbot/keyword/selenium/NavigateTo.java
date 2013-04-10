@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Navigate To", description = "Navigate To", parameters = {"url"})
+@KeywordInfo(
+        name = "Navigate To",
+        parameters = {"url"},
+        description = "classpath:desc/NavigateTo.txt"
+)
 public class NavigateTo extends AbstractSeleniumKeyword {
 
     @Override

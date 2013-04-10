@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Textfield Value Should Be", description = "Verifies the value in text field identified by locator is exactly expected.", parameters={"locator", "expectedValue"})
+@KeywordInfo(
+        name = "Textfield Value Should Be",
+        parameters = {"locator", "expectedValue"},
+        description = "classpath:desc/TextfieldValueShouldBe.txt"
+)
 public class TextfieldValueShouldBe extends AbstractSeleniumKeyword {
 
     public Object execute(Object[] params) {

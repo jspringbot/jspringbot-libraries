@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Page Should Contain List", description = " Verifies list identified by locator is found from current page.", parameters = {"locator"})
+@KeywordInfo(
+        name = "Page Should Contain List",
+        parameters = {"locator"},
+        description = "classpath:desc/PageShouldContainList.txt"
+)
 public class PageShouldContainList extends AbstractSeleniumKeyword {
 
     @Override

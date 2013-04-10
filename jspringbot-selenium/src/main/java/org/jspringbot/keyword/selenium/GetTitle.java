@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Title", description = "Returns title of current page.")
+@KeywordInfo(
+        name = "Get Title",
+        description = "classpath:desc/GetTitle.txt"
+)
 public class GetTitle extends AbstractSeleniumKeyword {
 
     @Override

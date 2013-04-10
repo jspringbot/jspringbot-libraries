@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Choose File", description = "Inputs the file_path into file input field found by identifier.", parameters={"locator", "filePath"})
+@KeywordInfo(
+        name = "Choose File",
+        parameters = {"locator", "filePath"},
+        description = "classpath:desc/ChooseFile.txt"
+)
 public class ChooseFile extends AbstractSeleniumKeyword {
 
     @Override

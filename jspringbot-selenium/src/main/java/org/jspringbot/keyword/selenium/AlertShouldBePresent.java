@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Alert Should Be Present", description = "Verifies an alert is present and dismisses it.", parameters = {"text"})
+@KeywordInfo(
+        name = "Alert Should Be Present",
+        parameters = {"text"},
+        description = "classpath:desc/AlertShouldBePresent.txt"
+)
 public class AlertShouldBePresent extends AbstractSeleniumKeyword {
 
     @Override
