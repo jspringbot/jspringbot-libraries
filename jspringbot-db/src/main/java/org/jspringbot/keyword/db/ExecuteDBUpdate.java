@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Execute DB Update", description = "Executes DB Update.")
+@KeywordInfo(
+        name = "Execute DB Update",
+        description = "classpath:desc/ExecuteDBUpdate.txt"
+)
 public class ExecuteDBUpdate extends AbstractDBKeyword {
 
     @Override

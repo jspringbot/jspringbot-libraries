@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "DB Projected Count Is Zero", description = "DB Projected Count Is Zero.")
+@KeywordInfo(
+        name = "DB Projected Count Is Zero",
+        description = "DB Projected Count Is Zero."
+)
 public class DBProjectedCountIsZero extends AbstractDBKeyword {
 
     @Override

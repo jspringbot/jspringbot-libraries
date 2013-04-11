@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Create DB Query By Name", description = "Create DB Query By Name.", parameters = {"queryName"})
+@KeywordInfo(
+        name = "Create DB Query By Name",
+        parameters = {"queryName"},
+        description = "classpath:desc/CreateDBQueryByName.txt"
+)
 public class CreateDBQueryByName extends AbstractDBKeyword {
 
     @Override

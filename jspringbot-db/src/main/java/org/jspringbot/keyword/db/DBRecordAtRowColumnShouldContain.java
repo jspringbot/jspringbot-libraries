@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "DB Record At Row Column Should Contain", description = "DB Record At Row Column Should Contain.", parameters = {"rowNum","columnNum","expectedValue"})
+@KeywordInfo(
+        name = "DB Record At Row Column Should Contain",
+        parameters = {"rowNum","columnNum","expectedValue"},
+        description = "classpath:desc/DBRecordAtRowColumnShouldContain.txt"
+)
 public class DBRecordAtRowColumnShouldContain extends AbstractDBKeyword {
 
     @Override

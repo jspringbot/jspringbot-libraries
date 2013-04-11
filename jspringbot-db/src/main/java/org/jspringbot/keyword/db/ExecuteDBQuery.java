@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Execute DB Query", description = "Executes DB Query.")
+@KeywordInfo(
+        name = "Execute DB Query",
+        description = "classpath:desc/ExecuteDBQuery.txt"
+)
 public class ExecuteDBQuery extends AbstractDBKeyword {
 
     public Object execute(Object[] params) {

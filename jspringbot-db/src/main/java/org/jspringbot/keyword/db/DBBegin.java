@@ -22,7 +22,9 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "DBBegin", description = "Opens a DB session and begins a transaction.")
+@KeywordInfo(
+        name = "DBBegin",
+        description = "classpath:desc/DBBegin.txt")
 public class DBBegin extends AbstractDBKeyword {
 
     @Override

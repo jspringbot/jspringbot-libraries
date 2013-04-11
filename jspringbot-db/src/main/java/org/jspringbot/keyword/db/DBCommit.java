@@ -22,7 +22,9 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "DB Commit", description = "Commits DB transaction and closes the session.")
+@KeywordInfo(
+        name = "DB Commit",
+        description = "classpath:desc/DBCommit.txt")
 public class DBCommit extends AbstractDBKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "DB Projected Count Should Be Equal", description = "DB Record Count Should Be Equal.", parameters = {"expectedCount"})
+@KeywordInfo(
+        name = "DB Projected Count Should Be Equal",
+        parameters = {"expectedCount"},
+        description = "classpath:desc/DBProjectedCountShouldBeEqual.txt"
+)
 public class DBProjectedCountShouldBeEqual extends AbstractDBKeyword {
 
     @Override

@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Add DB Result Column", description = "Add DB Result Column.", parameters = {"name","type"})
+@KeywordInfo(
+        name = "Add DB Result Column",
+        parameters = {"name","type"},
+        description = "classpath:desc/AddDBResultColumn.txt"
+)
 public class AddDBResultColumn extends AbstractDBKeyword {
 
     @Override
