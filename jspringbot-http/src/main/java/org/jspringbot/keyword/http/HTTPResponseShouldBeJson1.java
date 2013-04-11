@@ -24,16 +24,19 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "HTTP Response Should Be Xml", description = "HTTP Response Should Be Xml.")
-public class HTTPResponseShouldBeXml extends AbstractHTTPKeyword {
+@KeywordInfo(
+        name = "HTTP Response Should Be JSON",
+        description = "classpath:desc/HTTPResponseShouldBeJSON.txt"
+)
+public class HTTPResponseShouldBeJson1 extends AbstractHTTPKeyword {
 
     @Override
     public Object execute(Object[] params) {
         try {
-            httpHelper.responseShouldBeXML();
+            httpHelper.responseShouldBeJson();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new IllegalArgumentException("Response is not Xml", e);
+            throw new IllegalArgumentException("Response is not Json", e);
         }
         return null;
     }

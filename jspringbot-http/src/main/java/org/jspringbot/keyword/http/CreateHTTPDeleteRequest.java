@@ -25,7 +25,11 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
 @Component
-@KeywordInfo(name = "Create HTTP Delete Request", description = "Creates an HTTP Delete Request.", parameters = {"url"})
+@KeywordInfo(
+        name = "Create HTTP Delete Request",
+        parameters = {"url"},
+        description = "classpath:desc/CreateHTTPDeleteRequest.txt"
+)
 public class CreateHTTPDeleteRequest extends AbstractHTTPKeyword {
 
     @Override

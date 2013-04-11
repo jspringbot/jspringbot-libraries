@@ -24,7 +24,10 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Invoke HTTP Request", description = "Invokes HTTP Request.")
+@KeywordInfo(
+        name = "Invoke HTTP Request",
+        description = "classpath:desc/InvokeHTTPRequest.txt"
+)
 public class InvokeHTTPRequest extends AbstractHTTPKeyword {
 
     @Override

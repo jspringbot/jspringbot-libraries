@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get HTTP Response Status Code", description = "Return the HTTP response status code.")
+@KeywordInfo(
+        name = "Get HTTP Response Status Code",
+        description = "classpath:desc/GetHTTPResponseStatusCode.txt"
+)
 public class GetHTTPResponseStatusCode extends AbstractHTTPKeyword {
 
     @Override

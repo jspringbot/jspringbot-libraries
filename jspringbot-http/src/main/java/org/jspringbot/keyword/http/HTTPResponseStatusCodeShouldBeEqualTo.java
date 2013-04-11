@@ -23,7 +23,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "HTTP Response Status Code Should Be Equal To", description = "HTTP Response Status Code Should Be Equal To.", parameters = {"statusCode"})
+@KeywordInfo(
+        name = "HTTP Response Status Code Should Be Equal To",
+        parameters = {"statusCode"},
+        description = "classpath:desc/HTTPResponseStatusCodeShouldBeEqualTo.txt"
+)
 public class HTTPResponseStatusCodeShouldBeEqualTo extends AbstractHTTPKeyword {
 
     @Override

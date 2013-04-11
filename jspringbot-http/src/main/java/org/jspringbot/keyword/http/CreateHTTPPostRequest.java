@@ -25,7 +25,11 @@ import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 
 @Component
-@KeywordInfo(name = "Create HTTP Post Request", description = "Creates an HTTP Post Request.", parameters = {"url"})
+@KeywordInfo(
+        name = "Create HTTP Post Request",
+        parameters = {"url"},
+        description = "classpath:desc/CreateHTTPPostRequest.txt"
+)
 public class CreateHTTPPostRequest extends AbstractHTTPKeyword {
 
     @Override

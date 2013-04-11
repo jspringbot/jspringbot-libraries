@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "HTTP Response Should Contain", description = "HTTP Response Should Contain.", parameters = {"value"})
+@KeywordInfo(
+        name = "HTTP Response Should Contain",
+        parameters = {"value"},
+        description = "classpath:desc/HTTPResponseShouldContain.txt"
+)
 public class HTTPResponseShouldContain extends AbstractHTTPKeyword {
 
     @Override

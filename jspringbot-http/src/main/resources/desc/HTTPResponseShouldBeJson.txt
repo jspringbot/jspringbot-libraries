@@ -1,0 +1,1 @@
+Fail if the value of the HTTP Response is not in JSON format.

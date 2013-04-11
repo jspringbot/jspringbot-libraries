@@ -1,0 +1,1 @@
+Fails if the response status code of the request is not equal to the status code specified.

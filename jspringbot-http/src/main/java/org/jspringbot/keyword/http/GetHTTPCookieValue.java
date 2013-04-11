@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get HTTP Cookie Value", description = "Return the HTTP cookie value given the name.", parameters = {"name"})
+@KeywordInfo(
+        name = "Get HTTP Cookie Value",
+        parameters = {"name"},
+        description = "classpath:desc/GetHTTPCookieValue.txt"
+)
 public class GetHTTPCookieValue extends AbstractHTTPKeyword {
 
     @Override
