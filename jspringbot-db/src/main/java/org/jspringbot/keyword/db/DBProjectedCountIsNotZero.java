@@ -24,7 +24,8 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "DB Projected Count Is Not Zero",
-        description = "classpath:desc/DBProjectedCountIsNotZero.txt")
+        description = "classpath:desc/DBProjectedCountIsNotZero.txt"
+)
 public class DBProjectedCountIsNotZero extends AbstractDBKeyword {
 
     @Override

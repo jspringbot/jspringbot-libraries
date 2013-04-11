@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "DB Projected Count Is Zero",
-        description = "DB Projected Count Is Zero."
+        description = "classpath:desc/DBProjectedCountIsZero.txt"
 )
 public class DBProjectedCountIsZero extends AbstractDBKeyword {
 

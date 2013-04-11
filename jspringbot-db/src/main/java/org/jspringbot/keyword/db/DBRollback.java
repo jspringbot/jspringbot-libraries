@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "DB Rollback", description = "")
+@KeywordInfo(
+        name = "DB Rollback",
+        description = "classpath:desc/DBRollback.txt"
+)
 public class DBRollback extends AbstractDBKeyword {
 
     @Override

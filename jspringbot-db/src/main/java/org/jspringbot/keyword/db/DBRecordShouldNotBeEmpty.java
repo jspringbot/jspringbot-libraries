@@ -24,7 +24,8 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "DB Record Should Not Be Empty",
-        description = "classpath:desc/DBRecordShouldNotBeEmpty.txt")
+        description = "classpath:desc/DBRecordShouldNotBeEmpty.txt"
+)
 public class DBRecordShouldNotBeEmpty extends AbstractDBKeyword {
 
     @Override

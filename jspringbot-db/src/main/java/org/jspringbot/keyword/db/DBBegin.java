@@ -24,7 +24,8 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "DBBegin",
-        description = "classpath:desc/DBBegin.txt")
+        description = "classpath:desc/DBBegin.txt"
+)
 public class DBBegin extends AbstractDBKeyword {
 
     @Override

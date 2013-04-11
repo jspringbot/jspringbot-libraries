@@ -24,6 +24,7 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Get DB Record At Column",
+        parameters = {"columnNum"},
         description = "classpath:desc/GetDBRecordAtColumn.txt"
 )
 public class GetDBRecordAtColumn extends AbstractDBKeyword {
