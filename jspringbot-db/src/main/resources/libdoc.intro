@@ -1,74 +1,89 @@
 JSpringBot Database Library for Robot Framework. Contains keyword for accessing the database.
 
-db-queries/employee.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-<properties>
-    <entry key="count.employee">
-        <![CDATA[
-        select count(1)
-          from employee
-        ]]>
-    </entry>
-    <entry key="verify.employee">
-        <![CDATA[
-        select count(1)
-          from employee
-         where id=:employeeID
-           and firstName=:employeeFirstName
-           and lastName=:employeeLastName
-        ]]>
-    </entry>
-    <entry key="get.employee.department.info">
-        <![CDATA[
-        select e.deptID, d.code as deptCode, d.name as deptName
-          from employee e
-    inner join department on e.deptID = d.Id
-         where e.id=:employeeID
-           and e.firstName=:employeeFirstName
-           and e.lastName=:employeeLastName
-        ]]>
-    </entry>
-</properties>
+
 
 *Sample Usage*
-| DB Begin                            | | |
-| Use DB Schema                       | <schemaName> | |
+| DB Begin                            |
+| Use DB Schema                       | <schemaName> |
 | Create DB Query                     | select id from employee order by rand() limit 1 | # Gets a random employee id from employee table |
-| Execute DB Query                    | | |
-| ${id}=                              | Get DB Unique Result | |
-| DB Rollback                         | | |
+| Execute DB Query                    |
+| ${id}=                              | Get DB Unique Result |
+| DB Rollback                         |
 
-*Sample Usage*
+
+
+The following examples below refers to this file - src/test/resources/db-queries/employee.xml
+| <?xml version="1.0" encoding="UTF-8"?>
+| <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+|
+| <properties>
+|
+|     <entry key="count.employee">
+|         <![CDATA[
+|         select count(1)
+|           from employee
+|         ]]>
+|     </entry>
+|
+|     <entry key="verify.employee">
+|         <![CDATA[
+|         select count(1)
+|           from employee
+|          where id=:employeeID
+|            and firstName=:employeeFirstName
+|            and lastName=:employeeLastName
+|         ]]>
+|     </entry>
+|
+|     <entry key="get.employee.department.info">
+|         <![CDATA[
+|         select e.deptID, d.code as deptCode, d.name as deptName
+|           from employee e
+|     inner join department on e.deptID = d.Id
+|          where e.id=:employeeID
+|            and e.firstName=:employeeFirstName
+|            and e.lastName=:employeeLastName
+|         ]]>
+|     </entry>
+|
+| </properties>
+
+
+
+*Sample Usage of DB Query By Name*
+| DB Begin                            |
+| Use DB Schema                       | <schemaName> |
+| Create DB Query By Name             | count.employee | # will execute query defined in employee.xml given key |
+| Execute DB Query                    |
+| DB Projected Count Should Be Equal  | 100 |
+| DB Rollback                         |
+
+
+
+*Sample for passing parameter values to query*
 | DB Begin                            | |
 | Use DB Schema                       | <schemaName> |
-| Create DB Query By Name             | count.employee |
-| Execute DB Query                    | |
-| DB Projected Count Should Be Equal  | 100 | |
-| DB Rollback                         | | |
-
-*Sample Usage*
-| DB Begin                            | |
-| Use DB Schema                       | <schemaName> |
-| Create DB Query By Name             | verify.employee |
+| Create DB Query By Name             | verify.employee | # will execute query defined in employee.xml given key |
 | Set DB Integer Parameter            | employeeID  | 1 |
 | Set DB String Parameter             | employeeFirstName | Shiela |
 | Set DB String Parameter             | employeeLastName | Buitizon |
 | DB Projected Count Should Be Equal  | 1 | |
 | DB Rollback                         | | |
 
-*Sample Usage*
-| DB Begin                            | | |
-| Use DB Schema                       | <schemaName> | |
-| Create DB Query By Name             | get.employee.department.info | |
-| Set DB Integer Parameter            | employeeID  | 1 | |
-| Set DB String Parameter             | employeeFirstName | Shiela | |
-| Set DB String Parameter             | employeeLastName | Buitizon | |
+
+
+*Sample for retrieving query result values*
+| DB Begin                            |
+| Use DB Schema                       | <schemaName> |
+| Create DB Query By Name             | get.employee.department.info | # will execute query defined in employee.xml given key |
+| Set DB Integer Parameter            | employeeID  | 1 |
+| Set DB String Parameter             | employeeFirstName | Shiela |
+| Set DB String Parameter             | employeeLastName | Buitizon |
 | Add DB Result Column                | deptID | INTEGER | # where INTEGER is a hibernate data type |
 | Add DB Result Column                | deptCode | STRING | # where STRING is a hibernate data type |
 | Add DB Result Column                | deptName | STRING | # where STRING is a hibernate data type |
 | ${deptID}=                          | Get DB Record At Column             | 0 |
 | ${deptCode}=                        | Get DB Record At Column             | 1 |
 | ${deptName}=                        | Get DB Record At Column             | 2 |
-| DB Rollback                         | | |
+| DB Rollback                         |
 
