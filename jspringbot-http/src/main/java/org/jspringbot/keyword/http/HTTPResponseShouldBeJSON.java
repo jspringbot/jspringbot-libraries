@@ -25,18 +25,18 @@ import java.io.IOException;
 
 @Component
 @KeywordInfo(
-        name = "HTTP Response Should Be XML",
-        description = "classpath:desc/HTTPResponseShouldBeXML.txt"
+        name = "HTTP Response Should Be JSON",
+        description = "classpath:desc/HTTPResponseShouldBeJSON.txt"
 )
-public class HTTPResponseShouldBeXml1 extends AbstractHTTPKeyword {
+public class HTTPResponseShouldBeJSON extends AbstractHTTPKeyword {
 
     @Override
     public Object execute(Object[] params) {
         try {
-            httpHelper.responseShouldBeXML();
+            httpHelper.responseShouldBeJson();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new IllegalArgumentException("Response is not Xml", e);
+            throw new IllegalArgumentException("Response is not Json", e);
         }
         return null;
     }
