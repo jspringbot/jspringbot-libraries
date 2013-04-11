@@ -1,4 +1,4 @@
-Contains keyword for accessing the database.
+JSpringBot Database Library for Robot Framework. Contains keyword for accessing the database.
 
 db-queries/employee.xml
 <?xml version="1.0" encoding="UTF-8"?>
