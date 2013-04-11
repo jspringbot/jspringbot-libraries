@@ -3,4 +3,5 @@ Return the XML element given the xpath.
 Example:
 | ${author}= | `Get XML XPath Elements` | //catalog/book[1]/author |
 
-Result: ${author} = ambardella, Matthew
+Result:
+| ${author} = Gambardella, Matthew

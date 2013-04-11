@@ -27,3 +27,18 @@ JSpringBot XML Library for Robot Framework.
 |       <description>After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.</description>
 |    </book>
 | </catalog>
+
+*Sample Usage:*
+| Set XML String | <xmlString> |
+| ${id}= | `Get XML Element Attribute` | //catalog/book[1] | id |
+| ${author}= | `Get XML XPath Elements` | //catalog/book[1]/author |
+| ${books}= | `Get XML XPath Elements` | //catalog/book  |
+| ${matchCount}= | `Get XML Xpath Match Count` | //catalog/book/price[text()='5.95']/.. |
+| `XML Xpath Should Match X Times` | //catalog/book/price[text()='5.95']/.. | 2 |
+
+=>
+| ${id} = bk101
+| ${author} =  Gambardella, Matthew
+| ${books} =
+} ${matchCount}= 2
+
