@@ -11,7 +11,7 @@ import java.util.List;
 @KeywordInfo(
         name = "EL Expect Error",
         parameters = {"keyword", "*keywordArgs"},
-        description = "classpath:desc/ELExpectError.txt")
+        description = "classpath:desc/ELRunKeywordExpectError.txt")
 public class ELRunKeywordExpectError extends AbstractExpressionKeyword {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
