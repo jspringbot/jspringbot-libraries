@@ -26,7 +26,7 @@ import org.springframework.stereotype.Component;
 @KeywordInfo(
         name = "Get Config String Property",
         parameters = {"property"},
-        description = "Same as `Get Config Property`, this retrieves the string property from the selected configuration domain."
+        description = "classpath:desc/GetConfigStringProperty.txt"
 )
 public class GetConfigStringProperty extends AbstractConfigKeyword {
 

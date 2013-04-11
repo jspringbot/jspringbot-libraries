@@ -1,0 +1,1 @@
+Same as `Get Config Property`, this retrieves the string property from the selected configuration domain.
