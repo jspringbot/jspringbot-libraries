@@ -10,7 +10,11 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Get XML Element Attribute", description = "Get XML Element Attribute", parameters = {"element", "attributeName"})
+@KeywordInfo(
+        name = "Get XML Element Attribute",
+        parameters = {"element", "attributeName"},
+        description = "classpath:desc/GetXMLElementAttribute.txt"
+)
 public class GetXMLElementAttribute extends AbstractXMLKeyword {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(GetXMLElementAttribute.class);

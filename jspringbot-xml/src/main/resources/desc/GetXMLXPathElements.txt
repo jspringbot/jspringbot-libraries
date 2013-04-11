@@ -1,0 +1,8 @@
+TODO
+
+Return the XML elements given the xpath.
+
+Example:
+| ${books}= | `Get XML XPath Elements` | //catalog/book  |
+
+Result: ${books} =

@@ -1,0 +1,1 @@
+Asserts the XML element attribute should be equal to the expected value.

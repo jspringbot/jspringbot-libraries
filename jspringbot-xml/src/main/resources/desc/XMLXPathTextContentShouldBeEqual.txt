@@ -1,0 +1,1 @@
+Asserts the XML text content given the xpath should be equal to the expected value.

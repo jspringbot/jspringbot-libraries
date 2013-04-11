@@ -7,7 +7,11 @@ import org.springframework.stereotype.Component;
 import org.w3c.dom.Element;
 
 @Component
-@KeywordInfo(name = "XML Element Attribute Should Be Equal", description = "XML Element Attribute Should Be Equal.", parameters = {"element", "attribute", "expectedValue"})
+@KeywordInfo(
+        name = "XML Element Attribute Should Be Equal",
+        parameters = {"element", "attribute", "expectedValue"},
+        description = "classpath:desc/XMLElementAttributeShouldBeEqual.txt"
+)
 public class XMLElementAttributeShouldBeEqual extends AbstractXMLKeyword {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(XMLElementAttributeShouldBeEqual.class);

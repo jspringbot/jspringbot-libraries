@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Set XML String", description = "Set XML String.", parameters = {"xmlString"})
+@KeywordInfo(
+        name = "Set XML String",
+        parameters = {"xmlString"},
+        description = "classpath:desc/SetXMLString.txt"
+)
 public class SetXMLString extends AbstractXMLKeyword{
 
     @Override

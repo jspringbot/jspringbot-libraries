@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import javax.xml.transform.TransformerException;
 
 @Component
-@KeywordInfo(name = "Get XML XPath Text Contents", description = "Get XML XPath Text Contents.", parameters = {"xpathExpression"})
+@KeywordInfo(
+        name = "Get XML XPath Text Contents",
+        parameters = {"xpathExpression"},
+        description = "classpath:desc/GetXMLXPathTextContents.txt"
+)
 public class GetXMLXPathTextContents extends AbstractXMLKeyword{
 
     @Override
