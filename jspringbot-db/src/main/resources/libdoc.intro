@@ -1,18 +1,16 @@
 JSpringBot Database Library for Robot Framework. Contains keyword for accessing the database.
 
 
-
 *Sample Usage*
-| DB Begin                            |
-| Use DB Schema                       | <schemaName> |
-| Create DB Query                     | select id from employee order by rand() limit 1 | # Gets a random employee id from employee table |
-| Execute DB Query                    |
-| ${id}=                              | Get DB Unique Result |
-| DB Rollback                         |
+| `DB Begin`                            |
+| `Use DB Schema`                       | <schemaName> |
+| `Create DB Query`                     | select id from employee order by rand() limit 1 | # Gets a random employee id from employee table |
+| `Execute DB Query`                    |
+| ${id}=                                | `Get DB Unique Result` |
+| `DB Rollback`                         |
 
 
-
-The following examples below refers to this file - src/test/resources/db-queries/employee.xml
+The following examples below that uses `Create DB Query By Name` refers to this file - src/test/resources/db-queries/employee.xml
 | <?xml version="1.0" encoding="UTF-8"?>
 | <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 |
@@ -49,41 +47,38 @@ The following examples below refers to this file - src/test/resources/db-queries
 | </properties>
 
 
-
 *Sample Usage of DB Query By Name*
-| DB Begin                            |
-| Use DB Schema                       | <schemaName> |
-| Create DB Query By Name             | count.employee | # will execute query defined in employee.xml given key |
-| Execute DB Query                    |
-| DB Projected Count Should Be Equal  | 100 |
-| DB Rollback                         |
-
+| `DB Begin`                            |
+| `Use DB Schema`                       | <schemaName> |
+| `Create DB Query By Name`             | count.employee | # will execute query defined in employee.xml given key |
+| `Execute DB Query`                    |
+| `DB Projected Count Should Be Equal`  | 100 |
+| `DB Rollback`                         |
 
 
 *Sample for passing parameter values to query*
-| DB Begin                            | |
-| Use DB Schema                       | <schemaName> |
-| Create DB Query By Name             | verify.employee | # will execute query defined in employee.xml given key |
-| Set DB Integer Parameter            | employeeID  | 1 |
-| Set DB String Parameter             | employeeFirstName | Shiela |
-| Set DB String Parameter             | employeeLastName | Buitizon |
-| DB Projected Count Should Be Equal  | 1 | |
-| DB Rollback                         | | |
-
+| `DB Begin`                            | |
+| `Use DB Schema`                       | <schemaName> |
+| `Create DB Query By Name`             | verify.employee | | # will execute query defined in employee.xml given key |
+| `Set DB Integer Parameter`            | employeeID  | 1 |
+| `Set DB String Parameter`             | employeeFirstName | Shiela |
+| `Set DB String Parameter`             | employeeLastName | Buitizon |
+| `DB Projected Count Should Be Equal`  | 1 | |
+| `DB Rollback`                         | | |
 
 
 *Sample for retrieving query result values*
-| DB Begin                            |
-| Use DB Schema                       | <schemaName> |
-| Create DB Query By Name             | get.employee.department.info | # will execute query defined in employee.xml given key |
-| Set DB Integer Parameter            | employeeID  | 1 |
-| Set DB String Parameter             | employeeFirstName | Shiela |
-| Set DB String Parameter             | employeeLastName | Buitizon |
-| Add DB Result Column                | deptID | INTEGER | # where INTEGER is a hibernate data type |
-| Add DB Result Column                | deptCode | STRING | # where STRING is a hibernate data type |
-| Add DB Result Column                | deptName | STRING | # where STRING is a hibernate data type |
-| ${deptID}=                          | Get DB Record At Column             | 0 |
-| ${deptCode}=                        | Get DB Record At Column             | 1 |
-| ${deptName}=                        | Get DB Record At Column             | 2 |
-| DB Rollback                         |
+| `DB Begin`                            |
+| `Use DB Schema`                       | <schemaName> |
+| `Create DB Query By Name`             | get.employee.department.info | # will execute query defined in employee.xml given key |
+| `Set DB Integer Parameter`            | employeeID  | 1 |
+| `Set DB String Parameter`             | employeeFirstName | Shiela |
+| `Set DB String Parameter`             | employeeLastName | Buitizon |
+| `Add DB Result Column`                | deptID | INTEGER | # where INTEGER is a hibernate data type |
+| `Add DB Result Column`                | deptCode | STRING | # where STRING is a hibernate data type |
+| `Add DB Result Column`                | deptName | STRING | # where STRING is a hibernate data type |
+| ${deptID}=                            | `Get DB Record At Column`             | 0 |
+| ${deptCode}=                          | `Get DB Record At Column`             | 1 |
+| ${deptName}=                          | `Get DB Record At Column`             | 2 |
+| `DB Rollback`                         |
 
