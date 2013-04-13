@@ -24,11 +24,16 @@ import com.jayway.jsonpath.JsonPath;
 import com.sdicons.json.model.JSONValue;
 import com.sdicons.json.parser.JSONParser;
 import net.minidev.json.JSONObject;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.jspringbot.syntax.HighlightRobotLogger;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceEditor;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import java.io.IOException;
 import java.io.StringReader;
 import java.util.Arrays;
 import java.util.List;
@@ -49,7 +54,17 @@ public class JSONHelper {
         Validate.notNull(jsonString, "jsonString was not set.");
     }
 
-    public void setJsonString(String jsonString) {
+    public void setJsonString(String jsonString) throws IOException {
+        this.jsonString = jsonString;
+
+        if(StringUtils.startsWith(jsonString, "file:") || StringUtils.startsWith(jsonString, "classpath:")) {
+            ResourceEditor editor = new ResourceEditor();
+            editor.setAsText(jsonString);
+            Resource resource = (Resource) editor.getValue();
+
+            jsonString = new String(IOUtils.toCharArray(resource.getInputStream()));
+        }
+
         try {
             LOG.createAppender()
                     .appendBold("JSON String:")
@@ -58,8 +73,6 @@ public class JSONHelper {
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);
         }
-
-        this.jsonString = jsonString;
     }
 
     public static String prettyPrint(String jsonString) throws TokenStreamException, RecognitionException {
