@@ -1,1 +1,11 @@
-Contains HTTP related keywords.
+JSpringBot HTTP Library for Robot Framework.
+
+*Sample Usage*
+| `New HTTP Session` |
+| `Create HTTP Get Request` | <url> |
+| `Set HTTP Basic Authentication` | <username> | <password> |
+| `Add HTTP Request Header` | Accept | application/xml |
+| `Add HTTP Request Parameter` | <paramkey> | <paramvalue> |
+| `Invoke HTTP Request` |
+| `HTTP Response Status Code Should Be Equal To` | 200 |
+| `HTTP Response Should Be XML` |

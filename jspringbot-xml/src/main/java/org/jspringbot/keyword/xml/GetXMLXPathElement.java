@@ -27,7 +27,11 @@ import javax.xml.transform.TransformerException;
 import java.util.List;
 
 @Component
-@KeywordInfo(name = "Get XML XPath Element", description = "Get XML XPath Element.", parameters = {"xpathExpression"})
+@KeywordInfo(
+        name = "Get XML XPath Element",
+        parameters = {"xpathExpression"},
+        description = "classpath:desc/GetXMLXPathElement.txt"
+)
 public class GetXMLXPathElement extends AbstractXMLKeyword{
 
     @Override

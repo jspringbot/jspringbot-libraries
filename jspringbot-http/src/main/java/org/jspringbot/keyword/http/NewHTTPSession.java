@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "New HTTP Session", description = "Creates a new HTTP session.")
+@KeywordInfo(
+        name = "New HTTP Session",
+        description = "classpath:desc/NewHTTPSession.txt"
+)
 public class NewHTTPSession extends AbstractHTTPKeyword {
 
     @Override

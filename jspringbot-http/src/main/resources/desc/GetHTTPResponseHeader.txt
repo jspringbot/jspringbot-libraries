@@ -1,0 +1,7 @@
+Returns the HTTP response header given the name.
+
+Example:
+| ${content_type}=   | Get HTTP Response Header | Content-Type |
+| ${content_length}= | Get HTTP Response Header | Content-Length |
+
+Please see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html for more information on the different HTTP Header Fields.

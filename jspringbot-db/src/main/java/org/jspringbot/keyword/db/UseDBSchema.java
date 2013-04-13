@@ -23,7 +23,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Use DB Schema", description = "Use DB Schema.", parameters = {"schemaName"})
+@KeywordInfo(
+        name = "Use DB Schema",
+        parameters = {"schemaName"},
+        description = "classpath:desc/UseDBSchema.txt"
+)
 public class UseDBSchema extends AbstractDBKeyword {
 
     @Override

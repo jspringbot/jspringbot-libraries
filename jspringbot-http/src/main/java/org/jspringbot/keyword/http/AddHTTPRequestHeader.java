@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Add HTTP Request Header", description = "Adds HTTP Request Header.", parameters = {"name", "value"})
+@KeywordInfo(
+        name = "Add HTTP Request Header",
+        parameters = {"name", "value"},
+        description = "classpath:desc/AddHTTPRequestHeader.txt"
+)
 public class AddHTTPRequestHeader extends AbstractHTTPKeyword {
 
     @Override

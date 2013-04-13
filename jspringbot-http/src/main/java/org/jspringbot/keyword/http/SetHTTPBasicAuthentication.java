@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Set HTTP Basic Authentication", description = "Set HTTP Basic Authentication.", parameters = {"username", "password"})
+@KeywordInfo(
+        name = "Set HTTP Basic Authentication",
+        parameters = {"username", "password"},
+        description = "classpath:desc/SetHTTPBasicAuthentication.txt"
+)
 public class SetHTTPBasicAuthentication extends AbstractHTTPKeyword {
     @Override
     public Object execute(Object[] params) {

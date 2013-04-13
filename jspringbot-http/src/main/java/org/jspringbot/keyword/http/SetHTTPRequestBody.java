@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import java.io.UnsupportedEncodingException;
 
 @Component
-@KeywordInfo(name = "Set HTTP Request Body", description = "Set HTTP Request Body.", parameters = {"stringBody"})
+@KeywordInfo(
+        name = "Set HTTP Request Body",
+        parameters = {"stringBody"},
+        description = "classpath:desc/SetHTTPRequestBody.txt"
+)
 public class SetHTTPRequestBody extends AbstractHTTPKeyword {
 
     @Override

@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "DB Record Should Not Be Empty", description = "DB Record Should Not Be Empty.")
+@KeywordInfo(
+        name = "DB Record Should Not Be Empty",
+        description = "classpath:desc/DBRecordShouldNotBeEmpty.txt"
+)
 public class DBRecordShouldNotBeEmpty extends AbstractDBKeyword {
 
     @Override

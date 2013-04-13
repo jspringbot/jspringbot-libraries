@@ -1,0 +1,1 @@
+Returns the database query unique result.

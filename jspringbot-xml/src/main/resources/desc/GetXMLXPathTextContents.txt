@@ -1,0 +1,1 @@
+Return the XML text contents given the xpath.

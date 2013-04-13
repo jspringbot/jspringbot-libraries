@@ -1,0 +1,4 @@
+Sets XML String.
+
+Example:
+| `Set XML String` | <root><id>1</id><name>Shiela Buitizon</name></root> |

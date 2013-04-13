@@ -1,0 +1,1 @@
+Creates an HTTP Request given the method name.

@@ -1,0 +1,6 @@
+Adds HTTP Request Header.
+
+Example:
+| Add HTTP Request Header | Accept | application/json | # Indicates that json format is the acceptable media type for the response |
+
+Please see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html for more information on the different HTTP Header Fields.

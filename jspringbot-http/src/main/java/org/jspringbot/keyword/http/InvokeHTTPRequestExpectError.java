@@ -24,7 +24,10 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Invoke HTTP Request Expect Error", description = "Invokes HTTP request and expect error.")
+@KeywordInfo(
+        name = "Invoke HTTP Request Expect Error",
+        description = "classpath:desc/InvokeHTTPRequestExpectError.txt"
+)
 public class InvokeHTTPRequestExpectError extends AbstractHTTPKeyword {
 
     @Override

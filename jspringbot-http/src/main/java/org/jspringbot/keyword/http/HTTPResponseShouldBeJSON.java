@@ -24,8 +24,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "HTTP Response Should Be Json", description = "HTTP Response Should Be Json.")
-public class HTTPResponseShouldBeJson extends AbstractHTTPKeyword {
+@KeywordInfo(
+        name = "HTTP Response Should Be JSON",
+        description = "classpath:desc/HTTPResponseShouldBeJSON.txt"
+)
+public class HTTPResponseShouldBeJSON extends AbstractHTTPKeyword {
 
     @Override
     public Object execute(Object[] params) {

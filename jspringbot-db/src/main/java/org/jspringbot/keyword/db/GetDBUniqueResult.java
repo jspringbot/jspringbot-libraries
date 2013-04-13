@@ -22,7 +22,10 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get DB Unique Result", description = "Returns the database query unique result.")
+@KeywordInfo(
+        name = "Get DB Unique Result",
+        description = "classpath:desc/GetDBUniqueResult.txt"
+)
 public class GetDBUniqueResult extends AbstractDBKeyword {
 
     @Override

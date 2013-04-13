@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import javax.xml.transform.TransformerException;
 
 @Component
-@KeywordInfo(name = "Get XML XPath Match Count", description = "Get XML XPath Match Count", parameters = {"xpathExpression"})
+@KeywordInfo(
+        name = "Get XML XPath Match Count",
+        parameters = {"xpathExpression"},
+        description = "classpath:desc/GetXMLXPathMatchCount.txt"
+)
 public class GetXMLXPathMatchCount extends AbstractXMLKeyword{
 
     @Override

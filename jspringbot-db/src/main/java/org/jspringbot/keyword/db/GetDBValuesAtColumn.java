@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get Db Values At Column", description = "Get DB Values At Column.", parameters = {"columnNum"})
+@KeywordInfo(
+        name = "Get Db Values At Column",
+        parameters = {"columnNum"},
+        description = "classpath:desc/GetDBValuesAtColumn.txt"
+)
 public class GetDBValuesAtColumn extends AbstractDBKeyword {
 
     @Override

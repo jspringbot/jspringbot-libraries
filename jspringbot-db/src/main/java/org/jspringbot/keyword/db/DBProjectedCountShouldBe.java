@@ -4,7 +4,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "DB Projected Count Should Be", description = "DB Projected Count Should Be.", parameters = {"count"})
+@KeywordInfo(
+        name = "DB Projected Count Should Be",
+        parameters = {"count"},
+        description = "classpath:desc/DBProjectedCountShouldBe.txt"
+)
 public class DBProjectedCountShouldBe extends AbstractDBKeyword {
 
     public Object execute(Object[] params) {

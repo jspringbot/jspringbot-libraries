@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import javax.xml.transform.TransformerException;
 
 @Component
-@KeywordInfo(name = "XML XPath Text Content Should Be Equal", description = "XML XPath Text Content Should Be Equal.", parameters = {"xpathExpression", "expectedValue"})
+@KeywordInfo(
+        name = "XML XPath Text Content Should Be Equal",
+        parameters = {"xpathExpression", "expectedValue"},
+        description = "classpath:desc/XMLXPathTextContentShouldBeEqual.txt"
+)
 public class XMLXPathTextContentShouldBeEqual extends AbstractXMLKeyword{
 
     @Override

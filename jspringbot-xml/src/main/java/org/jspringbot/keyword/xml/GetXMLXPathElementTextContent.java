@@ -35,7 +35,11 @@ import java.io.IOException;
 import java.io.StringReader;
 
 @Component
-@KeywordInfo(name = "Get XML XPath Element Text Content", description = "Get XML XPath Element Text Content", parameters = {"element", "xpathExpression"})
+@KeywordInfo(
+        name = "Get XML XPath Element Text Content",
+        parameters = {"element", "xpathExpression"},
+        description = "classpath:desc/GetXMLXPathElementTextContent.txt"
+)
 public class GetXMLXPathElementTextContent extends AbstractXMLKeyword {
 
     public static final JSpringBotLogger LOG = JSpringBotLogger.getLogger(GetXMLXPathElementTextContent.class);

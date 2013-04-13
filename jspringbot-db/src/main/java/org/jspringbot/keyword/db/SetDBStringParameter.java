@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Set DB String Parameter", description = "Sets DB String Parameter.", parameters = {"key","value"})
+@KeywordInfo(
+        name = "Set DB String Parameter",
+        parameters = {"key","value"},
+        description = "classpath:desc/SetDBStringParameter.txt"
+)
 public class SetDBStringParameter extends AbstractDBKeyword {
 
     @Override

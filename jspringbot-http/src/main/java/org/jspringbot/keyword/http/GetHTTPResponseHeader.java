@@ -22,7 +22,11 @@ import org.jspringbot.KeywordInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-@KeywordInfo(name = "Get HTTP Response Header", description = "Returns the HTTP response header given the name.", parameters = {"name"})
+@KeywordInfo(
+        name = "Get HTTP Response Header",
+        parameters = {"name"},
+        description = "classpath:desc/GetHTTPResponseHeader.txt"
+)
 public class GetHTTPResponseHeader extends AbstractHTTPKeyword {
 
     @Override

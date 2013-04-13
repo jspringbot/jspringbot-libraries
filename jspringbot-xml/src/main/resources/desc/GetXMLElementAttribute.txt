@@ -1,0 +1,7 @@
+Returns the XML element attribute.
+
+Example:
+| ${id}= | `Get XML Element Attribute` | //catalog/book[1] | id |
+
+Result:
+| ${id} = bk101

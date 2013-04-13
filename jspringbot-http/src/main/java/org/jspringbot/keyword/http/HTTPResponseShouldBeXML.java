@@ -24,8 +24,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "HTTP Response Should Be Xml", description = "HTTP Response Should Be Xml.")
-public class HTTPResponseShouldBeXml extends AbstractHTTPKeyword {
+@KeywordInfo(
+        name = "HTTP Response Should Be XML",
+        description = "classpath:desc/HTTPResponseShouldBeXML.txt"
+)
+public class HTTPResponseShouldBeXML extends AbstractHTTPKeyword {
 
     @Override
     public Object execute(Object[] params) {
