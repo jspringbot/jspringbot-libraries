@@ -28,6 +28,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.script.ScriptException;
+import java.io.IOException;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
@@ -53,7 +54,7 @@ public class JSONCreatorTest {
     }
 
     @Test
-    public void testGetJsonValues() throws JSONException, TokenStreamException, RecognitionException {
+    public void testGetJsonValues() throws JSONException, TokenStreamException, RecognitionException, IOException {
         creator.startJSONObject();
         creator.startJSONObject("store");
         creator.startJSONArray("book");
@@ -159,7 +160,7 @@ public class JSONCreatorTest {
     }
 
     @Test
-    public void testJsonArrayLengthShouldBe() throws JSONException, TokenStreamException, RecognitionException, ScriptException {
+    public void testJsonArrayLengthShouldBe() throws JSONException, TokenStreamException, RecognitionException, ScriptException, IOException {
         creator.startJSONObject();
         creator.startJSONObject("rootObject");
         creator.startJSONArray("emptyList");

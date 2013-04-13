@@ -55,8 +55,6 @@ public class JSONHelper {
     }
 
     public void setJsonString(String jsonString) throws IOException {
-        this.jsonString = jsonString;
-
         if(StringUtils.startsWith(jsonString, "file:") || StringUtils.startsWith(jsonString, "classpath:")) {
             ResourceEditor editor = new ResourceEditor();
             editor.setAsText(jsonString);
@@ -73,6 +71,8 @@ public class JSONHelper {
         } catch (Exception e) {
             throw new IllegalStateException(e.getMessage(), e);
         }
+
+        this.jsonString = jsonString;
     }
 
     public static String prettyPrint(String jsonString) throws TokenStreamException, RecognitionException {
