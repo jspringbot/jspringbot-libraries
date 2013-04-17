@@ -9,7 +9,7 @@ import java.util.List;
 
 @Component
 @KeywordInfo(
-        name = "EL Expect Error",
+        name = "EL Run Keyword Expect Error",
         parameters = {"keyword", "*keywordArgs"},
         description = "classpath:desc/ELRunKeywordExpectError.txt")
 public class ELRunKeywordExpectError extends AbstractExpressionKeyword {

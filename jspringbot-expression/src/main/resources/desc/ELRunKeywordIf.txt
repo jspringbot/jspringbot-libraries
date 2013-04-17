@@ -1,0 +1,7 @@
+This will run the keyword specified if condition is satisfied
+
+Example:
+| ${random} =       | Evaluate             | random.randint(0, 10) | random,sys |
+| EL Run Keyword If | $[var('random') > 5] | My Keyword            |
+
+This will run 'My Keyword' if the value of robot variable random is greater than 5.

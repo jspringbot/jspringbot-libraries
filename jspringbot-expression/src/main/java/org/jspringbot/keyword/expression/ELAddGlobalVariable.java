@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
         parameters = {"name", "value"},
         description = "classpath:desc/ELAddGlobalVariable.txt"
 )
-public class ELGlobalAddVariable extends AbstractExpressionKeyword {
+public class ELAddGlobalVariable extends AbstractExpressionKeyword {
     @Override
     public Object execute(Object[] params) throws Exception {
         globalVariableProvider.add(String.valueOf(params[0]), params[1]);
