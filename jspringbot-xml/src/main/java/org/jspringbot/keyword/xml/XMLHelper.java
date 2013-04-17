@@ -20,10 +20,13 @@ package org.jspringbot.keyword.xml;
 
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import com.sun.org.apache.xpath.internal.XPathAPI;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.jspringbot.syntax.HighlighterUtils;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceEditor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -55,6 +58,14 @@ public class XMLHelper {
 
     public void setXmlString(String xmlString) throws IOException, SAXException {
         this.xmlString = xmlString;
+
+        if(StringUtils.startsWith(xmlString, "file:") || StringUtils.startsWith(xmlString, "classpath:")) {
+            ResourceEditor editor = new ResourceEditor();
+            editor.setAsText(xmlString);
+            Resource resource = (Resource) editor.getValue();
+
+            xmlString = new String(IOUtils.toCharArray(resource.getInputStream()));
+        }
 
         DOMParser parser = new DOMParser();
         parser.parse(new InputSource(new StringReader(xmlString)));
