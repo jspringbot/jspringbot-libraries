@@ -18,18 +18,18 @@ Configure the following to use jspringbot-http.
 3. A {{jspringbot.properties}} file should exist in resources. See the possible properties below.
 
 | *Key* | *Default Value* | *Description* |
-| {{http.allow.untrusted}} | true | Defines whether to allow untrusted sites or not. |
-| {{http.max.connection.per.route}} | 5 | Defines the number of maximum connections per domain or site. |
-| {{http.max.connection.total}} | 10 | Defines the total number of maximum connections. |
-| {{http.socket.linger}} | -1 | Defines the SO_LINGER with the specified linger time in seconds. |
-| {{http.socket.buffer-size}} | 8192 | Defines the size of the internal socket buffer used while receiving / transmitting HTTP messages. |
-| {{http.tcp.nodelay}} | true | Defines whether Nagle's algorithm is to be used. |
-| {{http.allow.circular.redirect}} | true |  Defines whether circular redirects (redirects to the same location) should be allowed. |
-| {{http.handle.redirects}} | true | Defines whether redirects should be handled automatically |
-| {{http.start.suite.new.session}} | false | This determines if new session will be created on every start of test suite. |
-| {{http.start.test.new.session}} | false |  This determines if new session will be created on every start of test case. |
+| {{http.allow.untrusted}} | {{true}} | Defines whether to allow untrusted sites or not. |
+| {{http.max.connection.per.route}} | {{5}} | Defines the number of maximum connections per domain or site. |
+| {{http.max.connection.total}} | {{10}} | Defines the total number of maximum connections. |
+| {{http.socket.linger}} | {{-1}} | Defines the {{SO_LINGER}} with the specified linger time in seconds. |
+| {{http.socket.buffer-size}} | {{8192}} | Defines the size of the internal socket buffer used while receiving / transmitting HTTP messages. |
+| {{http.tcp.nodelay}} | {{true}} | Defines whether Nagle's algorithm is to be used. |
+| {{http.allow.circular.redirect}} | {{true}} |  Defines whether circular redirects (redirects to the same location) should be allowed. |
+| {{http.handle.redirects}} | {{true}} | Defines whether redirects should be handled automatically |
+| {{http.start.suite.new.session}} | {{false}} | This determines if new session will be created on every start of test suite. |
+| {{http.start.test.new.session}} | {{false}} |  This determines if new session will be created on every start of test case. |
 
-*Sample Usage*
+= Sample Usage =
 | `New HTTP Session` |
 | `Create HTTP Get Request` | <url> |
 | `Set HTTP Basic Authentication` | <username> | <password> |
