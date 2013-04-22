@@ -11,15 +11,17 @@ Configure the following to use jspringbot-db.
 |    <mysql.version>5.1.13</mysql.version>
 |  </properties>
 |
-|  <dependency>
-|    <groupId>org.jspringbot</groupId>
-|    <artifactId>jspringbot-db</artifactId>
-|  </dependency>
-|  <dependency>
-|    <groupId>mysql</groupId>
-|    <artifactId>mysql-connector-java</artifactId>
-|    <version>${mysql.version}</version>
-|  </dependency>
+|  <dependencies>
+|    <dependency>
+|      <groupId>org.jspringbot</groupId>
+|      <artifactId>jspringbot-db</artifactId>
+|    </dependency>
+|    <dependency>
+|      <groupId>mysql</groupId>
+|      <artifactId>mysql-connector-java</artifactId>
+|      <version>${mysql.version}</version>
+|    </dependency>
+|  </dependencies>
 
 2. Import spring-http in {{jspringbot-global.xml}}
 

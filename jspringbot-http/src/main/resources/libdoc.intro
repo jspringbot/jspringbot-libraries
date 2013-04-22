@@ -6,10 +6,12 @@ Configure the following to use jspringbot-http.
 
 1. Add this artifact in maven dependency
 
-|  <dependency>
-|    <groupId>org.jspringbot</groupId>
-|    <artifactId>jspringbot-http</artifactId>
-|  </dependency>
+|  <dependencies>
+|    <dependency>
+|      <groupId>org.jspringbot</groupId>
+|      <artifactId>jspringbot-http</artifactId>
+|    </dependency>
+|  </dependencies>
 
 2. Import spring-http in {{jspringbot-global.xml}}
 
