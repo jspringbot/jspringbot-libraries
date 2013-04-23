@@ -23,7 +23,9 @@ Configure the following to use jspringbot-i18n.
 
 | <import resource="classpath:spring/spring-i18n.xml"/>
 
-3. If you are going to use i18n expression language support, follow jspringbot-expression configuration {{http://jspringbot.org/library-expression.html}}.
+3. If you are going to use i18n expression language support, follow jspringbot-expression configuration
+
+| {{http://jspringbot.org/library-expression.html}}
 
 == Supported Locale ==
 
