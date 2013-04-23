@@ -6,6 +6,25 @@ Please see the example {{i18n Library}} project.
 
 {{jspringbot-github:sample-i18n|Sample Project}}
 
+= Configuration =
+
+Configure the following to use jspringbot-i18n.
+
+1. Add this artifact in maven dependency
+
+|  <dependencies>
+|    <dependency>
+|      <groupId>org.jspringbot</groupId>
+|      <artifactId>jspringbot-xml</artifactId>
+|    </dependency>
+|  </dependencies>
+
+2. Import spring-i18n in {{jspringbot-global.xml}}
+
+| <import resource="classpath:spring/spring-i18n.xml"/>
+
+3. If you are going to use i18n expression language support, follow jspringbot-expression configuration {{http://jspringbot.org/library-expression.html}}.
+
 == Supported Locale ==
 
 The {{Locale ID}} has the following format {{language_country_variant}}.
