@@ -1,12 +1,29 @@
 A test library providing expression language support.
 
-With this library enabled all jSpringBot library keywords within scope will have expression language support.
+With this library enabled, all jSpringBot library keywords within scope will have expression language support.
 
 Please see the example {{Expression Library}} projects.
 
 | *Example Projects* | *Description* |
 | {{jspringbot-github-simple:sample-expression|Simple Sample}} | A test project demonstrating the {{Expression Library}} keywords. |
 | {{jspringbot-github-simple:sample-config|Config Library Sample}} | A test project demonstrating {{jspringbot-doc:config}} expression support and its keywords. |
+
+= Configuration =
+
+Configure the following to use jspringbot-expression.
+
+1. Add this artifact in maven dependency
+
+|  <dependencies>
+|    <dependency>
+|      <groupId>org.jspringbot</groupId>
+|      <artifactId>jspringbot-expression</artifactId>
+|    </dependency>
+|  </dependencies>
+
+2. Import spring-expression in {{jspringbot-global.xml}}
+
+| <import resource="classpath:spring/spring-expression.xml"/>
 
 = Expression Language =
 
