@@ -7,6 +7,7 @@ Please see the example {{Expression Library}} projects.
 | *Example Projects* | *Description* |
 | {{jspringbot-github-simple:sample-expression|Simple Sample}} | A test project demonstrating the {{Expression Library}} keywords. |
 | {{jspringbot-github-simple:sample-config|Config Library Sample}} | A test project demonstrating {{jspringbot-doc:config}} expression support and its keywords. |
+| {{jspringbot-github-simple:sample-i18n|i18n Library Sample}} | A test project demonstrating {{jspringbot-doc:i18n}} expression support and its keywords. |
 
 = Configuration =
 
