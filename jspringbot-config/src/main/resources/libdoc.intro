@@ -6,6 +6,23 @@ Please see the example {{Config Library}} project.
 
 {{jspringbot-github:sample-config|Sample Project}}
 
+= Configuration =
+
+Configure the following to use jspringbot-xml.
+
+1. Add this artifact in maven dependency
+
+|  <dependencies>
+|    <dependency>
+|      <groupId>org.jspringbot</groupId>
+|      <artifactId>jspringbot-config</artifactId>
+|    </dependency>
+|  </dependencies>
+
+2. Import spring-http in {{jspringbot-global.xml}}
+
+| <import resource="classpath:spring/spring-config.xml"/>
+
 == Configuration Files ==
 
 The configuration files are properties file with name and value pair. The configuration files are auto detected using two ways.
