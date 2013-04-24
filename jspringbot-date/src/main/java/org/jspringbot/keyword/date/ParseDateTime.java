@@ -27,7 +27,7 @@ import java.io.IOException;
 @KeywordInfo(
         name = "Parse Date Time",
         parameters = {"dateString", "format=$CurrentDateTimeFormat"},
-        description = "Parses the given date time."
+        description = "classpath:desc/ParseDateTime.txt"
 )
 public class ParseDateTime extends AbstractDateKeyword {
 

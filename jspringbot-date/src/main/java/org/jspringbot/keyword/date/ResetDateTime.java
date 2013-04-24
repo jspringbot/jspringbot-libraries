@@ -24,7 +24,10 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Reset Date Time", description = "Reset date time to current date.")
+@KeywordInfo(
+        name = "Reset Date Time",
+        description = "classpath:desc/ResetDateTime.txt"
+)
 public class ResetDateTime extends AbstractDateKeyword {
 
     @Override

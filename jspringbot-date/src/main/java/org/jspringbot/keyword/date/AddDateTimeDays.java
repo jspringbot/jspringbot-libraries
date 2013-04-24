@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Add Date Time Days", description = "Add the given days to the current date time.", parameters = {"numberOfDays"})
+@KeywordInfo(
+        name = "Add Date Time Days",
+        parameters = {"numberOfDays"},
+        description = "classpath:desc/AddDateTimeDays.txt"
+)
 public class AddDateTimeDays extends AbstractDateKeyword {
 
     @Override

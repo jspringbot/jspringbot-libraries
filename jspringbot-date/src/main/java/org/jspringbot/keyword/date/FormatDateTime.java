@@ -27,7 +27,7 @@ import java.io.IOException;
 @KeywordInfo(
         name = "Format Date Time",
         parameters = {"format=$CurrentDateTimeFormat"},
-        description = "Format the date time to string given the set format."
+        description = "classpath:desc/FormatDateTime.txt"
 )
 public class FormatDateTime extends AbstractDateKeyword {
 

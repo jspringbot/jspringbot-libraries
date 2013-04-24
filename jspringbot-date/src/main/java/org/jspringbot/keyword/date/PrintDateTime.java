@@ -27,7 +27,7 @@ import java.io.IOException;
 @KeywordInfo(
         name = "Print Date Time",
         parameters = {"format=$CurrentDateTimeFormat"},
-        description = "Prints the date time to string given the set format."
+        description = "classpath:desc/PrintDateTime.txt"
 )
 public class PrintDateTime extends AbstractDateKeyword {
 

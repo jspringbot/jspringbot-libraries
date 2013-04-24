@@ -1,0 +1,1 @@
+Prints the date time to string given the set format.

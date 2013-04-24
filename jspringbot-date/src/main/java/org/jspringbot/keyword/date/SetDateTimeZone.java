@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Set Date Time Zone", description = "Set the date time zone given the time zone id.", parameters = {"timeZoneId"})
+@KeywordInfo(
+        name = "Set Date Time Zone",
+        parameters = {"timeZoneId"},
+        description = "classpath:desc/SetDateTimeZone.txt"
+)
 public class SetDateTimeZone extends AbstractDateKeyword {
 
     @Override

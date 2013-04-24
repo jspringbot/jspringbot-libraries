@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Subtract Date Time Days", description = "Subtract the given days to the current date time.", parameters = {"numberOfDays"})
+@KeywordInfo(
+        name = "Subtract Date Time Days",
+        parameters = {"numberOfDays"},
+        description = "classpath:desc/SubtractDateTimeDays.txt"
+)
 public class SubtractDateTimeDays extends AbstractDateKeyword {
 
     @Override

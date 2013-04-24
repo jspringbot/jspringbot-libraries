@@ -24,7 +24,11 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 
 @Component
-@KeywordInfo(name = "Set Date Time Format", description = "Set the date time format pattern.", parameters = {"formatPattern"})
+@KeywordInfo(
+        name = "Set Date Time Format",
+        parameters = {"formatPattern"},
+        description = "classpath:desc/SetDateTimeFormat.txt"
+)
 public class SetDateTimeFormat extends AbstractDateKeyword {
 
     @Override
