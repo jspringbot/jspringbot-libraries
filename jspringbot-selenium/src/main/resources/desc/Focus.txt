@@ -1,0 +1,3 @@
+Sets focus to element identified by locator.
+
+This is useful for instance to direct native keystrokes to particular element using `Press Key Native`.

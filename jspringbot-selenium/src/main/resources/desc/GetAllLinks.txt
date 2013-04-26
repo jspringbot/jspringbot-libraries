@@ -1,0 +1,3 @@
+Returns a list containing ids of all links found in current page.
+
+If a link has no id, an empty string will be in the list instead.

@@ -1,0 +1,1 @@
+Verifies radio button group identified by group_name has no selection.

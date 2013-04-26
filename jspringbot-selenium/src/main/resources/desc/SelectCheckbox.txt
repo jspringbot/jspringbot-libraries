@@ -1,0 +1,3 @@
+Selects checkbox identified by locator.
+
+Does nothing if checkbox is already selected.

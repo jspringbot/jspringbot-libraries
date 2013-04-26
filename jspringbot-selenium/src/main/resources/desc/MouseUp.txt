@@ -1,0 +1,1 @@
+Simulates releasing the left mouse button on the element specified by locator.

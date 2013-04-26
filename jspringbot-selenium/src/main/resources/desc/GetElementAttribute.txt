@@ -1,0 +1,3 @@
+Return value of element attribute.
+
+attribute_locator consists of element locator followed by an @ sign and attribute name, for example "element_id@class".

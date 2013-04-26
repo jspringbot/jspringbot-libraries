@@ -1,0 +1,3 @@
+Returns the values in the list identified by locator.
+
+List keywords work on both lists and combo boxes.

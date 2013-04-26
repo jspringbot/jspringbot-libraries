@@ -1,0 +1,3 @@
+Verifies that the element identified by locator is NOT visible.
+
+This is the opposite of `Element Should Be Visible`.

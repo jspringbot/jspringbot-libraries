@@ -1,0 +1,1 @@
+Verifies radio button identified by locator is found from current page.

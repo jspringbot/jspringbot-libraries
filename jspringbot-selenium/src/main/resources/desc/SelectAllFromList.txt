@@ -1,0 +1,1 @@
+Selects all values from multi-select list identified by id.

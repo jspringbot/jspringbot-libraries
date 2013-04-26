@@ -1,0 +1,3 @@
+Submits a form identified by locator.
+
+If locator is empty, first form in the page will be submitted.

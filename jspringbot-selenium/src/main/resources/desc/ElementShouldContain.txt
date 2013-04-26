@@ -1,0 +1,3 @@
+Verifies element identified by locator contains text expected.
+
+If you wish to assert an exact (not a substring) match on the text of the element, use `Element Text Should Be`.

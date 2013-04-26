@@ -1,0 +1,5 @@
+Returns the value of the selected element from the list identified by locator.
+
+Return value is read from value attribute of the selected element. Fails if there are zero or more than one selection.
+
+List keywords work on both lists and combo boxes.

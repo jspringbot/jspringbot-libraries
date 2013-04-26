@@ -1,0 +1,12 @@
+Sets selection of radio button group identified by group_name to value.
+
+The radio button to be selected is located by two arguments:
+
+    group_name is used as the name of the radio input
+    value is used for the value attribute or for the id attribute
+
+The XPath used to locate the correct radio button then looks like this: //input[@type='radio' and @name='group_name' and (@value='value' or @id='value')]
+
+Examples:
+| Select Radio Button | size | XL | # Matches HTML like <input type="radio" name="size" value="XL">XL</input> |
+| Select Radio Button | size | sizeXL | # Matches HTML like <input type="radio" name="size" value="XL" id="sizeXL">XL</input> |

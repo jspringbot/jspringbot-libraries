@@ -1,0 +1,1 @@
+Returns the value attribute of element identified by locator.

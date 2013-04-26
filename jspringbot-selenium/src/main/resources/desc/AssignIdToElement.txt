@@ -1,0 +1,7 @@
+Assigns a temporary identifier to element specified by locator.
+
+This is mainly useful if the locator is complicated/slow XPath expression. Identifier expires when the page is reloaded.
+
+Example:
+| Assign ID to Element        | xpath=//div[@id="first_div"] | my id |
+| Page Should Contain Element | my id | |

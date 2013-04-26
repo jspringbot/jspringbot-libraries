@@ -1,0 +1,3 @@
+Returns the text of current JavaScript alert.
+
+This keyword will fail if no alert is present. Note that when running tests with selenium, the alerts will not be visible in the browser. Nevertheless, following keywords will fail unless the alert is dismissed by this keyword or by `Alert Should Be Present`.

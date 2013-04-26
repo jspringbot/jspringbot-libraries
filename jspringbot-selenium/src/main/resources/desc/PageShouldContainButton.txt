@@ -1,0 +1,3 @@
+Verifies button identified by locator is found from current page.
+
+This keyword searches for buttons created with either input or button tag.

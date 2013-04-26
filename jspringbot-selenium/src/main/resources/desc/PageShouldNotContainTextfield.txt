@@ -1,0 +1,1 @@
+Verifies text field identified by locator is not found from current page.

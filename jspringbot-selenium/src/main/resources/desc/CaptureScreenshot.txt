@@ -1,18 +1,3 @@
-TODO
 Takes a screenshot of the entire screen and embeds it into the log.
 
-If no filename is given, the screenshot is saved into file selenium-screenshot-<counter>.png under the directory where the Robot Framework log file is written into. The filename is also considered relative to the same directory, if it is not given in absolute format.
-
-When running on a locked Windows machine, the resulting screenshots will be all black. A workaround is using the Capture Page Screenshot keyword instead.
-
-There were some changes to this keyword in the 2.3 release:
-
-    Possibility to take screenshots also when the Selenium Server is running on a remote machine was added.
-    Support for absolute filename paths was added.
-    Automatic creation of intermediate directories in the path where the screenshot is saved was removed. OperatingSystem.Create Directory can be used instead.
-
-
-
-Adds or replaces a global variable given the {{name}} and {{value}}.
-
-The added variables will be retained, unless `EL Global Clear Variables` keyword was used.
+If no filename is given, the screenshot is saved into file screen_capture_%d_%d.png under the directory defined in selenium.screenshot.folder in jspringbot.properties.

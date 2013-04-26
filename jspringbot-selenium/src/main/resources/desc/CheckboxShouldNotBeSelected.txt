@@ -1,0 +1,1 @@
+Verifies checkbox identified by locator is not selected/checked.

@@ -1,0 +1,5 @@
+Verifies the selection of list identified by locator is exactly *values.
+
+If you want to test that no option is selected, simply give no values.
+
+List keywords work on both lists and combo boxes.

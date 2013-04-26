@@ -1,13 +1,5 @@
-Adds a custom location strategy.
+Verifies an alert is present and dismisses it.
 
-strategy_name is the name of the strategy; a prefix used when addressing an element.
+If text is a non-empty string, then it is also verified that the message of the alert equals to text.
 
-function_definition is the JavaScript that will be called. It must return a DOM reference, an array with DOM references, or null.
-
-Together with the modified selenium-server.jar it can provide a new method of locating elements on the page. For example, a jQuery strategy can be added to locate elements given jQuery selector syntax.
-
-For jQuery selector setup see: http://code.google.com/p/robotframework-seleniumlibrary/wiki/jQueryElementSelectors
-
-Example:
-| Add Location Strategy         | jquery                    | return Selenium.prototype.locateElementByJQuerySelector(locator, inDocument, inWindow); |
-| Page Should Contain Element   | jquery=div.#data-table    |                                                                                         |
+Will fail if no alert is present. Note that when running tests with selenium, the alerts will not be visible in the browser. Nevertheless, following keywords will fail unless the alert is dismissed by this keyword or by `Get Alert Message`.

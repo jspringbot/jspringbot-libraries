@@ -1,0 +1,1 @@
+Verifies list identified by locator is found from current page.

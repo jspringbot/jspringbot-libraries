@@ -1,0 +1,5 @@
+Simulates pressing the left mouse button on the element specified by locator.
+
+The element is pressed without releasing the mouse button.
+
+See also the more specific keywords `Mouse Down On Image` and `Mouse Down On Link`.

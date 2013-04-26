@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 @KeywordInfo(
         name = "Wait Till Element Contains Regex",
         parameters = {"locator", "regex","poll","timeout"},
-        description = "classpath:desc/WaitTillElementContainRegex.txt"
+        description = "classpath:desc/WaitTillElementContainsRegex.txt"
 )
 public class WaitTillElementContainsRegex extends AbstractSeleniumKeyword {
 

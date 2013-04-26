@@ -1,0 +1,1 @@
+Simulates moving mouse away from the element specified by locator.
