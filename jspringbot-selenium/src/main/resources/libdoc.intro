@@ -1,1 +1,26 @@
-Contains SeleniumLibrary keywords.
+JSpringBot Selenium Library for Robot Framework.
+
+= Configuration =
+
+Configure the following to use jspringbot-xml.
+
+1. Add this artifact in maven dependency
+
+|  <dependencies>
+|    <dependency>
+|      <groupId>org.jspringbot</groupId>
+|      <artifactId>jspringbot-selenium</artifactId>
+|    </dependency>
+|  </dependencies>
+
+2. Import spring-http in {{jspringbot-global.xml}}
+
+| <import resource="classpath:spring/spring-selenium.xml"/>
+
+3. A {{jspringbot.properties}} file should exist in resources. See the possible properties below.
+
+| *Key* | *Default Value* | *Description* |
+| {{selenium.accept.untrusted.certificates}} | true | Accepts untrusted SSL certificates. |
+| {{selenium.assume.untrusted.certificates}} | true | Assume untrusted certificates will come from untrusted issuers. |
+| {{selenium.implicit.wait}} | 30 | Specifies the amount of time the driver should wait when searching for an element if it is not immediately present. |
+
