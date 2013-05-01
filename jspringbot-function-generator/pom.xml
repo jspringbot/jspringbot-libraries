@@ -30,39 +30,21 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.jspringbot</groupId>
-  <artifactId>jspringbot-expression</artifactId>
+  <artifactId>jspringbot-function-generator</artifactId>
   <version>1.0-SNAPSHOT</version>
-
   <packaging>jar</packaging>
-  <name>jspringbot-expression</name>
+  <name>jspringbot-function-generator</name>
 
-  <properties>
-    <libdoc.name>JSpringBot Expression Library</libdoc.name>
-    <libdoc.output>JSpringBotExpressionLibrary.html</libdoc.output>
-  </properties>
+  <build>
+    <testResources>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>true</filtering>
+      </testResource>
+    </testResources>
+  </build>
 
   <dependencies>
-    <dependency>
-      <groupId>commons-beanutils</groupId>
-      <artifactId>commons-beanutils</artifactId>
-      <version>1.8.3</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jspringbot</groupId>
-      <artifactId>jspringbot-pretty-logger</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>de.odysseus.juel</groupId>
-      <artifactId>juel-impl</artifactId>
-      <version>2.2.4</version>
-    </dependency>
-    <dependency>
-      <groupId>com.thoughtworks.xstream</groupId>
-      <artifactId>xstream</artifactId>
-      <version>1.4.3</version>
-    </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
@@ -82,14 +64,24 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>net.sf.opencsv</groupId>
-      <artifactId>opencsv</artifactId>
-      <version>2.0</version>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-expression</artifactId>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.codehaus.jackson</groupId>
-      <artifactId>jackson-mapper-asl</artifactId>
-      <version>1.9.1</version>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-date</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-json</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-xml</artifactId>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 </project>

@@ -21,10 +21,12 @@ package org.jspringbot.keyword.expression.engine.function;
 import com.thoughtworks.xstream.XStream;
 import org.apache.commons.lang.Validate;
 import org.apache.log4j.Logger;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.propertyeditors.ClassEditor;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
@@ -92,5 +94,13 @@ public final class SupportedFunctionsManager {
         Method method = StaticMethodUtils.getMethod(clazz, function.getFunctionSignature());
 
         functionMapper.setFunction(function.getPrefix(), function.getName(), method);
+    }
+
+    public void generateJSON(File file) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+
+        // convert user object to json string, and save to a file
+        mapper.writeValue(file, registered);
+
     }
 }
