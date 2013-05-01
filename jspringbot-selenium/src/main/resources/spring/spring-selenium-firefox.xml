@@ -21,7 +21,7 @@
 
   <bean id="profile" class="org.openqa.selenium.firefox.FirefoxProfile">
     <property name="acceptUntrustedCertificates" value="${selenium.accept.untrusted.certificates:true}"/>
-    <property name="assumeUntrustedCertificateIssuer" value="${selenium.accept.untrusted.certificates:false}"/>
+    <property name="assumeUntrustedCertificateIssuer" value="${selenium.assume.untrusted.certificates:true}"/>
   </bean>
 
   <bean class="org.jspringbot.keyword.selenium.FirefoxProfileBean">
