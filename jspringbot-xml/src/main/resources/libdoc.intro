@@ -17,8 +17,6 @@ Configure the following to use jspringbot-xml.
 
 | <import resource="classpath:spring/spring-xml.xml"/>
 
-3. A {{jspringbot.properties}} file should exist in resources.
-
 *Sample xmlString to parse*
 | <catalog>
 |    <book id="bk101">
