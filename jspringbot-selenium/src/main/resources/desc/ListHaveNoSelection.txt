@@ -1,0 +1,3 @@
+Verifies list identified by locator has no selections.
+
+List keywords work on both lists and combo boxes.

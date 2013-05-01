@@ -1,0 +1,3 @@
+Removes selection of checkbox identified by locator.
+
+Does nothing if the checkbox is not checked.

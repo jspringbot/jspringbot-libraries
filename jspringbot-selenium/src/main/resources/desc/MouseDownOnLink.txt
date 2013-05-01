@@ -1,0 +1,3 @@
+Simulates a mouse down event on a link.
+
+Key attributes for links are id, name, href and link text.

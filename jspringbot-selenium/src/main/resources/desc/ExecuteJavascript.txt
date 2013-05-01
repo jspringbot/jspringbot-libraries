@@ -1,0 +1,13 @@
+Executes the given JavaScript code.
+
+code may contain multiple statements and the return value of last statement is returned by this keyword.
+
+code may be divided into multiple cells in the test data. In that case, the parts are catenated together without adding spaces.
+
+If code is an absolute path to an existing file, the JavaScript to execute will be read from that file. Forward slashes work as a path separator on all operating systems.
+
+Note that, by default, the code will be executed in the context of the Selenium object itself, so this will refer to the Selenium object. Use window to refer to the window of your application, e.g. window.document.getElementById('foo').
+
+Examples:
+| Execute JavaScript | window.my_js_function('arg1', 'arg2') |
+| Execute JavaScript | ${CURDIR}/js_to_execute.js |

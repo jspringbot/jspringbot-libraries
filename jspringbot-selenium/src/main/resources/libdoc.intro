@@ -2,7 +2,7 @@ JSpringBot Selenium Library for Robot Framework.
 
 = Configuration =
 
-Configure the following to use jspringbot-xml.
+Configure the following to use jspringbot-selenium.
 
 1. Add this artifact in maven dependency
 

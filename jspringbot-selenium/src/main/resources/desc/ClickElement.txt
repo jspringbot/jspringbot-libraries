@@ -1,6 +1,6 @@
 Click element identified by locator.
 
-If you want to click the element at certain coordinates, you can specify the position with coordinates argument in format x,y. Support for coordinates was added in SeleniumLibrary 2.7.
+If you want to click the element at certain coordinates, you can specify the position with coordinates argument in format x,y.
 
 Examples:
 | Click Element | my_id | |

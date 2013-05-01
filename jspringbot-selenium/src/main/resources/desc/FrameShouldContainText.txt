@@ -1,0 +1,3 @@
+Verifies frame identified by locator contains text.
+
+Key attributes for frames are id and name.

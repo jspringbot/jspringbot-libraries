@@ -1,0 +1,1 @@
+Verifies the current page does not contain text.

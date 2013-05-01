@@ -1,0 +1,3 @@
+Waits until element specified with locator appears on current page.
+
+Fails if timeout expires before the element appears.

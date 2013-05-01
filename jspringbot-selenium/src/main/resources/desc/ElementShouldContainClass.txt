@@ -1,0 +1,1 @@
+Verifies element identified by locator contains class specified.

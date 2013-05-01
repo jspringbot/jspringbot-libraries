@@ -1,0 +1,1 @@
+Selects from list by label.
