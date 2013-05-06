@@ -3,86 +3,188 @@
 <functions>
   <function>
     <name>eval</name>
+    <description>Evaluates expression inside a expression language function.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.Object eval(java.lang.String,java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>var</name>
+    <description>Inteprets a robot variable inside an expression language function.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.Object robotVar(java.lang.String)</function-signature>
   </function>
   <function>
     <name>convertUnicode</name>
+    <description>Converts string to unicode character.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String convertUnicode(java.lang.String)</function-signature>
   </function>
   <function>
     <name>getMillis</name>
+    <description>Returns the current time in milliseconds.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.Long getMillis(java.lang.String)</function-signature>
   </function>
   <function>
     <name>concatMillis</name>
+    <description>Concatenates a string to the current time in milliseconds.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String concatMillis(java.lang.String)</function-signature>
   </function>
   <function>
     <name>md5</name>
+    <description>Computes the MD5 hash of a string.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String md5(java.lang.String)</function-signature>
   </function>
   <function>
     <name>parseDouble</name>
+    <description>Parses string specified to double format.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String parseDouble(java.lang.String, java.lang.String)</function-signature>
   </function>
   <function>
     <name>formatDouble</name>
+    <description>Formats an object to produce a string given the specified format.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String formatDouble(java.lang.Double, java.lang.String)</function-signature>
   </function>
   <function>
     <name>resource</name>
+    <description>Replace variables in resource specified.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String resource(java.lang.String)</function-signature>
   </function>
   <function>
     <name>replaceVars</name>
+    <description>Replace variables in application context.</description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String replaceVars(java.lang.String)</function-signature>
   </function>
   <function>
     <name>concat</name>
+    <description>Concatenates the strings specified.
+
+      Example:
+      | ${str}=    | EL Evaluate | $[concat('hello', ' ', 'world')] |
+    </description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String concat(java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>join</name>
+    <description><![CDATA[<p>Joins the elements of the provided array into a single String
+      containing the provided list of elements.</p>
+
+      <p>No delimiter is added before or after the list.
+      A <code>null</code> separator is the same as an empty String ("").
+      Null objects or empty strings within the array are represented by
+      empty strings.</p>
+
+      <pre>
+      StringUtils.join(null, *)                = null
+      StringUtils.join([], *)                  = ""
+      StringUtils.join([null], *)              = ""
+      StringUtils.join(["a", "b", "c"], "--")  = "a--b--c"
+      StringUtils.join(["a", "b", "c"], null)  = "abc"
+      StringUtils.join(["a", "b", "c"], "")    = "abc"
+      StringUtils.join([null, "", "a"], ',')   = ",,a"]]></description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String join(java.lang.String, java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>substring</name>
+    <description><![CDATA[<p>Gets a substring from the specified String avoiding exceptions.</p>
+
+      <p>A negative start position can be used to start/end <code>n</code>
+      characters from the end of the String.</p>
+
+      <p>The returned substring starts with the character in the <code>start</code>
+      position and ends before the <code>end</code> position. All position counting is
+      zero-based -- i.e., to start at the beginning of the string use
+      <code>start = 0</code>. Negative start and end positions can be used to
+      specify offsets relative to the end of the String.</p>
+
+      <p>If <code>start</code> is not strictly to the left of <code>end</code>, ""
+      is returned.</p>
+
+      <pre>
+      | ${s1}= | EL Evaluate | $[substring(eval('$[null]'), *, *)] |
+      | ${s2}= | EL Evaluate | $[substring(eval('$[empty]'), * ,  *)] |
+      | ${s3}= | EL Evaluate | $[substring("abc", 0, 2)] |
+      | ${s4}= | EL Evaluate | $[substring("abc", 2, 0)] |
+      | ${s5}= | EL Evaluate | $[substring("abc", 2, 4)] |
+      | ${s6}= | EL Evaluate | $[substring("abc", 4, 6)] |
+      | ${s7}= | EL Evaluate | $[substring("abc", 2, 2)] |
+      | ${s8}= | EL Evaluate | $[substring("abc", -2, -1)] |
+      | ${s9}= | EL Evaluate | $[substring("abc", -4, 2)] |
+
+      =>
+
+      | ${s1} = null
+      | ${s2} = ""
+      | ${s3} = "ab"
+      | ${s4} = ""
+      | ${s5} = "c"
+      | ${s6} = ""
+      | ${s7} = ""
+      | ${s8} = "b"
+      | ${s9} = "ab"
+      </pre>]]></description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.String substring(java.lang.String,java.lang.Integer[])</function-signature>
   </function>
   <function>
     <name>in</name>
+    <description><![CDATA[Returns <tt>true</tt> if this list contains the specified element.]]></description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>boolean in(java.lang.String[])</function-signature>
   </function>
   <function>
     <name>inFile</name>
+    <description><![CDATA[Returns <tt>true</tt> if this list found in properties file contains the specified element.
+
+    test/resources/expression/in.properties
+    | colors.of.the.rainbow=red,orange,yellow,green,blue,indigo,violet
+    | seasons=winter,spring,summer,fall
+
+    <pre>
+    | EL Should Be False | $[inFile('colors.of.the.rainbow','periwinkle')] |
+    | EL Should Be True | $[inFile('seasons','spring')] |
+    </pre]]></description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>boolean inFile(java.lang.String[])</function-signature>
   </function>
   <function>
     <name>doCase</name>
+    <description><![CDATA[Returns the value of the expression matching a pattern.
+
+      <pre>
+      | EL Add Variable | bit | 1 |
+      | EL Add Variable | color | yellow |
+      | EL Add Variable | lightSwitch | $[doCase(bit eq 1, 'ON' , bit eq 0, 'OFF')] |
+      | EL Add Variable | fruit | $[doCase(color eq 'red', 'apple' , color eq 'yellow', 'banana', color eq 'orange', 'orange')] |
+
+      =>
+
+      | $[lightSwitch] = 'ON'
+      | $[fruit] = 'banana'
+      </pre>
+      ]]></description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.Object doCase(java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>doMap</name>
+    <description><![CDATA[Returns the value of the matched key
+    <pre>
+      | EL Add Variable | countryCode | PH|
+      | EL Add Variable | countryDesc | $[doMap(countryCode, 'SG', 'Singapore', 'PH', 'Philippines', 'AU', 'Australia')] |
+
+      =>
+
+      | $[countryDesc] = 'Philippines'
+    </pre>]]></description>
     <function-class>org.jspringbot.keyword.expression.ELUtils</function-class>
     <function-signature>java.lang.Object doMap(java.lang.Object[])</function-signature>
   </function>
