@@ -4,120 +4,140 @@
   <function>
     <prefix>col</prefix>
     <name>get</name>
+    <description>Returns the element at the specified position in this list.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>java.lang.Object get(java.lang.Object,int)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>isEmpty</name>
+    <description>Returns true if this list contains no elements.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean isEmpty(java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>size</name>
+    <description>Returns the number of elements in this list.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>int size(java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>removeAll</name>
+    <description>Removes from this list all the elements that are contained in the specified collection.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>java.util.Collection removeAll(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>retainAll</name>
+    <description>Retains only the elements in this list that are contained in the specified collection.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>java.util.Collection retainAll(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>index</name>
+    <description>Given an Object, and an index, returns the nth value in the object.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>java.lang.Object index(java.lang.Object,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>subtract</name>
+    <description>Returns a new collection containing a - b.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>java.util.Collection subtract(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>union</name>
+    <description> Returns a collection containing the union of the given collections.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>java.util.Collection union(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>intersection</name>
+    <description>Returns a collection containing the intersection of the given collections.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>java.util.Collection intersection(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>containsAny</name>
+    <description>Returns a collection containing the intersection of the given collections.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean containsAny(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>isFull</name>
+    <description>Returns true if no more elements can be added to the Collection.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean isFull(java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>isNotEmpty</name>
+    <description>Null-safe check if the specified collection is not empty.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean isNotEmpty(java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>disjunction</name>
+    <description>Returns a collection containing the exclusive disjunction of the given collections.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>java.util.Collection disjunction(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>isSubCollection</name>
+    <description>Returns true iff a is a sub-collection of b, that is, iff the cardinality of e in a is less than or equal to the cardinality of e in b, for each element e in a.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean isSubCollection(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>isProperSubCollection</name>
+    <description>Returns true iff a is a proper sub-collection of b, that is, iff the cardinality of e in a is less than or equal to the cardinality of e in b, for each element e in a, and there is at least one element f such that the cardinality of f in b is strictly greater than the cardinality of f in a.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean isProperSubCollection(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>isEqualCollection</name>
+    <description>Returns true iff the given {@link Collection}s contain exactly the same elements with exactly the same cardinalities.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean isEqualCollection(java.util.Collection,java.util.Collection)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>addIgnoreNull</name>
+    <description>Adds an element to the collection unless the element is null.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean addIgnoreNull(java.util.Collection,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>sizeIsEmpty</name>
+    <description>Checks if the specified collection/array/iterator is empty.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean sizeIsEmpty(java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>reverseArray</name>
+    <description>Reverses the order of the given array.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>void reverseArray(java.lang.Object[])</function-signature>
   </function>
   <function>
     <prefix>col</prefix>
     <name>typedCollection</name>
+    <description>Returns a typed collection backed by the given collection.</description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>java.util.Collection typedCollection(java.util.Collection,java.lang.Class)</function-signature>
   </function>
