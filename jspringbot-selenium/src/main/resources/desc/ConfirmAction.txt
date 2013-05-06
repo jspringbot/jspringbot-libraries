@@ -1,0 +1,12 @@
+Dismisses currently shown confirmation dialog and returns it's message.
+
+By default, this keyword chooses 'Ok' option from the dialog. If 'cancel' needs to be chosen, keyword Choose Cancel On Next Confirmation must be called before the action that causes the confirmation dialog to be shown.
+
+Examples:
+| Click Button | Send | # Shows a confirmation dialog |
+| ${message}= | Confirm Action | # Chooses Ok |
+| Should Be Equal | ${message} | Are your sure? |
+| | | |
+| Choose Cancel On Next Confirmation |
+| Click Button | Send | # Shows a confirmation dialog |
+| Confirm Action | | # Chooses Cancel |

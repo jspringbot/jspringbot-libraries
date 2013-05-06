@@ -1,0 +1,1 @@
+Verifies that the element identified by locator is visible.
