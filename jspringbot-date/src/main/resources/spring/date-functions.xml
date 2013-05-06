@@ -38,6 +38,12 @@
     <function-signature>java.lang.String lastDayOfMonth(java.lang.String[])</function-signature>
   </function>
   <function>
+    <name>changeISODateFormat</name>
+    <prefix>date</prefix>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String changeISODateFormat(java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
     <name>parse</name>
     <prefix>date</prefix>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>

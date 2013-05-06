@@ -3,9 +3,11 @@ package org.jspringbot.keyword.date;
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
+import org.joda.time.LocalDateTime;
 import org.joda.time.base.BaseDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 
@@ -110,6 +112,14 @@ public class DateUtils {
 
     public static String now(String... args) {
         return format(new DateTime(), "now", args);
+    }
+
+    public static String changeISODateFormat(String dateStr, String pattern) {
+        DateTimeFormatter dtf = ISODateTimeFormat.dateTime();
+        LocalDateTime parsedDate = dtf.parseLocalDateTime(dateStr);
+
+        String dateWithCustomFormat = parsedDate.toString(DateTimeFormat.forPattern(pattern));
+        return dateWithCustomFormat;
     }
 
     private static String format(BaseDateTime dt, String method, String... args) {
