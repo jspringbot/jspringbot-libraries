@@ -4,84 +4,123 @@
   <function>
     <prefix>map</prefix>
     <name>getObject</name>
+    <description>Gets from a Map in a null-safe manner.</description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Object getObject(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getBoolean</name>
+    <description><![CDATA[Gets a Boolean from a Map in a null-safe manner.
+      <p>If the value is a <code>Boolean</code> it is returned directly.
+      If the value is a <code>String</code> and it equals 'true' ignoring case
+      then <code>true</code> is returned, otherwise <code>false</code>.
+      If the value is a <code>Number</code> an integer zero value returns
+      <code>false</code> and non-zero returns <code>true</code>.
+      Otherwise, <code>null</code> is returned.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Boolean getBoolean(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getLong</name>
+    <description><![CDATA[Gets a long from a Map in a null-safe manner.
+      <p>The long is obtained from the results of {@link #getNumber(Map,Object)}.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Long getLong(java.util.Map,java.lang.Object,java.lang.Long)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getFloat</name>
+    <description><![CDATA[Looks up the given key in the given map, converting the result into
+      a float, using the default value if the the conversion fails.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Float getFloat(java.util.Map,java.lang.Object,java.lang.Float)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getDouble</name>
+    <description><![CDATA[Gets a Double from a Map in a null-safe manner.
+      <p>The Double is obtained from the results of {@link #getNumber(Map,Object)}.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Double getDouble(java.util.Map,java.lang.Object,java.lang.Double)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>isEmpty</name>
+    <description><![CDATA[Null-safe check if the specified map is empty.
+      <p>Null returns true.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>boolean isEmpty(java.util.Map)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getInteger</name>
+    <description><![CDATA[Gets a Integer from a Map in a null-safe manner.
+      <p>The Integer is obtained from the results of {@link #getNumber(Map,Object)}.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.Integer getInteger(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getString</name>
+    <description><![CDATA[Gets a String from a Map in a null-safe manner.
+      <p>The String is obtained via <code>toString</code>.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>java.lang.String getString(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getBooleanValue</name>
+    <description><![CDATA[Gets a boolean from a Map in a null-safe manner.
+      <p>If the value is a <code>Boolean</code> its value is returned.
+      If the value is a <code>String</code> and it equals 'true' ignoring case
+      then <code>true</code> is returned, otherwise <code>false</code>.
+      If the value is a <code>Number</code> an integer zero value returns
+      <code>false</code> and non-zero returns <code>true</code>.
+      Otherwise, <code>false</code> is returned.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>boolean getBooleanValue(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>isNotEmpty</name>
+    <description><![CDATA[Null-safe check if the specified map is not empty.
+      <p>Null returns false.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>boolean isNotEmpty(java.util.Map)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getIntValue</name>
+    <description><![CDATA[Gets an int from a Map in a null-safe manner,
+      using the default value if the the conversion fails.
+      <p>The int is obtained from the results of {@link #getNumber(Map,Object)}.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>int getIntValue(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getLongValue</name>
+    <description><![CDATA[Gets a long from a Map in a null-safe manner.
+      <p>The long is obtained from the results of {@link #getNumber(Map,Object)}.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>long getLongValue(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getFloatValue</name>
+    <description><![CDATA[Gets a float from a Map in a null-safe manner,
+      using the default value if the the conversion fails.
+      <p>The float is obtained from the results of {@link #getNumber(Map,Object)}.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>float getFloatValue(java.util.Map,java.lang.Object)</function-signature>
   </function>
   <function>
     <prefix>map</prefix>
     <name>getDoubleValue</name>
+    <description><![CDATA[Gets a double from a Map in a null-safe manner.
+      <p>The double is obtained from the results of {@link #getNumber(Map,Object)}.]]></description>
     <function-class>org.apache.commons.collections.MapUtils</function-class>
     <function-signature>double getDoubleValue(java.util.Map,java.lang.Object)</function-signature>
   </function>
