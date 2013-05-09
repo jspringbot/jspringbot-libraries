@@ -152,11 +152,19 @@ public class ExpressionHelperTest {
     @Test
     public void testConvertUnicode() throws Exception {
         evaluateEquals("$[convertUnicode('\\\\u632F\\\\u534E')]", "\u632F\u534E");
+        System.out.println(ELUtils.convertUnicode("\\u767B\\u5165\\u60A8\\u7684\\u535A\\u72D7\\u8D26\\u6237"));
     }
 
     @Test
     public void testCreateStringFunctionsXML() throws Exception {
         new ClassStaticFunctionsPrinter(StringEscapeUtils.class).addPrefix("escape:").print(System.out);
+    }
+
+    @Test
+    public void testGreaterThan() throws Exception {
+        evaluateAsTrue("$[2 > 1]");
+        evaluateAsFalse("$[1 > 2]");
+        evaluateAsTrue("$['amschartstusr001n179' < 'å??è??']");
     }
 
     @Before

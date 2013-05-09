@@ -1,0 +1,4 @@
+Navigates to the url specified.
+
+Example:
+| Navigate To | http://www.google.com.ph |

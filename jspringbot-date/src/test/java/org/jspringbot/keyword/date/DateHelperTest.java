@@ -68,10 +68,19 @@ public class DateHelperTest {
         assertTrue(Time.class.isInstance(expressionHelper.evaluate("$[date:toSQLTime()]")));
         assertTrue(Timestamp.class.isInstance(expressionHelper.evaluate("$[date:toSQLTimestamp()]")));
 
+        System.out.println(expressionHelper.evaluate("$[date:toSQLDate()]"));
+        System.out.println(expressionHelper.evaluate("$[date:toSQLTime()]"));
+        System.out.println(expressionHelper.evaluate("$[date:toSQLTimestamp()]"));
+
         System.out.println(expressionHelper.evaluate("$[date:firstDayOfMonth()]"));
         System.out.println(expressionHelper.evaluate("$[date:lastDayOfMonth()]"));
         System.out.println(expressionHelper.evaluate("$[date:firstDayOfYear()]"));
 
+    }
+
+    @Test
+    public void testParseDate() throws Exception {
+        System.out.println(expressionHelper.evaluate("$[date:changeISODateFormat('2013-03-18T15:39:43.000+08:00','yyyy-MM-dd HH:mm:ss')]"));
     }
 
     @Test

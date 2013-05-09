@@ -1,1 +1,7 @@
 Types the given text into text field identified by locator.
+
+Examples:
+| Input Text  | id=textfieldID |
+| Input Text  | name=textfieldName |
+| Input Text  | css=div.main input#textfieldID.textfieldClass |
+| Input Text  | xpath=//*[@id="textfieldID"] |
