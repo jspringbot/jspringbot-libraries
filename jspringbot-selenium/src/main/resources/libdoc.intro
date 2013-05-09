@@ -41,3 +41,6 @@ Configure the following to use jspringbot-selenium.
 | selenium.https.proxy=none
 | selenium.ssl.proxy=none
 | selenium.implicit.wait=10
+
+*Firefox Configuration for Auto Download*
+Go to Tools > Options > General > Save file to <browse location>
