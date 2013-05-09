@@ -44,4 +44,4 @@ Configure the following to use jspringbot-selenium.
 
 *Firefox Configuration for Auto Download*
 
-Go to Tools > Options > General > Save file to <browse location>
+| Go to Tools > Options > General > Save file to <browse location>
