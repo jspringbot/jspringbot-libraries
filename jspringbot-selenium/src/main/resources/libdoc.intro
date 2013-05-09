@@ -24,16 +24,16 @@ Configure the following to use jspringbot-selenium.
 | {{selenium.assume.untrusted.certificates}} | true | Assume untrusted certificates will come from untrusted issuers. |
 | {{selenium.implicit.wait}} | 30 | Specify the amount of time the driver should wait when searching for an element if it is not immediately present. |
 | {{selenium.screenshot.folder}} | | Directory to place captured screenshots. |
-| {{selenium.download.directory}} | | Directory to place downloads. |
+| {{selenium.download.directory}} | /tmp/jspringbot | Directory to place downloads. |
 | {{selenium.autosave.content.type}} | | Specify the valid file types to be downloaded. |
-| {{selenium.proxy}} | | Specify which proxy to use for FTP connections. |
-| {{selenium.http.proxy}} | | Specify which proxy to use for HTTP connections. |
-| {{selenium.https.proxy}} | | Specify which proxy to use for HTTPS connections. |
-| {{selenium.ssl.proxy}} | | Specify which proxy to use for SSL connections. |
+| {{selenium.proxy}} | none | Specify which proxy to use. |
+| {{selenium.http.proxy}} | none | Specify which proxy to use for HTTP connections. |
+| {{selenium.https.proxy}} | none | Specify which proxy to use for HTTPS connections. |
+| {{selenium.ssl.proxy}} | none | Specify which proxy to use for SSL connections. |
 
 *Sample jspringbot.properties*
 
-| selenium.screenshot.folder=${project.build.directory}/robotframework-reports
+| selenium.screenshot.folder=${project.build.directory }/robotframework-reports
 | selenium.download.directory=/tmp/selenium
 | selenium.autosave.content.type=application/octet-stream;application/vnd.apple.installer+xml
 | selenium.proxy=none
