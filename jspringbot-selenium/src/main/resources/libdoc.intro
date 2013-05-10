@@ -42,6 +42,13 @@ Configure the following to use jspringbot-selenium.
 | selenium.ssl.proxy=none
 | selenium.implicit.wait=10
 
+*Sample selenium.autosave.content.type Configuration for Different File Types*
+
+| *File Extension* | *Mime Type* |
+| EXE | application/x-msdos-program |
+| DMG | application/x-apple-diskimage |
+| PKG | application/octet-stream |
+
 *Firefox Configuration for Auto Download*
 
 | Go to Tools > Options > General > Save file to <browse location>
