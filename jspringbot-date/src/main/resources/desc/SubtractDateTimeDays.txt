@@ -1,1 +1,5 @@
 Subtract the given days to the current date time.
+
+Example:
+| Add Date Time Days | 40 |
+| Print Date Time | |

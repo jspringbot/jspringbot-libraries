@@ -1,1 +1,7 @@
 Reset date time to current date.
+
+Example:
+| Add Date Time Days | 90 |
+| Print Date Time | |
+| Reset Date Time | |
+| Print Date Time | |
