@@ -44,10 +44,20 @@ Configure the following to use jspringbot-selenium.
 
 *Sample selenium.autosave.content.type Configuration for Different File Types*
 
-| *File Extension* | *Mime Type* |
-| EXE | application/x-msdos-program |
-| DMG | application/x-apple-diskimage |
-| PKG | application/octet-stream |
+| *File Extension* | *Mime Type* | *Meaning* |
+| exe | application/x-msdos-program | |
+| dmg | application/x-apple-diskimage | |
+| pkg | application/octet-stream | Unrecognized or binary data |
+| doc | application/msword | Microsoft Word document |
+| pdf | application/pdf | Acrobat (portable document format) file |
+| xls | application/vnd.ms-excel | Excel spreadsheet |
+| csv | application/csv | Comma Separated Value |
+| ppt | application/vnd.ms-powerpoint | PowerPoint presentation |
+| gzip | application/x-gzip | Gzip archive |
+| zip | application/zip | Zip archive |
+| gif | image/gif | GIF image |
+| jpg | image/jpeg | JPEG image |
+| png | image/png | PNG image |
 
 *Firefox Configuration for Auto Download*
 

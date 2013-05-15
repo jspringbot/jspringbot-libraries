@@ -1337,6 +1337,7 @@ public class SeleniumHelper {
     public void delay(long pollMillis) {
         try {
             Thread.sleep(pollMillis);
+            LOG.info(String.format("Delayeds for %d millis'.", pollMillis));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
