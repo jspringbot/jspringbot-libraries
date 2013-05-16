@@ -1,1 +1,5 @@
 Asserts the XML element attribute should be equal to the expected value.
+
+Example:
+| ${third_book}= | `Get XML XPath Element` | //catalog/book[3] |
+| `XML Element Attribute Should Be Equal` | ${third_book} | id | bk103 |

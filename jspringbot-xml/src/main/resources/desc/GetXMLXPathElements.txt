@@ -1,9 +1,46 @@
-TODO
-
-Return the XML elements given the xpath.
+Return the list of XML elements given the xpath.
 
 Example:
+| ${author}= | `Get XML XPath Elements` | //catalog/book[1]/author |
 | ${books}= | `Get XML XPath Elements` | //catalog/book  |
+| ${titles}= | `Get XML XPath Elements` | //catalog/book[*]/title |
 
 Result:
+| ${author} =
+| Element [0]:
+| <author>Gambardella, Matthew</author>
 | ${books} =
+| Element [0]:
+| <book id="bk101">
+|   <author>Gambardella, Matthew</author>
+|   <title>XML Developer's Guide</title>
+|   <genre>Computer</genre>
+|   <price>44.95</price>
+|   <publish_date>2000-10-01</publish_date>
+|   <description>An in-depth look at creating applications with XML.</description>
+| </book>
+| Element [1]:
+| <book id="bk102">
+|   <author>Ralls, Kim</author>
+|   <title>Midnight Rain</title>
+|   <genre>Fantasy</genre>
+|   <price>5.95</price>
+|   <publish_date>2000-12-16</publish_date>
+|   <description>A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world.</description>
+| </book>
+| Element [2]:
+| <book id="bk103">
+|   <author>Corets, Eva</author>
+|   <title>Maeve Ascendant</title>
+|   <genre>Fantasy</genre>
+|   <price>5.95</price>
+|   <publish_date>2000-11-17</publish_date>
+|   <description>After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.</description>
+| </book>
+| ${titles} =
+| Element [0]:
+| <title>XML Developer's Guide</title>
+| Element [1]:
+| <title>Midnight Rain</title>
+| Element [2]:
+| <title>Maeve Ascendant</title>

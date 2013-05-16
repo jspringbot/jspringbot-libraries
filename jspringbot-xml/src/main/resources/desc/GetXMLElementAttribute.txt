@@ -1,7 +1,8 @@
 Returns the XML element attribute.
 
 Example:
-| ${id}= | `Get XML Element Attribute` | //catalog/book[1] | id |
+| ${firstBook}= | `Get XML XPath Element` | //catalog/book[1] |
+| ${id}= | `Get XML Element Attribute` | ${firstBook} | id |
 
 Result:
 | ${id} = bk101

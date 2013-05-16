@@ -1,1 +1,8 @@
 Return the XML element text content given the xpath.
+
+Example:
+| ${third_book}= | `Get XML XPath Element` | //catalog/book[3] |
+| ${genre}= | `Get XML XPath Element Text Content` | ${third_book} | //book/genre |  # This is similar to specifying "book/genre" as xpathExpression assumes book on the root element. |
+
+Result:
+| ${genre} = Fantasy

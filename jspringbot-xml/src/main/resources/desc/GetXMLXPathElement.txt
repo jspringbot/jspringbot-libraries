@@ -1,7 +1,16 @@
 Return the XML element given the xpath.
 
 Example:
-| ${author}= | `Get XML XPath Elements` | //catalog/book[1]/author |
+| ${firstBook}= | `Get XML XPath Element` | //catalog/book[1] | # This is similar to specifying "//catalog/book" as xpathExpression since this will only return a single element |
 
 Result:
-| ${author} = Gambardella, Matthew
+| ${firstBook} =
+| Element [0]:
+| <book id="bk101">
+|   <author>Gambardella, Matthew</author>
+|   <title>XML Developer's Guide</title>
+|   <genre>Computer</genre>
+|   <price>44.95</price>
+|   <publish_date>2000-10-01</publish_date>
+|   <description>An in-depth look at creating applications with XML.</description>
+| </book>
