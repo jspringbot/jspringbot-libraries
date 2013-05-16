@@ -4,24 +4,124 @@
   <function>
     <name>attr</name>
     <prefix>xml</prefix>
+    <description>Returns the XML element attribute given either the xpath expression or element and attribute name.
+
+      Examples:
+      By XPath Expression: //catalog/book[1]
+      | `EL Add Variable` | firstBookId | $[xml:attr('//catalog/book[1]','id')] |
+
+      =>
+      | $[firstBookId] = "bk101"
+
+      By Element Assigned In Robot Variable
+      | ${first_book}= | `Get XML XPath Element` | //catalog/book[1] |
+      | `EL Add Variable` | firstBookId | $[xml:attr(var('first_book'),'id')] |
+
+      =>
+      | $[firstBookId] =  "bk101"
+
+      By Element Assigned In EL Variable
+      | `EL Add Variable` | firstBook | $[xml:element('//catalog/book')] |
+      | `EL Add Variable` | firstBookId | $[xml:attr(firstBook,'id')] |
+
+      =>
+      | $[firstBookId] =  "bk101"
+    </description>
     <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
     <function-signature>java.lang.String attr(java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>text</name>
     <prefix>xml</prefix>
+    <description>Return the XML text contents given either the xpath expression or element.
+
+      Examples:
+      By XPath Expressions
+      | `EL Add Variable` | secondGenre | $[xml:text('//catalog/book[2]/genre')]
+      | `EL Add Variable` | firstGenre | $[xml:text('//catalog/book/genre')] |
+
+      =>
+      | secondGenre = "Fantasy"
+      | firstGenre = "Computer"
+
+      By Element Assigned In Robot Variable
+      | ${second_book}= | `Get XML XPath Element` | //catalog/book[2] |
+      | `EL Add Variable` | secondGenre | $[xml:text(var('second_book'), '//book/genre')] |
+
+      =>
+      | secondGenre = "Fantasy"
+
+      By Element Assigned In EL Variable
+      | `EL Add Variable` | secondBook | $[xml:element('//catalog/book[2]')] |
+      | `EL Add Variable` | secondGenre | $[xml:text(secondBook, '//book/genre')] |
+
+      =>
+      | secondGenre = "Fantasy"
+    </description>
     <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
     <function-signature>java.lang.String text(java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>elements</name>
     <prefix>xml</prefix>
+    <description>Return the list of XML elements given the xpath expression
+
+      Example:
+      | `EL Add Variable` | books | $[xml:elements('//catalog/book')] |
+
+      =>
+      | $[books] =
+      | Element [0]:
+      | <book id="bk101">
+      |   <author>Gambardella, Matthew</author>
+      |   <title>XML Developer's Guide</title>
+      |   <genre>Computer</genre>
+      |   <price>44.95</price>
+      |   <publish_date>2000-10-01</publish_date>
+      |   <description>An in-depth look at creating applications with XML.</description>
+      | </book>
+      | Element [1]:
+      | <book id="bk102">
+      |   <author>Ralls, Kim</author>
+      |   <title>Midnight Rain</title>
+      |   <genre>Fantasy</genre>
+      |   <price>5.95</price>
+      |   <publish_date>2000-12-16</publish_date>
+      |   <description>A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world.</description>
+      | </book>
+      | Element [2]:
+      | <book id="bk103">
+      |   <author>Corets, Eva</author>
+      |   <title>Maeve Ascendant</title>
+      |   <genre>Fantasy</genre>
+      |   <price>5.95</price>
+      |   <publish_date>2000-11-17</publish_date>
+      |   <description>After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.</description>
+      | </book>
+    </description>
     <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
     <function-signature>java.util.List elements(java.lang.Object[])</function-signature>
   </function>
   <function>
     <name>element</name>
     <prefix>xml</prefix>
+    <description>Return the XML element given the xpath expression.
+
+      Example:
+      | `EL Add Variable` | book | $[xml:element('//catalog/book')] |
+
+      =>
+      | $[book] =
+      | Element [0]:
+      | <book id="bk101">
+      |   <author>Gambardella, Matthew</author>
+      |   <title>XML Developer's Guide</title>
+      |   <genre>Computer</genre>
+      |   <price>44.95</price>
+      |   <publish_date>2000-10-01</publish_date>
+      |   <description>An in-depth look at creating applications with XML.</description>
+      | </book>
+    </description>
     <function-class>org.jspringbot.keyword.xml.XMLUtils</function-class>
     <function-signature>org.w3c.dom.Element element(java.lang.Object[])</function-signature>
   </function>

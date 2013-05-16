@@ -46,16 +46,16 @@ Configure the following to use jspringbot-xml.
 |    </book>
 | </catalog>
 
-*Sample Usage:*
-| Set XML String | <xmlString> |
+*Sample XML Keyword Usage:*
+| `Set XML String` | <xmlString> |
 | ${author}= | `Get XML XPath Elements` | //catalog/book[1]/author |
 | ${first_book}= | `Get XML XPath Element` | //catalog/book  |
 | ${third_book}= | `Get XML XPath Element` | //catalog/book[3] |
 | ${id}= | `Get XML Element Attribute` | ${first_book} | id |
 | ${genre}= | `Get XML XPath Element Text Content` | ${first_book} | //book/genre |
 | ${description}= | `Get XML XPath Single Text Content` | //catalog/book[1]/description |
-| ${descriptionList}= | `Get XML XPath Text Contents` | //catalog/book/description |
-| ${matchCount}= | `Get XML Xpath Match Count` | //catalog/book/price[text()='5.95']/.. |
+| ${description_list}= | `Get XML XPath Text Contents` | //catalog/book/description |
+| ${match_count}= | `Get XML Xpath Match Count` | //catalog/book/price[text()='5.95']/.. |
 | `XML Element Attribute Should Be Equal` | ${third_book} | id | bk103 |
 | `XML Xpath Should Match X Times` | //catalog/book/price[text()='5.95']/.. | 2 |
 | `XML XPath Text Content Should Be Equal` | //catalog/book/author | Gambardella, Matthew |
@@ -63,6 +63,7 @@ Configure the following to use jspringbot-xml.
 
 =>
 | ${author} =  Gambardella, Matthew
+|
 | ${first_book} = <book id="bk101">
 |   <author>Gambardella, Matthew</author>
 |   <title>XML Developer's Guide</title>
@@ -71,6 +72,7 @@ Configure the following to use jspringbot-xml.
 |   <publish_date>2000-10-01</publish_date>
 |   <description>An in-depth look at creating applications with XML.</description>
 | </book>
+|
 | ${third_book} = <book id="bk103">
 |   <author>Corets, Eva</author>
 |   <title>Maeve Ascendant</title>
@@ -79,9 +81,62 @@ Configure the following to use jspringbot-xml.
 |   <publish_date>2000-11-17</publish_date>
 |   <description>After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.</description>
 | </book>
+|
 | ${id} = bk101
 | ${genre} = Computer
 | ${description} = After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.
-| ${descriptionList} = [An in-depth look at creating applications with XML., A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world., After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.]
-| ${matchCount}= 2
+| ${description_list} = [An in-depth look at creating applications with XML., A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world., After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.]
+| ${match_count}= 2
 
+*Sample XML Function Usage:*
+| `Set XML String` | <xmlString> |
+| `EL Add Variable` | firstBookId | $[xml:attr('//catalog/book[1]','id')] |
+| `EL Add Variable` | book | $[xml:element('//catalog/book')] |
+| `EL Add Variable` | books | $[xml:elements('//catalog/book')] |
+| `EL Add Variable` | secondGenre | $[xml:text('//catalog/book[2]/genre')] |
+
+=>
+| $[firstBookId] = "bk101"
+|
+| $[book] = <book id="bk101">
+|   <author>Gambardella, Matthew</author>
+|   <title>XML Developer's Guide</title>
+|   <genre>Computer</genre>
+|   <price>44.95</price>
+|   <publish_date>2000-10-01</publish_date>
+|   <description>An in-depth look at creating applications with XML.</description>
+| </book>
+|
+| $[books] =
+| Element [0]:
+| <author>Gambardella, Matthew</author>
+| ${books} =
+| Element [0]:
+| <book id="bk101">
+|   <author>Gambardella, Matthew</author>
+|   <title>XML Developer's Guide</title>
+|   <genre>Computer</genre>
+|   <price>44.95</price>
+|   <publish_date>2000-10-01</publish_date>
+|   <description>An in-depth look at creating applications with XML.</description>
+| </book>
+| Element [1]:
+| <book id="bk102">
+|   <author>Ralls, Kim</author>
+|   <title>Midnight Rain</title>
+|   <genre>Fantasy</genre>
+|   <price>5.95</price>
+|   <publish_date>2000-12-16</publish_date>
+|   <description>A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world.</description>
+| </book>
+| Element [2]:
+| <book id="bk103">
+|   <author>Corets, Eva</author>
+|   <title>Maeve Ascendant</title>
+|   <genre>Fantasy</genre>
+|   <price>5.95</price>
+|   <publish_date>2000-11-17</publish_date>
+|   <description>After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.</description>
+| </book>
+|
+| $[secondGenre] = "Fantasy"

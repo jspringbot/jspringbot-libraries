@@ -2,8 +2,8 @@ Return the XML text contents given the xpath.
 
 Examples:
 | ${description}= | `Get XML XPath Text Contents` | //catalog/book[3]/description |
-| ${descriptionList}= | `Get XML XPath Text Contents` | //catalog/book/description |
+| ${description_list}= | `Get XML XPath Text Contents` | //catalog/book/description |
 
 Result:
 | ${description} = [After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.]
-| ${descriptionList} = [An in-depth look at creating applications with XML., A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world., After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.]
+| ${description_list} = [An in-depth look at creating applications with XML., A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world., After the collapse of a nanotechnology society in England, the young survivors lay the foundation for a new society.]
