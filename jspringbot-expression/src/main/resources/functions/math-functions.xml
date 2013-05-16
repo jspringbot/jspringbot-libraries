@@ -5,13 +5,6 @@
     <prefix>math</prefix>
     <name>absLong</name>
     <description>Returns the absolute value of a long value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned.
-
-    Note that if the argument is equal to the value of Long.MIN_VALUE, the most negative representable long value, the result is that same value, which is negative.
-
-    Parameters:
-        a - the argument whose absolute value is to be determined 
-    Returns:
-        the absolute value of the argument.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>long abs(long)</function-signature>
@@ -19,20 +12,11 @@
   <function>
     <prefix>math</prefix>
     <name>absDouble</name>
-    <description><![CDATA[Returns the absolute value of a double value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned. Special cases:
+    <description>Returns the absolute value of a double value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned. Special cases:
 
         If the argument is positive zero or negative zero, the result is positive zero.
         If the argument is infinite, the result is positive infinity.
         If the argument is NaN, the result is NaN.
-
-    In other words, the result is the same as the value of the expression:
-
-    Double.longBitsToDouble((Double.doubleToLongBits(a)<<1)>>>1)
-
-    Parameters:
-        a - the argument whose absolute value is to be determined 
-    Returns:
-        the absolute value of the argument.]]>
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double abs(double)</function-signature>
@@ -40,20 +24,11 @@
   <function>
     <prefix>math</prefix>
     <name>absFloat</name>
-    <description><![CDATA[Returns the absolute value of a float value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned. Special cases:
+    <description>Returns the absolute value of a float value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned. Special cases:
 
         If the argument is positive zero or negative zero, the result is positive zero.
         If the argument is infinite, the result is positive infinity.
         If the argument is NaN, the result is NaN.
-
-    In other words, the result is the same as the value of the expression:
-
-    Float.intBitsToFloat(0x7fffffff & Float.floatToIntBits(a))
-
-    Parameters:
-        a - the argument whose absolute value is to be determined 
-    Returns:
-        the absolute value of the argument.]]>
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>float abs(float)</function-signature>
@@ -61,14 +36,7 @@
   <function>
     <prefix>math</prefix>
     <name>absInteger</name>
-    <description>Returns the absolute value of an int value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned.
-
-    Note that if the argument is equal to the value of Integer.MIN_VALUE, the most negative representable int value, the result is that same value, which is negative.
-
-    Parameters:
-        a - the argument whose absolute value is to be determined 
-    Returns:
-        the absolute value of the argument.
+    <description>Returns the absolute value of an int value. If the argument is not negative, the argument is returned. If the argument is negative, the negation of the argument is returned
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>int abs(int)</function-signature>
@@ -82,11 +50,6 @@
         If the argument is zero, then the result is a zero with the same sign as the argument.
 
     A result must be within 1 ulp of the correctly rounded result. Results must be semi-monotonic.
-
-    Parameters:
-        a - an angle, in radians. 
-    Returns:
-        the sine of the argument.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double sin(double)</function-signature>
@@ -99,11 +62,6 @@
         If the argument is NaN or an infinity, then the result is NaN.
 
     A result must be within 1 ulp of the correctly rounded result. Results must be semi-monotonic.
-
-    Parameters:
-        a - an angle, in radians. 
-    Returns:
-        the cosine of the argument.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double cos(double)</function-signature>
@@ -117,11 +75,6 @@
         If the argument is zero, then the result is a zero with the same sign as the argument.
 
     A result must be within 1 ulp of the correctly rounded result. Results must be semi-monotonic.
-
-    Parameters:
-        a - an angle, in radians. 
-    Returns:
-        the tangent of the argument.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double tan(double)</function-signature>
@@ -144,12 +97,6 @@
         If both arguments are negative infinity, then the result is the double value closest to -3*pi/4.
 
     A result must be within 2 ulps of the correctly rounded result. Results must be semi-monotonic.
-
-    Parameters:
-        y - the ordinate coordinate
-        x - the abscissa coordinate 
-    Returns:
-        the theta component of the point (r, theta) in polar coordinates that corresponds to the point (x, y) in Cartesian coordinates.
 	</description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double atan2(double,double)</function-signature>
@@ -164,11 +111,6 @@
         If the argument is positive zero or negative zero, then the result is the same as the argument.
 
     Otherwise, the result is the double value closest to the true mathematical square root of the argument value.
-
-    Parameters:
-        a - a value. 
-    Returns:
-        the positive square root of a. If the argument is NaN or less than zero, the result is NaN.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double sqrt(double)</function-signature>
@@ -183,11 +125,6 @@
         If the argument is positive zero or negative zero, then the result is negative infinity.
 
     A result must be within 1 ulp of the correctly rounded result. Results must be semi-monotonic.
-
-    Parameters:
-        a - a number greater than 0.0. 
-    Returns:
-        the value ln a, the natural logarithm of a.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double log(double)</function-signature>
@@ -203,11 +140,6 @@
     If the argument is equal to 10n for integer n, then the result is n. 
 
 	The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic.
-
-	Parameters:
-    	a - a value
-	Returns:
-    	the base 10 logarithm of a.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double log10(double)</function-signature>
@@ -263,12 +195,6 @@
     (In the foregoing descriptions, a floating-point value is considered to be an integer if and only if it is finite and a fixed point of the method ceil or, equivalently, a fixed point of the method floor. A value is a fixed point of a one-argument method if and only if the result of applying the method to the value is equal to the value.)
 
     The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic.
-
-    Parameters:
-        a - the base.
-        b - the exponent. 
-    Returns:
-        the value ab.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double pow(double,double)</function-signature>
@@ -283,11 +209,6 @@
         If the argument is negative infinity, then the result is positive zero.
 
     The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic.
-
-    Parameters:
-        a - the exponent to raise e to. 
-    Returns:
-        the value ea, where e is the base of the natural logarithms.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double exp(double)</function-signature>
@@ -296,12 +217,6 @@
     <prefix>math</prefix>
     <name>minDouble</name>
     <description>Returns the smaller of two double values. That is, the result is the value closer to negative infinity. If the arguments have the same value, the result is that same value. If either value is NaN, then the result is NaN. Unlike the numerical comparison operators, this method considers negative zero to be strictly smaller than positive zero. If one argument is positive zero and the other is negative zero, the result is negative zero.
-
-    Parameters:
-        a - an argument.
-        b - another argument. 
-    Returns:
-        the smaller of a and b.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double min(double,double)</function-signature>
@@ -310,12 +225,6 @@
     <prefix>math</prefix>
     <name>minFloat</name>
     <description>Returns the smaller of two float values. That is, the result is the value closer to negative infinity. If the arguments have the same value, the result is that same value. If either value is NaN, then the result is NaN. Unlike the numerical comparison operators, this method considers negative zero to be strictly smaller than positive zero. If one argument is positive zero and the other is negative zero, the result is negative zero.
-
-    Parameters:
-        a - an argument.
-        b - another argument. 
-    Returns:
-        the smaller of a and b.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>float min(float,float)</function-signature>
@@ -324,12 +233,6 @@
     <prefix>math</prefix>
     <name>minLong</name>
     <description>Returns the smaller of two long values. That is, the result is the argument closer to the value of Long.MIN_VALUE. If the arguments have the same value, the result is that same value.
-
-    Parameters:
-        a - an argument.
-        b - another argument. 
-    Returns:
-        the smaller of a and b.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>long min(long,long)</function-signature>
@@ -338,12 +241,6 @@
     <prefix>math</prefix>
     <name>minInteger</name>
     <description>Returns the smaller of two int values. That is, the result the argument closer to the value of Integer.MIN_VALUE. If the arguments have the same value, the result is that same value.
-
-    Parameters:
-        a - an argument.
-        b - another argument. 
-    Returns:
-        the smaller of a and b.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>int min(int,int)</function-signature>
@@ -352,12 +249,6 @@
     <prefix>math</prefix>
     <name>maxFloat</name>
     <description>Returns the greater of two float values. That is, the result is the argument closer to positive infinity. If the arguments have the same value, the result is that same value. If either value is NaN, then the result is NaN. Unlike the numerical comparison operators, this method considers negative zero to be strictly smaller than positive zero. If one argument is positive zero and the other negative zero, the result is positive zero.
-
-    Parameters:
-        a - an argument.
-        b - another argument. 
-    Returns:
-        the larger of a and b.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>float max(float,float)</function-signature>
@@ -366,12 +257,6 @@
     <prefix>math</prefix>
     <name>maxLong</name>
     <description>Returns the greater of two long values. That is, the result is the argument closer to the value of Long.MAX_VALUE. If the arguments have the same value, the result is that same value.
-
-    Parameters:
-        a - an argument.
-        b - another argument. 
-    Returns:
-        the larger of a and b.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>long max(long,long)</function-signature>
@@ -380,12 +265,6 @@
     <prefix>math</prefix>
     <name>maxInteger</name>
     <description>Returns the greater of two int values. That is, the result is the argument closer to the value of Integer.MAX_VALUE. If the arguments have the same value, the result is that same value.
-
-    Parameters:
-        a - an argument.
-        b - another argument. 
-    Returns:
-        the larger of a and b.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>int max(int,int)</function-signature>
@@ -394,12 +273,6 @@
     <prefix>math</prefix>
     <name>maxDouble</name>
     <description>Returns the greater of two double values. That is, the result is the argument closer to positive infinity. If the arguments have the same value, the result is that same value. If either value is NaN, then the result is NaN. Unlike the numerical comparison operators, this method considers negative zero to be strictly smaller than positive zero. If one argument is positive zero and the other negative zero, the result is positive zero.
-
-    Parameters:
-        a - an argument.
-        b - another argument. 
-    Returns:
-        the larger of a and b.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double max(double,double)</function-signature>
@@ -413,13 +286,7 @@
 
         If the first argument is NaN, NaN is returned.
         If the first argument is infinite, then an infinity of the same sign is returned.
-        If the first argument is zero, then a zero of the same sign is returned. 
-
-    Parameters:
-        f - number to be scaled by a power of two.
-        scaleFactor - power of 2 used to scale f 
-    Returns:
-        f × 2scaleFactor
+        If the first argument is zero, then a zero of the same sign is returned.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>float scalb(float,int)</function-signature>
@@ -433,13 +300,7 @@
 
         If the first argument is NaN, NaN is returned.
         If the first argument is infinite, then an infinity of the same sign is returned.
-        If the first argument is zero, then a zero of the same sign is returned. 
-
-    Parameters:
-        d - number to be scaled by a power of two.
-        scaleFactor - power of 2 used to scale d 
-    Returns:
-        d × 2scaleFactor
+        If the first argument is zero, then a zero of the same sign is returned.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double scalb(double,int)</function-signature>
@@ -450,12 +311,7 @@
     <description>Returns the unbiased exponent used in the representation of a double. Special cases:
 
         If the argument is NaN or infinite, then the result is Double.MAX_EXPONENT + 1.
-        If the argument is zero or subnormal, then the result is Double.MIN_EXPONENT -1. 
-
-    Parameters:
-        d - a double value 
-    Returns:
-        the unbiased exponent of the argument
+        If the argument is zero or subnormal, then the result is Double.MIN_EXPONENT -1.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>int getExponent(double)</function-signature>
@@ -467,11 +323,6 @@
 
         If the argument is NaN or infinite, then the result is Float.MAX_EXPONENT + 1.
         If the argument is zero or subnormal, then the result is Float.MIN_EXPONENT -1. 
-
-    Parameters:
-        f - a float value 
-    Returns:
-        the unbiased exponent of the argument
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>int getExponent(float)</function-signature>
@@ -485,11 +336,6 @@
 
         If the argument is NaN, then the result is NaN.
         If the argument is positive zero or negative zero, then the result is the same as the argument. 
-
-    Parameters:
-        f - the floating-point value whose signum is to be returned 
-    Returns:
-        the signum function of the argument\
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>float signum(float)</function-signature>
@@ -503,11 +349,6 @@
 
         If the argument is NaN, then the result is NaN.
         If the argument is positive zero or negative zero, then the result is the same as the argument. 
-
-    Parameters:
-        d - the floating-point value whose signum is to be returned 
-    Returns:
-        the signum function of the argument
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double signum(double)</function-signature>
@@ -521,11 +362,6 @@
         If the argument is zero, then the result is a zero with the same sign as the argument.
 
     The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic.
-
-    Parameters:
-        a - the value whose arc sine is to be returned. 
-    Returns:
-        the arc sine of the argument.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double asin(double)</function-signature>
@@ -538,11 +374,6 @@
         If the argument is NaN or its absolute value is greater than 1, then the result is NaN.
 
     The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic.
-
-    Parameters:
-        a - the value whose arc cosine is to be returned. 
-    Returns:
-        the arc cosine of the argument.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double acos(double)</function-signature>
@@ -556,11 +387,6 @@
         If the argument is zero, then the result is a zero with the same sign as the argument.
 
     The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic.
-
-    Parameters:
-        a - the value whose arc tangent is to be returned. 
-    Returns:
-        the arc tangent of the argument.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double atan(double)</function-signature>
@@ -569,11 +395,6 @@
     <prefix>math</prefix>
     <name>toRadians</name>
     <description>Converts an angle measured in degrees to an approximately equivalent angle measured in radians. The conversion from degrees to radians is generally inexact.
-
-    Parameters:
-        angdeg - an angle, in degrees 
-    Returns:
-        the measurement of the angle angdeg in radians.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double toRadians(double)</function-signature>
@@ -601,11 +422,6 @@
         If the argument is zero, then the result is a zero with the same sign as the argument. 
 
     The computed result must be within 1 ulp of the exact result.
-
-    Parameters:
-        a - a value. 
-    Returns:
-        the cube root of a.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double cbrt(double)</function-signature>
@@ -617,12 +433,6 @@
 
         If either argument is NaN, or the first argument is infinite, or the second argument is positive zero or negative zero, then the result is NaN.
         If the first argument is finite and the second argument is infinite, then the result is the same as the first argument.
-
-    Parameters:
-        f1 - the dividend.
-        f2 - the divisor. 
-    Returns:
-        the remainder when f1 is divided by f2.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double IEEEremainder(double,double)</function-signature>
@@ -635,13 +445,6 @@
         If the argument value is already equal to a mathematical integer, then the result is the same as the argument.
         If the argument is NaN or an infinity or positive zero or negative zero, then the result is the same as the argument.
         If the argument value is less than zero but greater than -1.0, then the result is negative zero.
-
-    Note that the value of Math.ceil(x) is exactly the value of -Math.floor(-x).
-
-    Parameters:
-        a - a value. 
-    Returns:
-        the smallest (closest to negative infinity) floating-point value that is greater than or equal to the argument and is equal to a mathematical integer.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double ceil(double)</function-signature>
@@ -653,11 +456,6 @@
 
         If the argument value is already equal to a mathematical integer, then the result is the same as the argument.
         If the argument is NaN or an infinity or positive zero or negative zero, then the result is the same as the argument.
-
-    Parameters:
-        a - a value. 
-    Returns:
-        the largest (closest to positive infinity) floating-point value that less than or equal to the argument and is equal to a mathematical integer.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double floor(double)</function-signature>
@@ -669,11 +467,6 @@
 
         If the argument value is already equal to a mathematical integer, then the result is the same as the argument.
         If the argument is NaN or an infinity or positive zero or negative zero, then the result is the same as the argument.
-
-    Parameters:
-        a - a double value. 
-    Returns:
-        the closest floating-point value to a that is equal to a mathematical integer.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double rint(double)</function-signature>
@@ -681,20 +474,7 @@
   <function>
     <prefix>math</prefix>
     <name>roundFloat</name>
-    <description>Returns the closest int to the argument. The result is rounded to an integer by adding 1/2, taking the floor of the result, and casting the result to type int. In other words, the result is equal to the value of the expression:
-
-    (int)Math.floor(a + 0.5f)
-
-    Special cases:
-
-        If the argument is NaN, the result is 0.
-        If the argument is negative infinity or any value less than or equal to the value of Integer.MIN_VALUE, the result is equal to the value of Integer.MIN_VALUE.
-        If the argument is positive infinity or any value greater than or equal to the value of Integer.MAX_VALUE, the result is equal to the value of Integer.MAX_VALUE.
-
-    Parameters:
-        a - a floating-point value to be rounded to an integer. 
-    Returns:
-        the value of the argument rounded to the nearest int value.
+    <description>Returns the closest int to the argument. The result is rounded to an integer by adding 1/2, taking the floor of the result, and casting the result to type int.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>int round(float)</function-signature>
@@ -702,20 +482,7 @@
   <function>
     <prefix>math</prefix>
     <name>roundDouble</name>
-    <description>Returns the closest long to the argument. The result is rounded to an integer by adding 1/2, taking the floor of the result, and casting the result to type long. In other words, the result is equal to the value of the expression:
-
-    (long)Math.floor(a + 0.5d)
-
-    Special cases:
-
-        If the argument is NaN, the result is 0.
-        If the argument is negative infinity or any value less than or equal to the value of Long.MIN_VALUE, the result is equal to the value of Long.MIN_VALUE.
-        If the argument is positive infinity or any value greater than or equal to the value of Long.MAX_VALUE, the result is equal to the value of Long.MAX_VALUE.
-
-    Parameters:
-        a - a floating-point value to be rounded to a long. 
-    Returns:
-        the value of the argument rounded to the nearest long value.
+    <description>Returns the closest long to the argument. The result is rounded to an integer by adding 1/2, taking the floor of the result, and casting the result to type long.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>long round(double)</function-signature>
@@ -730,18 +497,6 @@
     <prefix>math</prefix>
     <name>ulpDouble</name>
     <description>Returns the size of an ulp of the argument. An ulp of a double value is the positive distance between this floating-point value and the double value next larger in magnitude. Note that for non-NaN x, ulp(-x) == ulp(x).
-
-    Special Cases:
-
-        If the argument is NaN, then the result is NaN.
-        If the argument is positive or negative infinity, then the result is positive infinity.
-        If the argument is positive or negative zero, then the result is Double.MIN_VALUE.
-        If the argument is ±Double.MAX_VALUE, then the result is equal to 2971. 
-
-    Parameters:
-        d - the floating-point value whose ulp is to be returned 
-    Returns:
-        the size of an ulp of the argument
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double ulp(double)</function-signature>
@@ -750,18 +505,6 @@
     <prefix>math</prefix>
     <name>ulpFloat</name>
     <description>Returns the size of an ulp of the argument. An ulp of a float value is the positive distance between this floating-point value and the float value next larger in magnitude. Note that for non-NaN x, ulp(-x) == ulp(x).
-
-    Special Cases:
-
-        If the argument is NaN, then the result is NaN.
-        If the argument is positive or negative infinity, then the result is positive infinity.
-        If the argument is positive or negative zero, then the result is Float.MIN_VALUE.
-        If the argument is ±Float.MAX_VALUE, then the result is equal to 2104. 
-
-    Parameters:
-        f - the floating-point value whose ulp is to be returned 
-    Returns:
-        the size of an ulp of the argument
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>float ulp(float)</function-signature>
@@ -778,11 +521,6 @@
         If the argument is zero, then the result is a zero with the same sign as the argument. 
 
     The computed result must be within 2.5 ulps of the exact result.
-
-    Parameters:
-        x - The number whose hyperbolic sine is to be returned. 
-    Returns:
-        The hyperbolic sine of x.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double sinh(double)</function-signature>
@@ -799,11 +537,6 @@
         If the argument is zero, then the result is 1.0. 
 
     The computed result must be within 2.5 ulps of the exact result.
-
-    Parameters:
-        x - The number whose hyperbolic cosine is to be returned. 
-    Returns:
-        The hyperbolic cosine of x.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double cosh(double)</function-signature>
@@ -821,11 +554,6 @@
         If the argument is negative infinity, then the result is -1.0. 
 
     The computed result must be within 2.5 ulps of the exact result. The result of tanh for any finite input must have an absolute value less than or equal to 1. Note that once the exact result of tanh is within 1/2 of an ulp of the limit value of ±1, correctly signed ±1.0 should be returned.
-
-    Parameters:
-        x - The number whose hyperbolic tangent is to be returned. 
-    Returns:
-        The hyperbolic tangent of x.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double tanh(double)</function-signature>
@@ -841,12 +569,6 @@
         If either argument is NaN and neither argument is infinite, then the result is NaN. 
 
     The computed result must be within 1 ulp of the exact result. If one parameter is held constant, the results must be semi-monotonic in the other parameter.
-
-    Parameters:
-        x - a value
-        y - a value 
-    Returns:
-        sqrt(x2 +y2) without intermediate overflow or underflow
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double hypot(double,double)</function-signature>
@@ -864,11 +586,6 @@
         If the argument is zero, then the result is a zero with the same sign as the argument. 
 
     The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic. The result of expm1 for any finite input must be greater than or equal to -1.0. Note that once the exact result of ex - 1 is within 1/2 ulp of the limit value -1, -1.0 should be returned.
-
-    Parameters:
-        x - the exponent to raise e to in the computation of ex -1. 
-    Returns:
-        the value ex - 1.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double expm1(double)</function-signature>
@@ -886,11 +603,6 @@
         If the argument is zero, then the result is a zero with the same sign as the argument. 
 
     The computed result must be within 1 ulp of the exact result. Results must be semi-monotonic.
-
-    Parameters:
-        x - a value 
-    Returns:
-        the value ln(x + 1), the natural log of x + 1
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double log1p(double)</function-signature>
@@ -899,12 +611,6 @@
     <prefix>math</prefix>
     <name>copySignFloat</name>
     <description>Returns the first floating-point argument with the sign of the second floating-point argument. Note that unlike the StrictMath.copySign method, this method does not require NaN sign arguments to be treated as positive values; implementations are permitted to treat some NaN arguments as positive and other NaN arguments as negative to allow greater performance.
-
-    Parameters:
-        magnitude - the parameter providing the magnitude of the result
-        sign - the parameter providing the sign of the result 
-    Returns:
-        a value with the magnitude of magnitude and the sign of sign.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>float copySign(float,float)</function-signature>
@@ -913,12 +619,6 @@
     <prefix>math</prefix>
     <name>copySignDouble</name>
     <description>Returns the first floating-point argument with the sign of the second floating-point argument. Note that unlike the StrictMath.copySign method, this method does not require NaN sign arguments to be treated as positive values; implementations are permitted to treat some NaN arguments as positive and other NaN arguments as negative to allow greater performance.
-
-    Parameters:
-        magnitude - the parameter providing the magnitude of the result
-        sign - the parameter providing the sign of the result 
-    Returns:
-        a value with the magnitude of magnitude and the sign of sign.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double copySign(double,double)</function-signature>
@@ -927,20 +627,6 @@
     <prefix>math</prefix>
     <name>nextAfterDouble</name>
     <description>Returns the floating-point number adjacent to the first argument in the direction of the second argument. If both arguments compare as equal the second argument is returned.
-
-    Special cases:
-
-        If either argument is a NaN, then NaN is returned.
-        If both arguments are signed zeros, direction is returned unchanged (as implied by the requirement of returning the second argument if the arguments compare as equal).
-        If start is ±Double.MIN_VALUE and direction has a value such that the result should have a smaller magnitude, then a zero with the same sign as start is returned.
-        If start is infinite and direction has a value such that the result should have a smaller magnitude, Double.MAX_VALUE with the same sign as start is returned.
-        If start is equal to ± Double.MAX_VALUE and direction has a value such that the result should have a larger magnitude, an infinity with same sign as start is returned. 
-
-    Parameters:
-        start - starting floating-point value
-        direction - value indicating which of start's neighbors or start should be returned 
-    Returns:
-        The floating-point number adjacent to start in the direction of direction.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double nextAfter(double,double)</function-signature>
@@ -949,20 +635,6 @@
     <prefix>math</prefix>
     <name>nextAfterFloat</name>
     <description>Returns the floating-point number adjacent to the first argument in the direction of the second argument. If both arguments compare as equal a value equivalent to the second argument is returned.
-
-    Special cases:
-
-        If either argument is a NaN, then NaN is returned.
-        If both arguments are signed zeros, a value equivalent to direction is returned.
-        If start is ±Float.MIN_VALUE and direction has a value such that the result should have a smaller magnitude, then a zero with the same sign as start is returned.
-        If start is infinite and direction has a value such that the result should have a smaller magnitude, Float.MAX_VALUE with the same sign as start is returned.
-        If start is equal to ± Float.MAX_VALUE and direction has a value such that the result should have a larger magnitude, an infinity with same sign as start is returned. 
-
-    Parameters:
-        start - starting floating-point value
-        direction - value indicating which of start's neighbors or start should be returned 
-    Returns:
-        The floating-point number adjacent to start in the direction of direction.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>float nextAfter(float,double)</function-signature>
@@ -971,17 +643,6 @@
     <prefix>math</prefix>
     <name>nextUpFloat</name>
     <description>Returns the floating-point value adjacent to f in the direction of positive infinity. This method is semantically equivalent to nextAfter(f, Float.POSITIVE_INFINITY); however, a nextUp implementation may run faster than its equivalent nextAfter call.
-
-    Special Cases:
-
-        If the argument is NaN, the result is NaN.
-        If the argument is positive infinity, the result is positive infinity.
-        If the argument is zero, the result is Float.MIN_VALUE 
-
-    Parameters:
-        f - starting floating-point value 
-    Returns:
-        The adjacent floating-point value closer to positive infinity.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>float nextUp(float)</function-signature>
@@ -990,17 +651,6 @@
     <prefix>math</prefix>
     <name>nextUpDouble</name>
     <description>Returns the floating-point value adjacent to d in the direction of positive infinity. This method is semantically equivalent to nextAfter(d, Double.POSITIVE_INFINITY); however, a nextUp implementation may run faster than its equivalent nextAfter call.
-
-    Special Cases:
-
-        If the argument is NaN, the result is NaN.
-        If the argument is positive infinity, the result is positive infinity.
-        If the argument is zero, the result is Double.MIN_VALUE 
-
-    Parameters:
-        d - starting floating-point value 
-    Returns:
-        The adjacent floating-point value closer to positive infinity.
     </description>
     <function-class>java.lang.Math</function-class>
     <function-signature>double nextUp(double)</function-signature>
