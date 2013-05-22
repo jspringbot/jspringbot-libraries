@@ -36,6 +36,13 @@ Configure the following to use jspringbot-db.
 | {{db.jdbc.password}} | Defines the JDBC database password. |
 | {{db.hibernate.dialect}} | Defines the Hibernate dialect. |
 
+*Sample MySql Configuration*
+| {{db.jdbc.driverClassName}}=com.mysql.jdbc.Driver
+| {{db.jdbc.url}}=${jdbc.url}?createDatabaseIfNotExist=true&useUnicode=true&autoReconnect=true&characterEncoding=utf-8
+| {{db.jdbc.username}}=${jdbc.username}
+| {{db.jdbc.password}}=${jdbc.password}
+| {{db.hibernate.dialect}}=org.hibernate.dialect.MySQL5InnoDBDialect
+
 4. Create queries in src/test/resources/db-queries/*.xml. This is only required if `Create DB Query By Name` keyword is used.
 
 = Sample Usage =
