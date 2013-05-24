@@ -7,21 +7,25 @@ Configure the following to use jspringbot-db.
 
 1. Add this artifact in maven dependency
 
-|  <properties>
-|    <mysql.version>5.1.13</mysql.version>
-|  </properties>
-|
 |  <dependencies>
 |    <dependency>
 |      <groupId>org.jspringbot</groupId>
 |      <artifactId>jspringbot-db</artifactId>
 |    </dependency>
+|  </dependencies>
+
+You must also add the java connector for the database that you want to use.
+
+ *Sample MySql Configuration*
+|    <properties>
+|      <mysql.version>5.1.13</mysql.version>
+|    </properties>
+|
 |    <dependency>
 |      <groupId>mysql</groupId>
 |      <artifactId>mysql-connector-java</artifactId>
 |      <version>${mysql.version}</version>
 |    </dependency>
-|  </dependencies>
 
 2. Import spring-http in {{jspringbot-global.xml}}
 
@@ -43,9 +47,48 @@ Configure the following to use jspringbot-db.
 | {{db.jdbc.password}}=${jdbc.password}
 | {{db.hibernate.dialect}}=org.hibernate.dialect.MySQL5InnoDBDialect
 
-4. Create queries in src/test/resources/db-queries/*.xml. This is only required if `Create DB Query By Name` keyword is used.
+4. Create queries under src/test/resources/*db-queries*/*.xml. This is only required if `Create DB Query By Name` keyword is used.
+
+*Sample employee.xml.*
+This file contains queries for employee table.
+| <?xml version="1.0" encoding="UTF-8"?>
+| <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+|
+| <properties>
+|
+|     <entry key="count.employee">
+|         <![CDATA[
+|         select count(1)
+|           from employee
+|         ]]>
+|     </entry>
+|
+|     <entry key="verify.employee">
+|         <![CDATA[
+|         select count(1)
+|           from employee
+|          where id=:employeeID
+|            and firstName=:employeeFirstName
+|            and lastName=:employeeLastName
+|         ]]>
+|     </entry>
+|
+|     <entry key="get.employee.department.info">
+|         <![CDATA[
+|         select e.deptID, d.code as deptCode, d.name as deptName
+|           from employee e
+|     inner join department on e.deptID = d.Id
+|          where e.id=:employeeID
+|            and e.firstName=:employeeFirstName
+|            and e.lastName=:employeeLastName
+|         ]]>
+|     </entry>
+|
+| </properties>
 
 = Sample Usage =
+
+The examples below the uses `Create DB Query By Name` refers to the src/test/resources/db-queries/employees.xml file specified in configuration step #4.
 
 *Sample Usage of `Create DB Query`*
 | `DB Begin`                            |
@@ -90,41 +133,3 @@ Configure the following to use jspringbot-db.
 | ${deptName}=                          | `Get DB Record At Column`             | 2 |
 | `DB Rollback`                         |
 
-
-The examples above the uses `Create DB Query By Name` refers to this file: src/test/resources/db-queries/employees.xml
-
-*employee.xml*
-| <?xml version="1.0" encoding="UTF-8"?>
-| <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
-|
-| <properties>
-|
-|     <entry key="count.employee">
-|         <![CDATA[
-|         select count(1)
-|           from employee
-|         ]]>
-|     </entry>
-|
-|     <entry key="verify.employee">
-|         <![CDATA[
-|         select count(1)
-|           from employee
-|          where id=:employeeID
-|            and firstName=:employeeFirstName
-|            and lastName=:employeeLastName
-|         ]]>
-|     </entry>
-|
-|     <entry key="get.employee.department.info">
-|         <![CDATA[
-|         select e.deptID, d.code as deptCode, d.name as deptName
-|           from employee e
-|     inner join department on e.deptID = d.Id
-|          where e.id=:employeeID
-|            and e.firstName=:employeeFirstName
-|            and e.lastName=:employeeLastName
-|         ]]>
-|     </entry>
-|
-| </properties>
