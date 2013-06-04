@@ -46,13 +46,14 @@
   <function>
     <name>changeISODateFormat</name>
     <prefix>date</prefix>
-    <description>Changes an ISO Date Format
+    <description><![CDATA[<p>Changes an ISO Date Format</p>
 
-    Example:
-    | EL Add Variable | date | $[date:changeISODateFormat('2013-05-06T04:46:22.000+08:00','yyyy-MM-dd HH:mm:ss.S')] |
+    <p>Example:<br>
+    | EL Add Variable | date | $[date:changeISODateFormat('2013-05-06T04:46:22.000+08:00','yyyy-MM-dd HH:mm:ss.S')] |</p>
 
-    =>
-    date = 2013-05-06 04:46:22.0
+    <p>=></p>
+
+    <p>date = 2013-05-06 04:46:22.0</p>]]>
     </description>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
     <function-signature>java.lang.String changeISODateFormat(java.lang.String,java.lang.String)</function-signature>
@@ -60,17 +61,18 @@
   <function>
     <name>parse</name>
     <prefix>date</prefix>
-    <description>Parse a date.
+    <description><![CDATA[<p>Parse a date.</p>
 
-    Example: Assumption that the date today is April 23, 2013 3:47 pm
-    | Set Date Time Format | dd-MM-yyyy HH:mm:ss |
-    | Print Date Time | |
-    | ${dateSet}= | EL Evaluate |  $[date:parse('2013-02-08', 'yyyy-MM-dd')] | # Recornize that the string passed is a date with this format yyyy-MM-dd |
-    | Print Date Time | |
+    <p>Example: Assumption that the date today is April 23, 2013 3:47 pm<br>
+    | Set Date Time Format | dd-MM-yyyy HH:mm:ss |<br>
+    | Print Date Time | |<br>
+    | ${dateSet}= | EL Evaluate |  $[date:parse('2013-02-08', 'yyyy-MM-dd')] | # Recornize that the string passed is a date with this format yyyy-MM-dd |<br>
+    | Print Date Time | |</p>
 
-    =>
-    23-04-2013 15:37:00
-    08-02-2013 00:00:00
+    <p>=></p>
+
+    <p>23-04-2013 15:37:00<br>
+    08-02-2013 00:00:00</p>]]>
     </description>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
     <function-signature>java.lang.String parse(java.lang.String[])</function-signature>
@@ -85,15 +87,15 @@
   <function>
     <name>toSQLDate</name>
     <prefix>date</prefix>
-    <description>
+    <description><![CDATA[
 
-    Example: Assumption that the date today is Apr 23, 2013 3:47 pm
-    | Set Date Time Format | yyyy-MM-dd HH:mm:ss |
-    | ${sqlDate}= | EL Evaluate | $[date:toSQLDate()] |
+    <p>Example: Assumption that the date today is Apr 23, 2013 3:47 pm<br>
+    | Set Date Time Format | yyyy-MM-dd HH:mm:ss |<br>
+    | ${sqlDate}= | EL Evaluate | $[date:toSQLDate()] |</p>
 
-    =>
+    <p>=></p>
 
-    2013-04-23
+    <p>2013-04-23</p>]]>
     </description>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
     <function-signature>java.sql.Date toSQLDate(java.lang.String[])</function-signature>
@@ -101,14 +103,15 @@
   <function>
     <name>toSQLTime</name>
     <prefix>date</prefix>
-    <description>
+    <description><![CDATA[
 
-    Example: Assumption that the date today is Apr 23, 2013 3:47 pm
-    | Set Date Time Format | yyyy-MM-dd HH:mm:ss |
-    | ${sqlTime}= | EL Evaluate | $[date:toSQLTime()] |
+    <p>Example: Assumption that the date today is Apr 23, 2013 3:47 pm<br>
+    | Set Date Time Format | yyyy-MM-dd HH:mm:ss |<br>
+    | ${sqlTime}= | EL Evaluate | $[date:toSQLTime()] |</p>
 
-    =>
-    15:47:00
+    <p>=></p>
+
+    <p>15:47:00</p>]]>
     </description>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
     <function-signature>java.sql.Time toSQLTime(java.lang.String[])</function-signature>
@@ -116,14 +119,15 @@
   <function>
     <name>toSQLTimestamp</name>
     <prefix>date</prefix>
-    <description>
+    <description><![CDATA[
 
-    Example: Assumption that the date today is Apr 23, 2013 3:47 pm
-    | Set Date Time Format | yyyy-MM-dd HH:mm:ss |
-    | ${sqlTimestamp}= | EL Evaluate | $[date:toSQLTimestamp()] |
+    <p>Example: Assumption that the date today is Apr 23, 2013 3:47 pm<br>
+    | Set Date Time Format | yyyy-MM-dd HH:mm:ss |<br>
+    | ${sqlTimestamp}= | EL Evaluate | $[date:toSQLTimestamp()] |</p>
 
-    =>
-    2013-04-23 15:47:00
+    <p>=></p>
+
+    <p>2013-04-23 15:47:00</p>]]>
     </description>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
     <function-signature>java.sql.Timestamp toSQLTimestamp(java.lang.String[])</function-signature>
@@ -131,10 +135,10 @@
   <function>
     <name>isBeforeNow</name>
     <prefix>date</prefix>
-    <description>Check if date passes is before date now.
+    <description><![CDATA[<p>Check if date passes is before date now.</p>
 
-    Example:
-    | EL Should Be True | $[date:isBeforeNow()] |
+    <p>Example:<br>
+    | EL Should Be True | $[date:isBeforeNow()] |</p>]]>
     </description>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
     <function-signature>java.lang.Boolean isBeforeNow(java.lang.String[])</function-signature>
@@ -142,10 +146,10 @@
   <function>
     <name>isoParse</name>
     <prefix>date</prefix>
-    <description>Parses an ISO date format to the set date time format.
+    <description><![CDATA[<p>Parses an ISO date format to the set date time format.</p>
 
-    Example :
-    | EL Should Be Equal | $[date:isoParse('2013-03-18T15:39:43.000+08:00')] | 2013-03-18 15:39:43 |
+    <p>Example :<br>
+    | EL Should Be Equal | $[date:isoParse('2013-03-18T15:39:43.000+08:00')] | 2013-03-18 15:39:43 |</p>]]>
     </description>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
     <function-signature>java.lang.String isoParse(java.lang.String)</function-signature>
