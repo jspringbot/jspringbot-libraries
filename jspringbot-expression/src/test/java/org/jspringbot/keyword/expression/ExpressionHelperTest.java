@@ -69,6 +69,7 @@ public class ExpressionHelperTest {
     public void testEvaluate() throws Exception {
         assertEquals(2L, evaluate("$[1+1]"));
         evaluateAsTrue("$[contains('alvin', 'vin')]");
+        evaluateAsTrue("$[containsNone('alvin', 've')]");
         evaluateEquals("$[100]", "$[100]");
         evaluateEquals("$[i:'100']", 100);
         evaluateEquals("$[l:'100']", 100l);
