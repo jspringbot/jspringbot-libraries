@@ -23,11 +23,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(
-        name = "Css Should Match X Times",
+        name = "CSS Should Match X Times",
         parameters = {"locator", "count"},
-        description = "classpath:desc/CssShouldMatchXTimes.txt"
+        description = "classpath:desc/CSSShouldMatchXTimes.txt"
 )
-public class CssShouldMatchXTimes extends AbstractSeleniumKeyword {
+public class CSSShouldMatchXTimes extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {

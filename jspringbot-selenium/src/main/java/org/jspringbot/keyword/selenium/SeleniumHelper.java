@@ -620,7 +620,7 @@ public class SeleniumHelper {
         return count;
     }
 
-    public int getMatchingXpathCount(String xpath) {
+    public int getMatchingXPathCount(String xpath) {
         if(StringUtils.startsWith(xpath, "xpath=")) {
             xpath = xpath.substring(6);
         }
@@ -1463,7 +1463,7 @@ public class SeleniumHelper {
     }
 
     public void xpathShouldMatchXTimes(String xpath, int count) {
-        int actual = getMatchingXpathCount(xpath);
+        int actual = getMatchingXPathCount(xpath);
         if(actual != count) {
             throw new AssertionError(String.format("Matching xpath count for %s expected is %d, but was %d.", xpath, count, actual));
         }
