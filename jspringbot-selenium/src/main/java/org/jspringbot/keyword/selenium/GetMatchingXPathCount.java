@@ -23,14 +23,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(
-        name = "Get Matching Xpath Count",
+        name = "Get Matching XPath Count",
         parameters = {"locator"},
-        description = "classpath:desc/GetMatchingXpathCount.txt"
+        description = "classpath:desc/GetMatchingXPathCount.txt"
 )
-public class GetMatchingXpathCount extends AbstractSeleniumKeyword {
+public class GetMatchingXPathCount extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        return helper.getMatchingXpathCount(String.valueOf(params[0]));
+        return helper.getMatchingXPathCount(String.valueOf(params[0]));
     }
 }
