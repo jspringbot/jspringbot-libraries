@@ -65,8 +65,12 @@ public class DbHelper {
 
     protected Map<String, String> literalSubstitution = new HashMap<String, String>();
 
-    public DbHelper(SessionFactory factory) {
+    protected BasicDataSourceManager dataSourceManager;
+
+
+    public DbHelper(SessionFactory factory, BasicDataSourceManager dataSourceManager) {
         this.factory = factory;
+        this.dataSourceManager = dataSourceManager;
     }
 
     public void setUseSchemaSyntax(String useSchemaSyntax) {
@@ -556,4 +560,7 @@ public class DbHelper {
         }
     }
 
+    public void switchDBConnection(String dbconnectionName) {
+        dataSourceManager.switchConnection(dbconnectionName);
+    }
 }

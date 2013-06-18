@@ -17,7 +17,7 @@
     </property>
   </bean>
 
-  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  <!--bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="${db.jdbc.driverClassName}"/>
     <property name="url" value="${db.jdbc.url}"/>
     <property name="username" value="${db.jdbc.username}"/>
@@ -26,6 +26,18 @@
     <property name="maxWait" value="1000"/>
     <property name="poolPreparedStatements" value="true"/>
     <property name="defaultAutoCommit" value="true"/>
+  </bean-->
+
+  <bean id="basicDataSourceManager" class="org.jspringbot.keyword.db.BasicDataSourceManagerImpl" init-method="load">
+    <property name="maxActive" value="5"/>
+    <property name="maxWait" value="1000"/>
+    <property name="poolPreparedStatements" value="true"/>
+    <property name="defaultAutoCommit" value="true"/>
+    <property name="propertiesResource" value="classpath:jspringbot.properties"/>
+  </bean>
+
+  <bean id="dataSource" class="org.jspringbot.keyword.db.MultipleDataSourceFactory">
+    <property name="manager" ref="basicDataSourceManager"/>
   </bean>
 
   <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
@@ -43,6 +55,7 @@
 
   <bean name="dbHelper" class="org.jspringbot.keyword.db.DbHelper" init-method="init" destroy-method="rollback">
     <constructor-arg ref="sessionFactory"/>
+    <constructor-arg ref="basicDataSourceManager"/>
     <property name="useSchemaSyntax" value="${db.switch.schema.statement:use %s}"/>
   </bean>
 

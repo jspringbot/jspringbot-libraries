@@ -33,12 +33,13 @@ You must also add the java connector for the database that you want to use.
 
 3. A {{jspringbot.properties}} file should exist in resources. See the possible properties below.
 
-| *Key* | *Description* |
-| {{db.jdbc.driverClassName}} | Defines the JDBC database driver. |
-| {{db.jdbc.url}} | Defines the JDBC database url. |
-| {{db.jdbc.username}} | Defines the JDBC database username. |
-| {{db.jdbc.password}} | Defines the JDBC database password. |
-| {{db.hibernate.dialect}} | Defines the Hibernate dialect. |
+| *Key* | *Description* | Required |
+| {{db.connection.set}} | Defines the various database connection name that can be used. | N |
+| {{db.jdbc.driverClassName}} | Defines the JDBC database driver. | Y |
+| {{db.jdbc.url}} | Defines the JDBC database url. | Y |
+| {{db.jdbc.username}} | Defines the JDBC database username. | Y |
+| {{db.jdbc.password}} | Defines the JDBC database password. | Y |
+| {{db.hibernate.dialect}} | Defines the Hibernate dialect. | Y |
 
 *Sample MySql Configuration*
 | {{db.jdbc.driverClassName}}=com.mysql.jdbc.Driver
@@ -46,6 +47,25 @@ You must also add the java connector for the database that you want to use.
 | {{db.jdbc.username}}=${jdbc.username}
 | {{db.jdbc.password}}=${jdbc.password}
 | {{db.hibernate.dialect}}=org.hibernate.dialect.MySQL5InnoDBDialect
+
+*Sample Multiple Database Configuration*
+| {{db.hibernate.dialect}}=org.hibernate.dialect.MySQL5InnoDBDialect
+| {{db.connection.set}}=db1,db2
+|
+| {{db.jdbc.driverClassName}}=${default.jdbc.driver}
+| {{db.jdbc.url}}=${default.jdbc.url}
+| {{db.jdbc.username}}=${default.jdbc.username}
+| {{db.jdbc.password}}=${default.jdbc.password}
+|
+| {{db1.db.jdbc.driverClassName}}=${db1.jdbc.driver}
+| {{db1.db.jdbc.url}}=${db1.jdbc.url}
+| {{db1.db.jdbc.username}}=${db1.jdbc.username}
+| {{db1.db.jdbc.password}}=${db1.jdbc.password}
+|
+| {{db2.db.jdbc.driverClassName}}=${db2.jdbc.driver}
+| {{db2.db.jdbc.url}}=${db2.jdbc.url}
+| {{db2.db.jdbc.username}}=${db2.jdbc.username}
+| {{db2.db.jdbc.password}}=${db2.jdbc.password}
 
 4. Create queries under src/test/resources/*db-queries*/*.xml. This is only required if `Create DB Query By Name` keyword is used.
 
@@ -90,7 +110,7 @@ This file contains queries for employee table.
 
 The examples below the uses `Create DB Query By Name` refers to the src/test/resources/db-queries/employees.xml file specified in configuration step #4.
 
-*Sample Usage of `Create DB Query`*
+*Sample Usage of `Create DB Query` (using default database)*
 | `DB Begin`                            |
 | `Use DB Schema`                       | <schemaName> |
 | `Create DB Query`                     | select id from employee order by rand() limit 1 | # Gets a random employee id from employee table |
@@ -98,7 +118,7 @@ The examples below the uses `Create DB Query By Name` refers to the src/test/res
 | ${id}=                                | `Get DB Unique Result` |
 | `DB Rollback`                         |
 
-*Sample Usage of `Create DB Query By Name`*
+*Sample Usage of `Create DB Query By Name` (using default database)*
 | `DB Begin`                            |
 | `Use DB Schema`                       | <schemaName> |
 | `Create DB Query By Name`             | count.employee | # will execute query defined in employee.xml given key 'count.employee' |
@@ -107,18 +127,19 @@ The examples below the uses `Create DB Query By Name` refers to the src/test/res
 | `DB Rollback`                         |
 
 
-*Sample for passing parameter values to query*
+*Sample for passing parameter values to query (using default database)*
 | `DB Begin`                            | |
 | `Use DB Schema`                       | <schemaName> |
 | `Create DB Query By Name`             | verify.employee | | # will execute query defined in employee.xml given key 'verify.employee' |
 | `Set DB Integer Parameter`            | employeeID  | 1 |
 | `Set DB String Parameter`             | employeeFirstName | Shiela |
 | `Set DB String Parameter`             | employeeLastName | Buitizon |
+| `Execute DB Query`                    |
 | `DB Projected Count Should Be Equal`  | 1 | |
 | `DB Rollback`                         | | |
 
 
-*Sample for retrieving query result values*
+*Sample for retrieving query result values (using default database)*
 | `DB Begin`                            |
 | `Use DB Schema`                       | <schemaName> |
 | `Create DB Query By Name`             | get.employee.department.info | | # will execute query defined in employee.xml given key 'get.employee.department.info' |
@@ -131,5 +152,18 @@ The examples below the uses `Create DB Query By Name` refers to the src/test/res
 | ${deptID}=                            | `Get DB Record At Column`             | 0 |
 | ${deptCode}=                          | `Get DB Record At Column`             | 1 |
 | ${deptName}=                          | `Get DB Record At Column`             | 2 |
+| `Execute DB Query`                    |
 | `DB Rollback`                         |
 
+*Sample for switching to different database connection*
+| `DB Begin`                            |
+| `Use DB Schema`                       | <schemaName> |
+| `Create DB Query By Name`             | <queryName> |
+| `Execute DB Query`                    |
+| `DB Rollback`                         |
+| Switch DB Connection                  | <dbConnectionName> | This can be found in {{db.connection.set}} configured in jspringbot.properties. |
+| `DB Begin`                            |
+| `Use DB Schema`                       | <anotherSchemaName> |
+| `Create DB Query By Name`             | <anotherqueryName> |
+| `Execute DB Query`                    |
+| `DB Rollback`                         |

@@ -1,0 +1,1 @@
+Switch DB Connection given connection name specified in db.connection.set key in jspringbot.properties.
