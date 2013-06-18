@@ -1476,10 +1476,16 @@ public class SeleniumHelper {
     private String closeAlert(boolean confirm) {
         Alert alert = driver.switchTo().alert();
         String text = alert.getText();
-        if (!confirm) {
-            alert.dismiss();
-        } else {
-            alert.accept();
+
+        // TODO fix this work around
+        try{
+            if (!confirm) {
+                alert.dismiss();
+            } else {
+                alert.accept();
+            }
+        } catch (NoAlertPresentException e) {
+            LOG.info("No alert is present. That's fine..");
         }
 
         return text;
