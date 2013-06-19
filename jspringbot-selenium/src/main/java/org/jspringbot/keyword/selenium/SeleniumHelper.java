@@ -124,7 +124,21 @@ public class SeleniumHelper {
     }
 
     public String confirmAction() {
-        String text = closeAlert(!cancelOnNextConfirmation);
+        String text = null;
+
+        try{
+            Alert alert = driver.switchTo().alert();
+            text = alert.getText();
+
+            if (cancelOnNextConfirmation) {
+               alert.dismiss();
+            } else {
+                alert.accept();
+            }
+        } catch (NoAlertPresentException e) {
+            LOG.info("No alert is present. That's fine..");
+        }
+
         cancelOnNextConfirmation = false;
 
         return text;
@@ -1477,15 +1491,10 @@ public class SeleniumHelper {
         Alert alert = driver.switchTo().alert();
         String text = alert.getText();
 
-        // TODO fix this work around
-        try{
-            if (!confirm) {
-                alert.dismiss();
-            } else {
-                alert.accept();
-            }
-        } catch (NoAlertPresentException e) {
-            LOG.info("No alert is present. That's fine..");
+        if (!confirm) {
+            alert.dismiss();
+        } else {
+            alert.accept();
         }
 
         return text;
