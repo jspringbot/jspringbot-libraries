@@ -24,7 +24,9 @@ import org.apache.commons.lang.StringUtils;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
 
@@ -32,6 +34,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -52,6 +55,8 @@ public class SeleniumHelper {
     protected long screenCaptureSeed = System.currentTimeMillis();
 
     protected File screenCaptureDir;
+    
+    protected int DEFAULT_WAIT_4_PAGE = 12; 
 
     public SeleniumHelper() {}
 
@@ -408,6 +413,16 @@ public class SeleniumHelper {
         if (!isVisible) {
             throw new AssertionError("The element should be visible, but it is not.");
         }
+    }
+    
+    public boolean isElementVisible(String locator) {
+    	boolean isVisible = isVisible(locator);
+        LOG.createAppender()
+                .appendBold("Is Element Visible:")
+                .appendCss(locator)
+                .appendProperty("Visible", isVisible)
+                .log();
+        return isVisible;
     }
 
     public void elementShouldNotBeVisible(String locator) {
@@ -1365,6 +1380,49 @@ public class SeleniumHelper {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+    
+    public boolean waitForJavaScriptCondition(final String javaScript, int timeOutInSeconds) {
+    	
+    	boolean jscondition = false;
+    	try{	
+			driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //nullify implicitlyWait() 
+	        new WebDriverWait(driver, timeOutInSeconds) {
+	        }.until(new ExpectedCondition<Boolean>() {
+
+	            @Override
+	            public Boolean apply(WebDriver driverObject) {
+	            	return (Boolean) ((JavascriptExecutor) driverObject).executeScript(javaScript);
+	            }
+	        });
+	        jscondition =  (Boolean) ((JavascriptExecutor) driver).executeScript(javaScript); 
+			driver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_4_PAGE, TimeUnit.SECONDS); //reset implicitlyWait
+			return jscondition; 
+		} catch (Exception e) {
+			String.format("timeout (%d s) reached.",  timeOutInSeconds);
+		}
+    	return false;
+    }
+    
+    public boolean waitForJQueryProcessing(int timeOutInSeconds){
+		boolean jQcondition = false; 
+		try{	
+			driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //nullify implicitlyWait() 
+	        new WebDriverWait(driver, timeOutInSeconds) {
+	        }.until(new ExpectedCondition<Boolean>() {
+
+	            @Override
+	            public Boolean apply(WebDriver driverObject) {
+	            	return (Boolean) ((JavascriptExecutor) driverObject).executeScript("return jQuery.active == 0");
+	            }
+	        });
+	        jQcondition = (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0");
+			driver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_4_PAGE, TimeUnit.SECONDS); //reset implicitlyWait
+			return jQcondition; 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		return jQcondition; 
     }
 
     public void waitTillElementContainsRegex(String locator, String regex, long pollMillis, long timeoutMillis) {

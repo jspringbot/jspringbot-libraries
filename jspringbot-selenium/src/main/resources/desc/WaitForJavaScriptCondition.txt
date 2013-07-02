@@ -1,0 +1,3 @@
+Waits for the jQuery processing to complete.
+
+Fails if timeout expires before the condition is met.

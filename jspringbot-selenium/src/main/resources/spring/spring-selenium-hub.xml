@@ -29,14 +29,13 @@
     <property name="downloadDirectory" value="${selenium.download.directory:/tmp/jspringbot}"/>
     <property name="downloadShowWhenStarting" value="false"/>
     <property name="downloadSaveToDisk" value="${selenium.autosave.content.type}"/>
-    <property name="networkProxyHTTP" value="${selenium.network.proxy.http:none}"/>
-    <property name="networkProxyHTTPPort" value="${selenium.network.proxy.http.port:3128}"/>
-    <property name="networkProxyType" value="${selenium.network.proxy.type:0}"/>
-    <property name="networkProxyNoProxiesOn" value="${selenium.network.proxy.no.proxies.on:none}"/>
-    <property name="networkProxyShareProxySettings" value="true"/>
   </bean>
 
-  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>
+  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities">
+    <property name="browserName" value="${selenium.grid.browserName}"/>
+    <property name="platform" value="${selenium.grid.platform}"/>
+    <property name="version" value="${selenium.grid.version}"/>
+  </bean>
 
   <bean class="org.jspringbot.keyword.selenium.DesiredCapabilitiesBean">
     <constructor-arg ref="desiredCapabilities"/>
@@ -47,8 +46,9 @@
     <property name="sslProxy" value="${selenium.ssl.proxy:none}"/>
   </bean>
 
-  <bean id="webdriver" class="org.openqa.selenium.firefox.FirefoxDriver" destroy-method="stopClient">
-    <constructor-arg ref="desiredCapabilities"/>
+  <bean id="webdriver" class="org.jspringbot.keyword.selenium.RemoteWebDriverFactory" factory-method="create" destroy-method="quit">
+    <constructor-arg type="java.net.URL" value="${selenium.grid.url}"/>
+    <constructor-arg type="org.openqa.selenium.Capabilities" ref="desiredCapabilities"/>
   </bean>
 
   <bean class="org.jspringbot.keyword.selenium.WebDriverWaitBean">

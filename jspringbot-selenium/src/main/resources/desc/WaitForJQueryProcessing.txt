@@ -1,0 +1,3 @@
+Waits for the given JavaScript condition.
+
+Fails if timeout expires before the condition is met.
