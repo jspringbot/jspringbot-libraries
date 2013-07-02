@@ -77,6 +77,16 @@ public class SeleniumHelper {
         executor.executeScript(String.format("arguments[0].id = '%s';", id), el);
     }
 
+    public Boolean findElement(String locator){
+        if(!isElementPresent(locator)) {
+            LOG.info(String.format("Page should have contained element '%s' but did not", locator));
+            return false;
+        }
+        
+        LOG.info(String.format("element '%s' found on page", locator));
+        return true;
+    }
+    
     public void setScreenCaptureDir(File screenCaptureDir) {
         this.screenCaptureDir = screenCaptureDir;
 
