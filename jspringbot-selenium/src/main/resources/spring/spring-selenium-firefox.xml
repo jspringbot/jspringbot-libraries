@@ -29,6 +29,11 @@
     <property name="downloadDirectory" value="${selenium.download.directory:/tmp/jspringbot}"/>
     <property name="downloadShowWhenStarting" value="false"/>
     <property name="downloadSaveToDisk" value="${selenium.autosave.content.type}"/>
+    <property name="networkProxyHTTP" value="${selenium.network.proxy.http:none}"/>
+    <property name="networkProxyHTTPPort" value="${selenium.network.proxy.http.port:3128}"/>
+    <property name="networkProxyType" value="${selenium.network.proxy.type:0}"/>
+    <property name="networkProxyNoProxiesOn" value="${selenium.network.proxy.no.proxies.on:none}"/>
+    <property name="networkProxyShareProxySettings" value="true"/>
   </bean>
 
   <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>

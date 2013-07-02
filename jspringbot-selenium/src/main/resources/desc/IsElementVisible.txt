@@ -1,0 +1,2 @@
+Checks if the element identified by locator is visible.
+Returns true if it's visible; returns false if otherwise.

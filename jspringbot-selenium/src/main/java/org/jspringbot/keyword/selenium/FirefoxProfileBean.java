@@ -19,6 +19,7 @@
 package org.jspringbot.keyword.selenium;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.firefox.FirefoxProfile;
 
 import java.io.File;
@@ -54,6 +55,30 @@ public class FirefoxProfileBean {
 
     public void setDownloadSaveToDisk(String mimeType) {
         profile.setPreference("browser.helperApps.neverAsk.saveToDisk", mimeType);
+    }
+    
+    public void setNetworkProxyHTTP(String proxyHost) {
+        if(!StringUtils.equalsIgnoreCase(proxyHost, "none")) {
+        	profile.setPreference("network.proxy.http", proxyHost);
+        }
+    }
+    
+    public void setNetworkProxyHTTPPort(int proxyPort) {
+    	profile.setPreference("network.proxy.http_port", proxyPort);
+    }
+    
+    public void setNetworkProxyType(int proxyType) {
+    	profile.setPreference("network.proxy.type", proxyType);
+    }
+    
+    public void setNetworkProxyNoProxiesOn(String noProxiesOn) {
+    	if(!StringUtils.equalsIgnoreCase(noProxiesOn, "none")) {
+    		profile.setPreference("network.proxy.no_proxies_on", noProxiesOn);
+    	}
+    }
+    
+    public void setNetworkProxyShareProxySettings(boolean shareProxySettings) {
+    	profile.setPreference("network.proxy.share_proxy_settings", shareProxySettings);
     }
 
     public void setExtension(File extensionToInstall) throws IOException {
