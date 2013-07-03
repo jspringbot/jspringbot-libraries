@@ -1568,6 +1568,28 @@ public class SeleniumHelper {
         return text;
     }
 
+    public boolean isAlertPresent() {
+
+        boolean presentFlag = false;
+
+        try {
+         // Check the presence of alert
+         Alert alert = driver.switchTo().alert();
+         // Alert present; set the flag
+         presentFlag = true;
+         // if present return true
+         LOG.info(String.format("Found Alert with message: '%s'.", alert.getText()));
+             return presentFlag;
+         
+        } catch (NoAlertPresentException ex) {
+         // Alert not present; return false
+            LOG.info(String.format("didnt find any alerts, returning false",""));            
+            return presentFlag;
+        }
+        
+    }  
+    
+    
     private File newScreenCaptureFile() {
         String name = String.format("screen_capture_%d_%d.png", screenCaptureSeed, ++screenCaptureCtr);
 

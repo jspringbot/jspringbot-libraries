@@ -1,0 +1,1 @@
+Checks the page for an alert. Returns true if a match is found and false if none.
