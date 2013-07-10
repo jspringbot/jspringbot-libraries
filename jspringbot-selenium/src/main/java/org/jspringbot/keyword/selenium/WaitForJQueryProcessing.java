@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 @KeywordInfo(
         name = "Wait For JQuery Processing",
         parameters = {"timeout"},
-        description = "classpath:desc/WaitForJavaScriptCondition.txt"
+        description = "classpath:desc/WaitForJQueryProcessing.txt"
 )
 public class WaitForJQueryProcessing extends AbstractSeleniumKeyword {
 
