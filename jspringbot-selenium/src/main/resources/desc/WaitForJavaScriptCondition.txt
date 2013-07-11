@@ -5,6 +5,13 @@ Fails if timeout expires before the condition is met.
 Example:
 
 | *** Variables *** |
-| ${javascript_condition_timeout_in_seconds} | 5 |
+| ${js_condition}          | return (xmlhttp.readyState >= 2 && xmlhttp.status == 200) |
+| ${js_timeout_in_seconds} | 5 |
 
-| `Wait For JavaScript Condition` | return (xmlhttp.readyState >= 2 && xmlhttp.status == 200) | ${javascript_condition_timeout_in_seconds} |
+| *** Test Cases *** |
+| Ajax Test          |
+|  [Tags]            | ajax-test |
+|  `Navigate To`       | http://www.w3schools.com/ajax/default.asp |
+|  `Click Element`     | css=button[type="button"] |
+|  ${jsCondition}=     | `Wait For JavaScript Condition` | ${js_condition} | ${js_timeout_in_seconds} |
+|  `Element Text Should Be` | css=#myDiv > p | AJAX is not a new programming language. |

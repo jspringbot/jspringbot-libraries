@@ -12,4 +12,4 @@ Example:
 The value can be evaluated to run another keyword. 
 i.e.  
 
-| EL Run Keyword If     |  $[var('isVisible') eq true]   | My Keyword  |
+| `EL Run Keyword If`    |  $[var('isVisible') eq true]   | My Keyword  |
