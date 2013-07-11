@@ -15,3 +15,7 @@ Example:
 |  `Click Element`     | css=button[type="button"] |
 |  ${jsCondition}=     | `Wait For JavaScript Condition` | ${js_condition} | ${js_timeout_in_seconds} |
 |  `Element Text Should Be` | css=#myDiv > p | AJAX is not a new programming language. |
+
+=>
+
+| ${jsCondition} = True
