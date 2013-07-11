@@ -700,14 +700,14 @@ public class SeleniumHelper {
         return labels;
     }
 
-    public String getSelectedListLabel (String locator) {
+    public String getSelectedListLabel(String locator) {
         List<String> selectedLabels = getSelectedListLabels(locator);
 
         if (selectedLabels.size() != 1) {
             throw new IllegalArgumentException(String.format("Select list with locator '%s' does not have a single selected value", locator));
         }
 
-        return selectedLabels.get(1);
+        return selectedLabels.get(0);
     }
 
     public String getSelectedListValue(String locator) {
@@ -717,7 +717,7 @@ public class SeleniumHelper {
             throw new IllegalArgumentException(String.format("Select list with locator '%s' does not have a single selected value",locator));
         }
 
-        return selectedListValues.get(1);
+        return selectedListValues.get(0);
     }
 
 
