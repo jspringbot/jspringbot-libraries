@@ -1,3 +1,10 @@
-Waits for the jQuery processing to complete.
+Waits for the given JavaScript condition.
 
 Fails if timeout expires before the condition is met.
+
+Example:
+
+| *** Variables *** |
+| ${javascript_condition_timeout_in_seconds} | 5 |
+
+| `Wait For JavaScript Condition` | return (xmlhttp.readyState >= 2 && xmlhttp.status == 200) | ${javascript_condition_timeout_in_seconds} |
