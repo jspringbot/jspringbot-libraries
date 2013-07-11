@@ -3,7 +3,7 @@ Returns true if it's visible; returns false if otherwise.
 
 Example:
 
-| ${isVisible}=    		|  `Is Element Visible`   		 | css=foo bar |
+| ${isVisible}= | `Is Element Visible` | css=foo bar |
 
 =>
 

@@ -6,5 +6,5 @@ Example:
 
 | *** Variables *** |
 | ${jquery_processing_timeout_in_seconds} | 30 |
-										
+
 | `Wait For JQuery Processing` | ${jquery_processing_timeout_in_seconds} |

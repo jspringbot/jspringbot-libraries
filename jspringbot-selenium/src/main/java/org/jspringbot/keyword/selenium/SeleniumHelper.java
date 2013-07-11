@@ -416,12 +416,14 @@ public class SeleniumHelper {
     }
     
     public boolean isElementVisible(String locator) {
-    	boolean isVisible = isVisible(locator);
+        boolean isVisible = isVisible(locator);
+
         LOG.createAppender()
                 .appendBold("Is Element Visible:")
                 .appendCss(locator)
                 .appendProperty("Visible", isVisible)
                 .log();
+
         return isVisible;
     }
 
@@ -1383,46 +1385,49 @@ public class SeleniumHelper {
     }
     
     public boolean waitForJavaScriptCondition(final String javaScript, int timeOutInSeconds) {
-    	
-    	boolean jscondition = false;
-    	try{	
-			driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //nullify implicitlyWait() 
-	        new WebDriverWait(driver, timeOutInSeconds) {
-	        }.until(new ExpectedCondition<Boolean>() {
+        boolean jscondition = false;
 
-	            @Override
-	            public Boolean apply(WebDriver driverObject) {
-	            	return (Boolean) ((JavascriptExecutor) driverObject).executeScript(javaScript);
-	            }
-	        });
-	        jscondition =  (Boolean) ((JavascriptExecutor) driver).executeScript(javaScript); 
-			driver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_4_PAGE, TimeUnit.SECONDS); //reset implicitlyWait
-			return jscondition; 
-		} catch (Exception e) {
-			String.format("timeout (%d s) reached.",  timeOutInSeconds);
-		}
-    	return false;
+        try{
+            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //nullify implicitlyWait()
+            new WebDriverWait(driver, timeOutInSeconds) {
+            }.until(new ExpectedCondition<Boolean>() {
+                @Override
+                public Boolean apply(WebDriver driverObject) {
+                    return (Boolean) ((JavascriptExecutor) driverObject).executeScript(javaScript);
+                }
+            });
+            jscondition =  (Boolean) ((JavascriptExecutor) driver).executeScript(javaScript);
+            driver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_4_PAGE, TimeUnit.SECONDS); //reset implicitlyWait
+
+            return jscondition;
+        } catch (Exception e) {
+            String.format("timeout (%d s) reached.",  timeOutInSeconds);
+        }
+
+        return false;
     }
     
     public boolean waitForJQueryProcessing(int timeOutInSeconds){
-		boolean jQcondition = false; 
-		try{	
-			driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //nullify implicitlyWait() 
-	        new WebDriverWait(driver, timeOutInSeconds) {
-	        }.until(new ExpectedCondition<Boolean>() {
+        boolean jQcondition = false;
 
-	            @Override
-	            public Boolean apply(WebDriver driverObject) {
-	            	return (Boolean) ((JavascriptExecutor) driverObject).executeScript("return jQuery.active == 0");
-	            }
-	        });
-	        jQcondition = (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0");
-			driver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_4_PAGE, TimeUnit.SECONDS); //reset implicitlyWait
-			return jQcondition; 
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		return jQcondition; 
+        try{
+            driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //nullify implicitlyWait()
+            new WebDriverWait(driver, timeOutInSeconds) {
+            }.until(new ExpectedCondition<Boolean>() {
+                @Override
+                public Boolean apply(WebDriver driverObject) {
+                    return (Boolean) ((JavascriptExecutor) driverObject).executeScript("return jQuery.active == 0");
+                }
+            });
+            jQcondition = (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0");
+            driver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_4_PAGE, TimeUnit.SECONDS); //reset implicitlyWait
+
+            return jQcondition;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return jQcondition;
     }
 
     public void waitTillElementContainsRegex(String locator, String regex, long pollMillis, long timeoutMillis) {
@@ -1569,24 +1574,18 @@ public class SeleniumHelper {
     }
 
     public boolean isAlertPresent() {
-
         boolean presentFlag = false;
 
         try {
-         // Check the presence of alert
-         Alert alert = driver.switchTo().alert();
-         // Alert present; set the flag
-         presentFlag = true;
-         // if present return true
-         LOG.info(String.format("Found Alert with message: '%s'.", alert.getText()));
-             return presentFlag;
-         
+            Alert alert = driver.switchTo().alert();
+            presentFlag = true;
+            LOG.info(String.format("Found Alert with message: '%s'.", alert.getText()));
+
+            return presentFlag;
         } catch (NoAlertPresentException ex) {
-         // Alert not present; return false
-            LOG.info(String.format("didnt find any alerts, returning false",""));            
+            LOG.info(String.format("Did not find any alerts, returning false",""));
             return presentFlag;
         }
-        
     }  
     
     
