@@ -21,12 +21,7 @@
           <td> $['a'] </td>
           <td> $[list[0]] </td>
         </tr>
-      </table>
-
-      <p> =>
-      <p><pre>
-| true
-| true </pre>]]>
+      </table>]]>
     </description>
     <function-class>java.util.Arrays</function-class>
     <function-signature>java.util.List asList(java.lang.Object[])</function-signature>
