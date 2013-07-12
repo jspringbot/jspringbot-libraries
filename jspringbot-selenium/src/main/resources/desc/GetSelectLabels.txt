@@ -1,1 +1,9 @@
 Returns the list of select labels.
+
+Example:
+
+| * Variables * |
+| @{expected_select_list}= | 50 | 100 | 150 | 200 | 250 | 300 | 350 | 400 | 450 | 500 |
+
+| ${actual_select_list}= | Get Select Labels | id=selectID |
+| Lists Should Be Equal | ${actual_select_list} | ${expected_select_list} |
