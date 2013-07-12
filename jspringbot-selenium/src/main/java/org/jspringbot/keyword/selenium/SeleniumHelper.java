@@ -1386,7 +1386,12 @@ public class SeleniumHelper {
     
     public boolean waitForJavaScriptCondition(final String javaScript, int timeOutInSeconds) {
         boolean jscondition = false;
-
+        
+        LOG.createAppender()
+        .appendBold("Wait For JavaScript Condition:")
+        .appendCss(javaScript)
+        .log();
+        
         try{
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //nullify implicitlyWait()
             new WebDriverWait(driver, timeOutInSeconds) {
@@ -1398,12 +1403,12 @@ public class SeleniumHelper {
             });
             jscondition =  (Boolean) ((JavascriptExecutor) driver).executeScript(javaScript);
             driver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_4_PAGE, TimeUnit.SECONDS); //reset implicitlyWait
-
+                        
             return jscondition;
         } catch (Exception e) {
             String.format("timeout (%d s) reached.",  timeOutInSeconds);
         }
-
+        
         return false;
     }
     
@@ -1421,7 +1426,7 @@ public class SeleniumHelper {
             });
             jQcondition = (Boolean) ((JavascriptExecutor) driver).executeScript("return jQuery.active == 0");
             driver.manage().timeouts().implicitlyWait(DEFAULT_WAIT_4_PAGE, TimeUnit.SECONDS); //reset implicitlyWait
-
+            
             return jQcondition;
         } catch (Exception e) {
             e.printStackTrace();

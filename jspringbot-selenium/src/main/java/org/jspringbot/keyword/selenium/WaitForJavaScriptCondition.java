@@ -31,8 +31,6 @@ public class WaitForJavaScriptCondition extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.waitForJavaScriptCondition(String.valueOf(params[0]), Integer.parseInt(String.valueOf(params[1])));
-
-        return null;
+    	return helper.waitForJavaScriptCondition(String.valueOf(params[0]), Integer.parseInt(String.valueOf(params[1])));
     }
 }

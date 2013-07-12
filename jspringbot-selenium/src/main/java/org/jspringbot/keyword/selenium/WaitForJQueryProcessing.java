@@ -31,8 +31,6 @@ public class WaitForJQueryProcessing extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.waitForJQueryProcessing(Integer.parseInt(String.valueOf(params[0])));
-
-        return null;
+        return helper.waitForJQueryProcessing(Integer.parseInt(String.valueOf(params[0])));
     }
 }
