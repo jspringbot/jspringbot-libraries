@@ -176,12 +176,7 @@
           <td> El Should Be False </td>
           <td> $[col:isSubCollection(var('col3'), var('col4'))] </td>
         </tr>
-      </table>
-
-      <p>=>
-      <p><pre>
-| true
-| true </pre>]]></description>
+      </table>]]></description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean isSubCollection(java.util.Collection,java.util.Collection)</function-signature>
   </function>

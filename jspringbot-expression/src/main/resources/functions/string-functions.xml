@@ -129,7 +129,32 @@
   </function>
   <function>
     <name>repeat</name>
-    <description>Repeat a String repeat times to form a new String.</description>
+    <description><![CDATA[Repeat a String repeat times to form a new String.
+      <p>Example:
+      <p>
+      <table border="1">
+        <tr>
+          <td> ${repeatZero}= </td>
+          <td> Set Variable </td>
+          <td> 0 </td>
+        </tr>
+        <tr>
+          <td> ${repeatThree}= </td>
+          <td> Set Variable </td>
+          <td> 3 </td>
+        </tr>
+        <tr>
+          <td> EL Should Be Equal </td>
+          <td> $[repeat('x',var('repeatZero'))] </td>
+          <td> ${EMPTY} </td>
+        </tr>
+        <tr>
+          <td> EL Should Be Equal </td>
+          <td> $[repeat('x',var('repeatZero'))] </td>
+          <td> yyy </td>
+        </tr>
+      </table>]]>
+    </description>
     <function-class>org.apache.commons.lang.StringUtils</function-class>
     <function-signature>java.lang.String repeat(java.lang.String,int)</function-signature>
   </function>
