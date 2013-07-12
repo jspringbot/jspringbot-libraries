@@ -4,13 +4,29 @@
   <function>
     <prefix>array</prefix>
     <name>asList</name>
-    <description>Returns a fixed-size list backed by the specified array. (Changes to the returned list "write through" to the array.) This method acts as bridge between array-based and collection-based APIs, in combination with Collection.toArray(). The returned list is serializable and implements RandomAccess.
+    <description><![CDATA[<p>Returns a fixed-size list backed by the specified array. (Changes to the returned list "write through" to the array.) This method acts as bridge between array-based and collection-based APIs, in combination with Collection.toArray(). The returned list is serializable and implements RandomAccess.
 
-      This method also provides a convenient way to create a fixed-size list initialized to contain several elements:
+      <p>This method also provides a convenient way to create a fixed-size list initialized to contain several elements:
 
+      <p>
       Example:
-      | EL Add Variable | list | $[array:asList('a','b','c')]
-      | EL Should Be Equal | $['a'] | $[list[0]] |
+      <table>
+        <tr>
+          <td> EL Add Variable </td>
+          <td> list </td>
+          <td> $[array:asList('a','b','c')] </td>
+        </tr>
+        <tr>
+          <td> EL Should Be Equal </td>
+          <td> $['a'] </td>
+          <td> $[list[0]] </td>
+        </tr>
+      </table>
+
+      <p> =>
+      <p><pre>
+| true
+| true </pre>]]>
     </description>
     <function-class>java.util.Arrays</function-class>
     <function-signature>java.util.List asList(java.lang.Object[])</function-signature>

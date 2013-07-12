@@ -124,7 +124,64 @@
     <description><![CDATA[Returns <tt>true</tt> iff <i>a</i> is a sub-collection of <i>b</i>,
       that is, iff the cardinality of <i>e</i> in <i>a</i> is less
       than or equal to the cardinality of <i>e</i> in <i>b</i>,
-      for each element <i>e</i> in <i>a</i>.]]></description>
+      for each element <i>e</i> in <i>a</i>.
+
+      <p>Example:
+      <p>
+      <table border="1">
+        <tr>
+          <td> *** Variables *** </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> @{col1}= </td>
+          <td> hello </td>
+          <td> world </td>
+          <td> good morning </td>
+          <td> good night </td>
+        </tr>
+        <tr>
+          <td> @{col2}= </td>
+          <td> hello </td>
+          <td> good morning </td>
+          <td> good night </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td> @{col3}= </td>
+          <td> 2 </td>
+          <td> 3 </td>
+          <td> 4 </td>
+          <td> 5 </td>
+        </tr>
+        <tr>
+          <td> @{col4}= </td>
+          <td> 5 </td>
+          <td> 3 </td>
+          <td> 7 </td>
+          <td> </td>
+        </tr>
+      </table>
+
+      <p>
+      <table>
+        <tr>
+          <td> El Should Be True </td>
+          <td> $[col:isSubCollection(var('col2'), var('col1'))] </td>
+        </tr>
+        <tr>
+          <td> El Should Be False </td>
+          <td> $[col:isSubCollection(var('col3'), var('col4'))] </td>
+        </tr>
+      </table>
+
+      <p>=>
+      <p><pre>
+| true
+| true </pre>]]></description>
     <function-class>org.apache.commons.collections.CollectionUtils</function-class>
     <function-signature>boolean isSubCollection(java.util.Collection,java.util.Collection)</function-signature>
   </function>
