@@ -30,6 +30,10 @@ Configure the following to use jspringbot-selenium.
 | {{selenium.http.proxy}} | none | Specify which proxy to use for HTTP connections. |
 | {{selenium.https.proxy}} | none | Specify which proxy to use for HTTPS connections. |
 | {{selenium.ssl.proxy}} | none | Specify which proxy to use for SSL connections. |
+| {{selenium.network.proxy.http}} | none | Specify which proxy host or ip to use for the firefox profile |
+| {{selenium.network.proxy.http.port}} | 3128 | Specify which port the proxy is using for the firefox profile |
+| {{selenium.network.proxy.type}} | 0 | Signifies default proxy configuration for the firefox profile | 
+| {{selenium.network.proxy.no.proxies.on}} | none | Networks where proxy is not necessary for the firefox profile i.e., exceptions |
 
 *Sample jspringbot.properties*
 
@@ -41,6 +45,10 @@ Configure the following to use jspringbot-selenium.
 | selenium.https.proxy=none
 | selenium.ssl.proxy=none
 | selenium.implicit.wait=10
+| selenium.network.proxy.http=none
+| selenium.network.proxy.http.port=3128
+| selenium.network.proxy.type=0
+| selenium.network.proxy.no.proxies.on=localhost, 127.0.0.1
 
 *Sample selenium.autosave.content.type Configuration for Different File Types*
 
@@ -58,6 +66,13 @@ Configure the following to use jspringbot-selenium.
 | gif | image/gif | GIF image |
 | jpg | image/jpeg | JPEG image |
 | png | image/png | PNG image |
+
+*Sample selenium.network.proxy.type for the firefox profile*
+
+| 0 | Direct connection, no proxy. (Default) |
+| 1 | Manual proxy configuration |
+| 2 | Proxy auto-configuration (ProxyPac) |
+| 4 | Auto-detect proxy settings |
 
 *Firefox Configuration for Auto Download*
 
