@@ -15,7 +15,7 @@ Configure the following to use jspringbot-i18n.
 |  <dependencies>
 |    <dependency>
 |      <groupId>org.jspringbot</groupId>
-|      <artifactId>jspringbot-xml</artifactId>
+|      <artifactId>jspringbot-i18n</artifactId>
 |    </dependency>
 |  </dependencies>
 
@@ -26,6 +26,11 @@ Configure the following to use jspringbot-i18n.
 3. If you are going to use i18n expression language support, follow jspringbot-expression configuration
 
 | {{http://jspringbot.org/library-expression.html}}
+
+4. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |
 
 == Supported Locale ==
 

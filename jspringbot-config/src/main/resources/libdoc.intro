@@ -8,7 +8,7 @@ Please see the example {{Config Library}} project.
 
 = Configuration =
 
-Configure the following to use jspringbot-xml.
+Configure the following to use jspringbot-config.
 
 1. Add this artifact in maven dependency
 
@@ -19,9 +19,14 @@ Configure the following to use jspringbot-xml.
 |    </dependency>
 |  </dependencies>
 
-2. Import spring-http in {{jspringbot-global.xml}}
+2. Import spring-config in {{jspringbot-global.xml}}
 
 | <import resource="classpath:spring/spring-config.xml"/>
+
+3. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |
 
 == Configuration Files ==
 

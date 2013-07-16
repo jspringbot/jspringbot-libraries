@@ -67,7 +67,12 @@ You must also add the java connector for the database that you want to use.
 | {{db2.db.jdbc.username}}=${db2.jdbc.username}
 | {{db2.db.jdbc.password}}=${db2.jdbc.password}
 
-4. Create queries under src/test/resources/*db-queries*/*.xml. This is only required if `Create DB Query By Name` keyword is used.
+4. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |
+
+5. Create queries under src/test/resources/*db-queries*/*.xml. This is only required if `Create DB Query By Name` keyword is used.
 
 *Sample employee.xml.*
 This file contains queries for employee table.

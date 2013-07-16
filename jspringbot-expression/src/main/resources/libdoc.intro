@@ -26,6 +26,11 @@ Configure the following to use jspringbot-expression.
 
 | <import resource="classpath:spring/spring-expression.xml"/>
 
+3. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |
+
 = Expression Language =
 
 The EL allows page authors to use simple expressions to dynamically access data from library components.
@@ -80,10 +85,13 @@ The following words are reserved for the EL and should not be used as identifier
 
 | *Type* | *Prefix* | *Description* |
 | {{String}} | | Supported most of [http://commons.apache.org/lang/api-2.5/org/apache/commons/lang/StringUtils.html|StringUtils] and [http://commons.apache.org/lang/api-2.4/org/apache/commons/lang/StringEscapeUtils.html|StringEscapeUtils] methods. |
+| {{StringEscape}} | | Supported most of [http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/StringEscapeUtils.html] methods. |
 | {{Math}} | _[ math ]_ |  Supported most of [http://docs.oracle.com/javase/6/docs/api/java/lang/Math.html|Math] methods. |
 | {{Collection}} | _[ col ]_ | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/CollectionUtils.html|CollectionUtils] methods. |
 | {{Map}} | _[ map ]_ | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/MapUtils.html|MapUtils] methods. |
 | {{Arrays}} | _[ array ]_ | For now only {{array:asList(*items)}} method is supported. |
+| {{XML}} | _[ xml ]_ | Support jSpringBot XML keywords as functions. |
+| {{JSON}} | _[ json ]_ | Support jSpringBot JSON keywords as functions. |
 
 *Additional Methods:*
 

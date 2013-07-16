@@ -77,3 +77,8 @@ Configure the following to use jspringbot-selenium.
 *Firefox Configuration for Auto Download*
 
 | Go to Tools > Options > General > Save file to <browse location>
+
+4. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |

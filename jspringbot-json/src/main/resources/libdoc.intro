@@ -4,6 +4,34 @@ Please see the example {{JSON Library}} project.
 
 {{jspringbot-github:sample-json|Sample Project}}
 
+
+= Configuration =
+
+Configure the following to use jspringbot-json.
+
+1. Add this artifact in maven dependency
+
+|  <dependencies>
+|    <dependency>
+|      <groupId>org.jspringbot</groupId>
+|      <artifactId>jspringbot-json</artifactId>
+|    </dependency>
+|  </dependencies>
+
+2. Import spring-json in {{jspringbot-global.xml}}
+
+| <import resource="classpath:spring/spring-json.xml"/>
+
+3. If you are going to use json expression language support, follow jspringbot-expression configuration
+
+| {{http://jspringbot.org/library-json.html}}
+
+4. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |
+
+
 == Read Example ==
 
 *Given:*

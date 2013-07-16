@@ -17,7 +17,7 @@ Configure the following to use jspringbot-http.
 
 | <import resource="classpath:spring/spring-http.xml"/>
 
-3. A {{jspringbot.properties}} file should exist in resources. See the possible properties below.
+3. A {{jspringbot.properties}} file should exist in src/test/resources. See the possible properties below.
 
 | *Key* | *Default Value* | *Description* |
 | {{http.allow.untrusted}} | {{true}} | Defines whether to allow untrusted sites or not. |
@@ -30,6 +30,8 @@ Configure the following to use jspringbot-http.
 | {{http.handle.redirects}} | {{true}} | Defines whether redirects should be handled automatically |
 | {{http.start.suite.new.session}} | {{false}} | This determines if new session will be created on every start of test suite. |
 | {{http.start.test.new.session}} | {{false}} |  This determines if new session will be created on every start of test case. |
+| {{http.connection.timeout}} | | 5000 |  Determines the timeout until a connection is etablished. |
+| {{http.socket.timeout}} | | 10000 | Defines the default socket timeout (SO_TIMEOUT) in milliseconds which is the timeout for waiting for data. |
 
 = Sample Usage =
 | `New HTTP Session` |
@@ -44,3 +46,8 @@ Configure the following to use jspringbot-http.
 = HTTP Headers =
 
 Please see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html for list of HTTP Header Field Definitions.
+
+4. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |

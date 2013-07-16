@@ -17,6 +17,11 @@ Configure the following to use jspringbot-expression.
 
 | <import resource="classpath:spring/spring-date.xml"/>
 
+3. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |
+
 = Sample Date Keyword Usage =
 | Set Date Time Zone | Japan | | # Sets Time Zone to *Time Zone Id*: Japan ; *Raw offset (Hours:Minutes)*: 9 : 00; *Display Name*: Japan Standard Time |
 | Print Date Time |

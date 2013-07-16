@@ -13,9 +13,15 @@ Configure the following to use jspringbot-xml.
 |    </dependency>
 |  </dependencies>
 
-2. Import spring-http in {{jspringbot-global.xml}}
+2. Import spring-xml in {{jspringbot-global.xml}}
 
 | <import resource="classpath:spring/spring-xml.xml"/>
+
+3. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |
+
 
 *Sample xmlString to parse*
 | <?xml version="1.0"?>
