@@ -799,6 +799,12 @@ public class SeleniumHelper {
 
         return el.getAttribute("value");
     }
+    
+    public String getCSSValue(String locator, String propertyName ){
+        WebElement el = finder.find(locator);
+
+        return el.getCssValue(propertyName);
+    }
 
     public void goBack() {
         driver.navigate().back();
