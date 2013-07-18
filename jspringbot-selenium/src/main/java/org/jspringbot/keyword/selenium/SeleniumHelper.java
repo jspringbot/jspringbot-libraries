@@ -794,13 +794,13 @@ public class SeleniumHelper {
         return driver.getTitle();
     }
 
-    public String getValue(String locator){
+    public String getValue(String locator) {
         WebElement el = finder.find(locator);
 
         return el.getAttribute("value");
     }
     
-    public String getCSSValue(String locator, String propertyName ){
+    public String getCSSValue(String locator, String propertyName) {
         WebElement el = finder.find(locator);
 
         return el.getCssValue(propertyName);
