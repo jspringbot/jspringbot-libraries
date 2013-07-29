@@ -167,6 +167,23 @@ public class ExpressionHelperTest {
         evaluateAsFalse("$[1 > 2]");
         evaluateAsTrue("$['amschartstusr001n179' < 'å??è??']");
     }
+    
+    @Test
+    public void testGetJSFileLinks() throws Exception {
+    	List<String> links = new ArrayList<String>();
+    	links.add("https://foo.bar/file.js");
+    	
+    	evaluateEquals("$[parser:getJsFileLinksInHTML('<html><script type=\"text/javascript\" src=\"https://foo.bar/file.js\"></script></html>')]", links);
+    }
+    
+    @Test
+    public void testGetCSSFileLinks() throws Exception {
+    	List<String> links = new ArrayList<String>();
+    	links.add("https://foo.bar/file.css");
+    	
+    	evaluateEquals("$[parser:getCssFileLinksInHTML('<html><link type=\"text/css\" rel=\"stylesheet\" href=\"https://foo.bar/file.css\" media=\"all\" /></html>')]", links);
+    }
+
 
     @Before
     public void setUp() throws Throwable {

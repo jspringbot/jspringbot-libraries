@@ -31,13 +31,14 @@
   <bean id="baseFunctions" class="org.jspringbot.keyword.expression.engine.function.SupportedFunctionRegistryBean">
     <constructor-arg>
       <list>
-        <value>classpath:functions/string-functions.xml</value>
         <value>classpath:functions/array-functions.xml</value>
-        <value>classpath:functions/escape-functions.xml</value>
         <value>classpath:functions/collection-functions.xml</value>
+        <value>classpath:functions/escape-functions.xml</value>
+        <value>classpath:functions/expression-functions.xml</value>
         <value>classpath:functions/map-functions.xml</value>
         <value>classpath:functions/math-functions.xml</value>
-        <value>classpath:functions/expression-functions.xml</value>
+        <value>classpath:functions/parser-functions.xml</value>
+        <value>classpath:functions/string-functions.xml</value>
       </list>
     </constructor-arg>
   </bean>
