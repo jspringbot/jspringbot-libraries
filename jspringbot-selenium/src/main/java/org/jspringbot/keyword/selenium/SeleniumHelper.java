@@ -688,6 +688,35 @@ public class SeleniumHelper {
         return source;
     }
 
+    /*private boolean selectListValueShouldBe(String locator, String value) {
+        List<WebElement> selectOptions = getSelectListOptions(locator);
+
+        List<WebElement> selectedOptions = new ArrayList<WebElement>();
+        for (WebElement selected: selectOptions) {
+            if (selected.isSelected() && selected.getCssValue("value").equalsIgnoreCase(value)) {
+                return true;
+            }
+        }
+        return false;
+    } */
+
+    public void selectedTextValueInListShouldBe(String locator, String selectedText) {
+        List<WebElement> selectOptions = getSelectListOptions(locator);
+
+        boolean textIsSelected = false;
+
+        for (WebElement selected: selectOptions) {
+            if (selected.isSelected() && selected.getText().equalsIgnoreCase(selectedText)) {
+                textIsSelected = true;
+                break;
+            }
+        }
+
+        if (!textIsSelected) {
+            throw new AssertionError(String.format("Value %s was not selected from list '%s'", locator, selectedText));
+        }
+    }
+
     public List<String> getListItems(String locator) {
         List<WebElement> selectOptions = getSelectListOptions(locator);
 
@@ -1797,6 +1826,7 @@ public class SeleniumHelper {
     private boolean isElementPresent(String locator) {
         return finder.find(locator, false) != null;
     }
+
 
     private WebElement getSelectList(String locator) {
         return finder.find(locator, true, "select");
