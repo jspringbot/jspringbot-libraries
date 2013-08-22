@@ -1,4 +1,4 @@
-Checks if the give text is present in the page.
+Checks if the given text is present in the page.
 Returns true if it's present; false if otherwise.
 
 Example:
