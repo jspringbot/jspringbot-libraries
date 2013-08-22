@@ -1,0 +1,15 @@
+Checks if the give text is present in the page.
+Returns true if it's present; false if otherwise.
+
+Example:
+
+| ${isTextPresent}= | `Is Text Present` | Desired Text |
+
+=>
+
+| ${isTextPresent} = True   # or ${isTextPresent} = False
+
+The value can be evaluated to run another keyword. 
+i.e.  
+
+| `EL Run Keyword If`    |  $[var('isTextPresent') eq true]   | My Keyword  |

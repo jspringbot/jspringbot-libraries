@@ -1626,7 +1626,11 @@ public class SeleniumHelper {
             LOG.info(String.format("Did not find any alerts, returning false",""));
             return presentFlag;
         }
-    }  
+    }
+    
+    public boolean isTextPresent(String text) {
+    	return driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*" + text + "[\\s\\S]*$");
+    }
     
     
     private File newScreenCaptureFile() {
