@@ -42,8 +42,8 @@ For Selenium Hub Support:
 | {{selenium.network.proxy.no.proxies.on}} | none | Networks where proxy is not necessary for the firefox profile i.e., exceptions |
 | *Selenium Hub Properties* | | |
 | {{selenium.grid.url}} | | Specifies the url where Selenium Grid is configured |
-| {{selenium.grid.browserName}} | | Specifies the Selenium Grid Browser to use (ie. firefox, intenet explorer, chrome) |
-| {{selenium.grid.platform}} | | Specifies the Selenium Grid Platform (ie. XP, VISTA) |
+| {{selenium.grid.browserName}} | | Specifies the Selenium Grid Browser to use (ie. firefox, intenet explorer, chrome, etc) |
+| {{selenium.grid.platform}} | | Specifies the Selenium Grid Platform (ie. XP, VISTA, etc) |
 | {{selenium.grid.version}} | | Specifies the Selenium Grid Version |
 
 *Sample jspringbot.properties*
