@@ -15,17 +15,23 @@ Configure the following to use jspringbot-selenium.
 
 2. Import spring-http in {{jspringbot-global.xml}}
 
-| <import resource="classpath:spring/spring-selenium.xml"/>
+For Firefox Support:
+| <import resource="classpath:spring/spring-selenium-firefox.xml"/>
+
+For Selenium Hub Support:
+| <import resource="classpath:spring/spring-selenium-hub.xml"/>
 
 3. A {{jspringbot.properties}} file should exist in resources. See the possible properties below.
 
 | *Key* | *Default Value* | *Description* |
-| {{selenium.accept.untrusted.certificates}} | true | Accepts untrusted SSL certificates. |
-| {{selenium.assume.untrusted.certificates}} | true | Assume untrusted certificates will come from untrusted issuers. |
 | {{selenium.implicit.wait}} | 30 | Specify the amount of time the driver should wait when searching for an element if it is not immediately present. |
 | {{selenium.screenshot.folder}} | | Directory to place captured screenshots. |
 | {{selenium.download.directory}} | /tmp/jspringbot | Directory to place downloads. |
 | {{selenium.autosave.content.type}} | | Specify the valid file types to be downloaded. |
+| *Untrusted Certificate Properties* | | |
+| {{selenium.accept.untrusted.certificates}} | true | Accepts untrusted SSL certificates. |
+| {{selenium.assume.untrusted.certificates}} | true | Assume untrusted certificates will come from untrusted issuers. |
+| *Proxy Properties* | | |
 | {{selenium.proxy}} | none | Specify which proxy to use. |
 | {{selenium.http.proxy}} | none | Specify which proxy to use for HTTP connections. |
 | {{selenium.https.proxy}} | none | Specify which proxy to use for HTTPS connections. |
@@ -34,6 +40,11 @@ Configure the following to use jspringbot-selenium.
 | {{selenium.network.proxy.http.port}} | 3128 | Specify which port the proxy is using for the firefox profile |
 | {{selenium.network.proxy.type}} | 0 | Signifies default proxy configuration for the firefox profile | 
 | {{selenium.network.proxy.no.proxies.on}} | none | Networks where proxy is not necessary for the firefox profile i.e., exceptions |
+| *Selenium Hub Properties* | | |
+| {{selenium.grid.url}} | | Specifies the url where Selenium Grid is configured |
+| {{selenium.grid.browserName}} | | Specifies the Selenium Grid Browser to use (ie. firefox, intenet explorer, chrome) |
+| {{selenium.grid.platform}} | | Specifies the Selenium Grid Platform (ie. XP, VISTA) |
+| {{selenium.grid.version}} | | Specifies the Selenium Grid Version |
 
 *Sample jspringbot.properties*
 
@@ -49,6 +60,13 @@ Configure the following to use jspringbot-selenium.
 | selenium.network.proxy.http.port=3128
 | selenium.network.proxy.type=0
 | selenium.network.proxy.no.proxies.on=localhost, 127.0.0.1
+
+*Sample jspringbot.properties with Selenium Hub support*
+
+| selenium.grid.url=http://localhost:4444/wd/hub
+| selenium.grid.browserName=internet explorer
+| selenium.grid.platform=XP
+| selenium.grid.version=
 
 *Sample selenium.autosave.content.type Configuration for Different File Types*
 
