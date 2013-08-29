@@ -39,7 +39,7 @@
   <properties>
     <libdoc.name>JSpringBot Selenium Library</libdoc.name>
     <libdoc.output>JSpringBotSeleniumLibrary.html</libdoc.output>
-    <selenium.java.version>2.35.0</selenium.java.version>
+    <selenium.java.version>2.31.0</selenium.java.version>
   </properties>
 
   <build>
