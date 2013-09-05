@@ -1632,6 +1632,9 @@ public class SeleniumHelper {
     	return driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*" + text + "[\\s\\S]*$");
     }
     
+    public boolean isTextPresentInPageSource(String html, String text) {
+    	return html.matches("^[\\s\\S]*" + text + "[\\s\\S]*$");
+    }
     
     private File newScreenCaptureFile() {
         String name = String.format("screen_capture_%d_%d.png", screenCaptureSeed, ++screenCaptureCtr);
