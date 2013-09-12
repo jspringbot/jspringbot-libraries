@@ -920,7 +920,7 @@ public class SeleniumHelper {
     }
 
     public void listShouldHaveNoSelection(String locator) {
-        List<String> values = getSelectedListValues(locator);
+        List<String> values = getListItems(locator);
 
         if(CollectionUtils.isNotEmpty(values)) {
             LOG.createAppender()
