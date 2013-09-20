@@ -34,6 +34,10 @@
     <property name="networkProxyType" value="${selenium.network.proxy.type:0}"/>
     <property name="networkProxyNoProxiesOn" value="${selenium.network.proxy.no.proxies.on:none}"/>
     <property name="networkProxyShareProxySettings" value="true"/>
+    <property name="networkHTTPPhishyUserpassLength" value="255"/>
+    <property name="networkAutomaticNtlmAuthTrustedURIs" value="${network.automatic-ntlm-auth.trusted-uris}"/>
+    <property name="networkAutomaticNtlmAuthAllowNonFqdn" value="true"/>
+    <property name="networkNtlmSendLmResponse" value="true"/>
   </bean>
 
   <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>
