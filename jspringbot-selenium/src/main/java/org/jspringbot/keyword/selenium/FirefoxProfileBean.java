@@ -80,6 +80,22 @@ public class FirefoxProfileBean {
     public void setNetworkProxyShareProxySettings(boolean shareProxySettings) {
     	profile.setPreference("network.proxy.share_proxy_settings", shareProxySettings);
     }
+    
+    public void setNetworkHTTPPhishyUserpassLength(int length) {
+    	profile.setPreference("network.http.phishy-userpass-length", length);
+    }
+    
+    public void setNetworkAutomaticNtlmAuthTrustedURIs(String domain) {
+    	profile.setPreference("network.automatic-ntlm-auth.trusted-uris", domain);
+    }
+    
+    public void setNetworkAutomaticNtlmAuthAllowNonFqdn(boolean allow) {
+    	profile.setPreference("network.automatic-ntlm-auth.allow-non-fqdn", allow);
+    }
+    
+    public void setNetworkNtlmSendLmResponse(boolean sendResponse) {
+    	profile.setPreference("network.ntlm.send-lm-response", sendResponse);
+    }    
 
     public void setExtension(File extensionToInstall) throws IOException {
         profile.addExtension(extensionToInstall);
