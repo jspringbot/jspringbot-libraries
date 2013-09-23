@@ -1,0 +1,1 @@
+Unselects from list by value, if it is selected beforehand.

@@ -1,0 +1,1 @@
+Unselects all selected values from multi-select list identified by id.

@@ -814,6 +814,40 @@ public class SeleniumHelper {
 
         appender.log();
     }
+    
+    public void unselectAllFromList(String locator) {
+        LOG.createAppender()
+                .appendBold("Unselect All From List:")
+                .appendCss(locator)
+                .log();
+        
+        WebElement selectEl = getSelectList(locator);
+        boolean isMultiSelectList = isMultiSelectList(selectEl);
+        
+        if (!isMultiSelectList) {
+            LOG.createAppender()
+                    .appendProperty("multi-select", isMultiSelectList)
+                    .log();
+
+            throw new IllegalArgumentException("Keyword 'Unselect all from list' works only for multi-select lists.");
+        }
+        
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender();
+        
+        List<WebElement> selectOptions = getSelectListOptions(selectEl);
+        int index = 0;
+        for(WebElement option : selectOptions) {
+            if(option.isSelected()) {
+                appender.appendProperty(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText());
+                option.click();
+            } else {
+                appender.appendProperty(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText() + ": (already unselected)");
+            }
+        }
+
+        appender.log();
+    }
+    
 
     public String getText(String locator) {
         return getText(locator,true);
@@ -966,6 +1000,31 @@ public class SeleniumHelper {
         appender.log();
     }
 
+    public void unselectFromListByIndex(String locator, List<Integer> indices) {
+        LOG.createAppender()
+                .appendBold("Unselect From List By Index:")
+                .appendCss(locator)
+                .appendProperty("Indices", indices)
+                .log();
+        
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender();
+        List<WebElement> options = getSelectListOptions(locator);
+        
+        for(int i : indices) {
+            WebElement option = options.get(i);
+            boolean isSelected = option.isSelected();
+
+            //if not selected, dont unselect since it'll just click the option--thus selecting it.
+            if(isSelected) {
+                appender.append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                option.click();
+            }
+            
+        }
+        
+        appender.log();
+    }
+    
     public void selectFromListByValue(String locator, List<String> values) {
         LOG.createAppender()
                 .appendBold("Select From List By Value:")
@@ -991,6 +1050,38 @@ public class SeleniumHelper {
             }
         }
 
+        appender.log();
+    }
+    
+    public void unselectFromListByValue(String locator, List<String> values) {
+        LOG.createAppender()
+                .appendBold("Unselect From List By Value:")
+                .appendCss(locator)
+                .appendProperty("Values", values)
+                .log();
+        
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender();
+        List<WebElement> options = getSelectListOptions(locator);
+        
+        for(int i = 0; i < options.size(); i++) {            
+            WebElement option = options.get(i);
+            
+            if(values.contains(option.getAttribute("value"))) {    
+                boolean isSelected = option.isSelected();
+                
+                //if not selected, dont unselect since it'll just click the option--thus selecting it.
+                if(isSelected) {
+                    appender.append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                    option.click();
+                }
+                
+                if(values.size() == 1) {
+                    // single selection so skip checking
+                    // other options
+                    break;
+                }
+            }
+        }
         appender.log();
     }
 
@@ -1021,6 +1112,38 @@ public class SeleniumHelper {
 
         appender.log();
     }
+    
+    public void unselectFromListByLabel(String locator, List<String> labels) {
+        LOG.createAppender()
+                .appendBold("Unselect From List By Label")
+                .appendCss(locator)
+                .appendProperty("Labels", labels)
+                .log();
+        
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender();
+        List<WebElement> options = getSelectListOptions(locator);
+        
+        for(int i = 0; i < options.size(); i++) {
+            WebElement option = options.get(i);
+            
+            if(labels.contains(option.getText())) {
+                boolean isSelected = option.isSelected();
+                
+                //if not selected, dont unselect since it'll just click the option--thus selecting it.
+                if(isSelected) {
+                    appender.append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                    options.get(i).click();
+                }
+                
+                if(labels.size() == 1) {
+                    // single selection so skip checking
+                    // other options
+                    break;
+                }
+            }
+        }
+        appender.log();
+    }
 
     public void selectFromList(String locator, List<String> items) {
         List<String> values = getSelectedListValues(locator);
@@ -1037,6 +1160,24 @@ public class SeleniumHelper {
 
         if(containsText) {
             selectFromListByLabel(locator, items);
+        }
+    }
+    
+    public void unselectFromList(String locator, List<String> items) {
+        List<String> values = getSelectedListValues(locator);
+        boolean containsValues = CollectionUtils.containsAny(values, items);
+
+        if(containsValues) {
+            unselectFromListByValue(locator, items);
+
+            return;
+        }
+
+        List<String> texts = getSelectedListLabels(locator);
+        boolean containsText = CollectionUtils.containsAny(texts, items);
+
+        if(containsText) {
+            unselectFromListByLabel(locator, items);
         }
     }
 
@@ -1629,11 +1770,11 @@ public class SeleniumHelper {
     }
     
     public boolean isTextPresent(String text) {
-    	return driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*" + text + "[\\s\\S]*$");
+        return driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*" + text + "[\\s\\S]*$");
     }
     
     public boolean isTextPresentInPageSource(String html, String text) {
-    	return html.matches("^[\\s\\S]*" + text + "[\\s\\S]*$");
+        return html.matches("^[\\s\\S]*" + text + "[\\s\\S]*$");
     }
     
     private File newScreenCaptureFile() {
