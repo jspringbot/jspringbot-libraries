@@ -1,1 +1,12 @@
 Set the XML text with the given name.
+
+
+Example:
+| `Start XML Node`    | book |
+| `Set XML Text`      | Meet Joe Black |
+| `End XML Node`      |
+| ${xmlString}        | Create XML String |
+| `Should Be Equal As Strings` | ${xmlString} | <book>Meet Joe Black</book> |
+
+Result:
+| true

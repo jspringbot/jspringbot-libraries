@@ -1,1 +1,18 @@
 Closes the XML node tag.
+
+Adds an XML attribute name with value in the node.
+
+Example:
+| `Start XML Node`    | catalog |
+| `Start XML Node`    | book    |
+| `End XML Node`      |
+| `Start XML Node`    | movies  |
+| `End XML Node`      |
+| `End XML Node`      |
+| ${xmlString}        | Create XML String |
+| `Should Be Equal As Strings` | ${xmlString} | <catalog><book/><movies/></catalog> |
+
+Result:
+| true
+
+
