@@ -1,0 +1,1 @@
+Adds an XML attribute name with value in the node.

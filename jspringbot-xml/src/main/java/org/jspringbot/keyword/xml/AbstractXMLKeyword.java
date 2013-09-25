@@ -25,4 +25,7 @@ public abstract class AbstractXMLKeyword implements Keyword {
 
     @Autowired
     protected XMLHelper helper;
+
+    @Autowired
+    protected XMLBuilderHelper builderHelper;
 }

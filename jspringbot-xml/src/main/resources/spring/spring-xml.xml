@@ -28,6 +28,7 @@
   <description>jSpringBot XML Keywords</description>
 
   <bean name="xmlHelper" class="org.jspringbot.keyword.xml.XMLHelper"/>
+  <bean name="xmlBuilderHelper" class="org.jspringbot.keyword.xml.XMLBuilderHelper"/>
 
   <bean id="xmlFunctions" class="org.jspringbot.keyword.expression.engine.function.SupportedFunctionRegistryBean">
     <constructor-arg>

@@ -18,6 +18,7 @@
 
 package org.jspringbot.keyword.xml;
 
+import com.jamesmurty.utils.XMLBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ import static junit.framework.Assert.assertTrue;
 public class XMLHelperTest {
     @Autowired
     private XMLHelper helper;
+
+    @Autowired
+    private XMLBuilderHelper builderHelper;
 
     @Autowired
     private SampleResources resources;
@@ -69,5 +73,16 @@ public class XMLHelperTest {
         helper.setXmlString(resources.getSampleXMLString());
 
         assertEquals(2, helper.getXpathMatchCount("//catalog/book/price[text()='5.95']/.."));
+    }
+
+    @Test
+    public void textXMLBuilder() throws Exception {
+        builderHelper.startNode("root", true);
+        builderHelper.startNode("node");
+        builderHelper.addAttribute("name", "value");
+        builderHelper.endNode();
+        builderHelper.endNode();
+
+        assertEquals(builderHelper.asString(), XMLBuilder.create("root").e("node").a("name", "value").asString());
     }
 }

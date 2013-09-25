@@ -30,7 +30,6 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.jspringbot</groupId>
   <artifactId>jspringbot-xml</artifactId>
   <version>1.0-SNAPSHOT</version>
 
@@ -70,6 +69,11 @@
       <artifactId>spring-test</artifactId>
       <version>${spring.version}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.jamesmurty.utils</groupId>
+      <artifactId>java-xmlbuilder</artifactId>
+      <version>0.6</version>
     </dependency>
   </dependencies>
 </project>

@@ -18,6 +18,7 @@
 
 package org.jspringbot.keyword.xml;
 
+import com.jamesmurty.utils.XMLBuilder;
 import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import com.sun.org.apache.xpath.internal.XPathAPI;
 import org.apache.commons.io.IOUtils;

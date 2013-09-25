@@ -1,0 +1,1 @@
+Starts a new XML node with the given name. Set root=true to clear out value.
