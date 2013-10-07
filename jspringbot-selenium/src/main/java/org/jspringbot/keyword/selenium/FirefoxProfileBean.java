@@ -110,4 +110,5 @@ public class FirefoxProfileBean {
     public void setUserAgent(String userAgent) {
         profile.setPreference("general.useragent.override", userAgent);
     }
+
 }
