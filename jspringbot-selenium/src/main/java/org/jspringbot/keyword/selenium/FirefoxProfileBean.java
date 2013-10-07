@@ -88,7 +88,7 @@ public class FirefoxProfileBean {
     public void setNetworkAutomaticNtlmAuthTrustedURIs(String domain) {
     	profile.setPreference("network.automatic-ntlm-auth.trusted-uris", domain);
     }
-    
+
     public void setNetworkAutomaticNtlmAuthAllowNonFqdn(boolean allow) {
     	profile.setPreference("network.automatic-ntlm-auth.allow-non-fqdn", allow);
     }
@@ -105,5 +105,9 @@ public class FirefoxProfileBean {
         for(File extensionToInstall : extensionToInstalls) {
             profile.addExtension(extensionToInstall);
         }
+    }
+
+    public void setUserAgent(String userAgent) {
+        profile.setPreference("general.useragent.override", userAgent);
     }
 }
