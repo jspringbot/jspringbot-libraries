@@ -1,0 +1,6 @@
+Adds the given cookie name with value to the domain and path specified.
+
+Example:
+| Delete All Cookies |
+| Add Cookie | foo | bar | http://www.domain.xxx | www.domain.xxx | / |
+| Navigate To | http://www.domain.xxx/index.php |
