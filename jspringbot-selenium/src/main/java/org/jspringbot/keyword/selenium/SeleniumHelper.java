@@ -298,6 +298,22 @@ public class SeleniumHelper {
         }
     }
 
+    public void addCookie(String cookieName, String cookieValue, String host, String domain, String path) {
+        LOG.createAppender()
+                .appendBold("Add Cookie:")
+                .appendProperty("Cookie Name", cookieName)
+                .appendProperty("Cookie Value", cookieValue)
+                .appendProperty("Host", host)
+                .appendProperty("Domain", domain)
+                .appendProperty("Path", path)
+                .log();
+
+        driver.get(host);
+
+        Cookie cookie = new Cookie(cookieName, cookieValue, domain, path, null);
+        driver.manage().addCookie(cookie);
+    }
+
     public void deleteAllCookies() {
         HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
                 .appendBold("Delete All Cookies:");
