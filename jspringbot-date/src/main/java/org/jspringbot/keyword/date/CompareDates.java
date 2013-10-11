@@ -36,9 +36,7 @@ public class CompareDates extends AbstractDateKeyword {
         if(params.length > 1) {
             return helper.compareDates(String.valueOf(params[0]), String.valueOf(params[1]), String.valueOf(params[2]));
         }
-
-        helper.parseDateTime(String.valueOf(params[0]));
-
-        return  null;
+        
+        return null;
     }
 }
