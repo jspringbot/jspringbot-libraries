@@ -18,16 +18,19 @@
 
 package org.jspringbot.keyword.date;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 import org.jspringbot.syntax.HighlightRobotLogger;
-
-import java.sql.Time;
-import java.sql.Timestamp;
-import java.util.Date;
 
 
 public class DateHelper {
@@ -172,5 +175,41 @@ public class DateHelper {
 
         // show the log for print
         formatDateTime();
+    }
+    
+    public String compareDates(String format, String dateOne, String dateTwo){
+    	String comparisonResult = "";
+    	
+    	try{
+    	   		
+    		SimpleDateFormat sdf = new SimpleDateFormat(format);
+        	Date date1 = sdf.parse(dateOne);
+        	Date date2 = sdf.parse(dateTwo);
+ 
+        	System.out.println(sdf.format(date1));
+        	System.out.println(sdf.format(date2));
+ 
+        	Calendar cal1 = Calendar.getInstance();
+        	Calendar cal2 = Calendar.getInstance();
+        	cal1.setTime(date1);
+        	cal2.setTime(date2);
+ 
+        	if(cal1.after(cal2)){
+        		comparisonResult = "Date1 is after Date2";
+        	}
+ 
+        	if(cal1.before(cal2)){
+        		comparisonResult = "Date1 is before Date2";
+        	}
+ 
+        	if(cal1.equals(cal2)){
+        		comparisonResult = "Date1 is equal to Date2";
+        	}
+ 
+    	}catch(ParseException ex){
+    		ex.printStackTrace();
+    	}
+    	
+		return comparisonResult;
     }
 }

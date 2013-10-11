@@ -1,0 +1,7 @@
+Compares two given dates using the given date format.
+
+Example:
+| ${comparisonResult}= | Compare Dates | MMMM dd, yyyy | February 22, 2013 | February 24, 2013 |
+
+=>
+| ${comparisonResult} = Date1 is before Date2
