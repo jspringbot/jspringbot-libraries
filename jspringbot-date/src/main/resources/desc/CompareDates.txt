@@ -5,3 +5,8 @@ Example:
 
 =>
 | ${comparisonResult} = Date1 is before Date2
+
+Possible Results are:
+| Date1 is after Date2
+| Date1 is before Date2
+| Date1 is equal to Date2

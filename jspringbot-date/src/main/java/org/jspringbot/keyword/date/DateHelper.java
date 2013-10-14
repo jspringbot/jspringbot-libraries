@@ -178,17 +178,13 @@ public class DateHelper {
     }
     
     public String compareDates(String format, String dateOne, String dateTwo){
-    	String comparisonResult = "";
+    	String comparisonResult = null;
     	
     	try{
     	   		
     		SimpleDateFormat sdf = new SimpleDateFormat(format);
         	Date date1 = sdf.parse(dateOne);
         	Date date2 = sdf.parse(dateTwo);
- 
-        	System.out.println(sdf.format(date1));
-        	System.out.println(sdf.format(date2));
- 
         	Calendar cal1 = Calendar.getInstance();
         	Calendar cal2 = Calendar.getInstance();
         	cal1.setTime(date1);
