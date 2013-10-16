@@ -24,12 +24,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
+import org.jspringbot.keyword.date.util.I18nHelper;
 import org.jspringbot.syntax.HighlightRobotLogger;
 
 
@@ -178,10 +180,11 @@ public class DateHelper {
     }
     
     public String compareDates(String format, String dateOne, String dateTwo){
+    	
     	String comparisonResult = null;
     	
     	try{
-    	   		
+    		
     		SimpleDateFormat sdf = new SimpleDateFormat(format);
         	Date date1 = sdf.parse(dateOne);
         	Date date2 = sdf.parse(dateTwo);
@@ -208,4 +211,41 @@ public class DateHelper {
     	
 		return comparisonResult;
     }
+    
+    public String compareLocaleDates(String localeID, String format, String dateOne, String dateTwo){
+    	
+    	String comparisonResult = null;
+    	
+    	try{
+    		
+    		I18nHelper i18n = new I18nHelper();
+	 		i18n.setLocale(localeID);
+	 		
+    		SimpleDateFormat sdf = new SimpleDateFormat(format, i18n.getLocale());
+        	Date date1 = sdf.parse(dateOne);
+        	Date date2 = sdf.parse(dateTwo);
+        	Calendar cal1 = Calendar.getInstance();
+        	Calendar cal2 = Calendar.getInstance();
+        	cal1.setTime(date1);
+        	cal2.setTime(date2);
+ 
+        	if(cal1.after(cal2)){
+        		comparisonResult = "Date1 is after Date2";
+        	}
+ 
+        	if(cal1.before(cal2)){
+        		comparisonResult = "Date1 is before Date2";
+        	}
+ 
+        	if(cal1.equals(cal2)){
+        		comparisonResult = "Date1 is equal to Date2";
+        	}
+ 
+    	}catch(ParseException ex){
+    		ex.printStackTrace();
+    	}
+    	
+		return comparisonResult;
+    }
+
 }
