@@ -644,6 +644,24 @@ public class SeleniumHelper {
 
         return attributeValue;
     }
+    
+    public void elementAttributeValueShouldBe(String attributeLocator, String expectedValue) {
+    	
+    	String actualValue = getElementAttribute(attributeLocator);
+    	
+        LOG.createAppender()
+        .appendBold("Element Attribute Value Should Be:")
+        .appendCss(attributeLocator)
+        .appendProperty("Actual Element Attribute Value", actualValue)
+        .appendProperty("Expected Element Attribute Value", expectedValue)
+        .log();
+
+		if (!StringUtils.equals(StringUtils.trim(actualValue), StringUtils.trim(expectedValue))) {
+		    throw new AssertionError("The text of element is not as expected.");
+		}
+    }
+    
+    
 
     public int getHorizontalPosition(String locator) {
         WebElement element = finder.find(locator);
