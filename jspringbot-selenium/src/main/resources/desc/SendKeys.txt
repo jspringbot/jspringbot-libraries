@@ -1,0 +1,5 @@
+Types the given text into text field identified by a locator without clearing the text field.
+This is particularly used for file upload fields since `Input Text` keyword will not work with file uploads.
+
+Examples:
+| Send Keys  | id=foo bar | C:\foo\bar\image.jpg |

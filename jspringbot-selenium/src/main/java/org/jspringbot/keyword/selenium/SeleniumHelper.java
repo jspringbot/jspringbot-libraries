@@ -957,6 +957,11 @@ public class SeleniumHelper {
         LOG.info(String.format("Typing text '%s' into text field '%s'", text, locator));
         inputTextIntoTextField(locator, text);
     }
+    
+    public void sendKeys(String locator, String text) {
+        WebElement el = finder.find(locator);
+        el.sendKeys(text);
+    }
 
     public void listSelectionShouldBe(String locator, List<String> items) {
         List<String> values = getSelectedListValues(locator);
