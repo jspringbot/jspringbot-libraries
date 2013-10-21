@@ -507,7 +507,7 @@ public class SeleniumHelper {
             throw new AssertionError("Page should have contained text but did not.");
         }
     }
-
+    
     public void elementShouldContain(String locator, String expected) {
         String actual = getText(locator, false);
 
@@ -517,10 +517,14 @@ public class SeleniumHelper {
                 .appendProperty("Actual", actual)
                 .appendProperty("Expected", expected)
                 .log();
-
-        if (!expected.equalsIgnoreCase(actual)) {
-            throw new AssertionError("Element should have contained text.");
+       
+        if(!StringUtils.contains(StringUtils.trim(actual), StringUtils.trim(expected))) {
+        	throw new AssertionError("Element should have contained text.");
         }
+                
+//        if (!expected.equalsIgnoreCase(actual)) {
+//            throw new AssertionError("Element should have contained text.");
+//        }
     }
 
     public void elementShouldContainClass(String locator, String expectedClassName) {
@@ -657,11 +661,25 @@ public class SeleniumHelper {
         .log();
 
 		if (!StringUtils.equals(StringUtils.trim(actualValue), StringUtils.trim(expectedValue))) {
-		    throw new AssertionError("The text of element is not as expected.");
+		    throw new AssertionError("The attribute value of the element is not as expected.");
 		}
     }
     
-    
+    public void elementAttributeValueShouldContain(String attributeLocator, String expectedValue){
+    	
+    	String actualValue = getElementAttribute(attributeLocator);
+    	
+        LOG.createAppender()
+        .appendBold("Element Attribute Value Should Contain:")
+        .appendCss(attributeLocator)
+        .appendProperty("Actual Element Attribute Value", actualValue)
+        .appendProperty("Expected Element Attribute Value", expectedValue)
+        .log();
+
+        if(!StringUtils.contains(StringUtils.trim(actualValue), StringUtils.trim(expectedValue))) {
+        	throw new AssertionError("Element attribute value should have contained text.");
+        }
+    }
 
     public int getHorizontalPosition(String locator) {
         WebElement element = finder.find(locator);
