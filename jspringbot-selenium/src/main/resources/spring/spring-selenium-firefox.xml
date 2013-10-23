@@ -48,7 +48,6 @@
     <property name="firefoxProfile" ref="profile"/>
     <property name="proxy" value="${selenium.proxy:none}"/>
     <property name="httpProxy" value="${selenium.http.proxy:none}"/>
-    <property name="httpsProxy" value="${selenium.https.proxy:none}"/>
     <property name="sslProxy" value="${selenium.ssl.proxy:none}"/>
   </bean>
 

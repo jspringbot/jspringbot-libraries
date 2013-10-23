@@ -26,7 +26,6 @@ public class DesiredCapabilitiesBean {
 
             proxy.setFtpProxy(proxyHost)
                  .setHttpProxy(proxyHost)
-                 .setHttpsProxy(proxyHost)
                  .setSslProxy(proxyHost);
 
             capabilities.setCapability(CapabilityType.PROXY, proxy);
@@ -55,15 +54,6 @@ public class DesiredCapabilitiesBean {
         if(!StringUtils.equalsIgnoreCase(proxyHost, "none")) {
             proxy = new Proxy();
             proxy.setHttpProxy(proxyHost);
-
-            capabilities.setCapability(CapabilityType.PROXY, proxy);
-        }
-    }
-
-    public void setHttpsProxy(String proxyHost) {
-        if(!StringUtils.equalsIgnoreCase(proxyHost, "none")) {
-            proxy = new Proxy();
-            proxy.setHttpsProxy(proxyHost);
 
             capabilities.setCapability(CapabilityType.PROXY, proxy);
         }
