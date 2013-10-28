@@ -43,6 +43,8 @@
     <juel.impl.version>2.2.4</juel.impl.version>
     <xtream.version>1.4.3</xtream.version>
     <jsoup.version>1.7.2</jsoup.version>
+    <java.faker.version>0.2</java.faker.version>
+    <lorem.ipsum.version>1.0</lorem.ipsum.version>
   </properties>
 
   <dependencies>
@@ -98,6 +100,16 @@
       <groupId>org.jsoup</groupId>
       <artifactId>jsoup</artifactId>
       <version>${jsoup.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.github.javafaker</groupId>
+      <artifactId>javafaker</artifactId>
+      <version>${java.faker.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.sven-jacobs</groupId>
+      <artifactId>loremipsum</artifactId>
+      <version>${lorem.ipsum.version}</version>
     </dependency>
   </dependencies>
 </project>
