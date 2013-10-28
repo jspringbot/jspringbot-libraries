@@ -14,6 +14,7 @@ import org.jspringbot.syntax.HighlightRobotLogger;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -120,6 +121,12 @@ public class DateUtils {
 
         String dateWithCustomFormat = parsedDate.toString(DateTimeFormat.forPattern(pattern));
         return dateWithCustomFormat;
+    }
+
+    public static String formatDate(java.util.Date date, String pattern) {
+        final SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+
+        return dateFormat.format(date);
     }
 
     private static String format(BaseDateTime dt, String method, String... args) {

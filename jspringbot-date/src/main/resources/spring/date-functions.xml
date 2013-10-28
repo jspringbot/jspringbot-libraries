@@ -154,4 +154,16 @@
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
     <function-signature>java.lang.String isoParse(java.lang.String)</function-signature>
   </function>
+  <function>
+    <name>formatDate</name>
+    <prefix>date</prefix>
+    <description><![CDATA[<p>Constructs a <code>SimpleDateFormat</code> using the given pattern.<p>
+    <p>Example :<br>
+    | EL Add Variable     | date        | $[date:toUtilDate('2013-10-29','yyyy-MM-dd')] |
+    | ${formatted_date}=  | EL Evaluate | $[date:formatDate(date,'dd/M/yyyy')] |</p>]]>
+    </description>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String formatDate(java.util.Date, java.lang.String)</function-signature>
+  </function>
+
 </functions>
