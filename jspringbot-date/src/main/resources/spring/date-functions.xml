@@ -159,7 +159,7 @@
     <prefix>date</prefix>
     <description><![CDATA[<p>Constructs a <code>SimpleDateFormat</code> using the given pattern.<p>
     <p>Example :<br>
-    | EL Add Variable     | date        | $[date:toUtilDate('2013-10-29','yyyy-MM-dd')] |
+    | EL Add Variable     | date        | $[date:toUtilDate('2013-10-29','yyyy-MM-dd')] |<br>
     | ${formatted_date}=  | EL Evaluate | $[date:formatDate(date,'dd/M/yyyy')] |</p>]]>
     </description>
     <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
