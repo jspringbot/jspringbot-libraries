@@ -49,6 +49,10 @@ public class FirefoxProfileBean {
         profile.setPreference("browser.download.dir", downloadDirectory);
     }
 
+    public File getDownloadDir() {
+        return downloadDir;
+    }
+
     public void setDownloadShowWhenStarting(boolean showWhenStarting) {
         profile.setPreference("browser.download.manager.showWhenStarting", showWhenStarting);
     }
