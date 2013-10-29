@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:ctx="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <description>Robot Flex Selenium Keywords</description>
+
+  <bean id="flexSeleniumWrapper" class="org.jspringbot.keyword.selenium.flex.FlexSeleniumHelperWrapper">
+    <constructor-arg ref="webdriver"/>
+  </bean>
+
+  <bean id="flexSeleniumPageDriver" class="org.jspringbot.keyword.selenium.flex.FlexSeleniumPageDriverImpl">
+    <constructor-arg ref="flexSeleniumWrapper"/>
+    <property name="timeout" value="${selenium.flex.timeout:10000}"/>
+  </bean>
+
+  <ctx:component-scan base-package="org.jspringbot.keyword.selenium.flex"/>
+  <ctx:annotation-config/>
+
+</beans>
