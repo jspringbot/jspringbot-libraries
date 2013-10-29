@@ -1556,6 +1556,11 @@ public class SeleniumHelper {
             el.click();
         }
     }
+    
+    public boolean isElementSelected(String locator) {
+    	 WebElement el = finder.find(locator, true, "input");
+         return el.isSelected();
+    }
 
     public void selectCheckbox(String locator) {
         LOG.info(String.format("Selecting checkbox '%s'.", locator));
