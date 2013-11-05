@@ -183,13 +183,24 @@ public class ExpressionHelperTest {
     }
     
     @Test
+    public void testURLGetPath() throws Exception {
+    	String expectedPath = "/path/to/url/";
+    	evaluateEquals("$[parser:getUrlPath('http://www.example.com/path/to/url/')]", expectedPath);
+    }
+    
+    @Test
+    public void testURLGetHost() throws Exception {
+    	String expectedHost = "www.google.com";
+        evaluateEquals("$[parser:getUrlHost('http://www.google.com')]", expectedHost);
+    }
+    
+    @Test
     public void testGetCSSFileLinks() throws Exception {
     	List<String> links = new ArrayList<String>();
     	links.add("https://foo.bar/file.css");
     	
     	evaluateEquals("$[parser:getCssFileLinksInHTML('<html><link type=\"text/css\" rel=\"stylesheet\" href=\"https://foo.bar/file.css\" media=\"all\" /></html>')]", links);
     }
-
 
     @Before
     public void setUp() throws Throwable {

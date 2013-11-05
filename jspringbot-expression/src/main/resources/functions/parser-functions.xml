@@ -3,6 +3,28 @@
 <functions>
   <function>
     <prefix>parser</prefix>
+    <name>getUrlHost</name>
+    <description>
+      <![CDATA[
+       Returns the host given the URL.
+      ]]>
+    </description>
+    <function-class>org.jspringbot.keyword.expression.utils.URLParserUtils</function-class>
+    <function-signature>java.lang.String getHost(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>parser</prefix>
+    <name>getUrlPath</name>
+    <description>
+      <![CDATA[
+        Returns the path given the URL
+      ]]>
+    </description>
+    <function-class>org.jspringbot.keyword.expression.utils.URLParserUtils</function-class>
+    <function-signature>java.lang.String getPath(java.lang.String)</function-signature>
+  </function>
+  <function>
+    <prefix>parser</prefix>
     <name>getCssFileLinksInHTML</name>
     <description><![CDATA[Returns the list of css files from the given html string.
 
