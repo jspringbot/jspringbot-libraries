@@ -225,6 +225,19 @@ public class SeleniumHelper {
         WebElement el = finder.find(locator);
         el.sendKeys(filePath);
     }
+    
+    public void clickAt(String locator, String xOffset, String yOffset) {
+    	LOG.createAppender()
+        .appendBold("Click At:")
+        .appendCss(locator)
+        .appendProperty("xOffset", xOffset)
+        .appendProperty("yOffset", yOffset)
+        .log();
+    	
+    	WebElement el = finder.find(locator);
+    	
+    	new Actions(driver).moveByOffset(Integer.parseInt(xOffset), Integer.parseInt(yOffset)).click().build().perform();
+    }
 
     public void clickButton(String locator) {
         LOG.createAppender()
