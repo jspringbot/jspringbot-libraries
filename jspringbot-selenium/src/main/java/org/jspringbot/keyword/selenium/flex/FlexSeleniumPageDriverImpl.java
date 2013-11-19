@@ -50,6 +50,11 @@ public class FlexSeleniumPageDriverImpl implements FlexSeleniumPageDriver {
     }
 
     @Override
+    public String getForSelenium(String widgetId, String propertyType) {
+        return flexSelenium.getForSelenium(widgetId, propertyType);
+    }
+
+    @Override
     public void setFocus(final String widgetId) {
         ensureWidgetVisibility(widgetId, true);
         ensureWidgetEnabled(widgetId, true);

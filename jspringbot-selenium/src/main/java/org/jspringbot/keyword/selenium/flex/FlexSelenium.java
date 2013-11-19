@@ -2,6 +2,8 @@ package org.jspringbot.keyword.selenium.flex;
 
 public interface FlexSelenium {
 
+    String getForSelenium(String widgetId, String propertyType);
+
     String click(String objectId, String optionalButtonLabel);
 
     String click(String objectId);

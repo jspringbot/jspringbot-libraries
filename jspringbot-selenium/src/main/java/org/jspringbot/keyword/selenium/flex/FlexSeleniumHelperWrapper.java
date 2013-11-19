@@ -17,6 +17,13 @@ public class FlexSeleniumHelperWrapper implements  FlexSelenium {
         flexHelper = new FlexSeleniumHelper(driver, id);
     }
 
+
+    @Override
+    public String getForSelenium(String widgetId, String propertyType) {
+        Validate.notNull(flexHelper, "No selected flex app");
+        return flexHelper.getForSelenium(widgetId, propertyType);
+    }
+
     @Override
     public String click(String objectId, String optionalButtonLabel) {
         Validate.notNull(flexHelper, "No selected flex app");

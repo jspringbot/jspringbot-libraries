@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 public interface FlexSeleniumPageDriver {
 
+    String getForSelenium(final String widgetId, final String propertyType);
 
     void clickButton(final String widgetId);
 

@@ -23,6 +23,11 @@ public class FlexSeleniumHelper implements FlexSelenium {
     }
 
     @Override
+    public String getForSelenium(String widgetId, String propertyType) {
+        return callVerifyProperty("getForSelenium", widgetId, propertyType);
+    }
+
+    @Override
     public String click(String objectId, String optionalButtonLabel) {
         return call("doFlexClick", objectId, optionalButtonLabel);
     }
@@ -220,6 +225,24 @@ public class FlexSeleniumHelper implements FlexSelenium {
             }
         }
         Assert.fail("Application did not load");
+    }
+
+    private String callVerifyProperty(String functionName, String... args) {
+        StringBuilder code = new StringBuilder();
+        StringBuilder verifyProperty = new StringBuilder();
+
+        verifyProperty.append("<VerifyProperty value=\"" + args[0] + "\" propertyString=\"" + args[1]  + "\"/>");
+        LOG.info("VerifyProperty: " + verifyProperty);
+        code.insert(0, String.format("return document['%s'].%s('%s', '%s')", flexAppID, functionName, verifyProperty, ""));
+        LOG.info("Call: " + code);
+
+        String result = String.valueOf(executor.executeScript(code.toString()));
+
+
+
+        LOG.info("Result: " + result);
+
+        return result;
     }
 
     private String call(String functionName, String... args){
