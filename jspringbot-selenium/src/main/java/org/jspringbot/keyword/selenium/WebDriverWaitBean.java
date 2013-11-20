@@ -1,4 +1,4 @@
-package org.jspringbot.keyword.selenium.web;
+package org.jspringbot.keyword.selenium;
 
 import org.openqa.selenium.WebDriver;
 

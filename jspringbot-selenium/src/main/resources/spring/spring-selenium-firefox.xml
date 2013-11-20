@@ -43,7 +43,7 @@
 
   <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>
 
-  <bean class="org.jspringbot.keyword.selenium.web.DesiredCapabilitiesBean">
+  <bean class="org.jspringbot.keyword.selenium.DesiredCapabilitiesBean">
     <constructor-arg ref="desiredCapabilities"/>
     <property name="firefoxProfile" ref="profile"/>
     <property name="proxy" value="${selenium.proxy:none}"/>
@@ -55,7 +55,7 @@
     <constructor-arg ref="desiredCapabilities"/>
   </bean>
 
-  <bean class="org.jspringbot.keyword.selenium.web.WebDriverWaitBean">
+  <bean class="org.jspringbot.keyword.selenium.WebDriverWaitBean">
     <constructor-arg ref="webdriver"/>
     <property name="implicitWaitInSeconds" value="${selenium.implicit.wait:30}"/>
   </bean>
