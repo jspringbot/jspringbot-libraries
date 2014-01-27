@@ -38,7 +38,7 @@
     <property name="networkAutomaticNtlmAuthTrustedURIs" value="${network.automatic-ntlm-auth.trusted-uris}"/>
     <property name="networkAutomaticNtlmAuthAllowNonFqdn" value="true"/>
     <property name="networkNtlmSendLmResponse" value="true"/>
-    <property name="userAgent" value="${user.agent}"/>
+    <property name="userAgent" value="${user.agent:none}"/>
   </bean>
 
   <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities">

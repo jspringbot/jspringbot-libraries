@@ -84,7 +84,7 @@ public class FirefoxProfileBean {
     public void setNetworkProxyShareProxySettings(boolean shareProxySettings) {
     	profile.setPreference("network.proxy.share_proxy_settings", shareProxySettings);
     }
-    
+
     public void setNetworkHTTPPhishyUserpassLength(int length) {
     	profile.setPreference("network.http.phishy-userpass-length", length);
     }
@@ -112,7 +112,9 @@ public class FirefoxProfileBean {
     }
 
     public void setUserAgent(String userAgent) {
-        profile.setPreference("general.useragent.override", userAgent);
+        if (!StringUtils.equalsIgnoreCase(userAgent,"none")) {
+            profile.setPreference("general.useragent.override", userAgent);
+        }
     }
 
 }
