@@ -41,7 +41,7 @@ For Selenium Hub Support:
 | {{selenium.network.proxy.type}} | 0 | Signifies default proxy configuration for the firefox profile | 
 | {{selenium.network.proxy.no.proxies.on}} | none | Networks where proxy is not necessary for the firefox profile i.e., exceptions |
 | *Firefox Profile* | | |
-| {{networkAutomaticNtlmAuthTrustedURIs}} | | This preference determines which sites are allowed to automatically authenticate via NTLM. If the user requests a site that authenticates with NTLM that is not in this list, the user will be prompted for login details. |
+| {{network.automatic-ntlm-auth.trusted-uris}} | | This preference determines which sites are allowed to automatically authenticate via NTLM. If the user requests a site that authenticates with NTLM that is not in this list, the user will be prompted for login details. |
 | {{user.agent}} | | Overrides Firefox User Agent |
 | *Selenium Hub Properties* | | |
 | {{selenium.grid.url}} | | Specifies the url where Selenium Grid is configured |
@@ -70,7 +70,7 @@ For Selenium Hub Support:
 
 *Sample jspringbot.properties with Firefox Profile support to Bypass HTTP Authentication*
 
-| networkAutomaticNtlmAuthTrustedURIs=www.foo.bar
+| network.automatic-ntlm-auth.trusted-uris=www.foo.bar
 |
 | #Sample test case usage
 | Navigate to       https://username:password@www.foo.bar
