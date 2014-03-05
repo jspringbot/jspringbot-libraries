@@ -41,11 +41,7 @@
     <property name="userAgent" value="${user.agent:none}"/>
   </bean>
 
-  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities">
-    <property name="browserName" value="${selenium.grid.browserName}"/>
-    <property name="platform" value="${selenium.grid.platform}"/>
-    <property name="version" value="${selenium.grid.version}"/>
-  </bean>
+  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>
 
   <bean class="org.jspringbot.keyword.selenium.DesiredCapabilitiesBean">
     <constructor-arg ref="desiredCapabilities"/>
@@ -53,6 +49,10 @@
     <property name="proxy" value="${selenium.proxy:none}"/>
     <property name="httpProxy" value="${selenium.http.proxy:none}"/>
     <property name="sslProxy" value="${selenium.ssl.proxy:none}"/>
+    <property name="capabilities" value="${selenium.added.capabilities:none}"/>
+    <property name="browserName" value="${selenium.grid.browserName:none}"/>
+    <property name="platform" value="${selenium.grid.platform:none}"/>
+    <property name="version" value="${selenium.grid.version:none}"/>
   </bean>
 
   <bean id="webdriver" class="org.jspringbot.keyword.selenium.RemoteWebDriverFactory" factory-method="create" destroy-method="quit">
