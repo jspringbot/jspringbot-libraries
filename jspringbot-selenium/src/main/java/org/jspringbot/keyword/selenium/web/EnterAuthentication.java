@@ -1,5 +1,4 @@
 package org.jspringbot.keyword.selenium.web;
-import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
@@ -18,10 +17,11 @@ public class EnterAuthentication extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) throws Exception {
+    	
         String username = String.valueOf(params[0]);
         String password = String.valueOf(params[1]);
 
-        Robot robot = new Robot();
+        Robot robot = new Robot();        
 
         Keyboard keyboard = new Keyboard(robot);
 

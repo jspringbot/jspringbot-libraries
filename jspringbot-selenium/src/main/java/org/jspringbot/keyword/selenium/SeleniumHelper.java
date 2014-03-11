@@ -86,7 +86,7 @@ public class SeleniumHelper {
     public void windowMaximize() {
         driver.manage().window().maximize();
     }
-
+    
     public void assignIdToElement(String id, String locator) {
         LOG.createAppender()
                 .appendBold("Assign ID To Element:")
@@ -128,7 +128,7 @@ public class SeleniumHelper {
     }
 
     public void closeBrowser() {
-        LOG.info("Closing browser");
+        LOG.info("Closing browser with handle");
         driver.close();
     }
 
@@ -1092,6 +1092,31 @@ public class SeleniumHelper {
 
         appender.log();
     }
+    
+    public void listShouldContainLabel(String locator, String label) {
+    	LOG.createAppender()
+        .appendBold("List Should Contain Label:")
+        .appendCss(locator)
+        .appendProperty("Label", label)
+        .log();
+    	
+    	List<WebElement> options = getSelectListOptions(locator);
+    	boolean found = false;
+    	
+    	for (WebElement option : options) {
+			String currentLabel = option.getText();			
+			if(currentLabel.equals(label)) {
+				found = true;
+				break;
+			}
+		}
+    	
+        if (found) {
+            LOG.info(String.format("List contains label '%s'.", label));
+        } else {
+            throw new AssertionError(String.format("List should have contained label %s but did not.", label));
+        }
+    }
 
     public void unselectFromListByIndex(String locator, List<Integer> indices) {
         LOG.createAppender()
@@ -1607,6 +1632,33 @@ public class SeleniumHelper {
         return new ArrayList<String>(driver.getWindowHandles());
     }
 
+    public String navigateToInNewWindow(String url) {
+    	((JavascriptExecutor) driver)
+    		.executeScript("window.open()");
+    	
+    	List<String> windowHandles = getWindowHandles();
+    	String lastHandle = windowHandles.get(windowHandles.size() - 1);
+    	
+    	selectWindow(lastHandle);
+    	navigateTo(url);
+    	
+    	return lastHandle;
+    }
+    
+    public void closeWindow(String handle) {
+    	List<String> windowHandles = getWindowHandles();
+    	
+    	if(windowHandles.size() == 1) {
+    		throw new IllegalArgumentException("Cannot close last open window.");
+    	}
+    	
+    	selectWindow(handle);
+    	closeBrowser();
+    	
+    	//switch to primary window
+    	selectWindow(getWindowHandles().get(0));
+    }
+    
     public String getWindowHandle() {
         return driver.getWindowHandle();
     }

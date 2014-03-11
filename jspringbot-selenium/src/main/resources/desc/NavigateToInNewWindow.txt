@@ -1,0 +1,4 @@
+Opens a new window, then to the url specified. Returns the handle to the new window.
+
+Example:
+| Navigate To In New Window | http://www.google.com.ph |

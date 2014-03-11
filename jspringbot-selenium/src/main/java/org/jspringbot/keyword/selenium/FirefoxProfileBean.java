@@ -21,6 +21,9 @@ package org.jspringbot.keyword.selenium;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerDriverService;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +43,7 @@ public class FirefoxProfileBean {
         if(downloadDir.isDirectory()) {
             FileUtils.deleteDirectory(downloadDir);
         }
-
+        
         if(!downloadDir.isDirectory()) {
             downloadDir.mkdirs();
         }
@@ -115,6 +118,7 @@ public class FirefoxProfileBean {
         if (!StringUtils.equalsIgnoreCase(userAgent,"none")) {
             profile.setPreference("general.useragent.override", userAgent);
         }
+        
     }
 
 }
