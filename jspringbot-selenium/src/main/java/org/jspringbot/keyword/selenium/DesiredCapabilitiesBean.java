@@ -1,11 +1,16 @@
 package org.jspringbot.keyword.selenium;
 
 import org.apache.commons.lang.StringUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.Iterator;
 
 public class DesiredCapabilitiesBean {
     private DesiredCapabilities capabilities;
@@ -18,6 +23,24 @@ public class DesiredCapabilitiesBean {
 
     public void setFirefoxProfile(FirefoxProfile profile) {
         capabilities.setCapability(FirefoxDriver.PROFILE, profile);
+    }
+
+    public void setBrowserName(String browserName) {
+        if(!StringUtils.equalsIgnoreCase(browserName, "none")) {
+            capabilities.setBrowserName(browserName);
+        }
+    }
+
+    public void setVersion(String version){
+        if(!StringUtils.equalsIgnoreCase(version, "none")) {
+            capabilities.setVersion(version);
+        }
+    }
+
+    public void setPlatform(String platform){
+        if(!StringUtils.equalsIgnoreCase(platform, "none")) {
+            capabilities.setPlatform(Platform.valueOf(platform));
+        }
     }
 
     public void setProxy(String proxyHost) {
@@ -56,6 +79,19 @@ public class DesiredCapabilitiesBean {
             proxy.setHttpProxy(proxyHost);
 
             capabilities.setCapability(CapabilityType.PROXY, proxy);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void setCapabilities(String properties) throws JSONException {
+        if(!StringUtils.equalsIgnoreCase(properties, "none")) {
+            JSONObject obj = new JSONObject(properties);
+
+            Iterator<String> itr = obj.keys();
+            while(itr.hasNext()) {
+                String key = itr.next();
+                capabilities.setCapability(key, obj.getString(key));
+            }
         }
     }
 
