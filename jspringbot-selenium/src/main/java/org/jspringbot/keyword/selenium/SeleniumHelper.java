@@ -87,6 +87,10 @@ public class SeleniumHelper {
         driver.manage().window().maximize();
     }
 
+    public WebDriver getDriver() {
+    	return this.driver;
+    }
+    
     public void assignIdToElement(String id, String locator) {
         LOG.createAppender()
                 .appendBold("Assign ID To Element:")
