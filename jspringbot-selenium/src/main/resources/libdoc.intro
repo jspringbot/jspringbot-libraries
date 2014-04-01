@@ -21,6 +21,9 @@ For Firefox Support:
 For Selenium Hub Support:
 | <import resource="classpath:spring/spring-selenium-hub.xml"/>
 
+For Image Compare Support:
+| <import resource="classpath:spring/spring-selenium-image-compare.xml"/>
+
 3. A {{jspringbot.properties}} file should exist in resources. See the possible properties below.
 
 | *Key* | *Default Value* | *Description* |
@@ -48,6 +51,14 @@ For Selenium Hub Support:
 | {{selenium.grid.browserName}} | | Specifies the Selenium Grid Browser to use (ie. firefox, intenet explorer, chrome, etc) |
 | {{selenium.grid.platform}} | | Specifies the Selenium Grid Platform (ie. XP, VISTA, etc) |
 | {{selenium.grid.version}} | | Specifies the Selenium Grid Version |
+| *Image Compare Properties* | | |
+| {{selenium.compare.threshold}} | 0.0001 | Image difference threshold |
+| {{selenium.compare.image.collect.dir}} | | Directory to place collected screenshots |
+| {{selenium.compare.icompare.file}} | | iCompare tool file directory |
+| {{selenium.compare.output.dir}} | | Result output directory |
+| {{selenium.compare.base.dir}} | | Image baseline directory |
+| {{selenium.compare.environment.path}} | | Environment path include path for nodejs and graphicsmagick |
+
 
 *Sample jspringbot.properties*
 
@@ -81,6 +92,14 @@ For Selenium Hub Support:
 | selenium.grid.browserName=internet explorer
 | selenium.grid.platform=XP
 | selenium.grid.version=
+
+*Sample jspringbot.properties with Image Compare Support*
+| selenium.compare.threshold=0.0001
+| selenium.compare.image.collect.dir=${project.basedir}/src/test/resources/imgbaseline/local-firefox
+| selenium.compare.icompare.file=/icompare_v0.1/icompare.js
+| selenium.compare.output.dir=${project.build.directory}/robotframework-reports
+| selenium.compare.base.dir=${project.build.directory}/test-classes/imgbaseline/local-firefox/
+| selenium.compare.environment.path=
 
 *Sample selenium.autosave.content.type Configuration for Different File Types*
 
