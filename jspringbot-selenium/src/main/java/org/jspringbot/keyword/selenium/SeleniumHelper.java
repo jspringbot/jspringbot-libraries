@@ -805,7 +805,8 @@ public class SeleniumHelper {
         }
 
         if (!textIsSelected) {
-            throw new AssertionError(String.format("Value %s was not selected from list '%s'", locator, selectedText));
+            //throw new AssertionError(String.format("Value %s was not selected from list '%s'", locator, selectedText));
+            throw new AssertionError(String.format("Value was not selected from list"));
         }
     }
 
