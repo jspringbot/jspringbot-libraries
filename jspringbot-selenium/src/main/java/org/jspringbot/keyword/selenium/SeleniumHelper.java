@@ -1408,7 +1408,8 @@ public class SeleniumHelper {
 
     public void pageShouldContainLink(String locator) {
         if(!isElementPresent(locator,"a")) {
-            throw new AssertionError(String.format("Page should have contained link '%s' but did not", locator));
+            //throw new AssertionError(String.format("Page should have contained link '%s' but did not", locator));
+            throw new AssertionError(String.format("Page should have contained link but did not"));
         }
 
         LOG.info(String.format("Current page contains link '%s'.", locator));
