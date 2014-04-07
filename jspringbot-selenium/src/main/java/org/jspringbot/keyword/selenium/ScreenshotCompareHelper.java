@@ -1,6 +1,7 @@
 package org.jspringbot.keyword.selenium;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.openqa.selenium.OutputType;
@@ -13,6 +14,8 @@ import java.io.*;
 import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 public class ScreenshotCompareHelper implements InitializingBean {
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ScreenshotCompareHelper.class);
@@ -26,6 +29,8 @@ public class ScreenshotCompareHelper implements InitializingBean {
     protected File outputImageDir;
 
     protected File collectImageDir;
+
+    protected File collectOutputImageDir;
 
     protected File resultImageDir;
 
@@ -86,6 +91,7 @@ public class ScreenshotCompareHelper implements InitializingBean {
         baseOutputImageDir = new File(outputImageDir, "base");
         resultImageDir = new File(outputImageDir, "result");
         screenshotImageDir = new File(outputImageDir, "screenshot");
+        collectOutputImageDir = new File(outputImageDir, "collect");
 
         if(!baseOutputImageDir.isDirectory()) {
             baseOutputImageDir.mkdirs();
@@ -96,14 +102,71 @@ public class ScreenshotCompareHelper implements InitializingBean {
         if(!screenshotImageDir.isDirectory()) {
             screenshotImageDir.mkdirs();
         }
+        if(!collectOutputImageDir.isDirectory()) {
+            collectOutputImageDir.mkdirs();
+        }
     }
 
     public void compare(String filename) throws IOException, InterruptedException {
         compare(filename, threshold);
     }
 
+    public void listCollected() throws IOException {
+        FilenameFilter ff = new SuffixFileFilter("png");
+        File[] files = collectOutputImageDir.listFiles(ff);
+
+        FileOutputStream fos = new FileOutputStream(new File(collectOutputImageDir, "all.zip"));
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        ZipOutputStream zos = new ZipOutputStream(bos);
+
+        try {
+            for (File file : files) {
+                // not available on BufferedOutputStream
+                zos.putNextEntry(new ZipEntry(file.getName()));
+                zos.write(IOUtils.toByteArray(new FileInputStream(file)));
+                zos.closeEntry();
+            }
+        }
+        finally {
+            zos.close();
+        }
+
+        StringBuilder buf = new StringBuilder();
+
+        if(files != null && files.length > 0) {
+            buf.append("<ul>");
+            for (File file : files) {
+                buf.append(String.format("<li><a href='collect/%s'>%s</a>", file.getName(), file.getName()));
+            }
+
+            buf.append("<li><a href='collect/all.zip'>Download All files</a>");
+
+            buf.append("</ul>");
+        } else {
+            buf.append("<b>No collected screen shots.</b>");
+        }
+
+        LOG.html(buf.toString());
+    }
+
     public void collect(String filename) throws IOException {
-        createScreenShotFile(collectImageDir, filename);
+        File screenShotFile = createScreenShotFile(collectImageDir, filename);
+        File collected = new File(collectOutputImageDir, filename);
+
+        FileInputStream in = null;
+        FileOutputStream out = null;
+
+        try {
+            in = new FileInputStream(screenShotFile);
+            out = new FileOutputStream(collected);
+
+            IOUtils.copy(in, out);
+        } finally {
+            IOUtils.closeQuietly(in);
+            IOUtils.closeQuietly(out);
+        }
+
+        LOG.html("Screen captured: <br /> <img src='collect/%s'/>", filename);
     }
 
     public void compare(String filename, double threshold) throws IOException, InterruptedException {
