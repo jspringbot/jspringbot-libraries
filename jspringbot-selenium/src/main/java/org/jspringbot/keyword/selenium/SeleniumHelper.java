@@ -622,6 +622,24 @@ public class SeleniumHelper {
         }
     }
 
+    public void coverElement(String locator) {
+    	
+    	WebElement el = finder.find(locator);
+    	
+    	executor.executeScript(
+    			"var div = arguments[0];" +
+    			"var element = document.createElement('div')"+
+    			"element.id = 'patong'; " +
+    			"var style = document.defaultView.getComputedStyle(div); "+
+    			"element.style.cssText = style.cssText; " +
+    			"element.style.zIndex = '999'; " +
+    			"element.style.backgroundColor = 'white'; " +
+    			"element.style.position = 'absolute'; " +
+    			"div.style.position = 'relative'; " +
+    			"div.parentNode.insertBefore(element, div); "
+    			, el);
+    }
+     
     public Object executeJavascript(String code) throws IOException {
         HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
                 .appendBold("Execute Javascript:");
@@ -1971,10 +1989,10 @@ public class SeleniumHelper {
         if (!el.isEnabled()) {
             return false;
         }
-
+        
         String readOnly = el.getAttribute("readonly");
-
-        if (readOnly.equalsIgnoreCase("readonly") || readOnly.equalsIgnoreCase("true")) {
+        
+        if (readOnly != null && (readOnly.equalsIgnoreCase("readonly") || readOnly.equalsIgnoreCase("true"))) {
             return false;
         }
 
