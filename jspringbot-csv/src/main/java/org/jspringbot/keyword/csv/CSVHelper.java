@@ -163,4 +163,8 @@ public class CSVHelper {
     public String getColumnValue(String[] line, String name) {
         return currentState.getColumnValue(line, name);
     }
+    
+    public List<String> getColumnValues(int index) {
+        return currentState.getColumnValues(index);
+    }
 }
