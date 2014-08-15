@@ -1,0 +1,5 @@
+Asserts if the value of a given site catalyst variable map key is as expected in the given map. 
+
+Example:
+| ${loadEventMap}= | Get Map Of Site Catalyst Variables |		
+| Site Catalyst Variable Map Should Contain | ${loadEventMap} | pageName | foo-bar |

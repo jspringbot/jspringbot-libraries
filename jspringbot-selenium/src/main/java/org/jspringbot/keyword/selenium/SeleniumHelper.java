@@ -73,7 +73,9 @@ public class SeleniumHelper {
 
     protected File screenCaptureDir;
     
-    protected int DEFAULT_WAIT_4_PAGE = 12; 
+    protected int DEFAULT_WAIT_4_PAGE = 12;
+    
+    private int DEFAULT_OMNITURE_DEBUGGER_WAIT_TIME_IN_MS = 3000;
 
     public SeleniumHelper() {}
 
@@ -983,6 +985,38 @@ public class SeleniumHelper {
     public void goBack() {
         driver.navigate().back();
     }
+    
+	public String getHTMLSourceOfOmnitureDebuggerWindow(final String javaScript, String windowName, String decodeCheckboxNameLocator, int waitTime) {
+		String htmlSource = null;
+		String parentWindowHandle = driver.getWindowHandle();
+		executor.executeScript(javaScript);
+		try {
+			boolean windowFound = false;
+			while (!windowFound) {
+				{
+					driver = driver.switchTo().window(windowName);
+					WebElement element = driver.findElement(By.name(decodeCheckboxNameLocator));
+					if (!element.isSelected()) {
+						element.click();
+						while (!element.isSelected()) {
+							Thread.sleep(waitTime);
+						}
+					}
+					executor.executeScript("window.scrollBy(0,450)", ""); // scroll down to view the last image
+					Thread.sleep(waitTime);
+					htmlSource = driver.getPageSource();
+					driver.close();// child window closing
+					windowFound = true;
+					break;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		driver.switchTo().window(parentWindowHandle);
+		// driver.close(); // do not close for another set of actions
+		return htmlSource;
+	}
 
     public void inputPassword(String locator, String password) {
         LOG.info(String.format("Typing password into text field '%s'", locator));

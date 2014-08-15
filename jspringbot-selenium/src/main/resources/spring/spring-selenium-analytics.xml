@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:ctx="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelper">
+    <constructor-arg ref="webdriver"/>
+    <property name="screenCaptureDir" value="${selenium.screenshot.folder}"/>
+  </bean>
+  
+  <bean id="debugger" class="org.jspringbot.keyword.selenium.OmnitureDebugger"/>
+    
+  <bean class="org.jspringbot.keyword.selenium.OmnitureDebuggerBean">
+    <constructor-arg ref="debugger"/>
+    <property name="omnitureDebuggerLocation" value="${omniture.debugger.location:http://sitecatalyst.omniture.com/sc_tools/stats_debugger.html}"/>
+  	<property name="omnitureDebuggerWaitTimeInMillis" value="${omniture.debugger.wait.time.in.millis:3000}"/>
+  </bean>
+  
+  <!-- Scan components -->
+  <ctx:component-scan base-package="org.jspringbot.keyword.selenium.analytics"/>
+  <ctx:annotation-config/>
+</beans>
