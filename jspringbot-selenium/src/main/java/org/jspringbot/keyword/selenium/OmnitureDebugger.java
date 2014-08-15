@@ -13,7 +13,6 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.lang.StringUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -54,27 +53,39 @@ public class OmnitureDebugger extends SeleniumHelper {
 	}
 	
 	public void siteCatalystVariableMapShouldContain(HashMap<String,String> map, String scVar, String expectedValue){
-		String actualValue = map.get(scVar);
-		LOG.createAppender()
-			.appendBold("Site Catalyst Variable And Value:")
-			.appendProperty("scVar", scVar)
-			.appendProperty("Expected Value:", expectedValue)
-			.appendProperty("Actual Value:", actualValue)
-			.log();
-        if (!actualValue.equals(expectedValue)) {
-            throw new AssertionError("The value of the variable contained in the map is not as expected.");
-        }
+		try {
+			String actualValue = map.get(scVar);
+			LOG.createAppender()
+					.appendBold("Site Catalyst Variable And Value:")
+					.appendProperty("scVar", scVar)
+					.appendProperty("Expected Value:", expectedValue)
+					.appendProperty("Actual Value:", actualValue)
+					.log();
+			if (!actualValue.equals(expectedValue)) {
+				throw new AssertionError("The value of the variable contained in the map is not as expected.");
+			}
+		} catch (Exception e) {
+			LOG.createAppender()
+					.appendBold("No Site Catalyst Variable(s) Found In Map.")
+					.log();
+		}
     }
     
     public void siteCatalystVariableListShouldContain(ArrayList<String> aList, String expectedKeyValuePair){
-    	LOG.createAppender()
-		.appendBold("Site Catalyst Variable And Value:")
-		.appendProperty("Expected Key-Value Pair In List:", expectedKeyValuePair)
-		.appendCode(printList(aList))
-		.log();	
-    	if (!aList.contains(expectedKeyValuePair)) {
-    		throw new AssertionError("The expected key-value pair is not present in the list.");
-    	}    		 
+		try {
+			LOG.createAppender()
+					.appendBold("Site Catalyst Variable And Value:")
+					.appendProperty("Expected Key-Value Pair In List:", expectedKeyValuePair)
+					.appendCode(printList(aList))
+					.log();
+			if (!aList.contains(expectedKeyValuePair)) {
+				throw new AssertionError("The expected key-value pair is not present in the list.");
+			}
+		} catch (Exception e) {
+			LOG.createAppender()
+					.appendBold("No Site Catalyst Variable(s) Found In List.")
+					.log();
+		}
     }
 
 	private String getStatsDebuggerLocation() {

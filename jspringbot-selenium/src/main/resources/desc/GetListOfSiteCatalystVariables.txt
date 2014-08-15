@@ -2,8 +2,6 @@ Retrieves the list of Site Catalyst Variables (Load Event or Click Event).
 
 Example:
 | ${actualValuesList}= | Get List Of Site Catalyst Variables |
-| ${expectedValuesList}= | Create List | pageName=foo | c3=bar |
-| EL Should Be True | $[containsAny(var('expectedValuesList'),var('actualValuesList'))] |
 
 Below are some site catalyst variables that can be retrieved.
 

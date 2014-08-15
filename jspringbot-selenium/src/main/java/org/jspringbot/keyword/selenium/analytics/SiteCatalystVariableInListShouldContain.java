@@ -31,7 +31,7 @@ import org.springframework.stereotype.Component;
 @KeywordInfo(
         name = "Site Catalyst Variable List Should Contain",
         parameters = {"list", "expectedKeyValuePair"}, 
-        description = "classpath:desc/GetListOfSiteCatalystVariables.txt"
+        description = "classpath:desc/SiteCatalystVariableListShouldContain.txt"
 )
 public class SiteCatalystVariableInListShouldContain implements Keyword {
 

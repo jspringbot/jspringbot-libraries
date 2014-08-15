@@ -1,5 +1,7 @@
-Asserts if the site catalyst variable (key-value pair) is as expected in the given list. 
+Asserts if the value of a given site catalyst variable map key is as expected in the given map. 
 
 Example:
-| ${clickEventList}= | Get List Of Site Catalyst Variables |
-| Site Catalyst Variable Map Should Contain | ${clickEventList} | pev2=foo-bar |
+| Navigate To | http:foo.bar.com/page1 |
+| Delay | 1000 | # add/remove whenever needed |
+| ${loadEventMap}= | Get Map Of Site Catalyst Variables |		
+| Site Catalyst Variable Map Should Contain | ${loadEventMap} | pageName | foo-bar |
