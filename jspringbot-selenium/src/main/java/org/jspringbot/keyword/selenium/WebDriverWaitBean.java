@@ -7,8 +7,10 @@ import java.util.concurrent.TimeUnit;
 public class WebDriverWaitBean {
 
     private WebDriver driver;
+    
+    private int downloadTimeoutInSeconds;
 
-    public WebDriverWaitBean(WebDriver driver) {
+	public WebDriverWaitBean(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -23,4 +25,13 @@ public class WebDriverWaitBean {
     public void setScriptWaitInSeconds(int wait) {
         driver.manage().timeouts().setScriptTimeout(wait, TimeUnit.SECONDS);
     }
+    
+	public int getDownloadTimeoutInSeconds() {
+		return downloadTimeoutInSeconds;
+	}
+
+	public void setDownloadTimeoutInSeconds(int downloadTimeoutInSeconds) {
+		this.downloadTimeoutInSeconds = downloadTimeoutInSeconds;
+	}
+    
 }

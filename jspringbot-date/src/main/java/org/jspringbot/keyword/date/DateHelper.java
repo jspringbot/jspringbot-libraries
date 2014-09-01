@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -147,6 +148,24 @@ public class DateHelper {
         LOG.keywordAppender().appendProperty("Print Result", formattedValue);
 
         return formattedValue;
+    }
+    
+    public String formatEpochTimeStamp(String epoch, String format, String timeZoneId) {
+    	LOG.keywordAppender()
+        		.appendProperty("Epoch Timestamp", epoch)
+    			.appendProperty("Date Time Format", format)
+    			.appendProperty("Time Zone Id", timeZoneId);
+    	
+    	SimpleDateFormat sdf = new SimpleDateFormat(format);
+    	sdf.setTimeZone(TimeZone.getTimeZone(timeZoneId));
+    	Date date = new Date(Long.parseLong(epoch) * 1000);
+    	
+    	String formattedValue = sdf.format(date);
+    	
+    	LOG.keywordAppender().appendProperty("Formatted Result", formattedValue);
+    	
+    	return formattedValue;
+    	    	
     }
 
 

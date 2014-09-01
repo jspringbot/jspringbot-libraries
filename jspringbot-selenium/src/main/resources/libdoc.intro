@@ -13,7 +13,7 @@ Configure the following to use jspringbot-selenium.
 |    </dependency>
 |  </dependencies>
 
-2. Import spring-http in {{jspringbot-global.xml}}
+2. Import any of the following support in {{jspringbot-global.xml}}
 
 For Firefox Support:
 | <import resource="classpath:spring/spring-selenium-firefox.xml"/>
@@ -23,6 +23,9 @@ For Selenium Hub Support:
 
 For Image Compare Support:
 | <import resource="classpath:spring/spring-selenium-image-compare.xml"/>
+
+For Site Catalyst Support:
+| <import resource="classpath:spring/spring-selenium-analytics.xml"/>
 
 3. A {{jspringbot.properties}} file should exist in resources. See the possible properties below.
 
@@ -58,7 +61,9 @@ For Image Compare Support:
 | {{selenium.compare.output.dir}} | | Result output directory |
 | {{selenium.compare.base.dir}} | | Image baseline directory |
 | {{selenium.compare.environment.path}} | | Environment path include path for nodejs and graphicsmagick |
-
+| *Omniture Site Catalyst Automation Properties* | | |
+| {{omniture.debugger.location}} | http://sitecatalyst.omniture.com/sc_tools/stats_debugger.html | Third party stats debugger tool. If this becomes unavailable in the future, override the value with the new location. |
+| {{omniture.debugger.wait.time.in.millis}} | 3000 | Wait time for URL-decoding of site catalyst variables and copying of html source of the stats debugger window. |
 
 *Sample jspringbot.properties*
 
@@ -100,6 +105,10 @@ For Image Compare Support:
 | selenium.compare.output.dir=${project.build.directory}/robotframework-reports
 | selenium.compare.base.dir=${project.build.directory}/test-classes/imgbaseline/local-firefox/
 | selenium.compare.environment.path=
+
+*Sample jspringbot.properties with Site Catalyst (Omniture) Support*
+| omniture.debugger.location=http://sitecatalyst.omniture.com/sc_tools/stats_debugger.html
+| omniture.debugger.wait.time.in.millis=2000
 
 *Sample selenium.autosave.content.type Configuration for Different File Types*
 

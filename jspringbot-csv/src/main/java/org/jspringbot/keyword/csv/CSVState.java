@@ -238,6 +238,20 @@ public class CSVState {
     public String getColumnValue(String[] line, String name) {
         return line[headers.get(name)];
     }
+    
+    public List<String> getColumnValues(int index) {    	
+        
+		List<String[]> results = list();
+		List<String> columnList = new ArrayList<String>(results.size());
+
+		for (String[] line : results) {
+			columnList.add(line[index]);
+		}
+
+		return columnList;
+
+    }
+
 
     public List<String> listColumnName(String name) {
         List<String> result = listColumnIndex(headers.get(name));

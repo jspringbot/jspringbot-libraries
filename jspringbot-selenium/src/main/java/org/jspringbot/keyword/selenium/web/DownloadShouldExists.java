@@ -1,17 +1,19 @@
 package org.jspringbot.keyword.selenium.web;
 
+import java.io.File;
+
 import org.jspringbot.KeywordInfo;
 import org.jspringbot.keyword.selenium.AbstractSeleniumKeyword;
 import org.jspringbot.keyword.selenium.FirefoxProfileBean;
+import org.jspringbot.keyword.selenium.WebDriverWaitBean;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
-
-import java.io.File;
 
 @Component
 @KeywordInfo(
@@ -25,6 +27,8 @@ public class DownloadShouldExists extends AbstractSeleniumKeyword implements App
 
     private WebDriver driver;
 
+    private WebDriverWaitBean waitBean;
+
     @Override
     public Object execute(Object[] params) throws Exception {
         if(profileBean == null) {
@@ -35,7 +39,7 @@ public class DownloadShouldExists extends AbstractSeleniumKeyword implements App
         final File downloadDir = profileBean.getDownloadDir();
         final File download = new File(downloadDir, filename);
 
-        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+        (new WebDriverWait(driver, waitBean.getDownloadTimeoutInSeconds())).until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver d) {
                 return download.isFile();
             }
@@ -53,6 +57,7 @@ public class DownloadShouldExists extends AbstractSeleniumKeyword implements App
         try {
             profileBean = applicationContext.getBean(FirefoxProfileBean.class);
             driver = applicationContext.getBean(WebDriver.class);
+            waitBean = applicationContext.getBean(WebDriverWaitBean.class);
         } catch(BeansException ignore) {
         }
     }
