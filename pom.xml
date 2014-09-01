@@ -226,6 +226,11 @@
         <artifactId>jspringbot-xml</artifactId>
         <version>${project.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.jspringbot</groupId>
+        <artifactId>jspringbot-csv</artifactId>
+        <version>${project.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 </project>
