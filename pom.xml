@@ -126,7 +126,7 @@
       <plugin>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-maven-plugin</artifactId>
-        <version>1.0</version>
+        <version>${jspringbot.version}</version>
       </plugin>
     </plugins>
   </build>
