@@ -56,7 +56,6 @@
     <dependency>
       <groupId>org.jspringbot</groupId>
       <artifactId>jspringbot-pretty-logger</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>de.odysseus.juel</groupId>

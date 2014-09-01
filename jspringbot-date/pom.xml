@@ -65,7 +65,6 @@
     <dependency>
       <groupId>org.jspringbot</groupId>
       <artifactId>jspringbot-expression</artifactId>
-      <version>${project.version}</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>

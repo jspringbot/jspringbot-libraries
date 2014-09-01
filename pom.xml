@@ -34,12 +34,14 @@
   <version>1.0-SNAPSHOT</version>
   <name>jspringbot-libraries</name>
   <packaging>pom</packaging>
+  <url>http://jspringbot.org</url>
 
   <properties>
     <spring.version>3.1.0.RELEASE</spring.version>
     <hibernate.version>3.3.2.GA</hibernate.version>
     <junit.version>4.8.1</junit.version>
     <junit.addons.version>1.4</junit.addons.version>
+    <jspringbot.version>1.0</jspringbot.version>
     <libdoc.name>jSpringBot Library</libdoc.name>
   </properties>
 
@@ -54,12 +56,34 @@
 
   <developers>
     <developer>
-      <name>Shiela D. Buitizon</name>
+      <id>owner</id>
       <email>badong2210@yahoo.com</email>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
     </developer>
     <developer>
-      <name>Alvin R. de Leon</name>
+      <id>owner</id>
       <email>alvinrdeleon@me.com</email>
+      <roles>
+        <role>architect</role>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>developer1</id>
+      <email>bernardilago@gmail.com</email>
+      <roles>
+        <role>developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>developer</id>
+      <email>siegcollado@gmail.com</email>
+      <roles>
+        <role>developer</role>
+      </roles>
     </developer>
   </developers>
 
@@ -91,21 +115,18 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>2.1.2</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <use>false</use>
+          <links>
+            <link>http://java.sun.com/javase/6/docs/api/</link>
+          </links>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-maven-plugin</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
       </plugin>
     </plugins>
   </build>
@@ -174,6 +195,36 @@
         <groupId>commons-codec</groupId>
         <artifactId>commons-codec</artifactId>
         <version>1.4</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jspringbot</groupId>
+        <artifactId>jspringbot</artifactId>
+        <version>${jspringbot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jspringbot</groupId>
+        <artifactId>jspringbot-expression</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jspringbot</groupId>
+        <artifactId>jspringbot-pretty-logger</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jspringbot</groupId>
+        <artifactId>jspringbot-date</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jspringbot</groupId>
+        <artifactId>jspringbot-json</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.jspringbot</groupId>
+        <artifactId>jspringbot-xml</artifactId>
+        <version>${project.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
