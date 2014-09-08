@@ -19,7 +19,7 @@
 package org.jspringbot.keyword.selenium.analytics;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.jspringbot.Keyword;
 import org.jspringbot.KeywordInfo;
@@ -29,11 +29,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(
-        name = "Site Catalyst Variable List Should Contain",
-        parameters = {"list", "expectedKeyValuePair"}, 
-        description = "classpath:desc/SiteCatalystVariableListShouldContain.txt"
+        name = "Site Catalyst Variable Map Should Contain",
+        parameters = {"map", "siteCatalystVariable", "expectedValue"}, 
+        description = "classpath:desc/SiteCatalystVariableMapShouldContain.txt"
 )
-public class SiteCatalystVariableInListShouldContain implements Keyword {
+public class SiteCatalystVariableMapShouldContain implements Keyword {
 
     @Autowired
     protected OmnitureDebugger debugger;
@@ -42,7 +42,8 @@ public class SiteCatalystVariableInListShouldContain implements Keyword {
 	@Override
     public Object execute(Object[] params) throws IOException, InterruptedException {
         
-    	debugger.siteCatalystVariableListShouldContain((ArrayList<String>)params[0], String.valueOf(params[1]));
+    	debugger.siteCatalystVariableMapShouldContain((HashMap<String, String>) params[0], String.valueOf(params[1]), String.valueOf(params[2]));
     	return null;
+    	
     }
 }

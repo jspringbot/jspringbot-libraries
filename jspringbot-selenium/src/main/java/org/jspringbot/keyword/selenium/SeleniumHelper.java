@@ -1583,9 +1583,10 @@ public class SeleniumHelper {
         if (key.startsWith("\\") && key.length() > 1) {
             int keyCode = Integer.valueOf(key.substring(2));
             key = mapAsciiKeyCodeToKey(keyCode) ;
+            System.out.println("Key: " + key);
         }
 
-        if (key.length() > 1) {
+        if (key.length() < 1) {
             throw new IllegalArgumentException(String.format("Key value '%s' is invalid.", key));
         }
 

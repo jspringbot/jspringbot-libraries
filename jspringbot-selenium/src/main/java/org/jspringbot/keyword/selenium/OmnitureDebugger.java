@@ -68,6 +68,7 @@ public class OmnitureDebugger extends SeleniumHelper {
 			LOG.createAppender()
 					.appendBold("No Site Catalyst Variable(s) Found In Map.")
 					.log();
+			throw new IllegalStateException("No Site Catalyst Variable(s) Found In Map.");
 		}
     }
     
@@ -85,6 +86,7 @@ public class OmnitureDebugger extends SeleniumHelper {
 			LOG.createAppender()
 					.appendBold("No Site Catalyst Variable(s) Found In List.")
 					.log();
+			throw new IllegalStateException("No Site Catalyst Variable(s) Found In List.");
 		}
     }
 
