@@ -1,0 +1,187 @@
+var meta = document.createElement('meta');
+meta.name = "http-equiv";
+meta.content = "Content-type: text/html; charset=UTF-8";
+document.getElementsByTagName('head')[0].appendChild(meta);
+
+function s_rep(s,o,n) {
+	var
+		i=s.indexOf(o),
+		l=n.length>0?n.length:1;
+	while(s&&i>=0){
+		s=s.substring(0,i)+n+s.substring(i+o.length);
+		i=s.indexOf(o,i+l)
+	}
+	return s
+}
+
+function s_epa(s) {
+	return unescape(s_rep(s,'+',' '))
+}
+
+// Requests in Images, Flash Movies, and global/window member image objects
+function request_list_get() {
+	var
+		request_list = new Array;
+	if (window.opener) {
+		// Images
+		if (window.opener.document.images) {
+			for (var image_num = 0;image_num < window.opener.document.images.length;image_num++) {
+				var
+					src = window.opener.document.images[image_num].src;
+				if (src.indexOf('/b/ss/') >= 0) {
+					var
+						request = new Object;
+					request.method = 'Image';
+					request.url    = src;
+					request_list[request_list.length] = request;
+				}
+			}
+		}
+		// Global Image Objects
+		for (var window_member in window.opener) {
+			if ((window_member.substring(0,4) == 's_i_') && (window.opener[window_member].src)) {
+				var
+					src = window.opener[window_member].src;
+				if (src.indexOf('/b/ss/') >= 0) {
+					var
+						request = new Object;
+					request.method = 'Image';
+					request.url    = src;
+					request_list[request_list.length] = request;
+				}
+			}
+		}
+		// Flash Movies
+		var
+			movie_list = new Array;
+		function get_movies(obj) {
+			if (obj) {
+				try {
+					if ((obj.tagName) &&
+					    ((obj.tagName.toUpperCase() == 'OBJECT') ||
+					     (obj.tagName.toUpperCase() == 'EMBED'))) {
+						obj.GetVariable('_root'); // Call to throw and error if this is not a movie
+						movie_list[movie_list.length] = obj;
+					}
+				} catch(e) {}
+				obj = obj.firstChild;
+				while (obj) {
+					get_movies(obj);
+					obj = obj.nextSibling;
+				}
+			}
+		}
+		if (window.opener.document) {
+			get_movies(window.opener.document.body);
+			for (var movie_num = 0;movie_num < movie_list.length;movie_num++) {
+				try {
+					var
+						movie = movie_list[movie_num],
+						movie_request_list_str = movie.GetVariable("_root.s_s.requestList"),
+						movie_request_list = (movie_request_list_str ? movie_request_list_str.split(',') : 0);
+					if (movie_request_list) {
+						for (var movie_request_num = 0;movie_request_num < movie_request_list.length;movie_request_num++) {
+							var
+								request = new Object;
+							request.method = 'Flash';
+							request.url    = movie_request_list[movie_request_num];
+							request_list[request_list.length] = request;
+						}
+					}
+				} catch(e) {}
+			}
+		}
+	}
+
+	return request_list;
+}
+
+function request_list_display(request_list,auto_refresh,url_decode) {
+	var
+		cell = document.getElementById('request_list_cell'),
+		display = '';
+	if (cell) {
+		if ((auto_refresh) || (cell.innerHTML.toUpperCase().indexOf("TABLE") < 0)) {
+			display += "<table border=\"0\" cellpadding=\"2\" cellspacing=\"1\" width=\"100%\">";
+			if (request_list.length > 0) {
+				for (var request_num = 0;request_num < request_list.length;request_num++) {
+					display += ''
+						+ "<tr bgcolor=\"" + (request_num % 2 == 0 ? "#FFFFFF" : "#EFEFEF") + "\"><td style=\"font:11px arial,sans-serif;color:#000000;\">"
+						+ "<span style=\"font:bold 11px arial,sans-serif;color:#000000;\">" + request_list[request_num].method + "</span><br>"
+						+ (url_decode ? s_epa(s_rep(request_list[request_num].url,"&","<br>")) : s_rep(request_list[request_num].url,"&","<br>"))
+						+ "</td></tr>"
+					;
+				}
+			} else {
+				display += "<tr><td align=\"center\" style=\"font:11px arial,sans-serif;color:#FF0000;\">No Requests Found</td></tr>";
+			}
+			display += "</table>";
+
+			cell.innerHTML = display;
+		}
+	}
+}
+
+function request_list_run() {
+	request_list_display(
+		request_list_get(),
+		window.auto_refresh,
+		window.url_decode
+	);
+	setTimeout("request_list_run()",5000);
+}
+
+// Header
+document.write(''
+	+ "<table border=\"0\" cellpadding=\"2\" cellspacing=\"1\" width=\"100%\">"
+	+ "<form name=\"debugger\">"
+	+ "<tr bgcolor=\"#293431\"><td height=\"24\" style=\"font:bold 14px arial,sans-serif;color:#FFFFFF;\">&nbsp;&nbsp;Omniture Debugger</td></tr>"
+	+ "<tr><td style=\"font:bold 11px arial,sans-serif;color:#000000;\"><ul>"
+	+ "<li>This tool will recheck and refresh the request list every 5 seconds in the case that an image source changes or another flash event was tracked.  You can disable the auto refresh below.</li>"
+	+ "<li>This tool will not work with sites that use frames.</li>"
+	+ "</ul></td></tr>"
+	+ "<tr><td><input type=\"button\" name=\"close1\" value=\"Close\" onclick=\"window.close();\"></td></tr>"
+	+ "</table>"
+);
+
+// Requests 
+document.write(''
+	+ "<table border=\"0\" cellpadding=\"2\" cellspacing=\"1\" width=\"100%\">"
+	+ "<tr><td height=\"8\"></td></tr>"
+	+ "<tr><td style=\"font:bold 11px arial,sans-serif;color:#000000;\">Data Collection Requests:&nbsp;&nbsp;"
+	+ "<span style=\"font:11px arial,sans-serif;color:#000000;\">URL Decode</span>&nbsp;"
+	+ "<input type=\"checkbox\" name=\"url_decode\" onclick=\"window.url_decode=this.checked;request_list_run()\">&nbsp;&nbsp;"
+	+ "<span style=\"font:11px arial,sans-serif;color:#000000;\">Auto Refresh</span>&nbsp;"
+	+ "<input type=\"checkbox\" name=\"auto_refresh\" onclick=\"window.auto_refresh=this.checked\" CHECKED>"
+	+ "</td></tr>"
+	+ "</table>"
+	+ "<table border=\"0\" cellpadding=\"2\" cellspacing=\"1\" width=\"100%\">"
+	+ "<tr><td id=\"request_list_cell\" align=\"center\"></td></tr>"
+	+ "</table>"
+);
+
+// Footer
+document.write(''
+	+ "<table border=\"0\" cellpadding=\"2\" cellspacing=\"1\" width=\"100%\">"
+	+ "<tr><td height=\"8\"></td></tr>"
+	+ "<tr><td><input type=\"button\" name=\"close2\" value=\"Close\" onclick=\"window.close();\"></td></tr>"
+	+ "</form>"
+	+ "</table>"
+);
+
+// Title, status, and background color
+document.title = 'Omniture Debugger';
+window.status = 'Omniture Debugger';
+document.bgColor = "#CECECE";
+
+// Usage tracking
+var
+	account_set = '';
+document.write('<im'+'g sr'+'c="http://support.112.2O7.net/b/ss/support/1/TAG/s0.318667001404895861/?pageName=Stats%20Debugger&prop1='+escape(account_set)+'" width="0" height="0" border="0" alt="0">');
+
+document.close();
+
+// Get and display requests
+window.url_decode = false;
+window.auto_refresh = true;
+request_list_run();
