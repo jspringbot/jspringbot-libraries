@@ -29,7 +29,7 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Get Map Of Site Catalyst Events",
-        description = "classpath:desc/GetMapOfSiteCatalystVariables.txt"
+        description = "classpath:desc/GetMapOfSiteCatalystEvents.txt"
 )
 public class GetMapOfSiteCatalystEvents implements Keyword {
 
