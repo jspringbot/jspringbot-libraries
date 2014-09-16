@@ -2,6 +2,7 @@ package org.jspringbot.keyword.selenium;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -52,6 +53,14 @@ public class OmnitureDebugger extends SeleniumHelper {
 		return getSiteCatalystMapFromHtmlSource(htmlSource);
 	}
 	
+	public HashMap<String,Collection<String>> getMapOfSiteCatalystEvents() {
+		String htmlSource = helper.getHTMLSourceOfOmnitureDebuggerWindow(
+				getStatsDebuggerLocation(), OMNITURE_DEBUGGER_WINDOW_NAME,
+				OMNITURE_DEBUGGER_URL_DECODE_CHECKBOX,
+				getOmnitureDebuggerWaitTimeInMillis());
+		return getSiteCatalystEventsListFromHtml(htmlSource);
+	}
+	
 	public void siteCatalystVariableMapShouldContain(HashMap<String,String> map, String scVar, String expectedValue){
 		try {
 			String actualValue = map.get(scVar);
@@ -72,12 +81,12 @@ public class OmnitureDebugger extends SeleniumHelper {
 		}
     }
     
-    public void siteCatalystVariableListShouldContain(ArrayList<String> aList, String expectedKeyValuePair){
+    public void siteCatalystVariableListShouldContain(Collection<String> aList, String expectedKeyValuePair){
 		try {
 			LOG.createAppender()
 					.appendBold("Site Catalyst Variable And Value:")
 					.appendProperty("Expected Key-Value Pair In List:", expectedKeyValuePair)
-					.appendCode(printList(aList))
+					.appendCode(printList((ArrayList<String>) aList))
 					.log();
 			if (!aList.contains(expectedKeyValuePair)) {
 				throw new AssertionError("The expected key-value pair is not present in the list.");
@@ -93,7 +102,7 @@ public class OmnitureDebugger extends SeleniumHelper {
 	private String getStatsDebuggerLocation() {
 		return "javascript:(window.open(\"\",\""
 				+ OMNITURE_DEBUGGER_WINDOW_NAME
-				+ "\",\"width=600,height=600,location=0,menubar=0,status=1,toolbar=0,resizable=1,scrollbars=1\").document.write(\"<script language='JavaScript' src='"
+				+ "\",\"width=600,height=600,location=0,menubar=0,status=1,toolbar=0,resizable=1,scrollbars=1\").document.write(\"<script charset='utf-8' language='JavaScript' src='"
 				+ getOmnitureDebuggerLocation() 
 				+ "'></script>\"));";
 	}
@@ -110,6 +119,21 @@ public class OmnitureDebugger extends SeleniumHelper {
 			LOG.createAppender()
 					.appendBold("No Site Catalyst Variable(s) Found.").log();
 	        return null;
+		}
+    }
+    
+    private HashMap<String,Collection<String>> getSiteCatalystEventsListFromHtml(String htmlSource) {
+		try {
+			Map<String, Collection<String>> events = new HashMap<String, Collection<String>>();
+			events = (HashMap<String, Collection<String>>) parseImagesFiredAndReturnSiteCatalystVariables(htmlSource);
+			LOG.createAppender()
+				.appendBold("Site Catalyst Events:")
+				.appendCode(printMap(events)).log();
+			return (HashMap<String, Collection<String>>) events;
+		} catch (Exception e) {
+			LOG.createAppender()
+					.appendBold("No Site Catalyst Event(s) Found.").log();
+			return null;
 		}
     }
     
@@ -132,11 +156,11 @@ public class OmnitureDebugger extends SeleniumHelper {
 		}
     }
     
-	private String printMap(Map<String, String> map) {
+	private <K, V> String printMap(Map<K, V> map) {
 		StringBuilder sb = new StringBuilder();
-		Iterator<Entry<String, String>> iter = map.entrySet().iterator();
+		Iterator<Entry<K, V>> iter = map.entrySet().iterator();
 		while (iter.hasNext()) {
-			Entry<String, String> entry = iter.next();
+			Entry<K, V> entry = iter.next();
 			sb.append(entry.getKey());
 			sb.append(" = ");
 			sb.append(entry.getValue());
@@ -178,6 +202,29 @@ public class OmnitureDebugger extends SeleniumHelper {
 			return null;
 		}
 	}
+	
+	private Map<String,Collection<String>> parseImagesFiredAndReturnSiteCatalystVariables(String htmlSource){
+    	Map<String,Collection<String>> eventMap = new HashMap<String,Collection<String>>();
+    	Document doc = Jsoup.parse(htmlSource);   	
+    	Elements tds = doc.select("td");
+    	String[] tdList = null;   	
+    	int counter = 0;
+    	String eventPrefix = "Event";
+    	for (Element td : tds) {    		
+    		if (td.text().contains("Image")) {
+    			tdList = td.html().split("<br />");   			
+    	    	List<String> actualList = new ArrayList<String>(Arrays.asList(tdList));
+    	    	actualList.remove(0);   // remove from list ---- <span style="font:bold 11px arial,sans-serif;color:#000000;">Image</span>   	
+    	    	eventMap.put(eventPrefix + counter, actualList);
+    	    	counter = counter + 1;
+    		}
+    	}
+    	eventMap.remove("Event0"); // This contains the first td element that is not needed
+    	LOG.createAppender()
+			.appendBold("Number Of Events Captured")
+			.appendCode(String.format("%s", eventMap.size())).log();
+    	return eventMap;
+    }
 	
 	@SuppressWarnings("unchecked")
 	private HashMap<String, String> sortByKeys(Map<String, String> scVariables) {
