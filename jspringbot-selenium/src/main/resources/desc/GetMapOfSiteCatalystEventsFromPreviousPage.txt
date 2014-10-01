@@ -1,0 +1,6 @@
+Retrieves a map of site catalyst events involving page redirects. 
+
+Example:
+| ${eventsMap}= | Get Map Of Site Catalyst Events From Previous Page |
+| ${previousPageclickEventList}= | EL Evaluate | $[map:getObject(var('eventsMap'), 'Event3')] |
+| Site Catalyst Variable List Should Contain | ${previousPageclickEventList} | c37=foo |

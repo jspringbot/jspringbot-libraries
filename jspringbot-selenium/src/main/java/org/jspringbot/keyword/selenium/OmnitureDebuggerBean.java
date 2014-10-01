@@ -18,5 +18,9 @@ public class OmnitureDebuggerBean {
 	public void setOmnitureDebuggerWaitTimeInMillis(String time) {
 		debugger.setOmnitureDebuggerWaitTimeInMillis(Integer.parseInt(time));
 	}
+	
+	public void setOmnitureDebuggerPreviousPageClickEventWaitTimeInMillis(String time) {
+		debugger.setPreviousPageClickEventWaitTimeInMillis(Integer.parseInt(time));
+	}
 
 }

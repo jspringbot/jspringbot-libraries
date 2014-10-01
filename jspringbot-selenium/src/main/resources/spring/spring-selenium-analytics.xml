@@ -19,6 +19,7 @@
     <constructor-arg ref="debugger"/>
     <property name="omnitureDebuggerLocation" value="${omniture.debugger.location:http://sitecatalyst.omniture.com/sc_tools/stats_debugger.html}"/>
   	<property name="omnitureDebuggerWaitTimeInMillis" value="${omniture.debugger.wait.time.in.millis:3000}"/>
+  	<property name="omnitureDebuggerPreviousPageClickEventWaitTimeInMillis" value="${omniture.debugger.previous.page.click.event.wait.time.in.millis:800}"/>
   </bean>
   
   <!-- Scan components -->

@@ -30,6 +30,7 @@ public class OmnitureDebugger extends SeleniumHelper {
 	// Values are set using OmnitureDebuggerBean
 	private String omnitureDebuggerLocation;
 	private int omnitureDebuggerWaitTimeInMillis;
+	private int omnitureDebuggerPreviousPageClickEventWaitTimeInMillis;
 
 	private static final String OMNITURE_DEBUGGER_WINDOW_NAME = "stats_debugger";
 	private static final String OMNITURE_DEBUGGER_URL_DECODE_CHECKBOX = "url_decode";
@@ -58,6 +59,15 @@ public class OmnitureDebugger extends SeleniumHelper {
 				getStatsDebuggerLocation(), OMNITURE_DEBUGGER_WINDOW_NAME,
 				OMNITURE_DEBUGGER_URL_DECODE_CHECKBOX,
 				getOmnitureDebuggerWaitTimeInMillis());
+		return getSiteCatalystEventsListFromHtml(htmlSource);
+	}
+	
+	// same as the getMapOfSiteCatalystEvents() except for a slower wait in in millis
+	public HashMap<String,Collection<String>> getMapOfSiteCatalystEventsFromPreviousPage() {
+		String htmlSource = helper.getHTMLSourceOfOmnitureDebuggerWindow(
+				getStatsDebuggerLocation(), OMNITURE_DEBUGGER_WINDOW_NAME,
+				OMNITURE_DEBUGGER_URL_DECODE_CHECKBOX,
+				getPreviousPageClickEventWaitTimeInMillis());
 		return getSiteCatalystEventsListFromHtml(htmlSource);
 	}
 	
@@ -256,6 +266,14 @@ public class OmnitureDebugger extends SeleniumHelper {
 
 	public int getOmnitureDebuggerWaitTimeInMillis() {
 		return omnitureDebuggerWaitTimeInMillis;
+	}
+	
+	public int getPreviousPageClickEventWaitTimeInMillis() {
+		return omnitureDebuggerPreviousPageClickEventWaitTimeInMillis;
+	}
+
+	public void setPreviousPageClickEventWaitTimeInMillis(int previousClickEventWaitTimeInMillis) {
+		this.omnitureDebuggerPreviousPageClickEventWaitTimeInMillis = previousClickEventWaitTimeInMillis;
 	}
 
 }
