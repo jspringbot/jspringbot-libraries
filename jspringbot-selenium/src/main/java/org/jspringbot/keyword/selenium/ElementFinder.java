@@ -97,7 +97,13 @@ public class ElementFinder {
         }
 
         if (validateResult) {
-            Validate.notNull(element, String.format("No element found given locator '%s'.", locatorStr));
+            //Validate.notNull(element, String.format("No element found given locator '%s'.", locatorStr));
+        	/*
+        	output.xml file being corrupted when i18n is being included as locator. i.e. IllegalStateException: No element found given locator 'text=登出'
+            UnicodeEncodeError: 'ascii' codec can't encode characters in position 60-61: ordinal not in range(128)
+        	temporarily removing locatorStr.
+        	*/
+        	Validate.notNull(element, String.format("Element locator not found."));
         }
 
         return element;
