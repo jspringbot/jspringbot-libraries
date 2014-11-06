@@ -727,10 +727,9 @@ public class SeleniumHelper {
                 .appendBold("Get Horizontal Position:")
                 .appendCss(locator)
                 .appendProperty("X", point.getX())
-                .appendProperty("Y", point.getY())
                 .log();
 
-        return point.getY();
+        return point.getX();
     }
 
     public int getVerticalPosition(String locator) {
@@ -741,7 +740,6 @@ public class SeleniumHelper {
         LOG.createAppender()
                 .appendBold("Get Vertical Position:")
                 .appendCss(locator)
-                .appendProperty("X", point.getX())
                 .appendProperty("Y", point.getY())
                 .log();
 
