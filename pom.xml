@@ -39,7 +39,7 @@
     <hibernate.version>3.3.2.GA</hibernate.version>
     <junit.version>4.8.1</junit.version>
     <junit.addons.version>1.4</junit.addons.version>
-    <jspringbot.version>1.0</jspringbot.version>
+    <jspringbot.version>1.1</jspringbot.version>
     <libdoc.name>jSpringBot Library</libdoc.name>
   </properties>
 
