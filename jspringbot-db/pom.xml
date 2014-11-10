@@ -25,12 +25,12 @@
   <parent>
     <groupId>org.jspringbot</groupId>
     <artifactId>jspringbot-libraries</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
   </parent>
 
   <groupId>org.jspringbot</groupId>
   <artifactId>jspringbot-db</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
 
   <packaging>jar</packaging>
   <name>jspringbot-db</name>

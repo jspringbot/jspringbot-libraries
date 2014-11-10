@@ -29,7 +29,7 @@
  
   <groupId>org.jspringbot</groupId>
   <artifactId>jspringbot-libraries</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
   <name>jspringbot-libraries</name>
   <packaging>pom</packaging>
   <url>http://jspringbot.org</url>
