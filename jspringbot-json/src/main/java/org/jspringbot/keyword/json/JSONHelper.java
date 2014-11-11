@@ -25,6 +25,7 @@ import com.sdicons.json.model.JSONValue;
 import com.sdicons.json.parser.JSONParser;
 import net.minidev.json.JSONObject;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.CharEncoding;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
 import org.jspringbot.syntax.HighlightRobotLogger;
@@ -60,7 +61,18 @@ public class JSONHelper {
             editor.setAsText(jsonString);
             Resource resource = (Resource) editor.getValue();
 
-            jsonString = new String(IOUtils.toCharArray(resource.getInputStream()));
+            jsonString = new String(IOUtils.toCharArray(resource.getInputStream(), CharEncoding.UTF_8));
+        }
+
+        if(!StringUtils.startsWith(jsonString, "[") || !StringUtils.startsWith(jsonString, "{")) {
+            LOG.warn("jsonString starts with an invalid character. trying to recover...");
+
+            for(int i = 0; i <jsonString.length(); i++) {
+                if(jsonString.charAt(i) == '{' || jsonString.charAt(i) == '[') {
+                    jsonString = jsonString.substring(i);
+                    break;
+                }
+            }
         }
 
         try {
