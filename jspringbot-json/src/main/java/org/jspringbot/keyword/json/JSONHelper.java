@@ -124,7 +124,12 @@ public class JSONHelper {
     public List<Object> getJsonValues(String jsonExpression) {
         validate();
 
-        Object jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
+        Object jsonValue;
+        if(StringUtils.startsWith(jsonExpression, "$")) {
+            jsonValue = JsonPath.read(jsonString, jsonExpression);
+        } else {
+            jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
+        }
 
         List items;
 
@@ -143,7 +148,7 @@ public class JSONHelper {
         return items;
     }
 
-    public JSONObject getRoot() {
+    public Object getRoot() {
         return JsonPath.read(jsonString, "$");
     }
 
