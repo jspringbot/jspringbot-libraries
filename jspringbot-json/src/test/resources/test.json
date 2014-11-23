@@ -1,0 +1,20 @@
+{
+    "movies":[
+        {
+            "id":"1",
+            "title":"Lord of the Rings",
+            "showing":false
+        },
+        {
+            "id":"2",
+            "title":"Mockingjay",
+            "showing":true
+        },
+        {
+            "id":"3",
+            "title":"Harry Potter",
+            "showing":false
+        }
+    ]
+
+}
