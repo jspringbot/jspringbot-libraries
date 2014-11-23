@@ -85,9 +85,9 @@ public class FirefoxProfileBean {
     	profile.setPreference("network.proxy.share_proxy_settings", shareProxySettings);
     }
 
-    public void setNetworkHTTPPhishyUserpassLength(int length) {
-    	profile.setPreference("network.http.phishy-userpass-length", length);
-    }
+//    public void setNetworkHTTPPhishyUserpassLength(int length) {
+//    	profile.setPreference("network.http.phishy-userpass-length", length);
+//    }
     
     public void setNetworkAutomaticNtlmAuthTrustedURIs(String domain) {
     	profile.setPreference("network.automatic-ntlm-auth.trusted-uris", domain);

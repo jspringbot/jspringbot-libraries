@@ -48,7 +48,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.internal.seleniumemulation.JavascriptLibrary;
+//import org.openqa.selenium.internal.seleniumemulation.JavascriptLibrary;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -508,9 +508,9 @@ public class SeleniumHelper {
     }
     
     public void fireEvent(String locator, String eventName) {
-    	WebElement el = finder.find(locator, true);
-    	JavascriptLibrary javascript = new JavascriptLibrary();
-    	javascript.callEmbeddedSelenium(driver, "triggerEvent", el, eventName);
+//    	WebElement el = finder.find(locator, true);
+//    	JavascriptLibrary javascript = new JavascriptLibrary();
+//    	javascript.callEmbeddedSelenium(driver, "triggerEvent", el, eventName);
     }
 
     public void frameShouldContainText(String locator, String text) {

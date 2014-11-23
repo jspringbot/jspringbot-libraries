@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-package org.springbot.keyword.selenium;
+package org.jspringbot.keyword.selenium;
 
 import junitx.framework.Assert;
 import org.jspringbot.keyword.selenium.SeleniumHelper;
@@ -46,14 +46,14 @@ public class SeleniumHelperTest {
     @Test
     public void testClickLink() throws Exception {
         helper.navigateTo("http://www.google.com");
-        helper.clickLink("css=a#gb_2");
+        helper.clickLink("css=#_eEe a");
     }
 
     @Test
     public void testCurrentFrameShouldContain() throws Exception {
-        helper.navigateTo("http://www.google.com.ph");
-        helper.clickLink("link=English");
-        helper.currentFrameShouldContain("I'm Feeling Lucky");
+        helper.navigateTo("http://www.google.com");
+        helper.clickLink("css=#_eEe a");
+        helper.currentFrameShouldContain("Sinusuwerte Ako");
     }
 
     @Test
@@ -86,8 +86,8 @@ public class SeleniumHelperTest {
 
     @Test
     public void testElementShouldContain() {
-        helper.navigateTo("http://www.google.com.ph");
-        helper.elementShouldContain("id=addlang", "Google.com.ph sa: English");
+        helper.navigateTo("http://www.google.com");
+        helper.elementShouldContain("css=#_eEe", "Google.com.ph offered in:");
     }
 
     @Test
@@ -131,7 +131,7 @@ public class SeleniumHelperTest {
     @Test
     public void testPageShouldContain() {
         helper.navigateTo("http://login.yahoo.com");
-        helper.pageShouldContain("Yahoo! ID");
+        helper.pageShouldContain("Sign in to Yahoo");
     }
 
     @Test
