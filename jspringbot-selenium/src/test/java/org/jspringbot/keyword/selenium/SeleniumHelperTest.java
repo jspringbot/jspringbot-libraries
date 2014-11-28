@@ -19,7 +19,6 @@
 package org.jspringbot.keyword.selenium;
 
 import junitx.framework.Assert;
-import org.jspringbot.keyword.selenium.SeleniumHelper;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,18 +37,33 @@ public class SeleniumHelperTest {
     public SeleniumHelper helper;
 
     @Test
+    @Ignore
+    public void multipleDomainNavigation() throws IOException {
+        helper.navigateTo("http://www.google.com");
+        helper.navigateTo("http://yahoo.com");
+        helper.navigateTo("http://www.google.com.ph");
+        helper.navigateTo("http://github.com");
+        helper.navigateTo("http://yahoo.com");
+        helper.navigateTo("http://www.google.com");
+        helper.navigateTo("http://github.com");
+    }
+
+    @Test
+    @Ignore
     public void captureScreenshot() throws IOException {
         helper.navigateTo("http://www.google.com");
         helper.captureScreenShot();
     }
 
     @Test
+    @Ignore
     public void testClickLink() throws Exception {
         helper.navigateTo("http://www.google.com");
         helper.clickLink("css=#_eEe a");
     }
 
     @Test
+    @Ignore
     public void testCurrentFrameShouldContain() throws Exception {
         helper.navigateTo("http://www.google.com");
         helper.clickLink("css=#_eEe a");
@@ -57,6 +71,7 @@ public class SeleniumHelperTest {
     }
 
     @Test
+    @Ignore
     public void testDeleteCookies() {
         helper.navigateTo("http://www.google.com.ph");
         helper.deleteAllCookies();
@@ -74,6 +89,7 @@ public class SeleniumHelperTest {
     }
 
     @Test
+    @Ignore
     public void testDeleteCookie() {
         helper.navigateTo("http://www.google.com.ph");
         helper.deleteCookie("NID");
@@ -85,12 +101,14 @@ public class SeleniumHelperTest {
     }
 
     @Test
+    @Ignore
     public void testElementShouldContain() {
         helper.navigateTo("http://www.google.com");
         helper.elementShouldContain("css=#_eEe", "Google.com.ph offered in:");
     }
 
     @Test
+    @Ignore
     // TODO - Still failing
     public void testGetAllLinks() throws Exception {
         helper.navigateTo("http://www.google.com.ph");
@@ -98,6 +116,7 @@ public class SeleniumHelperTest {
     }
 
     @Test
+    @Ignore
     public void testGetCookieValue() throws Exception {
         helper.navigateTo("http://www.google.com.ph");
         System.out.println(helper.getCookieValue("NID"));
@@ -111,12 +130,14 @@ public class SeleniumHelperTest {
     }
 
     @Test
+    @Ignore
     public void testGetTitle() {
         helper.navigateTo("http://www.google.com.ph");
         Assert.assertEquals("Google", helper.getTitle());
     }
 
     @Test
+    @Ignore
     public void testInputPassword() {
         helper.navigateTo("http://login.yahoo.com");
         helper.waitTillElementFound("id=passwd", 500, 10000);
@@ -124,50 +145,29 @@ public class SeleniumHelperTest {
     }
 
     @Test
+    @Ignore
     public void testOpenBrowser() {
         helper.navigateTo("http://www.google.com");
     }
 
     @Test
+    @Ignore
     public void testPageShouldContain() {
         helper.navigateTo("http://login.yahoo.com");
         helper.pageShouldContain("Sign in to Yahoo");
     }
 
     @Test
+    @Ignore
     public void testPageShouldContainButton() {
         helper.navigateTo("http://www.google.com.ph/");
         helper.pageShouldContainButton("id=gbqfba");
     }
 
     @Test
+    @Ignore
     public void testPageShouldContainCheckbox() {
         helper.navigateTo("http://www.echoecho.com/htmlforms09.htm");
         helper.pageShouldContainCheckbox("name=option1");
-    }
-
-    @Test
-    public void testRadioButtonShouldBeSetTo() {
-        helper.navigateTo("file:///Users/badz/github/jspringbot-libraries/jspringbot-selenium/src/test/resources/sample-form.html");
-        helper.radioButtonShouldBeSetTo("sex", "male");
-    }
-
-    @Test
-    public void testSelectCheckbox() {
-        helper.navigateTo("file:///Users/badz/github/jspringbot-libraries/jspringbot-selenium/src/test/resources/sample-form.html");
-        helper.selectCheckbox("name=vehicle");
-        helper.delay(6000);
-    }
-
-    @Test
-    public void testTextfieldValueShouldBe() {
-        helper.navigateTo("file:///Users/badz/github/jspringbot-libraries/jspringbot-selenium/src/test/resources/sample-form.html");
-        //helper.textfieldValueShouldBe("Creating Browser Tests Using Robot Selenium");
-    }
-
-    @Test
-    public void testTitleShouldBe() {
-        helper.navigateTo("file:///Users/badz/github/jspringbot-libraries/jspringbot-selenium/src/test/resources/sample-form.html");
-        helper.titleShouldBe("Creating Browser Tests Using Robot Selenium");
     }
 }

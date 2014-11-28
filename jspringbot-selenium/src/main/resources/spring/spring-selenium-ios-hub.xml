@@ -43,6 +43,8 @@
   <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelper">
     <constructor-arg ref="webdriver"/>
     <property name="screenCaptureDir" value="${selenium.screenshot.folder}"/>
+    <property name="autoZoomIn" value="${selenium.browser.auto.zoom.in:0}"/>
+    <property name="autoZoomOut" value="${selenium.browser.auto.zoom.out:0}"/>
   </bean>
 
   <!-- Scan components -->

@@ -21,12 +21,9 @@ package org.jspringbot.keyword.selenium;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -52,6 +49,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
 
@@ -77,12 +75,28 @@ public class SeleniumHelper {
     
     private int DEFAULT_OMNITURE_DEBUGGER_WAIT_TIME_IN_MS = 3000;
 
+    private Set<String> zoomedDomain = new HashSet<String>();
+
+    private int autoZoomOut = 0;
+
+    private int autoZoomIn = 0;
+
     public SeleniumHelper() {}
 
     public SeleniumHelper(WebDriver driver) {
         this.driver = driver;
         this.executor = (JavascriptExecutor) driver;
         this.finder = new ElementFinder(driver);
+    }
+
+    @Required
+    public void setAutoZoomOut(int autoZoomOut) {
+        this.autoZoomOut = autoZoomOut;
+    }
+
+    @Required
+    public void setAutoZoomIn(int autoZoomIn) {
+        this.autoZoomIn = autoZoomIn;
     }
 
     public void windowMaximize() {
@@ -127,10 +141,53 @@ public class SeleniumHelper {
     public void navigateTo(String url) {
         driver.navigate().to(url);
 
-        LOG.createAppender()
-                .appendBold("Navigate To:")
-                .appendProperty("link", url)
-                .log();
+        String domain = getDomain(url);
+
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender();
+        appender.appendBold("Navigate To:");
+        appender.appendProperty("link", url);
+        appender.appendProperty("domain", domain);
+        appender.appendProperty("autoZoomIn",autoZoomIn);
+        appender.appendProperty("autoZoomOut",autoZoomOut);
+
+        if(domain != null && !hasZoomed(domain)) {
+            if(autoZoomIn > 0) {
+                zoomIn(autoZoomIn);
+            }
+
+            if(autoZoomOut > 0) {
+                zoomOut(autoZoomOut);
+            }
+
+            zoomedDomain.add(domain);
+        }
+
+        appender.log();
+    }
+
+    private boolean hasZoomed(String domain) {
+        if(zoomedDomain.contains(domain)) {
+            return true;
+        }
+
+        for(String item : zoomedDomain) {
+            if(StringUtils.contains(domain, item) || StringUtils.contains(item, domain)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private String getDomain(String urlString) {
+        try {
+            URL url = new URL(urlString);
+
+            return StringUtils.lowerCase(url.getHost());
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public void closeBrowser() {

@@ -11,9 +11,14 @@
   <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelper">
     <constructor-arg ref="webdriver"/>
     <property name="screenCaptureDir" value="${selenium.screenshot.folder}"/>
+    <property name="autoZoomIn" value="${selenium.browser.auto.zoom.in:0}"/>
+    <property name="autoZoomOut" value="${selenium.browser.auto.zoom.out:0}"/>
   </bean>
   
-  <bean id="debugger" class="org.jspringbot.keyword.selenium.OmnitureDebugger"/>
+  <bean id="debugger" class="org.jspringbot.keyword.selenium.OmnitureDebugger">
+    <property name="autoZoomIn" value="${selenium.browser.auto.zoom.in:0}"/>
+    <property name="autoZoomOut" value="${selenium.browser.auto.zoom.out:0}"/>
+  </bean>
     
   <bean class="org.jspringbot.keyword.selenium.OmnitureDebuggerBean">
     <constructor-arg ref="debugger"/>
