@@ -1885,6 +1885,37 @@ public class SeleniumHelper {
         }
     }
 
+    public void zoomIn(int times) {
+        WebElement html = driver.findElement(By.tagName("html"));
+
+        for(int i = 0; i < times; i++) {
+            if(isMacOS()) {
+                html.sendKeys(Keys.chord(Keys.COMMAND, Keys.ADD));
+            } else {
+                html.sendKeys(Keys.chord(Keys.CONTROL, Keys.ADD));
+            }
+        }
+    }
+
+    public void zoomOut(int times) {
+        WebElement html = driver.findElement(By.tagName("html"));
+
+        for(int i = 0; i < times; i++) {
+            if(isMacOS()) {
+                html.sendKeys(Keys.chord(Keys.COMMAND, Keys.SUBTRACT));
+            } else {
+                html.sendKeys(Keys.chord(Keys.CONTROL, Keys.SUBTRACT));
+            }
+        }
+    }
+
+
+    public boolean isMacOS() {
+        String os = StringUtils.lowerCase(System.getProperty("os.name", "generic"));
+
+        return os.contains("mac") || os.contains("darwin");
+    }
+
     public void xpathShouldMatchXTimes(String xpath, int count) {
         int actual = getMatchingXPathCount(xpath);
         if(actual != count) {
