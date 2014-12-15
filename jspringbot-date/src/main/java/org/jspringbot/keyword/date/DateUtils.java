@@ -100,7 +100,7 @@ public class DateUtils {
 
     public static String lastDayOfMonth(String... args) {
         DateMidnight midnight = new DateMidnight();
-        midnight = midnight.withMonthOfYear(midnight.getMonthOfYear() + 1);
+        midnight = midnight.plusMonths(1);
         midnight = midnight.withDayOfMonth(1);
         midnight = midnight.minusDays(1);
 
