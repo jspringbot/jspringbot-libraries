@@ -27,6 +27,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -38,18 +39,20 @@ import java.util.List;
 public class ELRunKeyword extends AbstractExpressionKeyword {
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(ExpressionHelper.class);
 
-    public static Object runKeyword(String keyword, Object... params) {
-        PythonInterpreter interpreter = MainContextHolder.get().getBean(PythonInterpreter.class);
-        interpreter.set("keyword", keyword);
-        interpreter.set("args", params);
+    private static Object doPythonExec(String keyword, List<Object> params) {
+    	PythonInterpreter interpreter = MainContextHolder.get().getBean(PythonInterpreter.class);
+    	
+    	interpreter.set("keyword", keyword);
+    	interpreter.set("args", params);
 
+    	
         interpreter.exec(
                 "from robot.libraries.BuiltIn import BuiltIn\n" +
                         "result= BuiltIn().run_keyword(keyword, *args)\n"
         );
 
         Object result = interpreter.get("result");
-
+    	
         if(result != null) {
             LOG.keywordAppender().appendProperty(String.format("runKeyword('%s')", keyword), result.getClass());
         } else {
@@ -67,6 +70,21 @@ public class ELRunKeyword extends AbstractExpressionKeyword {
 
         return javaObject;
     }
+    
+    public static Object runKeyword(String keyword, List<Object> params) {
+    	
+    	return doPythonExec(keyword, params);
+    	
+    }
+    
+    
+    public static Object runKeyword(String keyword) {
+    	
+    	return doPythonExec(keyword, Collections.emptyList());
+    	
+    }
+    
+
 
     @Override
     public Object execute(final Object[] params) throws Exception {
@@ -77,11 +95,12 @@ public class ELRunKeyword extends AbstractExpressionKeyword {
         List<Object> variables = new ArrayList<Object>();
 
         if (params.length > 1) {
-            variables.addAll(Arrays.asList(params).subList(1, params.length));
+        	variables = Arrays.asList(params).subList(1, params.length);
+            //variables.addAll(Arrays.asList(params).subList(1, params.length));
         }
 
         String name = String.valueOf(params[0]);
 
-        return runKeyword(name, variables.toArray());
+        return runKeyword(name, variables);
     }
 }
