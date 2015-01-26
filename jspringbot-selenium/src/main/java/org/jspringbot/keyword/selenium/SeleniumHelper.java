@@ -87,6 +87,7 @@ public class SeleniumHelper {
         this.driver = driver;
         this.executor = (JavascriptExecutor) driver;
         this.finder = new ElementFinder(driver);
+        this.driver.manage().timeouts().pageLoadTimeout(30,TimeUnit.SECONDS);
     }
 
     @Required
@@ -1455,6 +1456,14 @@ public class SeleniumHelper {
 
         new Actions(driver).moveToElement(el).perform();
     }
+    
+    public void mouseOverEventScript(String locator) {
+    	WebElement el = finder.find(locator);
+	    String code = "var evObj = document.createEvent('MouseEvents');"
+	                + "evObj.initEvent( 'mouseover', true, true );"
+	                + "arguments[0].dispatchEvent(evObj);";
+	    executor.executeScript(code, el);
+	}
 
     public void mouseUp(String locator) {
         LOG.createAppender()

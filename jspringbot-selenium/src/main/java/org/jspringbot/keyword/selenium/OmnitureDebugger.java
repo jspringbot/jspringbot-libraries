@@ -109,14 +109,14 @@ public class OmnitureDebugger extends SeleniumHelper {
 		}
     }
 
-	private String getStatsDebuggerLocation() {
-		return "javascript:(window.open(\"\",\""
+    private String getStatsDebuggerLocation() {
+		return "javascript:void(window.open(\"\",\""
 				+ OMNITURE_DEBUGGER_WINDOW_NAME
 				+ "\",\"width=600,height=600,location=0,menubar=0,status=1,toolbar=0,resizable=1,scrollbars=1\").document.write(\"<script charset='utf-8' language='JavaScript' src='"
 				+ getOmnitureDebuggerLocation() 
 				+ "'></script>\"));";
 	}
-       
+
     private ArrayList<String> getSiteCatalystValuesListFromHtml(String htmlSource) {   
     	ArrayList<String> scVariables = null;
 		try {
