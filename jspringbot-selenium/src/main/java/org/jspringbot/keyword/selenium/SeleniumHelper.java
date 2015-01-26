@@ -1684,6 +1684,12 @@ public class SeleniumHelper {
         }
     }
 
+    public void scrollToElement(String locator) throws InterruptedException {
+        WebElement el = finder.find(locator);
+        executor.executeScript("arguments[0].scrollIntoView(true);", el);
+        Thread.sleep(500);
+    }
+
     public void selectRadioButton(String groupName, String value) {
         LOG.info(String.format("Selecting '%s' from radio button '%s'", value, groupName));
 
