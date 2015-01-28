@@ -1,3 +1,0 @@
-Simulates hovering mouse over the element specified by locator using a javascript event.
-
-This is a workaround for newer versions of Firefox having issues with 'Mouse Over' keyword.

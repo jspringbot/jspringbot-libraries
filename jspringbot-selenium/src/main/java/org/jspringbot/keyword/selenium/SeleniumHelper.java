@@ -1442,6 +1442,10 @@ public class SeleniumHelper {
         new Actions(driver).moveToElement(el).moveByOffset(offsetX, offsetY).perform();
     }
 
+    /*
+     * Replacing Actions' mouseover approach with a Javascript event. This has issues with newer versions of Firefox.
+     * 
+     * 
     public void mouseOver(String locator) {
         LOG.createAppender()
                 .appendBold("Mouse Over:")
@@ -1456,8 +1460,9 @@ public class SeleniumHelper {
 
         new Actions(driver).moveToElement(el).perform();
     }
+    */
     
-    public void mouseOverEventScript(String locator) {
+    public void mouseOver(String locator) {
     	WebElement el = finder.find(locator);
 	    String code = "var evObj = document.createEvent('MouseEvents');"
 	                + "evObj.initEvent( 'mouseover', true, true );"

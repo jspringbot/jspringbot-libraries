@@ -1,1 +1,1 @@
-Simulates hovering mouse over the element specified by locator.
+Simulates hovering mouse over the element specified by locator using a javascript event.
