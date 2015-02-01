@@ -1,0 +1,12 @@
+JSpringBot General Library for Robot Framework.
+
+= Configuration =
+
+1. Import any of the following support in {{jspringbot-global.xml}}
+
+| <import resource="classpath:spring/spring-softassert.xml"/>
+
+2. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |
