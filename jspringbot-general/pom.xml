@@ -48,11 +48,6 @@
   <dependencies>
     <dependency>
       <groupId>org.jspringbot</groupId>
-      <artifactId>jspringbot</artifactId>
-      <version>1.2-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.jspringbot</groupId>
       <artifactId>jspringbot-pretty-logger</artifactId>
     </dependency>
     <dependency>
