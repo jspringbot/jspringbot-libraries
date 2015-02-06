@@ -39,6 +39,7 @@
     <property name="networkAutomaticNtlmAuthAllowNonFqdn" value="true"/>
     <property name="networkNtlmSendLmResponse" value="true"/>
     <property name="userAgent" value="${user.agent:none}"/>
+    <property name="securityMixedContentBlockActiveContent" value="${security.block.insecure.content:true}"/>
   </bean>
 
   <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>

@@ -116,5 +116,9 @@ public class FirefoxProfileBean {
             profile.setPreference("general.useragent.override", userAgent);
         }
     }
+    
+    public void setSecurityMixedContentBlockActiveContent(boolean blockInsecureContent) {
+    	profile.setPreference("security.mixed_content.block_active_content", blockInsecureContent);
+    }
 
 }
