@@ -65,7 +65,7 @@ public class JSONHelper {
         }
 
         if(!StringUtils.startsWith(jsonString, "[") || !StringUtils.startsWith(jsonString, "{")) {
-            LOG.warn("jsonString starts with an invalid character. trying to recover...");
+         //   LOG.warn("jsonString starts with an invalid character. trying to recover...");
 
             for(int i = 0; i <jsonString.length(); i++) {
                 if(jsonString.charAt(i) == '{' || jsonString.charAt(i) == '[') {
