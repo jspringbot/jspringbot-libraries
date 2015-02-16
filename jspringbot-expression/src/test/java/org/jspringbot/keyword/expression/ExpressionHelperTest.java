@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:spring/spring-expression.xml"})
@@ -200,6 +201,13 @@ public class ExpressionHelperTest {
     	links.add("https://foo.bar/file.css");
     	
     	evaluateEquals("$[parser:getCssFileLinksInHTML('<html><link type=\"text/css\" rel=\"stylesheet\" href=\"https://foo.bar/file.css\" media=\"all\" /></html>')]", links);
+    }
+
+    @Test
+    public void testGenerateUUID() throws Exception {
+
+        assertTrue(((String) evaluate("$[generateUUID()]")).matches("[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}"));
+
     }
 
     @Before

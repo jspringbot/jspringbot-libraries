@@ -35,6 +35,7 @@
         <value>classpath:functions/collection-functions.xml</value>
         <value>classpath:functions/escape-functions.xml</value>
         <value>classpath:functions/expression-functions.xml</value>
+        <value>classpath:functions/id-functions.xml</value>
         <value>classpath:functions/faker-functions.xml</value>
         <value>classpath:functions/map-functions.xml</value>
         <value>classpath:functions/math-functions.xml</value>
