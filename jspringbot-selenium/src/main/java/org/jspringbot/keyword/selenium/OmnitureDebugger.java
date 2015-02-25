@@ -14,6 +14,7 @@ import java.util.ListIterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -204,9 +205,14 @@ public class OmnitureDebugger extends SeleniumHelper {
 		}
 		try {
 			// Out of the 'for loop' to only evaluate/parse the last Image triggered.
-			List<String> actualList = new ArrayList<String>(Arrays.asList(tdList));
+			List<String> actualList = new ArrayList<String>(Arrays.asList(tdList));			
 			actualList.remove(0); // remove from list ---- <span style="font:bold 11px arial,sans-serif;color:#000000;">Image</span>
-			return actualList;
+			List<String> unescapedList = new ArrayList<String>();
+			for (String data: actualList) {
+				unescapedList.add(StringEscapeUtils.unescapeXml(data));
+			}
+			return unescapedList;
+			
 		} catch (NullPointerException npe) {
 			// LOG.createAppender().appendBold("No Image Found!").log();
 			return null;
@@ -225,7 +231,11 @@ public class OmnitureDebugger extends SeleniumHelper {
     			tdList = td.html().split("<br />");   			
     	    	List<String> actualList = new ArrayList<String>(Arrays.asList(tdList));
     	    	actualList.remove(0);   // remove from list ---- <span style="font:bold 11px arial,sans-serif;color:#000000;">Image</span>   	
-    	    	eventMap.put(eventPrefix + counter, actualList);
+    	    	List<String> unescapedList = new ArrayList<String>();
+    	    	for (String data: actualList) {
+    				unescapedList.add(StringEscapeUtils.unescapeXml(data));
+    			}
+    	    	eventMap.put(eventPrefix + counter, unescapedList);
     	    	counter = counter + 1;
     		}
     	}
