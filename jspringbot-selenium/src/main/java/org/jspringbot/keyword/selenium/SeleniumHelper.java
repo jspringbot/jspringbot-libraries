@@ -104,6 +104,10 @@ public class SeleniumHelper {
         driver.manage().window().maximize();
     }
 
+    public void setSize(int width, int height) {
+        driver.manage().window().setSize(new Dimension(width, height));
+    }
+
     public WebDriver getDriver() {
     	return this.driver;
     }
