@@ -233,7 +233,9 @@ public class OmnitureDebugger extends SeleniumHelper {
     	    	actualList.remove(0);   // remove from list ---- <span style="font:bold 11px arial,sans-serif;color:#000000;">Image</span>   	
     	    	List<String> unescapedList = new ArrayList<String>();
     	    	for (String data: actualList) {
-    				unescapedList.add(StringEscapeUtils.unescapeXml(data));
+    	    		if (!data.contains("table")) {	// Exclude parsed data with html tags like </table>. This is a duplicate data.
+    	    			unescapedList.add(StringEscapeUtils.unescapeXml(data));
+    	    		}    				
     			}
     	    	eventMap.put(eventPrefix + counter, unescapedList);
     	    	counter = counter + 1;
