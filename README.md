@@ -51,6 +51,11 @@ Other utilities like TestDataLibrary that enable create of test-data on a csv fi
 
 All libraries were built using [Java](http://www.java.com/en/) and [Spring Framework](http://www.springsource.org/spring-framework). Dependencies and test execution are done through [Maven](http://maven.apache.org/).
 
+
+## To generate documentation
+mvn compile jspringbot:libdoc
+Copy the generated html file to `gh-pages`/docs
+
 ## Author
 
 Designed and built by [Shiela D. Buitizon](https://github.com/badong2210/).
