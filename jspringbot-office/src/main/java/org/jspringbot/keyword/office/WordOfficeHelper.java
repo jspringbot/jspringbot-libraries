@@ -62,14 +62,15 @@ public class WordOfficeHelper {
                     found.add(paragraph);
                 }
 
-                return super.visitParagraphStart(paragraph);
+                return 0;
             }
         });
+
+        byte[] bytes = IOUtils.toByteArray(new FileInputStream(image));
 
         for(Paragraph paragraph : found) {
             builder.moveTo(paragraph);
 
-            byte[] bytes = IOUtils.toByteArray(new FileInputStream(image));
             if(width > 0 && height > 0) {
                 builder.insertImage(bytes, width, height);
             } else {
