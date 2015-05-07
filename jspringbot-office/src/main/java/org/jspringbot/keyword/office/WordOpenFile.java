@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
         parameters = {"file"},
         description = "classpath:desc/WordOpenFile.txt"
 )
-public class WordOpenFile extends AbstractOfficeKeyword {
+public class WordOpenFile extends AbstractWordKeyword {
 
     @Override
     public Object execute(Object[] params) throws Exception {

@@ -1,0 +1,73 @@
+A test library providing microsoft office document support.
+
+For now this library allows user to create and update Microsoft Word documents.
+
+= Supported types =
+
+Here are the supported microsoft documents.
+
+| *Type* | *Description* |
+| DOC | Microsoft Word 97 - 2004 document |
+| DOCX | Office Open XML word processing document |
+
+= Configuration =
+
+Configure the following to use jspringbot-office.
+
+1. Add this artifact in maven dependency
+
+|  <dependencies>
+|    <dependency>
+|      <groupId>org.jspringbot</groupId>
+|      <artifactId>jspringbot-office</artifactId>
+|    </dependency>
+|  </dependencies>
+
+2. Import spring-expression in {{jspringbot-global.xml}}
+
+| <import resource="classpath:spring/spring-office.xml"/>
+
+3. Add {{JSpringBotGlobal}} library in the in the test suite settings.
+
+| *** Settings *** |
+| Library | JSpringBotGlobal |
+
+
+= Examples =
+
+There are two ways you can use this library. First by creating a simple word document, and by using a document as template word document with replaceable variables.
+
+== Creation ==
+
+This example shows you how to create a simple word document of type DOCX (Office Open XML word processing document).
+
+| Word Create |
+| Word Insert Text | Sample Text |
+| Word Insert Paragraph Break |
+| Word Insert Image | classpath:images/a.png |
+| Word Insert Page Break |
+| Word Insert Hyperlink | jspringbot.org | http://jspringbot.org |
+| Word Save As | /tmp/created.docx | DOCX |
+
+=>
+
+| This will create a "created.docx" file of type "DOCX" microsoft document
+
+== Template ==
+
+This example shows how this library can be used for word document templates.
+
+| Word Open File | classpath:templates/template1.docx |
+| Word Replace Text | @date | March 2, 2015 |
+| Word Replace Text | @user | Alvin |
+| ${image1}= | Element Capture Screenshot | css=#section |
+| Word Replace Text As Image | @image1 | ${image1} |
+| Word Save As | /tmp/created.doc | DOC |
+
+=>
+
+| this uses "template1.docx" as Word document template
+| this replaces some replaceable text items
+| this also captures a web page section (css=#section) and replaces that item in the document
+| save the document and convert to "DOC" type.
+

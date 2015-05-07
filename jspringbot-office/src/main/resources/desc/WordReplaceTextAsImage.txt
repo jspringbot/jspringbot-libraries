@@ -1,4 +1,12 @@
-This replace a text as image in the open word document.
+This replace a text as image in the active word document.
+This will insert the image at the end of the paragraph containing the searchable text.
 
-| Word Replace Text As Image | _replaceable_ | classpath:image.png | 300 | 200
-| Word Replace Text As Image | _replaceable_ | classpath:image |
+| Word Replace Text As Image | @image1 | classpath:image.png | 300 | 200 |
+| Word Replace Text As Image | @image2 | classpath:image |
+| Word Replace Text As Image | @image3 | /Users/user1/Desktop/a.png |
+
+=>
+
+| Replaces "@image1" with the image "image.png" with width=300, height=200
+| Replaces "@image2" with the image "image.png" with its actual width and height
+| Replaces "@image3" with the image "a.png" with its actual width and height

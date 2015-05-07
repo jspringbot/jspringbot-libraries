@@ -25,25 +25,25 @@ import java.io.File;
 
 @Component
 @KeywordInfo(
-        name = "Word Replace Text As Image",
-        parameters = {"replaceable", "path", "*dimension"},
-        description = "classpath:desc/WordReplaceTextAsImage.txt"
+        name = "Word Insert Image",
+        parameters = {"path", "*dimension"},
+        description = "classpath:desc/WordInsertImage.txt"
 )
-public class WordReplaceTextAsImage extends AbstractWordKeyword {
+public class WordInsertImage extends AbstractWordKeyword {
 
     @Override
     public Object execute(Object[] params) throws Exception {
-        if(params.length == 2) {
-            if(File.class.isInstance(params[1])) {
-                helper.replaceTextAsImage(String.valueOf(params[0]), (File) params[1]);
+        if(params.length == 1) {
+            if(File.class.isInstance(params[0])) {
+                helper.insertImage((File) params[0]);
             } else {
-                helper.replaceTextAsImage(String.valueOf(params[0]), String.valueOf(params[1]));
+                helper.insertImage(String.valueOf(params[0]));
             }
-        } else if(params.length >= 4) {
-            if(File.class.isInstance(params[1])) {
-                helper.replaceTextAsImage(String.valueOf(params[0]), (File) params[1], Integer.parseInt(String.valueOf(params[2])), Integer.parseInt(String.valueOf(params[3])));
+        } else if(params.length >= 3) {
+            if(File.class.isInstance(params[0])) {
+                helper.insertImage((File) params[0], Integer.parseInt(String.valueOf(params[1])), Integer.parseInt(String.valueOf(params[2])));
             } else {
-                helper.replaceTextAsImage(String.valueOf(params[0]), String.valueOf(params[1]), Integer.parseInt(String.valueOf(params[2])), Integer.parseInt(String.valueOf(params[3])));
+                helper.insertImage(String.valueOf(params[0]), Integer.parseInt(String.valueOf(params[1])), Integer.parseInt(String.valueOf(params[2])));
             }
         } else {
             throw new IllegalArgumentException("Illegal number of parameters.");

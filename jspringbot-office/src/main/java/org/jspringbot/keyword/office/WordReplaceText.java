@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
         parameters = {"replaceable", "replacement"},
         description = "classpath:desc/WordReplaceText.txt"
 )
-public class WordReplaceText extends AbstractOfficeKeyword {
+public class WordReplaceText extends AbstractWordKeyword {
 
     @Override
     public Object execute(Object[] params) throws Exception {

@@ -27,7 +27,7 @@
 
   <description>jSpringBot Office Keywords</description>
 
-  <bean name="officeHelper" class="org.jspringbot.keyword.office.WordOfficeHelper"/>
+  <bean name="officeHelper" class="org.jspringbot.keyword.office.WordHelper"/>
 
   <!-- Scan components -->
   <ctx:component-scan base-package="org.jspringbot.keyword.office" />

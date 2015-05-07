@@ -23,19 +23,15 @@ import org.springframework.stereotype.Component;
 
 @Component
 @KeywordInfo(
-        name = "Word Save As",
-        parameters = {"file", "*type"},
-        description = "classpath:desc/WordSaveAs.txt"
+        name = "Word Insert Text",
+        parameters = {"text"},
+        description = "classpath:desc/WordInsertText.txt"
 )
-public class WordSaveAs extends AbstractWordKeyword {
+public class WordInsertText extends AbstractWordKeyword {
 
     @Override
     public Object execute(Object[] params) throws Exception {
-        if(params.length > 1) {
-            helper.saveAs(String.valueOf(params[0]), String.valueOf(params[1]));
-        } else {
-            helper.saveAs(String.valueOf(params[0]));
-        }
+        helper.insertText(String.valueOf(params[0]));
 
         return null;
     }

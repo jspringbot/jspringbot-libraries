@@ -1,0 +1,7 @@
+This will insert a html in active document.
+
+| Word Insert Html | <b>bold text</b> |
+
+=>
+
+| insert "<b>bold text</b>" html in the active paragraph.

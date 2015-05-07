@@ -1,0 +1,11 @@
+This inserts an image in the active word document.
+
+| Word Insert Image | classpath:image.png | 300 | 200 |
+| Word Insert Image | classpath:image |
+| Word Insert Image | /Users/user1/Desktop/a.png |
+
+=>
+
+| Inserts the image "image.png" with width=300, height=200
+| Inserts the image "image.png" with its actual width and height
+| Inserts the image "a.png" with its actual width and height
