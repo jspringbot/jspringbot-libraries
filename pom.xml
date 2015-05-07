@@ -149,6 +149,7 @@
     <module>jspringbot-i18n</module>
     <module>jspringbot-expression</module>
     <module>jspringbot-function-generator</module>
+    <module>jspringbot-office</module>
   </modules>
 
   <dependencyManagement>

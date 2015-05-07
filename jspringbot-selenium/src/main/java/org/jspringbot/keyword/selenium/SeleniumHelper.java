@@ -18,6 +18,22 @@
 
 package org.jspringbot.keyword.selenium;
 
+import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang.StringUtils;
+import org.jspringbot.syntax.HighlightRobotLogger;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.springframework.beans.factory.annotation.Required;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceEditor;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,30 +44,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
-import org.jspringbot.syntax.HighlightRobotLogger;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 //import org.openqa.selenium.internal.seleniumemulation.JavascriptLibrary;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceEditor;
 
 public class SeleniumHelper {
 
@@ -363,7 +356,32 @@ public class SeleniumHelper {
         return links;
     }
 
-    public void captureScreenShot() throws IOException {
+    public File captureScreenShot(String locator) throws IOException {
+        LOG.createAppender()
+                .appendBold("Capture Screen shot:")
+                .appendCss(locator)
+                .log();
+
+        WebElement el = finder.find(locator);
+
+        byte[] bytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        File file = newScreenCaptureFile();
+        LOG.html("Screen captured (%d): <br /> <img src='%s'/>", screenCaptureCtr, file.getName());
+
+        BufferedImage fullImg = ImageIO.read(new ByteArrayInputStream(bytes));
+        //Get the location of element on the page
+        Point point = el.getLocation();
+        //Get width and height of the element
+        int eleWidth = el.getSize().getWidth();
+        int eleHeight = el.getSize().getHeight();
+        //Crop the entire page screenshot to get only element screenshot
+        BufferedImage eleScreenshot= fullImg.getSubimage(point.getX(), point.getY(), eleWidth, eleHeight);
+        ImageIO.write(eleScreenshot, "png", file);
+
+        return file;
+    }
+
+    public File captureScreenShot() throws IOException {
         byte[] bytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
         FileOutputStream out = null;
@@ -374,6 +392,8 @@ public class SeleniumHelper {
 
             out = new FileOutputStream(file);
             IOUtils.write(bytes, out);
+
+            return file;
         } finally {
             IOUtils.closeQuietly(out);
         }

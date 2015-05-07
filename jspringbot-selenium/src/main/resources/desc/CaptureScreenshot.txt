@@ -1,6 +1,6 @@
 Takes a screenshot of the entire screen and embeds it into the log.
 
-If no filename is given, the screenshot is saved into file screen_capture_%d_%d.png under the directory defined in selenium.screenshot.folder in jspringbot.properties.
+Rhe screenshot is saved into file screen_capture_%d_%d.png under the directory defined in selenium.screenshot.folder in jspringbot.properties.
 
 Example:
 | Capture Screenshot |

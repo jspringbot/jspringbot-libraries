@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012. JSpringBot. All Rights Reserved.
+ * Copyright (c) 2015. JSpringBot. All Rights Reserved.
  *
  * See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -16,27 +16,22 @@
  * limitations under the License.
  */
 
-package org.jspringbot.keyword.selenium.web;
+package org.jspringbot.keyword.office;
 
 import org.jspringbot.KeywordInfo;
-import org.jspringbot.keyword.selenium.AbstractSeleniumKeyword;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 @KeywordInfo(
-        name = "Capture Screenshot",
-        description = "classpath:desc/CaptureScreenshot.txt"
+        name = "Word Insert Paragraph Break",
+        description = "classpath:desc/WordInsertParagraphBreak.txt"
 )
-public class CaptureScreenshot extends AbstractSeleniumKeyword {
+public class WordInsertParagraphBreak extends AbstractWordKeyword {
 
     @Override
-    public Object execute(Object[] params) {
-        try {
-            return helper.captureScreenShot();
-        } catch (IOException e) {
-            throw new IllegalStateException(e.getMessage(), e);
-        }
+    public Object execute(Object[] params) throws Exception {
+        helper.paragraphBreak();
+
+        return null;
     }
 }

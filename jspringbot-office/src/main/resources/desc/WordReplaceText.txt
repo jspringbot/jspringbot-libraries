@@ -1,0 +1,7 @@
+This replace a text in the active word document. This is case sensitive.
+
+| Word Replace Text | @replaceable | replacement |
+
+=>
+
+| This replaces all instances of "@replaceable" with "replacement".
