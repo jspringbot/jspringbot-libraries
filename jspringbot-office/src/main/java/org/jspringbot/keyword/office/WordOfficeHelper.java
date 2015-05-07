@@ -23,7 +23,7 @@ public class WordOfficeHelper {
 
     private Resource getResource(String path) {
         if(!StringUtils.startsWith(path, "file:") && !StringUtils.startsWith(path, "classpath:")) {
-            path = "file://" + path;
+            path = "file://" + (!StringUtils.startsWith(path, File.pathSeparator) ? "./" : "") + path;
         }
 
         ResourceEditor editor = new ResourceEditor();
