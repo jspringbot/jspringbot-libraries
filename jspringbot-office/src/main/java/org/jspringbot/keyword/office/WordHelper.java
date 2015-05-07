@@ -8,6 +8,7 @@ import org.apache.poi.xwpf.usermodel.BodyElementType;
 import org.apache.poi.xwpf.usermodel.IBodyElement;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.helper.Validate;
+import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
 import org.springframework.util.ReflectionUtils;
@@ -23,6 +24,8 @@ import java.util.List;
 import java.util.List;
 
 public class WordHelper {
+    public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(WordHelper.class);
+
     private Document document;
 
     private DocumentBuilder builder;
@@ -36,6 +39,12 @@ public class WordHelper {
 
     public void openFile(String path) throws Exception {
         openedResource = getResource(path);
+
+        LOG.createAppender()
+                .appendBold("Open File:")
+                .appendCss(path)
+                .appendCss(openedResource.getFile().getAbsolutePath())
+                .log();
 
         document = new Document(openedResource.getInputStream());
         builder = new DocumentBuilder(document);
@@ -53,6 +62,11 @@ public class WordHelper {
     }
 
     public void insertText(String text) throws Exception {
+        LOG.createAppender()
+                .appendBold("Insert Text:")
+                .appendCss(text)
+                .log();
+
         builder.write(text);
     }
 
@@ -66,10 +80,21 @@ public class WordHelper {
     }
 
     public void insertHtml(String html) throws Exception {
+        LOG.createAppender()
+                .appendBold("Insert Html:")
+                .appendCss(html)
+                .log();
+
         builder.insertHtml(html);
     }
 
     public void insertHyperlink(String display, String url) throws Exception {
+        LOG.createAppender()
+                .appendBold("Insert Hyperlink:")
+                .appendCss(display)
+                .appendCss(url)
+                .log();
+
         builder.getFont().setColor(Color.BLUE);
         builder.getFont().setUnderline(Underline.SINGLE);
         builder.insertHyperlink(display, url, false);
@@ -77,16 +102,24 @@ public class WordHelper {
     }
 
     public void replaceText(String replaceable, String replacement) throws Exception {
+        LOG.createAppender()
+                .appendBold("Replace Text:")
+                .appendProperty("replaceable", replaceable)
+                .appendProperty("replacement", replacement)
+                .log();
+
         document.getRange().replace(replaceable, replacement, true, false);
     }
 
     public void replaceTextAsImage(final String replaceable, String image) throws Exception {
         Resource resource = getResource(image);
+
         replaceTextAsImage(replaceable, resource.getFile());
     }
 
     public void replaceTextAsImage(final String replaceable, String image, int width, int height) throws Exception {
         Resource resource = getResource(image);
+
         replaceTextAsImage(replaceable, resource.getFile(), width, height);
     }
 
@@ -96,6 +129,14 @@ public class WordHelper {
 
     @SuppressWarnings("unchecked")
     public void replaceTextAsImage(final String replaceable, File image, int width, int height) throws Exception {
+        LOG.createAppender()
+                .appendBold("Replace Text As Image:")
+                .appendProperty("replaceable", replaceable)
+                .appendProperty("image", image.getAbsolutePath())
+                .appendProperty("width", width)
+                .appendProperty("height", height)
+                .log();
+
         final List<Paragraph> found = new ArrayList<Paragraph>(5);
         document.accept(new DocumentVisitor() {
             @Override
@@ -139,6 +180,13 @@ public class WordHelper {
 
     @SuppressWarnings("unchecked")
     public void insertImage(File image, int width, int height) throws Exception {
+        LOG.createAppender()
+                .appendBold("Insert Image:")
+                .appendProperty("image", image.getAbsolutePath())
+                .appendProperty("width", width)
+                .appendProperty("height", height)
+                .log();
+
         byte[] bytes = IOUtils.toByteArray(new FileInputStream(image));
         if(width > 0 && height > 0) {
             builder.insertImage(bytes, width, height);
@@ -175,6 +223,12 @@ public class WordHelper {
     }
 
     public File save(File file, String format) throws Exception {
+        LOG.createAppender()
+                .appendBold("Save:")
+                .appendProperty("file", file.getAbsolutePath())
+                .appendProperty("format", format)
+                .log();
+
         int savedFormat;
 
         if(format == null) {
