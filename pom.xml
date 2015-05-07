@@ -41,7 +41,7 @@
     <junit.addons.version>1.4</junit.addons.version>
     <selenium.version>2.44.0</selenium.version>
 
-    <jspringbot.version>1.2-SNAPSHOT</jspringbot.version>
+    <jspringbot.version>1.2</jspringbot.version>
     <libdoc.name>jSpringBot Library</libdoc.name>
   </properties>
 
