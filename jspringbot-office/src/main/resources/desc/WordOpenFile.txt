@@ -1,0 +1,3 @@
+This will open a word document in memory to be available for edit.
+
+| Word Open File | classpath:template/doc1.doc |

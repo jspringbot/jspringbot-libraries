@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright (c) 2012. JSpringBot. All Rights Reserved.
+  ~ Copyright (c) 2015. JSpringBot. All Rights Reserved.
   ~
   ~ See the NOTICE file distributed with
   ~ this work for additional information regarding copyright ownership.
@@ -30,59 +30,64 @@
     <version>1.2-SNAPSHOT</version>
   </parent>
 
-  <artifactId>jspringbot-selenium</artifactId>
+  <artifactId>jspringbot-office</artifactId>
   <version>1.2-SNAPSHOT</version>
+
   <packaging>jar</packaging>
-  <name>jspringbot-selenium</name>
+  <name>jspringbot-office</name>
 
   <properties>
-    <libdoc.name>JSpringBot Selenium Library</libdoc.name>
-    <libdoc.output>JSpringBotSeleniumLibrary.html</libdoc.output>
+    <libdoc.name>JSpringBot Office Library</libdoc.name>
+    <libdoc.output>JSpringBotOfficeLibrary.html</libdoc.output>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>AsposeJavaAPI</id>
+      <name>Aspose Java API</name>
+      <url>http://maven.aspose.com/artifactory/simple/ext-release-local/</url>
+    </repository>
+  </repositories>
 
   <build>
     <resources>
       <resource>
-        <directory>src/main/resources/</directory>
-        <filtering>true</filtering>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+        </includes>
       </resource>
     </resources>
     <testResources>
       <testResource>
-        <directory>src/test/resources/</directory>
+        <directory>src/test/resources</directory>
         <filtering>true</filtering>
+        <includes>
+          <include>**/*.xml</include>
+          <include>**/*.properties</include>
+        </includes>
+      </testResource>
+      <testResource>
+        <directory>src/test/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/*.doc</include>
+          <include>**/*.png</include>
+        </includes>
       </testResource>
     </testResources>
   </build>
 
+
   <dependencies>
     <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jsoup</groupId>
-      <artifactId>jsoup</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>commons-codec</groupId>
-      <artifactId>commons-codec</artifactId>
+      <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-expression</artifactId>
     </dependency>
     <dependency>
       <groupId>xerces</groupId>
       <artifactId>xercesImpl</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-firefox-driver</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.jspringbot</groupId>
-      <artifactId>jspringbot-pretty-logger</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -102,16 +107,30 @@
       <version>${spring.version}</version>
       <scope>test</scope>
     </dependency>
-    <!--<dependency>-->
-    <!--<groupId>org.uiautomation</groupId>-->
-    <!--<artifactId>ios-common</artifactId>-->
-    <!--<version>0.6.2</version>-->
-    <!--</dependency>-->
     <dependency>
-      <groupId>junit-addons</groupId>
-      <artifactId>junit-addons</artifactId>
-      <version>1.4</version>
-      <scope>test</scope>
+      <groupId>com.jamesmurty.utils</groupId>
+      <artifactId>java-xmlbuilder</artifactId>
+      <version>0.6</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.12-beta1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-scratchpad</artifactId>
+      <version>3.12-beta1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.12-beta1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.aspose</groupId>
+      <artifactId>aspose-words</artifactId>
+      <version>14.5.0</version>
     </dependency>
   </dependencies>
 </project>

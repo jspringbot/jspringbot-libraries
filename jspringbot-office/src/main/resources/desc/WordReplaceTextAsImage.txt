@@ -1,0 +1,4 @@
+This replace a text as image in the open word document.
+
+| Word Replace Text As Image | _replaceable_ | classpath:image.png | 300 | 200
+| Word Replace Text As Image | _replaceable_ | classpath:image |

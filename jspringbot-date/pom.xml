@@ -28,7 +28,6 @@
     <version>1.2-SNAPSHOT</version>
   </parent>
 
-  <groupId>org.jspringbot</groupId>
   <artifactId>jspringbot-date</artifactId>
   <version>1.2-SNAPSHOT</version>
 
