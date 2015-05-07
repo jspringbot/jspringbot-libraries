@@ -42,8 +42,7 @@ public class WordHelper {
 
         LOG.createAppender()
                 .appendBold("Open File:")
-                .appendCss(path)
-                .appendCss(openedResource.getFile().getAbsolutePath())
+                .appendProperty("path", path)
                 .log();
 
         document = new Document(openedResource.getInputStream());
@@ -91,8 +90,8 @@ public class WordHelper {
     public void insertHyperlink(String display, String url) throws Exception {
         LOG.createAppender()
                 .appendBold("Insert Hyperlink:")
-                .appendCss(display)
-                .appendCss(url)
+                .appendProperty("display", display)
+                .appendProperty("path", url)
                 .log();
 
         builder.getFont().setColor(Color.BLUE);

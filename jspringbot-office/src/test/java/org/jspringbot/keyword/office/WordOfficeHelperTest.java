@@ -1,11 +1,10 @@
 package org.jspringbot.keyword.office;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Date;
 
-@Ignore
+//@Ignore
 public class WordOfficeHelperTest {
 
     private WordHelper helper;
