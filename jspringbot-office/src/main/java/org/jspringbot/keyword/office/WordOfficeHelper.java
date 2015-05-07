@@ -3,12 +3,14 @@ package org.jspringbot.keyword.office;
 import com.aspose.words.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.poi.hwpf.HWPFDocument;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class WordOfficeHelper {
 
     private Resource getResource(String path) {
         if(!StringUtils.startsWith(path, "file:") && !StringUtils.startsWith(path, "classpath:")) {
-            path = "file://" + (!StringUtils.startsWith(path, File.pathSeparator) ? "./" : "") + path;
+            path = "file://" + (!StringUtils.startsWith(path, "/") ? "./" : "") + path;
         }
 
         ResourceEditor editor = new ResourceEditor();
@@ -84,8 +86,24 @@ public class WordOfficeHelper {
     public File saveAs(String path) throws Exception {
         Resource resource = getResource(path);
         File file = resource.getFile();
+
+        // ensure that the file is created
+        if(!file.getParentFile().isDirectory()) {
+            file.getParentFile().mkdirs();
+        }
+
         document.save(new FileOutputStream(file), SaveFormat.DOC);
 
+        removeEvaluationMessage(file);
+
         return file;
+    }
+
+    // remove first paragraph of the document
+    // this is the evaluation message of the aspose generated document
+    private void removeEvaluationMessage(File file) throws IOException {
+        HWPFDocument document1 = new HWPFDocument(new FileInputStream(file));
+        document1.getOverallRange().getParagraph(0).delete();
+        document1.write(new FileOutputStream(file));
     }
 }
