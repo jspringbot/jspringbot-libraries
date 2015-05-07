@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Word Insert Paragraph Break",
-        parameters = {"text"},
         description = "classpath:desc/WordInsertParagraphBreak.txt"
 )
 public class WordInsertParagraphBreak extends AbstractWordKeyword {

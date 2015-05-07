@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Word Insert Html",
-        parameters = {"text"},
+        parameters = {"html"},
         description = "classpath:desc/WordInsertHtml.txt"
 )
 public class WordInsertHtml extends AbstractWordKeyword {

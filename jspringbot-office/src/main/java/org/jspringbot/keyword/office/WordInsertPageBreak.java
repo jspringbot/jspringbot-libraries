@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Word Insert Page Break",
-        parameters = {"text"},
         description = "classpath:desc/WordInsertPageBreak.txt"
 )
 public class WordInsertPageBreak extends AbstractWordKeyword {
