@@ -25,11 +25,11 @@
   <parent>
     <groupId>org.jspringbot</groupId>
     <artifactId>jspringbot-libraries</artifactId>
-    <version>1.3</version>
+    <version>1.4-SNAPSHOT</version>
   </parent>
 
   <artifactId>jspringbot-ssh</artifactId>
-  <version>1.3</version>
+  <version>1.4-SNAPSHOT</version>
 
   <packaging>jar</packaging>
   <name>jspringbot-ssh</name>
