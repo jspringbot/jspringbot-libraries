@@ -11,9 +11,9 @@ For details please see: http://jspringbot.org/
 
 The following are the supported libraries.
 
-#### Web Application Testing
+#### Browser Automation
 
-Web Application Testing is supported using JSpringBot SeleniumLibrary.
+Browser Automation is supported using JSpringBot SeleniumLibrary.
 
 #### Restful Services Testing
 
