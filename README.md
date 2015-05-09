@@ -5,7 +5,7 @@ jSpringBot Libraries [![Build Status](https://buildhive.cloudbees.com/job/jsprin
 
 For end-to-end acceptance testing using Robot Framework with Java, Spring and Maven.
 
-For details please see: http://jspringbot.github.com/jspringbot/
+For details please see: http://jspringbot.org/jspringbot/
 
 ### Libraries
 
@@ -55,13 +55,6 @@ All libraries were built using [Java](http://www.java.com/en/) and [Spring Frame
 ## To generate documentation
 mvn compile jspringbot:libdoc
 Copy the generated html file to `gh-pages`/docs
-
-## Author
-
-Designed and built by [Shiela D. Buitizon](https://github.com/badong2210/).
-
-Contributor: [Alvin R. de Leon](https://github.com/alvinrdeleon/).
-
 
 ## Copyright and license
 
