@@ -5,7 +5,7 @@ jSpringBot Libraries [![Build Status](https://buildhive.cloudbees.com/job/jsprin
 
 For end-to-end acceptance testing using Robot Framework with Java, Spring and Maven.
 
-For details please see: http://jspringbot.org/jspringbot/
+For details please see: http://jspringbot.org/
 
 ### Libraries
 
