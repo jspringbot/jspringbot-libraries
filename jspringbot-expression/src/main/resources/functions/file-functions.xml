@@ -13,7 +13,7 @@
     <name>resource</name>
     <description>Evaluates the resource string as file.</description>
     <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
-    <function-signature>java.io.File resouce(java.lang.Object[])</function-signature>
+    <function-signature>java.io.File resource(java.lang.Object[])</function-signature>
   </function>
   <function>
     <prefix>file</prefix>
