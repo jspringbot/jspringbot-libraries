@@ -2,6 +2,10 @@ A test library providing microsoft office document support.
 
 For now this library allows user to create and update Microsoft Word documents.
 
+Please see the example {{Office Library}} project.
+
+{{jspringbot-github:sample-office|Sample Project}}
+
 = Supported types =
 
 Here are the supported microsoft documents.

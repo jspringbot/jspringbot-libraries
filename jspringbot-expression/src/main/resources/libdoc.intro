@@ -84,14 +84,16 @@ The following words are reserved for the EL and should not be used as identifier
 {{Expression Library}} has a rich set of functions for manipulating data of different types.
 
 | *Type* | *Prefix* | *Description* |
-| {{String}} | | Supported most of [http://commons.apache.org/lang/api-2.5/org/apache/commons/lang/StringUtils.html|StringUtils] and [http://commons.apache.org/lang/api-2.4/org/apache/commons/lang/StringEscapeUtils.html|StringEscapeUtils] methods. |
-| {{StringEscape}} | | Supported most of [http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/StringEscapeUtils.html] methods. |
-| {{Math}} | _[ math ]_ |  Supported most of [http://docs.oracle.com/javase/6/docs/api/java/lang/Math.html|Math] methods. |
-| {{Collection}} | _[ col ]_ | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/CollectionUtils.html|CollectionUtils] methods. |
-| {{Map}} | _[ map ]_ | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/MapUtils.html|MapUtils] methods. |
-| {{Arrays}} | _[ array ]_ | For now only {{array:asList(*items)}} method is supported. |
-| {{XML}} | _[ xml ]_ | Support jSpringBot XML keywords as functions. |
-| {{JSON}} | _[ json ]_ | Support jSpringBot JSON keywords as functions. |
+| {{jspringbot-function:string|String}} | | Supported most of [http://commons.apache.org/lang/api-2.5/org/apache/commons/lang/StringUtils.html|StringUtils] methods. |
+| {{jspringbot-function:string|StringEscape}} | | Supported most of [http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/StringEscapeUtils.html|StringEscapeUtils] methods. |
+| {{jspringbot-function:math|Math}} | math |  Supported most of [http://docs.oracle.com/javase/6/docs/api/java/lang/Math.html|Math] methods. |
+| {{jspringbot-function:collection|Collection}} | col | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/CollectionUtils.html|CollectionUtils] methods. |
+| {{jspringbot-function:collection|Map}} | map | Supported most of [http://commons.apache.org/collections/apidocs/org/apache/commons/collections/MapUtils.html|MapUtils] methods. |
+| {{jspringbot-function:collection|Arrays}} | array | For now only {{array:asList(*items)}} method is supported. |
+| {{jspringbot-function:xml|XML}} | xml | Support jSpringBot XML keywords as functions. |
+| {{jspringbot-function:json|JSON}} | json | Support jSpringBot JSON keywords as functions. |
+
+You can also view the jspringbot function documentation to view all available functions.
 
 *Additional Methods:*
 
