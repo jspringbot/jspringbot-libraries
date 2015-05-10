@@ -10,7 +10,7 @@
   </function>
   <function>
     <prefix>file</prefix>
-    <name>resouce</name>
+    <name>resource</name>
     <description>Evaluates the resource string as file.</description>
     <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
     <function-signature>java.io.File resouce(java.lang.Object[])</function-signature>
