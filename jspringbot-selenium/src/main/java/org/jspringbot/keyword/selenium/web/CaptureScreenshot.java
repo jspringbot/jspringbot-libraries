@@ -27,6 +27,7 @@ import java.io.IOException;
 @Component
 @KeywordInfo(
         name = "Capture Screenshot",
+        parameters = {"*options"},
         description = "classpath:desc/CaptureScreenshot.txt"
 )
 public class CaptureScreenshot extends AbstractSeleniumKeyword {
@@ -34,7 +35,11 @@ public class CaptureScreenshot extends AbstractSeleniumKeyword {
     @Override
     public Object execute(Object[] params) {
         try {
-            return helper.captureScreenShot();
+            if(params != null && params.length > 0) {
+                return helper.captureScreenShot(String.valueOf(params[0]));
+            } else {
+                return helper.captureScreenShot();
+            }
         } catch (IOException e) {
             throw new IllegalStateException(e.getMessage(), e);
         }

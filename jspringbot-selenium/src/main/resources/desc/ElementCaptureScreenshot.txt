@@ -4,3 +4,4 @@ The screenshot is saved into file screen_capture_%d_%d.png under the directory d
 
 Example:
 | Element Capture Screenshot | css=#element |
+| Element Capture Screenshot | css=#element | style=grayscale |

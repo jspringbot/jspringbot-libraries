@@ -4,3 +4,4 @@ Rhe screenshot is saved into file screen_capture_%d_%d.png under the directory d
 
 Example:
 | Capture Screenshot |
+| Capture Screenshot | style=grayscale,x=40,y=10,width=200,height=100
