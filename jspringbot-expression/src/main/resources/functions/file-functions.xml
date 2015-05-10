@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <prefix>file</prefix>
+    <name>valueOf</name>
+    <description>Evaluates the string as file.</description>
+    <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
+    <function-signature>java.io.File file(java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <prefix>file</prefix>
+    <name>resouce</name>
+    <description>Evaluates the resource string as file.</description>
+    <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
+    <function-signature>java.io.File resouce(java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <prefix>file</prefix>
+    <name>name</name>
+    <description>Returns the file name.</description>
+    <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
+    <function-signature>java.io.File name(java.io.File)</function-signature>
+  </function>
+  <function>
+    <prefix>file</prefix>
+    <name>simpleName</name>
+    <description>Returns the file name.</description>
+    <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
+    <function-signature>java.io.File nameWithoutExtension(java.io.File)</function-signature>
+  </function>
+  <function>
+    <prefix>file</prefix>
+    <name>extension</name>
+    <description>Returns the extension of the file name.</description>
+    <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
+    <function-signature>java.io.File extension(java.io.File)</function-signature>
+  </function>
+  <function>
+    <prefix>file</prefix>
+    <name>isFile</name>
+    <description>Checks if the file is a valid file.</description>
+    <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
+    <function-signature>boolean isFile(java.io.File)</function-signature>
+  </function>
+  <function>
+    <prefix>file</prefix>
+    <name>isDirectory</name>
+    <description>Checks if the file is a valid directory.</description>
+    <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
+    <function-signature>boolean isDirectory(java.io.File)</function-signature>
+  </function>
+  <function>
+    <prefix>file</prefix>
+    <name>mkdirs</name>
+    <description>Create directories</description>
+    <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
+    <function-signature>boolean mkdirs(java.io.File)</function-signature>
+  </function>
+</functions>

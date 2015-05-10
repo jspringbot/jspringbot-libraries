@@ -42,6 +42,10 @@
   <dependencies>
     <dependency>
       <groupId>org.jspringbot</groupId>
+      <artifactId>jspringbot-expression</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jspringbot</groupId>
       <artifactId>jspringbot-pretty-logger</artifactId>
     </dependency>
     <dependency>
