@@ -31,6 +31,8 @@ For Site Catalyst Support:
 
 | *Key* | *Default Value* | *Description* |
 | {{selenium.implicit.wait}} | 30 | Specify the amount of time the driver should wait when searching for an element if it is not immediately present. |
+| {{selenium.page.wait}} | 30 | Specify the amount of time the driver will wait for page load. |
+| {{selenium.script.wait}} | 30 | Specify the amount of time the driver will wait for script load. |
 | {{selenium.screenshot.folder}} | | Directory to place captured screenshots. |
 | {{selenium.download.directory}} | /tmp/jspringbot | Directory to place downloads. |
 | {{selenium.autosave.content.type}} | | Specify the valid file types to be downloaded. |
@@ -62,7 +64,7 @@ For Site Catalyst Support:
 | {{selenium.compare.base.dir}} | | Image baseline directory |
 | {{selenium.compare.environment.path}} | | Environment path include path for nodejs and graphicsmagick |
 | *Omniture Site Catalyst Automation Properties* | | |
-| {{omniture.debugger.location}} | http://sitecatalyst.omniture.com/sc_tools/stats_debugger.html | Third party stats debugger tool. If this becomes unavailable in the future, override the value with the new location. |
+| {{omniture.debugger.location}} | url | url=http://sitecatalyst.omniture.com/sc_tools/stats_debugger.html, Third party stats debugger tool. If this becomes unavailable in the future, override the value with the new location. |
 | {{omniture.debugger.wait.time.in.millis}} | 3000 | Wait time for URL-decoding of site catalyst variables and copying of html source of the stats debugger window. |
 
 *Sample jspringbot.properties*

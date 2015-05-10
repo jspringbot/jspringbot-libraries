@@ -59,6 +59,8 @@
   <bean class="org.jspringbot.keyword.selenium.WebDriverWaitBean">
     <constructor-arg ref="webdriver"/>
     <property name="implicitWaitInSeconds" value="${selenium.implicit.wait:30}"/>
+    <property name="pageLoadWaitInSeconds" value="${selenium.page.wait:30}"/>
+    <property name="scriptWaitInSeconds" value="${selenium.script.wait:30}"/>
     <property name="downloadTimeoutInSeconds" value="${selenium.download.timeout:10}"/>
   </bean>
 
