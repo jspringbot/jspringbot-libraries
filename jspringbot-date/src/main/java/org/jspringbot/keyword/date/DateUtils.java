@@ -74,6 +74,14 @@ public class DateUtils {
         throw new IllegalArgumentException("Expected invocation parse(date_str, parsePattern) or parse(date_str).");
     }
 
+    public static String reformat(String date, String parseFormat, String displayFormat) {
+        DateTimeFormatter dateTimeFormatter = DateTimeFormat.forPattern(parseFormat);
+        DateTime current = dateTimeFormatter.parseDateTime(date);
+
+        dateTimeFormatter = DateTimeFormat.forPattern(displayFormat);
+        return dateTimeFormatter.print(current);
+    }
+
     public static String current(String... args) {
         return format(getHelper().getCurrent(), "current", args);
     }

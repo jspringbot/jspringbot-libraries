@@ -1,5 +1,6 @@
 package org.jspringbot.keyword.expression.utils;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
@@ -104,6 +105,11 @@ public class ELFileUtils {
     public static String name(File file) {
         return file.getName();
     }
+
+    public static void copy(File source, File dest) throws IOException {
+        FileUtils.copyFile(source, dest);
+    }
+
 
     public static String nameWithoutExtension(File file) {
         return StringUtils.split(file.getName(), ".")[0];

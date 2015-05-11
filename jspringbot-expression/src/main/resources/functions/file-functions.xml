@@ -57,4 +57,11 @@
     <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
     <function-signature>boolean mkdirs(java.io.File)</function-signature>
   </function>
+  <function>
+    <prefix>file</prefix>
+    <name>copy</name>
+    <description>Create directories</description>
+    <function-class>org.jspringbot.keyword.expression.utils.ELFileUtils</function-class>
+    <function-signature>void copy(java.io.File,java.io.File)</function-signature>
+  </function>
 </functions>

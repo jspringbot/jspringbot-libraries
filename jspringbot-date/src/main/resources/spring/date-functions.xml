@@ -16,6 +16,13 @@
     <function-signature>java.lang.String current(java.lang.String[])</function-signature>
   </function>
   <function>
+    <name>reformat</name>
+    <prefix>date</prefix>
+    <description>Returns the re-formatted date string.</description>
+    <function-class>org.jspringbot.keyword.date.DateUtils</function-class>
+    <function-signature>java.lang.String reformat(java.lang.String,java.lang.String,java.lang.String)</function-signature>
+  </function>
+  <function>
     <name>midnight</name>
     <prefix>date</prefix>
     <description>Returns the midnight date.</description>

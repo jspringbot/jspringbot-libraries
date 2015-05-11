@@ -84,7 +84,6 @@ public class SeleniumHelper {
         this.driver = driver;
         this.executor = (JavascriptExecutor) driver;
         this.finder = new ElementFinder(driver);
-        this.driver.manage().timeouts().pageLoadTimeout(30,TimeUnit.SECONDS);
     }
 
     @Required
@@ -386,11 +385,7 @@ public class SeleniumHelper {
         BufferedImage eleScreenshot= fullImg.getSubimage(point.getX(), point.getY(), eleWidth, eleHeight);
 
         if(options != null) {
-            Map<String, String> optionMap = getOptions(options);
-            String style = optionMap.get("style");
-            if(StringUtils.equals(style, "grayscale")) {
-                toGray(eleScreenshot);
-            }
+            eleScreenshot = processOption(eleScreenshot, options);
         }
 
         ImageIO.write(eleScreenshot, "png", file);
@@ -443,26 +438,30 @@ public class SeleniumHelper {
             LOG.html("Screen captured (%d): <br /> <img src='%s'/>", screenCaptureCtr, file.getName());
 
             BufferedImage fullImg = ImageIO.read(new ByteArrayInputStream(bytes));
-            Map<String, String> optionMap = getOptions(options);
-
-            if(optionMap.containsKey("x") && optionMap.containsKey("y") && optionMap.containsKey("width") && optionMap.containsKey("height")) {
-                int x = Integer.parseInt(optionMap.get("x"));
-                int y = Integer.parseInt(optionMap.get("y"));
-                int width = Integer.parseInt(optionMap.get("width"));
-                int height = Integer.parseInt(optionMap.get("height"));
-
-                fullImg = fullImg.getSubimage(x, y, width, height);
-            }
-
-            String style = optionMap.get("style");
-            if(StringUtils.equals(style, "grayscale")) {
-                toGray(fullImg);
-            }
-
-            ImageIO.write(fullImg, "png", file);
+            ImageIO.write(processOption(fullImg, options), "png", file);
         }
 
         return file;
+    }
+
+    private BufferedImage processOption(BufferedImage fullImg, String options) {
+        Map<String, String> optionMap = getOptions(options);
+
+        if(optionMap.containsKey("x") && optionMap.containsKey("y") && optionMap.containsKey("width") && optionMap.containsKey("height")) {
+            int x = Integer.parseInt(optionMap.get("x"));
+            int y = Integer.parseInt(optionMap.get("y"));
+            int width = Integer.parseInt(optionMap.get("width"));
+            int height = Integer.parseInt(optionMap.get("height"));
+
+            fullImg = fullImg.getSubimage(x, y, width, height);
+        }
+
+        String style = optionMap.get("style");
+        if(StringUtils.equals(style, "grayscale")) {
+            toGray(fullImg);
+        }
+
+        return fullImg;
     }
 
     private void toGray(BufferedImage image) {
