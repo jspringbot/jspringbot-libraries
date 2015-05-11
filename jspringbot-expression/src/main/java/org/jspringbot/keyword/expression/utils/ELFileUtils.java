@@ -9,20 +9,21 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import static org.jspringbot.keyword.expression.ELUtils.replaceVars;
+
 public class ELFileUtils {
 
-    public static FileInputStream stream(Object... files) throws IOException {
+    public static FileInputStream stream(Object... files) throws Exception {
         File file = file(files);
         return new FileInputStream(file);
     }
 
-
-    public static FileInputStream streamResource(Object... files) throws IOException {
+    public static FileInputStream streamResource(Object... files) throws Exception {
         File file = resource(files);
         return new FileInputStream(file);
     }
 
-    public static File resource(Object... files) throws IOException {
+    public static File resource(Object... files) throws Exception {
         File file;
         File dir;
         if(files.length > 1) {
@@ -37,7 +38,7 @@ public class ELFileUtils {
             if(File.class.isInstance(files[1])) {
                 return new File(dir, ((File) files[1]).getName());
             } else {
-                return new File(dir, String.valueOf(files[1]));
+                return new File(dir, replaceVars(String.valueOf(files[1])));
             }
         } else if(files.length == 1) {
             if(File.class.isInstance(files[0])) {
@@ -59,25 +60,25 @@ public class ELFileUtils {
         }
     }
 
-    private static File getResource(String path) throws IOException {
+    private static File getResource(String path) throws Exception {
         if(!StringUtils.startsWith(path, "file:") && !StringUtils.startsWith(path, "classpath:")) {
             return file(path);
         }
 
         ResourceEditor editor = new ResourceEditor();
-        editor.setAsText(path);
+        editor.setAsText(replaceVars(path));
 
         return ((Resource) editor.getValue()).getFile();
     }
 
-    public static File file(Object... files) {
+    public static File file(Object... files) throws Exception {
         File file;
         File dir;
         if(files.length > 1) {
             if(File.class.isInstance(files[0])) {
                 dir = (File) files[0];
             } else {
-                dir = new File(String.valueOf(files[0]));
+                dir = new File(replaceVars(String.valueOf(files[0])));
             }
 
             makeDirs(dir);
@@ -85,13 +86,13 @@ public class ELFileUtils {
             if(File.class.isInstance(files[1])) {
                 return new File(dir, ((File) files[1]).getName());
             } else {
-                return new File(dir, String.valueOf(files[1]));
+                return new File(dir, replaceVars(String.valueOf(files[1])));
             }
         } else if(files.length == 1) {
             if(File.class.isInstance(files[0])) {
                 file = (File) files[0];
             } else {
-                file = new File(String.valueOf(files[0]));
+                file = new File(replaceVars(String.valueOf(files[0])));
             }
 
             makeDirs(file.getParentFile());
@@ -109,7 +110,6 @@ public class ELFileUtils {
     public static void copy(File source, File dest) throws IOException {
         FileUtils.copyFile(source, dest);
     }
-
 
     public static String nameWithoutExtension(File file) {
         return StringUtils.split(file.getName(), ".")[0];

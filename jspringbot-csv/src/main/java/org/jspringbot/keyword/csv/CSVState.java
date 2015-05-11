@@ -303,7 +303,7 @@ public class CSVState {
                 .log();
     }
 
-    public void parseCSVResource(String resource) throws IOException {
+    public void parseCSVResource(String resource) throws Exception {
         openedFile = resource(resource);
 
         HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
@@ -328,7 +328,7 @@ public class CSVState {
     public void appendCSVLine(String csv) throws IOException {
         CSVWriter writer = new CSVWriter(new FileWriter(openedFile, true));
 
-        if(!openedFile.isFile() && headerRow != null) {
+        if(headerRow != null && CollectionUtils.isEmpty(lines)) {
             writer.writeNext(headerRow);
         }
 
@@ -357,10 +357,12 @@ public class CSVState {
     }
 
     public void setFirstLineAsHeader() {
-        ListIterator<String[]> itr = lines.listIterator();
+        if(CollectionUtils.isNotEmpty(lines)) {
+            ListIterator<String[]> itr = lines.listIterator();
 
-        setHeaders(itr.next());
-        itr.remove();
+            setHeaders(itr.next());
+            itr.remove();
+        }
     }
 
     private String toCSV(List<String[]> lines) {

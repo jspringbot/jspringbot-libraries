@@ -44,7 +44,7 @@ public class CSVHelper {
         states.put(name, currentState);
     }
 
-    public void parseCSVResource(String name, String resource) throws IOException {
+    public void parseCSVResource(String name, String resource) throws Exception {
         currentState = new CSVState(name);
         currentState.parseCSVResource(resource);
 
@@ -59,7 +59,7 @@ public class CSVHelper {
         parseCSVString(String.valueOf(System.currentTimeMillis()), csv);
     }
 
-    public void parseCSVResource(String resource) throws IOException {
+    public void parseCSVResource(String resource) throws Exception {
         parseCSVResource(String.valueOf(System.currentTimeMillis()), resource);
     }
 

@@ -115,8 +115,18 @@ public class ELUtils {
                 value = robotVar(name);
                 LOG.keywordAppender().appendProperty("Replacement Robot Value ['" + name + "']", value);
             }
+            if(value == null) {
+                value = System.getProperty(name);
+                LOG.keywordAppender().appendProperty("Replacement System Property Value ['" + name + "']", value);
+            }
+            if(value == null) {
+                value = System.getenv(name);
+                LOG.keywordAppender().appendProperty("Replacement System Environment Value ['" + name + "']", value);
+            }
 
             String strValue = String.valueOf(value);
+
+
 
             buf.replace(matcher.start(), matcher.end(), strValue);
             startIndex = matcher.start() + strValue.length();

@@ -28,6 +28,14 @@
 
   <description>jSpringBot CSV Keywords</description>
 
+  <bean class="org.jspringbot.keyword.expression.engine.function.SupportedFunctionRegistryBean">
+    <constructor-arg>
+      <list>
+        <value>classpath:spring/csv-functions.xml</value>
+      </list>
+    </constructor-arg>
+  </bean>
+
   <bean name="csvHelper" class="org.jspringbot.keyword.csv.CSVHelper"/>
 
   <!-- Scan components -->
