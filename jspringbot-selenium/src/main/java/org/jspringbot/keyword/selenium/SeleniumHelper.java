@@ -804,8 +804,12 @@ public class SeleniumHelper {
     			"div.parentNode.insertBefore(element, div); "
     			, el);
     }
-     
+
     public Object executeJavascript(String code) throws IOException {
+        return executeJavascript(null, code);
+    }
+     
+    public Object executeJavascript(String locator, String code) throws IOException {
         HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
                 .appendBold("Execute Javascript:");
 
@@ -818,10 +822,23 @@ public class SeleniumHelper {
             code = new String(IOUtils.toCharArray(resource.getInputStream()));
         }
 
+        if(locator != null) {
+            appender.appendProperty("locator", locator);
+        }
+
         appender.appendJavascript(code);
+
+        Object returnedValue;
+        if(locator == null) {
+            returnedValue = executor.executeScript(code);
+        } else {
+            WebElement el = finder.find(locator);
+            returnedValue = executor.executeScript(code, el);
+        }
+
         appender.log();
 
-        return executor.executeScript(code);
+        return returnedValue;
     }
 
     public String getElementAttribute(String attributeLocator) {

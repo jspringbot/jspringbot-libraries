@@ -1,0 +1,4 @@
+Executes the given JavaScript code for the given element.
+
+Examples:
+| Element Execute JavaScript | css=body | arguments[0].innerHTML='<b>hello</b>'; |
