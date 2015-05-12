@@ -174,6 +174,19 @@ public class CSVState {
         return queryResults;
     }
 
+
+    public String[] uniqueResult() {
+        String[] result = currentCriteria.uniqueResult();
+
+        LOG.createAppender()
+                .append("Unique Result:")
+                .appendPropertyStringArray("Result", result)
+                .log();
+
+        return result;
+    }
+
+
     public String[] firstResult() {
         String[] result = currentCriteria.firstResult();
 

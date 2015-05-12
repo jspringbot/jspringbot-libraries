@@ -135,6 +135,10 @@ public class CSVHelper {
         return currentState.firstResult();
     }
 
+    public String[] uniqueResult() {
+        return currentState.firstResult();
+    }
+
     public String firstResultColumnIndex(int index) {
         return currentState.firstResultColumnIndex(index);
     }
