@@ -45,7 +45,7 @@
     </constructor-arg>
   </bean>
 
-  <bean name="variableLifeCycle" class="org.jspringbot.lifecycle.LifeCycleHandlerRegistryBean">
+  <bean class="org.jspringbot.lifecycle.LifeCycleHandlerRegistryBean">
     <constructor-arg>
       <bean class="org.jspringbot.keyword.expression.VariableLifeCycleHandler"/>
     </constructor-arg>

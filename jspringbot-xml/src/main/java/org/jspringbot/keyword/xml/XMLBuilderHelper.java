@@ -8,6 +8,9 @@ import javax.xml.transform.TransformerException;
 public class XMLBuilderHelper {
     protected XMLBuilder builder;
 
+    public void reset() {
+        builder = null;
+    }
 
     public void startNode(String name) throws ParserConfigurationException {
         startNode(name, false);

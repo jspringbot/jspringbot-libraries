@@ -27,14 +27,20 @@
 
   <description>jSpringBot XML Keywords</description>
 
-  <bean name="xmlHelper" class="org.jspringbot.keyword.xml.XMLHelper"/>
-  <bean name="xmlBuilderHelper" class="org.jspringbot.keyword.xml.XMLBuilderHelper"/>
-
   <bean id="xmlFunctions" class="org.jspringbot.keyword.expression.engine.function.SupportedFunctionRegistryBean">
     <constructor-arg>
       <list>
         <value>classpath:spring/xml-functions.xml</value>
       </list>
+    </constructor-arg>
+  </bean>
+
+  <bean name="xmlHelper" class="org.jspringbot.keyword.xml.XMLHelper"/>
+  <bean name="xmlBuilderHelper" class="org.jspringbot.keyword.xml.XMLBuilderHelper"/>
+
+  <bean class="org.jspringbot.lifecycle.LifeCycleHandlerRegistryBean">
+    <constructor-arg>
+      <bean class="org.jspringbot.keyword.xml.ClearXMLLifeCycleHandler"/>
     </constructor-arg>
   </bean>
 
