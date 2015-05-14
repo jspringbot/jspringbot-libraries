@@ -55,10 +55,12 @@ public class TestDataHelper {
     public void createTestData(File path, List<String> headers) throws IOException {
         writer = new CSVWriter(new FileWriter(path));
         writer.writeNext(headers.toArray(new String[headers.size()]));
+        writer.flush();
     }
 
     public void addTestData(List<String> headers) throws IOException {
         writer.writeNext(headers.toArray(new String[headers.size()]));
+        writer.flush();
     }
 
     public void doneCreation() throws IOException {

@@ -25,11 +25,12 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.Validate;
 import org.jspringbot.keyword.csv.criteria.*;
 import org.jspringbot.syntax.HighlightRobotLogger;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceEditor;
 
 import java.io.*;
 import java.util.*;
+
+import static org.jspringbot.keyword.expression.utils.ELFileUtils.resource;
+import static org.jspringbot.keyword.expression.utils.ELFileUtils.stream;
 
 public class CSVState {
 
@@ -37,8 +38,11 @@ public class CSVState {
     public static final String OR_DISJUNCTION = "OR";
     public static final String AND_CONJUNCTION = "AND";
 
+    public static int MAX_LOG_LINES = 50;
+
     private List<String[]> lines;
 
+    private String[] headerRow;
     private Map<String, Integer> headers;
 
     private String name;
@@ -48,6 +52,8 @@ public class CSVState {
     private List<String[]> queryResults;
 
     private Stack<RestrictionAppender> appender;
+
+    private File openedFile;
 
     public CSVState(String name) {
         this.name = name;
@@ -168,6 +174,19 @@ public class CSVState {
         return queryResults;
     }
 
+
+    public String[] uniqueResult() {
+        String[] result = currentCriteria.uniqueResult();
+
+        LOG.createAppender()
+                .append("Unique Result:")
+                .appendPropertyStringArray("Result", result)
+                .log();
+
+        return result;
+    }
+
+
     public String[] firstResult() {
         String[] result = currentCriteria.firstResult();
 
@@ -238,9 +257,9 @@ public class CSVState {
     public String getColumnValue(String[] line, String name) {
         return line[headers.get(name)];
     }
-    
-    public List<String> getColumnValues(int index) {    	
-        
+
+    public List<String> getColumnValues(int index) {
+
 		List<String[]> results = list();
 		List<String> columnList = new ArrayList<String>(results.size());
 
@@ -297,22 +316,44 @@ public class CSVState {
                 .log();
     }
 
-    public void parseCSVResource(String resource) throws IOException {
-        ResourceEditor editor = new ResourceEditor();
-        editor.setAsText(resource);
+    public void parseCSVResource(String resource) throws Exception {
+        openedFile = resource(resource);
 
-        Resource r = (Resource) editor.getValue();
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
+                .appendBold("Parse CSV Resource:");
 
-        readAll(new InputStreamReader(r.getInputStream()));
+        if(openedFile.isFile()) {
+            readAll(new InputStreamReader(stream(openedFile)));
 
-        LOG.createAppender()
-                .appendBold("Parse CSV Resource:")
-                .append(" (count=%d)", CollectionUtils.size(lines))
-                .appendText(toCSV(lines))
-                .log();
+            appender.append(" (count=%d)", CollectionUtils.size(lines));
+
+            if (CollectionUtils.size(lines) <= MAX_LOG_LINES) {
+                appender.appendText(toCSV(lines));
+            }
+        } else {
+            appender.append("file not found");
+            lines = new ArrayList<String[]>();
+        }
+
+        appender.log();
+    }
+
+    public void appendCSVLine(String csv) throws IOException {
+        CSVWriter writer = new CSVWriter(new FileWriter(openedFile, true));
+
+        if(headerRow != null && CollectionUtils.isEmpty(lines)) {
+            writer.writeNext(headerRow);
+        }
+
+        String[] line = toLine(csv);
+        lines.add(line);
+
+        writer.writeNext(line);
+        writer.close();
     }
 
     private void setHeaders(String[] headers) {
+        headerRow = headers;
         this.headers = new HashMap<String, Integer>(headers.length);
         for(int i = 0; i < headers.length; i++) {
             this.headers.put(headers[i], i);
@@ -329,10 +370,12 @@ public class CSVState {
     }
 
     public void setFirstLineAsHeader() {
-        ListIterator<String[]> itr = lines.listIterator();
+        if(CollectionUtils.isNotEmpty(lines)) {
+            ListIterator<String[]> itr = lines.listIterator();
 
-        setHeaders(itr.next());
-        itr.remove();
+            setHeaders(itr.next());
+            itr.remove();
+        }
     }
 
     private String toCSV(List<String[]> lines) {

@@ -2,15 +2,12 @@ package org.jspringbot.keyword.office;
 
 import com.aspose.words.*;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.StringUtils;
 import org.apache.poi.hwpf.HWPFDocument;
 import org.apache.poi.xwpf.usermodel.BodyElementType;
 import org.apache.poi.xwpf.usermodel.IBodyElement;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.jsoup.helper.Validate;
 import org.jspringbot.syntax.HighlightRobotLogger;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceEditor;
 import org.springframework.util.ReflectionUtils;
 
 import java.awt.*;
@@ -21,6 +18,10 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.jspringbot.keyword.expression.utils.ELFileUtils.resource;
+import static org.jspringbot.keyword.expression.utils.ELFileUtils.stream;
+
 import java.util.List;
 
 public class WordHelper {
@@ -30,7 +31,7 @@ public class WordHelper {
 
     private DocumentBuilder builder;
 
-    private Resource openedResource;
+    private File openedFile;
 
     public void create() throws Exception {
         document = new Document();
@@ -38,26 +39,14 @@ public class WordHelper {
     }
 
     public void openFile(String path) throws Exception {
-        openedResource = getResource(path);
-
         LOG.createAppender()
                 .appendBold("Open File:")
                 .appendProperty("path", path)
                 .log();
 
-        document = new Document(openedResource.getInputStream());
+        openedFile = resource(path);
+        document = new Document(stream(openedFile));
         builder = new DocumentBuilder(document);
-    }
-
-    private Resource getResource(String path) {
-        if(!StringUtils.startsWith(path, "file:") && !StringUtils.startsWith(path, "classpath:")) {
-            path = "file://" + (!StringUtils.startsWith(path, "/") ? "./" : "") + path;
-        }
-
-        ResourceEditor editor = new ResourceEditor();
-        editor.setAsText(path);
-
-        return (Resource) editor.getValue();
     }
 
     public void insertText(String text) throws Exception {
@@ -111,15 +100,11 @@ public class WordHelper {
     }
 
     public void replaceTextAsImage(final String replaceable, String image) throws Exception {
-        Resource resource = getResource(image);
-
-        replaceTextAsImage(replaceable, resource.getFile());
+        replaceTextAsImage(replaceable, resource(image));
     }
 
     public void replaceTextAsImage(final String replaceable, String image, int width, int height) throws Exception {
-        Resource resource = getResource(image);
-
-        replaceTextAsImage(replaceable, resource.getFile(), width, height);
+        replaceTextAsImage(replaceable, resource(image), width, height);
     }
 
     public void replaceTextAsImage(final String replaceable, File image) throws Exception {
@@ -164,13 +149,11 @@ public class WordHelper {
     }
 
     public void insertImage(String image) throws Exception {
-        Resource resource = getResource(image);
-        insertImage(resource.getFile());
+        insertImage(resource(image));
     }
 
     public void insertImage(String image, int width, int height) throws Exception {
-        Resource resource = getResource(image);
-        insertImage(resource.getFile(), width, height);
+        insertImage(resource(image), width, height);
     }
 
     public void insertImage(File image) throws Exception {
@@ -199,10 +182,9 @@ public class WordHelper {
     }
 
     public File save(String format) throws Exception {
-        Validate.notNull(openedResource, "no opened file.");
+        Validate.notNull(openedFile, "no opened file.");
 
-        File file = openedResource.getFile();
-        return save(file, format);
+        return save(openedFile, format);
     }
 
     public File saveAs(String path) throws Exception {
@@ -210,13 +192,7 @@ public class WordHelper {
     }
 
     public File saveAs(String path, String format) throws Exception {
-        Resource resource = getResource(path);
-        File file = resource.getFile();
-
-        // ensure that the file is created
-        if(!file.getParentFile().isDirectory()) {
-            file.getParentFile().mkdirs();
-        }
+        File file = resource(path);
 
         return save(file, format);
     }

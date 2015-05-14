@@ -23,6 +23,8 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.Select;
@@ -32,6 +34,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceEditor;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -40,6 +43,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -80,7 +84,6 @@ public class SeleniumHelper {
         this.driver = driver;
         this.executor = (JavascriptExecutor) driver;
         this.finder = new ElementFinder(driver);
-        this.driver.manage().timeouts().pageLoadTimeout(30,TimeUnit.SECONDS);
     }
 
     @Required
@@ -356,7 +359,11 @@ public class SeleniumHelper {
         return links;
     }
 
-    public File captureScreenShot(String locator) throws IOException {
+    public File elementCaptureScreenShot(String locator) throws IOException {
+        return elementCaptureScreenShot(locator, null);
+    }
+
+    public File elementCaptureScreenShot(String locator, String options) throws IOException {
         LOG.createAppender()
                 .appendBold("Capture Screen shot:")
                 .appendCss(locator)
@@ -376,26 +383,100 @@ public class SeleniumHelper {
         int eleHeight = el.getSize().getHeight();
         //Crop the entire page screenshot to get only element screenshot
         BufferedImage eleScreenshot= fullImg.getSubimage(point.getX(), point.getY(), eleWidth, eleHeight);
+
+        if(options != null) {
+            eleScreenshot = processOption(eleScreenshot, options);
+        }
+
         ImageIO.write(eleScreenshot, "png", file);
 
         return file;
     }
 
+    private Map<String, String> getOptions(String options) {
+        try {
+            String[] items = StringUtils.split(options, ",");
+
+            Map<String, String> map = new HashMap<String, String>(items.length);
+            for (String item : items) {
+                String[] result = StringUtils.split(item, "=");
+
+                if (result.length == 2) {
+                    map.put(result[0], result[1]);
+                }
+            }
+
+            return map;
+        } catch(Exception e) {
+            throw new IllegalArgumentException("Invalid option: " + options);
+        }
+    }
+
     public File captureScreenShot() throws IOException {
+        return captureScreenShot(null);
+    }
+
+    public File captureScreenShot(String options) throws IOException {
         byte[] bytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
-        FileOutputStream out = null;
-        try {
-            File file = newScreenCaptureFile();
+        File file = newScreenCaptureFile();
 
+        if(options == null) {
+            FileOutputStream out = null;
+            try {
+
+                LOG.html("Screen captured (%d): <br /> <img src='%s'/>", screenCaptureCtr, file.getName());
+
+                out = new FileOutputStream(file);
+                IOUtils.write(bytes, out);
+
+                return file;
+            } finally {
+                IOUtils.closeQuietly(out);
+            }
+        } else {
             LOG.html("Screen captured (%d): <br /> <img src='%s'/>", screenCaptureCtr, file.getName());
 
-            out = new FileOutputStream(file);
-            IOUtils.write(bytes, out);
+            BufferedImage fullImg = ImageIO.read(new ByteArrayInputStream(bytes));
+            ImageIO.write(processOption(fullImg, options), "png", file);
+        }
 
-            return file;
-        } finally {
-            IOUtils.closeQuietly(out);
+        return file;
+    }
+
+    private BufferedImage processOption(BufferedImage fullImg, String options) {
+        Map<String, String> optionMap = getOptions(options);
+
+        if(optionMap.containsKey("x") && optionMap.containsKey("y") && optionMap.containsKey("width") && optionMap.containsKey("height")) {
+            int x = Integer.parseInt(optionMap.get("x"));
+            int y = Integer.parseInt(optionMap.get("y"));
+            int width = Integer.parseInt(optionMap.get("width"));
+            int height = Integer.parseInt(optionMap.get("height"));
+
+            fullImg = fullImg.getSubimage(x, y, width, height);
+        }
+
+        String style = optionMap.get("style");
+        if(StringUtils.equals(style, "grayscale")) {
+            toGray(fullImg);
+        }
+
+        return fullImg;
+    }
+
+    private void toGray(BufferedImage image) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+        for(int i=0; i<height; i++){
+            for(int j=0; j<width; j++){
+                Color c = new Color(image.getRGB(j, i));
+                int red = (int)(c.getRed() * 0.21);
+                int green = (int)(c.getGreen() * 0.72);
+                int blue = (int)(c.getBlue() *0.07);
+                int sum = red + green + blue;
+                Color newColor = new Color(sum,sum,sum);
+                image.setRGB(j,i,newColor.getRGB());
+            }
         }
     }
 
@@ -723,8 +804,12 @@ public class SeleniumHelper {
     			"div.parentNode.insertBefore(element, div); "
     			, el);
     }
-     
+
     public Object executeJavascript(String code) throws IOException {
+        return executeJavascript(null, code);
+    }
+     
+    public Object executeJavascript(String locator, String code) throws IOException {
         HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
                 .appendBold("Execute Javascript:");
 
@@ -737,10 +822,23 @@ public class SeleniumHelper {
             code = new String(IOUtils.toCharArray(resource.getInputStream()));
         }
 
+        if(locator != null) {
+            appender.appendProperty("locator", locator);
+        }
+
         appender.appendJavascript(code);
+
+        Object returnedValue;
+        if(locator == null) {
+            returnedValue = executor.executeScript(code);
+        } else {
+            WebElement el = finder.find(locator);
+            returnedValue = executor.executeScript(code, el);
+        }
+
         appender.log();
 
-        return executor.executeScript(code);
+        return returnedValue;
     }
 
     public String getElementAttribute(String attributeLocator) {

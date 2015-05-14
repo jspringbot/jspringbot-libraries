@@ -33,7 +33,6 @@ public class CSVHelper {
 
     public static final HighlightRobotLogger LOG = HighlightRobotLogger.getLogger(CSVHelper.class);
 
-
     private CSVState currentState;
 
     private Map<String, CSVState> states = new HashMap<String, CSVState>();
@@ -45,18 +44,22 @@ public class CSVHelper {
         states.put(name, currentState);
     }
 
-    public void parseCSVResource(String name, String resource) throws IOException {
+    public void parseCSVResource(String name, String resource) throws Exception {
         currentState = new CSVState(name);
         currentState.parseCSVResource(resource);
 
         states.put(name, currentState);
     }
 
+    public void appendCSVLine(String csvLine) throws IOException {
+        currentState.appendCSVLine(csvLine);
+    }
+
     public void parseCSVString(String csv) throws IOException {
         parseCSVString(String.valueOf(System.currentTimeMillis()), csv);
     }
 
-    public void parseCSVResource(String resource) throws IOException {
+    public void parseCSVResource(String resource) throws Exception {
         parseCSVResource(String.valueOf(System.currentTimeMillis()), resource);
     }
 
@@ -129,6 +132,10 @@ public class CSVHelper {
     }
 
     public String[] firstResult() {
+        return currentState.firstResult();
+    }
+
+    public String[] uniqueResult() {
         return currentState.firstResult();
     }
 

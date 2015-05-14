@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<functions>
+  <function>
+    <name>asLine</name>
+    <prefix>csv</prefix>
+    <description>Convert the provided objects to a csv line.</description>
+    <function-class>org.jspringbot.keyword.csv.ELCSVUtils</function-class>
+    <function-signature>java.lang.String asLine(java.lang.Object[])</function-signature>
+  </function>
+  <function>
+    <name>asArray</name>
+    <prefix>csv</prefix>
+    <description>Read the csv line to string array.</description>
+    <function-class>org.jspringbot.keyword.csv.ELCSVUtils</function-class>
+    <function-signature>java.lang.String[] asArray(java.lang.String)</function-signature>
+  </function>
+</functions>

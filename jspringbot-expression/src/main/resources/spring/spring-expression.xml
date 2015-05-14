@@ -41,6 +41,7 @@
         <value>classpath:functions/math-functions.xml</value>
         <value>classpath:functions/parser-functions.xml</value>
         <value>classpath:functions/string-functions.xml</value>
+        <value>classpath:functions/file-functions.xml</value>
       </list>
     </constructor-arg>
   </bean>
