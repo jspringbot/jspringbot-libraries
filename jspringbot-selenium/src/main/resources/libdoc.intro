@@ -54,6 +54,12 @@ For Site Catalyst Support:
 | *Firefox Profile* | | |
 | {{network.automatic-ntlm-auth.trusted-uris}} | | This preference determines which sites are allowed to automatically authenticate via NTLM. If the user requests a site that authenticates with NTLM that is not in this list, the user will be prompted for login details. |
 | {{user.agent}} | | Overrides Firefox User Agent |
+| *Chrome Properties* | | |
+| {{selenium.chrome.mobile.device}} | See Chrome Devices | @Since 1.4 Simulate a device for chrome. |
+| {{selenium.webdriver.chrome.logfile}} | /tmp/chromedriver.log | @Since 1.4 the chrome web driver log file. |
+| {{selenium.chrome.performance.log.level}} | None | @Since 1.4 @Default None, add performance browser logging. |
+| {{selenium.chrome.browser.log.level}} | None | @Since 1.4 @Default None, add browser logging. |
+| {{selenium.chrome.pref.log.dir}} | /tmp | @Since 1.4, this will be the destination location for the generated preference browser log files. |
 | *Selenium Hub Properties* | | |
 | {{selenium.grid.url}} | | Specifies the url where Selenium Grid is configured |
 | {{selenium.grid.browserName}} | | Specifies the Selenium Grid Browser to use (ie. firefox, intenet explorer, chrome, etc) |
@@ -69,11 +75,6 @@ For Site Catalyst Support:
 | *Omniture Site Catalyst Automation Properties* | | |
 | {{omniture.debugger.location}} | url | url=http://sitecatalyst.omniture.com/sc_tools/stats_debugger.html, Third party stats debugger tool. If this becomes unavailable in the future, override the value with the new location. |
 | {{omniture.debugger.wait.time.in.millis}} | 3000 | Wait time for URL-decoding of site catalyst variables and copying of html source of the stats debugger window. |
-| {{selenium.chrome.mobile.device}} | See Chrome Devices | @Since 1.4 Simulate a device for chrome. |
-| {{selenium.webdriver.chrome.logfile}} | /tmp/chromedriver.log | @Since 1.4 the chrome web driver log file. |
-| {{selenium.chrome.performance.log.level}} | None | @Since 1.4 @Default None, add performance browser logging. |
-| {{selenium.chrome.browser.log.level}} | None | @Since 1.4 @Default None, add browser logging. |
-| {{selenium.chrome.pref.log.dir}} | /tmp | @Since 1.4, this will be the destination location for the generated preference browser log files. |
 
 *Chrome Devices*
 
