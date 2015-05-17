@@ -35,7 +35,7 @@
     <property name="chromeDeviceEmulation" value="${selenium.chrome.mobile.device:none}"/>
     <property name="chromeBrowserLog" value="${selenium.chrome.browser.log.level:none}"/>
     <property name="chromePerformanceLog" value="${selenium.chrome.performance.log.level:none}"/>
-    <property name="chromeLogFile" value="${selenium.webdriver.chrome.logfile:none}"/>
+    <property name="chromeLogFile" value="${selenium.chrome.webdriver.logfile:none}"/>
     <property name="proxy" value="${selenium.proxy:none}"/>
     <property name="httpProxy" value="${selenium.http.proxy:none}"/>
     <property name="sslProxy" value="${selenium.ssl.proxy:none}"/>
