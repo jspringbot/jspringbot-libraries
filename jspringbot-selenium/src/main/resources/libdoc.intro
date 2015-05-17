@@ -18,6 +18,9 @@ Configure the following to use jspringbot-selenium.
 For Firefox Support:
 | <import resource="classpath:spring/spring-selenium-firefox.xml"/>
 
+For Chrome Support:
+| <import resource="classpath:spring/spring-selenium-chrome.xml"/>
+
 For Selenium Hub Support:
 | <import resource="classpath:spring/spring-selenium-hub.xml"/>
 
@@ -66,6 +69,25 @@ For Site Catalyst Support:
 | *Omniture Site Catalyst Automation Properties* | | |
 | {{omniture.debugger.location}} | url | url=http://sitecatalyst.omniture.com/sc_tools/stats_debugger.html, Third party stats debugger tool. If this becomes unavailable in the future, override the value with the new location. |
 | {{omniture.debugger.wait.time.in.millis}} | 3000 | Wait time for URL-decoding of site catalyst variables and copying of html source of the stats debugger window. |
+| {{selenium.chrome.mobile.device}} | See Chrome Devices | @Since 1.4 Simulate a device for chrome. |
+| {{selenium.webdriver.chrome.logfile}} | /tmp/chromedriver.log | @Since 1.4 the chrome web driver log file. |
+| {{selenium.chrome.performance.log.level}} | None | @Since 1.4 @Default None, add performance browser logging. |
+| {{selenium.chrome.browser.log.level}} | None | @Since 1.4 @Default None, add browser logging. |
+| {{selenium.chrome.pref.log.dir}} | /tmp | @Since 1.4, this will be the destination location for the generated preference browser log files. |
+
+*Chrome Devices*
+
+Here are some example devices values for {{selenium.chrome.mobile.device}}.
+
+| Apple iPhone 5
+| Apple iPhone 6
+| Google Nexus 5
+| Google Nexus 10
+| Samsung Galaxy S4
+| Samsung Galaxy Note
+
+Please see the link for all the supported devices
+https://developer.chrome.com/devtools/docs/device-mode
 
 *Sample jspringbot.properties*
 
@@ -81,6 +103,13 @@ For Site Catalyst Support:
 | selenium.network.proxy.http.port=3128
 | selenium.network.proxy.type=0
 | selenium.network.proxy.no.proxies.on=localhost, 127.0.0.1
+
+*Sample jspringbot.properties with Chrome emulated device and preference logging*
+
+| selenium.chrome.mobile.device=Apple iPhone 6
+| selenium.chrome.browser.log.level=ALL
+| selenium.chrome.performance.log.level=INFO
+| selenium.chrome.pref.log.dir=${project.build.directory}/perflog
 
 *Sample jspringbot.properties with Firefox Profile support*
 | #For iPhone - OS 6
