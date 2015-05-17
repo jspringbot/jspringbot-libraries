@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:ctx="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <description>Robot Selenium Keywords</description>
+
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    <property name="locations">
+      <list>
+        <value>classpath:jspringbot.properties</value>
+      </list>
+    </property>
+  </bean>
+
+  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"
+        factory-method="chrome"/>
+
+  <bean class="org.jspringbot.keyword.selenium.DesiredCapabilitiesBean">
+    <constructor-arg ref="desiredCapabilities"/>
+    <property name="baseDir" value="${selenium.base.dir:none}"/>
+    <property name="chromeDrivers">
+      <map>
+        <entry key="Windows" value="classpath:drivers/chromedriver_win32.zip"/>
+        <entry key="MacOS" value="classpath:drivers/chromedriver_mac32.zip"/>
+        <entry key="Linux" value="classpath:drivers/chromedriver_linux32.zip"/>
+      </map>
+    </property>
+    <property name="chromeDeviceEmulation" value="${selenium.chrome.mobile.device:none}"/>
+    <property name="chromeBrowserLog" value="${selenium.chrome.browser.log.level:none}"/>
+    <property name="chromePerformanceLog" value="${selenium.chrome.performance.log.level:none}"/>
+    <property name="chromeLogFile" value="${selenium.chrome.logfile:none}"/>
+    <property name="proxy" value="${selenium.proxy:none}"/>
+    <property name="httpProxy" value="${selenium.http.proxy:none}"/>
+    <property name="sslProxy" value="${selenium.ssl.proxy:none}"/>
+  </bean>
+
+  <bean id="webdriver" class="org.openqa.selenium.chrome.ChromeDriver" destroy-method="stopClient">
+    <constructor-arg ref="desiredCapabilities"/>
+  </bean>
+
+  <bean class="org.jspringbot.keyword.selenium.ChromeDriverDisposableBean">
+    <constructor-arg ref="webdriver"/>
+    <property name="chromePrefLogDir" value="${selenium.chrome.pref.log.dir:none}"/>
+  </bean>
+
+  <bean class="org.jspringbot.keyword.selenium.WebDriverWaitBean">
+    <constructor-arg ref="webdriver"/>
+    <property name="implicitWaitInSeconds" value="${selenium.implicit.wait:30}"/>
+    <property name="pageLoadWaitInSeconds" value="${selenium.page.wait:30}"/>
+    <property name="scriptWaitInSeconds" value="${selenium.script.wait:30}"/>
+    <property name="downloadTimeoutInSeconds" value="${selenium.download.timeout:10}"/>
+  </bean>
+
+  <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelper">
+    <constructor-arg ref="webdriver"/>
+    <property name="screenCaptureDir" value="${selenium.screenshot.folder}"/>
+    <property name="autoZoomIn" value="${selenium.browser.auto.zoom.in:0}"/>
+    <property name="autoZoomOut" value="${selenium.browser.auto.zoom.out:0}"/>
+  </bean>
+
+  <bean class="org.jspringbot.keyword.selenium.WebDriverInitializerBean">
+    <constructor-arg ref="helper"/>
+    <property name="maximize" value="${selenium.browser.maximize:false}"/>
+  </bean>
+
+  <!-- Scan components -->
+  <ctx:component-scan base-package="org.jspringbot.keyword.selenium.web"/>
+  <ctx:annotation-config/>
+</beans>
