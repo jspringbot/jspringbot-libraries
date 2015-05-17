@@ -54,12 +54,12 @@ For Site Catalyst Support:
 | *Firefox Profile* | | |
 | {{network.automatic-ntlm-auth.trusted-uris}} | | This preference determines which sites are allowed to automatically authenticate via NTLM. If the user requests a site that authenticates with NTLM that is not in this list, the user will be prompted for login details. |
 | {{user.agent}} | | Overrides Firefox User Agent |
-| *Chrome Properties* | | |
-| {{selenium.chrome.mobile.device}} | See Chrome Devices | @Since 1.4 Simulate a device for chrome. |
-| {{selenium.chrome.webdriver.logfile}} | /tmp/chromedriver.log | @Since 1.4 the chrome web driver log file. |
-| {{selenium.chrome.performance.log.level}} | None | @Since 1.4 @Default None, add performance browser logging. |
-| {{selenium.chrome.browser.log.level}} | None | @Since 1.4 @Default None, add browser logging. |
-| {{selenium.chrome.pref.log.dir}} | /tmp | @Since 1.4, this will be the destination location for the generated preference browser log files. |
+| *Chrome Properties* (@Since 1.4) | | |
+| {{selenium.chrome.mobile.device}} | See Chrome Devices | @Default {{None}}, Simulate a device for chrome. |
+| {{selenium.chrome.webdriver.logfile}} | /tmp/chromedriver.log | @Default {{None}}, The chrome web driver log file. |
+| {{selenium.chrome.performance.log.level}} | None | @Default {{None}}, add performance browser logging. |
+| {{selenium.chrome.browser.log.level}} | None | @Default {{None}}, add browser logging. |
+| {{selenium.chrome.pref.log.dir}} | /tmp | This will be the destination location for the generated preference browser log files. |
 | *Selenium Hub Properties* | | |
 | {{selenium.grid.url}} | | Specifies the url where Selenium Grid is configured |
 | {{selenium.grid.browserName}} | | Specifies the Selenium Grid Browser to use (ie. firefox, intenet explorer, chrome, etc) |
