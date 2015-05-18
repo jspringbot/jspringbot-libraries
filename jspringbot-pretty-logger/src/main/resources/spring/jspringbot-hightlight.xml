@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  ~ Copyright (c) 2012. JSpringBot. All Rights Reserved.
+  ~ Copyright (c) 2015. JSpringBot. All Rights Reserved.
   ~
   ~ See the NOTICE file distributed with
   ~ this work for additional information regarding copyright ownership.
@@ -23,10 +23,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-  <bean name="keywordLoggerLifeCycle" class="org.jspringbot.lifecycle.LifeCycleHandlerRegistryBean">
-    <constructor-arg>
-      <bean class="org.jspringbot.syntax.KeywordLoggerLifeCycleHandler"/>
-    </constructor-arg>
+  <bean class="org.jspringbot.syntax.HighlighterUtils" factory-method="instance">
+    <property name="enable" value="true"/>
   </bean>
-  
 </beans>

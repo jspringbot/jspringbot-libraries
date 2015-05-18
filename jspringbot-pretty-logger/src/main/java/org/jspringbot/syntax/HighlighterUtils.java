@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012. JSpringBot. All Rights Reserved.
+ * Copyright (c) 2015. JSpringBot. All Rights Reserved.
  *
  * See the NOTICE file distributed with
  * this work for additional information regarding copyright ownership.
@@ -18,6 +18,7 @@
 
 package org.jspringbot.syntax;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.python.core.PySystemState;
 import org.python.util.PythonInterpreter;
 
@@ -32,13 +33,23 @@ public class HighlighterUtils {
 
     public static final HighlighterUtils INSTANCE = new HighlighterUtils();
 
+    public static HighlighterUtils instance() {
+        return INSTANCE;
+    }
+
     private PythonInterpreter interpreter;
+
+    private boolean enable = false;
 
     private HighlighterUtils() {
         PySystemState sys = new PySystemState();
         sys.setrecursionlimit(12000);
 
         interpreter = new PythonInterpreter(null, sys);
+    }
+
+    public void setEnable(boolean enable) {
+        this.enable = enable;
     }
 
     public String highlightProperties(Properties properties, String comment) {
@@ -84,7 +95,9 @@ public class HighlighterUtils {
     }
 
     public String highlight(String code, String type, boolean linenumber) {
-        //return "\n" + StringEscapeUtils.escapeHtml(code);
+        if(!enable) {
+            return "\n" + StringEscapeUtils.escapeHtml(code);
+        }
 
         interpreter.set("code", code);
         interpreter.set("type", type);
