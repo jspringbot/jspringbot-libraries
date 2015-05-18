@@ -18,7 +18,6 @@
 
 package org.jspringbot.syntax;
 
-import org.apache.commons.lang.StringEscapeUtils;
 import org.python.core.PySystemState;
 import org.python.util.PythonInterpreter;
 
@@ -37,7 +36,7 @@ public class HighlighterUtils {
 
     private HighlighterUtils() {
         PySystemState sys = new PySystemState();
-        sys.setrecursionlimit(1500);
+        sys.setrecursionlimit(12000);
 
         interpreter = new PythonInterpreter(null, sys);
     }
@@ -85,17 +84,17 @@ public class HighlighterUtils {
     }
 
     public String highlight(String code, String type, boolean linenumber) {
-        return "\n" + StringEscapeUtils.escapeHtml(code);
+        //return "\n" + StringEscapeUtils.escapeHtml(code);
 
-//        interpreter.set("code", code);
-//        interpreter.set("type", type);
-//
-//        interpreter.exec("from pygments import highlight\n" +
-//                "from pygments.lexers import get_lexer_by_name\n" +
-//                "from pygments.formatters import HtmlFormatter\n" +
-//                "formatter = HtmlFormatter(cssclass=\"syntax\"" + (linenumber ? ",linenos=\"table\"" : "") + ")\n" +
-//                "result = highlight(code, get_lexer_by_name(type), formatter)\n");
-//
-//        return String.valueOf(interpreter.get("result")) + "<link rel='stylesheet' href='highlight.css'>";
+        interpreter.set("code", code);
+        interpreter.set("type", type);
+
+        interpreter.exec("from pygments import highlight\n" +
+                "from pygments.lexers import get_lexer_by_name\n" +
+                "from pygments.formatters import HtmlFormatter\n" +
+                "formatter = HtmlFormatter(cssclass=\"syntax\"" + (linenumber ? ",linenos=\"table\"" : "") + ")\n" +
+                "result = highlight(code, get_lexer_by_name(type), formatter)\n");
+
+        return String.valueOf(interpreter.get("result")) + "<link rel='stylesheet' href='highlight.css'>";
     }
 }
