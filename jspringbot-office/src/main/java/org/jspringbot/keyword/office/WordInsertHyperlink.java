@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 @KeywordInfo(
         name = "Word Insert Hyperlink",
         parameters = {"text", "url"},
-        description = "classpath:desc/WordReplaceText.txt"
+        description = "classpath:desc/WordInsertHyperlink.txt"
 )
 public class WordInsertHyperlink extends AbstractWordKeyword {
 
