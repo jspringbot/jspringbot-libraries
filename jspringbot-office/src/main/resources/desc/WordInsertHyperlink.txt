@@ -1,4 +1,4 @@
-This will insert a html in active document.
+This will insert a hyperlink in active document.
 
 | Word Insert Hyperlink | jspringbot.org | http://jspringbot.org/ |
 
