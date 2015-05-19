@@ -164,7 +164,13 @@ public class HighlighterUtils {
             }
 
             String token = StringUtils.substring(code, result.getOffset(), result.getOffset() + result.getLength());
-            style(buf, result.getStyleKeys(), token);
+            String keys = result.getStyleKeysString();
+
+            if(StringUtils.equals(type, "json") && StringUtils.equals(keys, "string") && isLastStringJsonKeyword(code, result.getOffset())) {
+                style(buf, "keyword", token);
+            } else {
+                style(buf, result.getStyleKeys(), token);
+            }
 
             i = result.getOffset() + result.getLength();
         }
@@ -175,6 +181,18 @@ public class HighlighterUtils {
         }
 
         return buf.append("</pre>").toString();
+    }
+
+    private boolean isLastStringJsonKeyword(String code, int i) {
+        for(; i >= 0; i--) {
+            char ch = code.charAt(i);
+
+            if(!StringUtils.contains("\n\r\t\" ", ch)) {
+                return StringUtils.contains("{,", ch);
+            }
+        }
+
+        return false;
     }
 
     private void style(StringBuilder buf, String style, String token) {

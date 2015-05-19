@@ -30,4 +30,10 @@ public class HighlighterUtilsTest {
         System.out.println(HighlighterUtils.INSTANCE.highlightText("Access-Control-Allow-Credentials = \"true\""));
         System.out.println(HighlighterUtils.INSTANCE.highlightSQL("select * from table where h=5"));
     }
+
+    @Test
+    public void testJSON() throws Exception {
+        HighlighterUtils.INSTANCE.setEnable(true);
+        System.out.println(HighlighterUtils.INSTANCE.highlightJSON("{\"a\": \"true\"}"));
+    }
 }
