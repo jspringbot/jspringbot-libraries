@@ -18,11 +18,11 @@
 
 package org.jspringbot.keyword.json;
 
-import antlr.RecognitionException;
-import antlr.TokenStreamException;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import com.jayway.jsonpath.JsonPath;
-import com.sdicons.json.model.JSONValue;
-import com.sdicons.json.parser.JSONParser;
 import net.minidev.json.JSONObject;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.CharEncoding;
@@ -35,7 +35,6 @@ import org.springframework.core.io.ResourceEditor;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import java.io.IOException;
-import java.io.StringReader;
 import java.util.Arrays;
 import java.util.List;
 
@@ -87,11 +86,12 @@ public class JSONHelper {
         this.jsonString = jsonString;
     }
 
-    public static String prettyPrint(String jsonString) throws TokenStreamException, RecognitionException {
-        final JSONParser lParser = new JSONParser(new StringReader(jsonString));
-        final JSONValue lMyObject = lParser.nextValue();
+    public static String prettyPrint(String jsonString) {
+        JsonParser parser = new JsonParser();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        return lMyObject.render(true);
+        JsonElement el = parser.parse(jsonString);
+        return gson.toJson(el); // done
     }
 
     public String getJsonString() {

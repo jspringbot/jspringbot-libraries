@@ -18,8 +18,6 @@
 
 package org.jspringbot.keyword.json;
 
-import antlr.RecognitionException;
-import antlr.TokenStreamException;
 import org.apache.commons.collections.CollectionUtils;
 import org.json.JSONException;
 import org.jspringbot.syntax.HighlightRobotLogger;
@@ -154,7 +152,7 @@ public class JSONCreator {
     }
 
 
-    public String getCreatedJSONString() throws TokenStreamException, RecognitionException {
+    public String getCreatedJSONString() {
         if(lastAppender == null) {
             throw new IllegalStateException("No created json.");
         }

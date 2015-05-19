@@ -18,8 +18,6 @@
 
 package org.jspringbot.keyword.json;
 
-import antlr.RecognitionException;
-import antlr.TokenStreamException;
 import org.json.JSONException;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -56,7 +54,7 @@ public class JSONCreatorTest {
     }
 
     @Test
-    public void testGetJsonValues() throws JSONException, TokenStreamException, RecognitionException, IOException {
+    public void testGetJsonValues() throws JSONException, IOException {
         creator.startJSONObject();
         creator.startJSONObject("store");
         creator.startJSONArray("book");
@@ -162,7 +160,7 @@ public class JSONCreatorTest {
     }
 
     @Test
-    public void testJsonArrayLengthShouldBe() throws JSONException, TokenStreamException, RecognitionException, ScriptException, IOException {
+    public void testJsonArrayLengthShouldBe() throws JSONException, ScriptException, IOException {
         creator.startJSONObject();
         creator.startJSONObject("rootObject");
         creator.startJSONArray("emptyList");
