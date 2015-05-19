@@ -107,7 +107,7 @@ public class HighlighterUtils {
     }
 
     public String highlightText(String code) {
-        return highlight(code, "clojure");
+        return highlight(code, "javascript");
     }
 
     public String highlightXML(String code) {
@@ -145,11 +145,13 @@ public class HighlighterUtils {
         }
 
         int i = 0;
-        StringBuilder buf = new StringBuilder();
+        StringBuilder buf = new StringBuilder("<pre>");
 
         for (ParseResult result : parser.parse(code)) {
+            if(i > result.getOffset()) continue;
+
             String before = StringUtils.substring(code, i, result.getOffset());
-            if (StringUtils.isNotBlank(before)) {
+            if (!StringUtils.isEmpty(before)) {
                 buf.append(StringEscapeUtils.escapeHtml(before));
             }
 
@@ -189,9 +191,16 @@ public class HighlighterUtils {
             buf.append(">");
             buf.append(token);
             buf.append("</span>");
+
+            i = result.getOffset() + result.getLength();
         }
 
-        return buf.toString();
+        String before = StringUtils.substring(code, i, i + code.length());
+        if (!StringUtils.isEmpty(before)) {
+            buf.append(StringEscapeUtils.escapeHtml(before));
+        }
+
+        return buf.append("</pre>").toString();
     }
 
     private static void cssColor(StringBuilder buf, String style, Color color) {
