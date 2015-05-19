@@ -152,7 +152,7 @@ public class HighlighterUtils {
         if(theme.getFont() != null) {
             buf.append("font-family:").append(theme.getFont().getFamily()).append(";");
         }
-
+        buf.append("white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;");
         buf.append("\">");
 
         for (ParseResult result : parser.parse(code)) {
