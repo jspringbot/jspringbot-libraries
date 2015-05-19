@@ -31,9 +31,8 @@ import syntaxhighlighter.theme.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
+import java.util.List;
 
 /**
  * Highlighter utility class
@@ -145,62 +144,79 @@ public class HighlighterUtils {
         }
 
         int i = 0;
-        StringBuilder buf = new StringBuilder("<pre>");
+        StringBuilder buf = new StringBuilder("<pre style=\"padding:3px;");
+
+        if(theme.getBackground() != null) {
+            cssColor(buf, "background-color", theme.getBackground());
+        }
+        if(theme.getFont() != null) {
+            buf.append("font-family:").append(theme.getFont().getFamily()).append(";");
+        }
+
+        buf.append("\">");
 
         for (ParseResult result : parser.parse(code)) {
             if(i > result.getOffset()) continue;
 
             String before = StringUtils.substring(code, i, result.getOffset());
             if (!StringUtils.isEmpty(before)) {
-                buf.append(StringEscapeUtils.escapeHtml(before));
+                style(buf, "plain", StringEscapeUtils.escapeHtml(before));
             }
 
             String token = StringUtils.substring(code, result.getOffset(), result.getOffset() + result.getLength());
-            buf.append("<span");
-
-            if(CollectionUtils.isNotEmpty(result.getStyleKeys())) {
-                buf.append(" style=\"");
-
-                for(String styleKey : result.getStyleKeys()) {
-                    Style style = theme.getStyle(styleKey);
-
-                    if(style.isBold()) {
-                        buf.append("font-weight:bold;");
-                    }
-                    if(style.isItalic()) {
-                        buf.append("font-style:italic;");
-                    }
-                    if(style.isUnderline()) {
-                        buf.append("text-decoration:underline;");
-                    }
-
-                    Color foreColor = style.getColor();
-                    Color bgColor = style.getBackground();
-
-                    if(foreColor != null) {
-                        cssColor(buf, "color", foreColor);
-                    }
-                    if(bgColor != null) {
-                        cssColor(buf, "background-color", bgColor);
-                    }
-                }
-
-                buf.append("\"");
-            }
-
-            buf.append(">");
-            buf.append(token);
-            buf.append("</span>");
+            style(buf, result.getStyleKeys(), token);
 
             i = result.getOffset() + result.getLength();
         }
 
         String before = StringUtils.substring(code, i, i + code.length());
         if (!StringUtils.isEmpty(before)) {
-            buf.append(StringEscapeUtils.escapeHtml(before));
+            style(buf, "plain", StringEscapeUtils.escapeHtml(before));
         }
 
         return buf.append("</pre>").toString();
+    }
+
+    private void style(StringBuilder buf, String style, String token) {
+        style(buf, Collections.singletonList(style), token);
+    }
+
+    private void style(StringBuilder buf, List<String> styles, String token) {
+        buf.append("<span");
+
+        if(CollectionUtils.isNotEmpty(styles)) {
+            buf.append(" style=\"");
+
+            for(String styleKey : styles) {
+                Style style = theme.getStyle(styleKey);
+
+                if(style.isBold()) {
+                    buf.append("font-weight:bold;");
+                }
+                if(style.isItalic()) {
+                    buf.append("font-style:italic;");
+                }
+                if(style.isUnderline()) {
+                    buf.append("text-decoration:underline;");
+                }
+
+                Color foreColor = style.getColor();
+                Color bgColor = style.getBackground();
+
+                if(foreColor != null) {
+                    cssColor(buf, "color", foreColor);
+                }
+                if(bgColor != null) {
+                    cssColor(buf, "background-color", bgColor);
+                }
+            }
+
+            buf.append("\"");
+        }
+
+        buf.append(">");
+        buf.append(token);
+        buf.append("</span>");
     }
 
     private static void cssColor(StringBuilder buf, String style, Color color) {
