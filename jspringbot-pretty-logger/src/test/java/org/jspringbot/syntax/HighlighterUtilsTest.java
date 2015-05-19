@@ -26,7 +26,8 @@ import org.junit.Test;
 public class HighlighterUtilsTest {
     @Test
     public void testXML() throws Exception {
-        System.out.println(HighlighterUtils.INSTANCE.highlight("<a>hello</a>", "xml"));
+        HighlighterUtils.INSTANCE.setEnable(true);
+        System.out.println(HighlighterUtils.INSTANCE.highlight("<a class='alvin'>hello</a>", "xml"));
         System.out.println(HighlighterUtils.INSTANCE.highlightSQL("select * from table where h=5"));
     }
 }

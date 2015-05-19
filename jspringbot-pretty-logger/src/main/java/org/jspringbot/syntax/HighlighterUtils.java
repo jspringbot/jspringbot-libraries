@@ -18,12 +18,21 @@
 
 package org.jspringbot.syntax;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringEscapeUtils;
-import org.python.core.PySystemState;
-import org.python.util.PythonInterpreter;
+import org.apache.commons.lang.StringUtils;
+import syntaxhighlight.ParseResult;
+import syntaxhighlight.Style;
+import syntaxhighlight.Theme;
+import syntaxhighlighter.SyntaxHighlighterParser;
+import syntaxhighlighter.brush.*;
+import syntaxhighlighter.theme.*;
 
+import java.awt.*;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -31,21 +40,52 @@ import java.util.Properties;
  */
 public class HighlighterUtils {
 
+    public static final String DEFAULT_THEME = "default";
+
+    public static final Map<String, Theme> THEME_MAP = new HashMap<String, Theme>() {{
+        put(DEFAULT_THEME, new ThemeDefault());
+        put("django", new ThemeDjango());
+        put("eclipse", new ThemeEclipse());
+        put("emacs", new ThemeEmacs());
+        put("grey", new ThemeFadeToGrey());
+        put("mdultra", new ThemeMDUltra());
+        put("midnight", new ThemeMidnight());
+        put("rdark", new ThemeRDark());
+    }};
+
+
     public static final HighlighterUtils INSTANCE = new HighlighterUtils();
 
     public static HighlighterUtils instance() {
         return INSTANCE;
     }
 
-    private PythonInterpreter interpreter;
-
     private boolean enable = false;
 
-    private HighlighterUtils() {
-        PySystemState sys = new PySystemState();
-        sys.setrecursionlimit(12000);
+    private Theme theme;
 
-        interpreter = new PythonInterpreter(null, sys);
+    private Map<String, SyntaxHighlighterParser> parserMap;
+
+    private HighlighterUtils() {
+        parserMap = new HashMap<String, SyntaxHighlighterParser>();
+
+        parserMap.put("xml", new SyntaxHighlighterParser(new BrushXml()));
+        parserMap.put("css", new SyntaxHighlighterParser(new BrushCss()));
+        parserMap.put("json", new SyntaxHighlighterParser(new BrushJScript()));
+        parserMap.put("javascript", new SyntaxHighlighterParser(new BrushJScript()));
+        parserMap.put("sql", new SyntaxHighlighterParser(new BrushSql()));
+        parserMap.put("text", new SyntaxHighlighterParser(new BrushPlain()));
+        parserMap.put("clojure", new SyntaxHighlighterParser(new BrushJScript()));
+
+        theme = THEME_MAP.get(DEFAULT_THEME);
+    }
+
+    public void setTheme(String theme) {
+        this.theme = THEME_MAP.get(theme);
+
+        if(this.theme == null) {
+            this.theme = THEME_MAP.get(DEFAULT_THEME);
+        }
     }
 
     public void setEnable(boolean enable) {
@@ -99,15 +139,65 @@ public class HighlighterUtils {
             return "\n" + StringEscapeUtils.escapeHtml(code);
         }
 
-        interpreter.set("code", code);
-        interpreter.set("type", type);
+        SyntaxHighlighterParser parser = parserMap.get(type);
+        if(parser == null) {
+            return "\n" + StringEscapeUtils.escapeHtml(code);
+        }
 
-        interpreter.exec("from pygments import highlight\n" +
-                "from pygments.lexers import get_lexer_by_name\n" +
-                "from pygments.formatters import HtmlFormatter\n" +
-                "formatter = HtmlFormatter(cssclass=\"syntax\"" + (linenumber ? ",linenos=\"table\"" : "") + ")\n" +
-                "result = highlight(code, get_lexer_by_name(type), formatter)\n");
+        int i = 0;
+        StringBuilder buf = new StringBuilder();
 
-        return String.valueOf(interpreter.get("result")) + "<link rel='stylesheet' href='highlight.css'>";
+        for (ParseResult result : parser.parse(code)) {
+            String before = StringUtils.substring(code, i, result.getOffset());
+            if (StringUtils.isNotBlank(before)) {
+                buf.append(StringEscapeUtils.escapeHtml(before));
+            }
+
+            String token = StringUtils.substring(code, result.getOffset(), result.getOffset() + result.getLength());
+            buf.append("<span");
+
+            if(CollectionUtils.isNotEmpty(result.getStyleKeys())) {
+                buf.append(" style=\"");
+
+                for(String styleKey : result.getStyleKeys()) {
+                    Style style = theme.getStyle(styleKey);
+
+                    if(style.isBold()) {
+                        buf.append("font-weight:bold;");
+                    }
+                    if(style.isItalic()) {
+                        buf.append("font-style:italic;");
+                    }
+                    if(style.isUnderline()) {
+                        buf.append("text-decoration:underline;");
+                    }
+
+                    Color foreColor = style.getColor();
+                    Color bgColor = style.getBackground();
+
+                    if(foreColor != null) {
+                        cssColor(buf, "color", foreColor);
+                    }
+                    if(bgColor != null) {
+                        cssColor(buf, "background-color", bgColor);
+                    }
+                }
+
+                buf.append("\"");
+            }
+
+            buf.append(">");
+            buf.append(token);
+            buf.append("</span>");
+        }
+
+        return buf.toString();
+    }
+
+    private static void cssColor(StringBuilder buf, String style, Color color) {
+        String rgb = Integer.toHexString(color.getRGB());
+        rgb = rgb.substring(2, rgb.length());
+
+        buf.append(style).append(":#").append(StringUtils.lowerCase(rgb)).append(";");
     }
 }

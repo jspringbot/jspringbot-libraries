@@ -40,6 +40,7 @@
     <junit.version>4.8.1</junit.version>
     <junit.addons.version>1.4</junit.addons.version>
     <selenium.version>2.45.0</selenium.version>
+    <java.version>1.6</java.version>
 
     <jspringbot.version>1.4-SNAPSHOT</jspringbot.version>
     <libdoc.name>jSpringBot Library</libdoc.name>
@@ -128,6 +129,15 @@
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-maven-plugin</artifactId>
         <version>${jspringbot.version}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.2</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
       </plugin>
     </plugins>
   </build>
