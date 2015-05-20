@@ -19,6 +19,7 @@
 package org.jspringbot.keyword.expression;
 
 import de.odysseus.el.TreeValueExpression;
+import de.odysseus.el.tree.Node;
 import org.jspringbot.keyword.expression.engine.DefaultELContext;
 import org.jspringbot.keyword.expression.engine.function.SupportedFunctionsManager;
 import org.jspringbot.keyword.expression.plugin.ExpressionHandler;
@@ -28,12 +29,15 @@ import org.jspringbot.syntax.HighlightRobotLogger;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.util.ReflectionUtils;
 
 import javax.el.ExpressionFactory;
 import javax.el.ValueExpression;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,6 +49,13 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     private static final Pattern EXPRESSION_PATTERN = Pattern.compile("\\$\\[(.*)\\]", Pattern.CASE_INSENSITIVE);
 
     private static final Pattern PREFIX_EXPRESSION_PATTERN = Pattern.compile("([a-z0-9]+)\\:(.*)", Pattern.CASE_INSENSITIVE);
+
+    private static final Field nodeField;
+
+    static {
+        nodeField = ReflectionUtils.findField(TreeValueExpression.class, "node");
+        nodeField.setAccessible(true);
+    }
 
     private ExpressionFactory factory;
 
@@ -227,12 +238,15 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
         public Object evaluate(String expression) throws Exception {
             LOG.keywordAppender().appendProperty("Expression Handler", "Expression Language (JUEL)");
 
-            for(Map.Entry<String, Object> var : getVariables().entrySet()) {
-                LOG.keywordAppender().appendProperty(String.format("EL Variable ['%s']", var.getKey()), var.getValue());
-            }
-
             DefaultELContext context = new DefaultELContext(functionManager, getVariables());
             TreeValueExpression expr = (TreeValueExpression) factory.createValueExpression(context, String.format("${%s}", expression), TypeExpressionHolder.peek());
+
+            Set<String> vars = VariableNodeCapture.capture((Node) nodeField.get(expr));
+            for(Map.Entry<String, Object> var : getVariables().entrySet()) {
+                if(vars.contains(var.getKey())) {
+                    LOG.keywordAppender().appendProperty(String.format("EL Variable ['%s']", var.getKey()), var.getValue());
+                }
+            }
 
             Object result = expr.getValue(context);
 
