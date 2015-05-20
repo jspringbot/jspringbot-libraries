@@ -1,4 +1,9 @@
-JSpringBot HTTP Library for Robot Framework.
+
+A test library for web services and rest ful api. This library is integrated with {{XML Library}} and {{JSON Library}} for handling xml and json contents.
+
+Please see the example {{HTTP Library}} project.
+
+{{jspringbot-github:sample-http|Sample Project}}
 
 = Configuration =
 
@@ -30,8 +35,8 @@ Configure the following to use jspringbot-http.
 | {{http.handle.redirects}} | {{true}} | Defines whether redirects should be handled automatically |
 | {{http.start.suite.new.session}} | {{false}} | This determines if new session will be created on every start of test suite. |
 | {{http.start.test.new.session}} | {{false}} |  This determines if new session will be created on every start of test case. |
-| {{http.connection.timeout}} | | 5000 |  Determines the timeout until a connection is etablished. |
-| {{http.socket.timeout}} | | 10000 | Defines the default socket timeout (SO_TIMEOUT) in milliseconds which is the timeout for waiting for data. |
+| {{http.connection.timeout}} | 5000 |  Determines the timeout until a connection is etablished. |
+| {{http.socket.timeout}} | 10000 | Defines the default socket timeout (SO_TIMEOUT) in milliseconds which is the timeout for waiting for data. |
 
 = Sample Usage =
 | `New HTTP Session` |

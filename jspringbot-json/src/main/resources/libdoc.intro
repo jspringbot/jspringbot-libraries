@@ -22,9 +22,7 @@ Configure the following to use jspringbot-json.
 
 | <import resource="classpath:spring/spring-json.xml"/>
 
-3. If you are going to use json expression language support, follow jspringbot-expression configuration
-
-| {{http://jspringbot.org/library-json.html}}
+3. If you are going to use json expression language support, follow {{jspringbot-doc:expression}} configuration.
 
 4. Add {{JSpringBotGlobal}} library in the in the test suite settings.
 
