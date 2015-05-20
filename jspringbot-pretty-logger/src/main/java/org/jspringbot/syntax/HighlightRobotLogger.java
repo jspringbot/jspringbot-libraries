@@ -172,6 +172,18 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                 properties.append(hardWordWrap(String.format("%s = %s", property, String.valueOf(value))));
             } else if(Character.class.isInstance(value)) {
                 properties.append(hardWordWrap(String.format("%s = '%s'", property, String.valueOf(value))));
+            } else if(Object[].class.isInstance(value)) {
+                StringBuilder buf = new StringBuilder();
+
+                int i =0;
+                for(Object o : (Object[]) value) {
+                    if(buf.length() > 0) {
+                        buf.append(",");
+                    }
+                    buf.append("[").append(i).append("] ").append(o);
+                }
+
+                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringUtils.substring(buf.toString(), 0, 200))));
             } else {
                 properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringUtils.substring(String.valueOf(value), 0, 100))));
             }
