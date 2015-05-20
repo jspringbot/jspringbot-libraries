@@ -247,7 +247,7 @@ public class HighlighterUtils {
         }
 
         buf.append(">");
-        buf.append(token);
+        buf.append(StringEscapeUtils.escapeHtml(token));
         buf.append("</span>");
     }
 
