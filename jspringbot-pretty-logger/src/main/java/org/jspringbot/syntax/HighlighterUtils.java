@@ -52,7 +52,6 @@ public class HighlighterUtils {
         put("rdark", new ThemeRDark());
     }};
 
-
     public static final HighlighterUtils INSTANCE = new HighlighterUtils();
 
     public static HighlighterUtils instance() {
@@ -62,6 +61,8 @@ public class HighlighterUtils {
     private boolean enable = false;
 
     private Theme theme;
+
+    private String fontSize = "12px";
 
     private Map<String, SyntaxHighlighterParser> parserMap;
 
@@ -89,6 +90,10 @@ public class HighlighterUtils {
 
     public void setEnable(boolean enable) {
         this.enable = enable;
+    }
+
+    public void setFontSize(String fontSize) {
+        this.fontSize = fontSize;
     }
 
     public String highlightProperties(Properties properties, String comment) {
@@ -152,6 +157,7 @@ public class HighlighterUtils {
         if(theme.getFont() != null) {
             buf.append("font-family:").append(theme.getFont().getFamily()).append(";");
         }
+        buf.append("font-size:").append(fontSize).append(";");
         buf.append("white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;");
         buf.append("\">");
 
