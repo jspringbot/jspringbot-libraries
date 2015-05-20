@@ -139,6 +139,14 @@ public class HighlighterUtils {
     }
 
     public String highlight(String code, String type, boolean linenumber) {
+        try {
+            return getString(code, type);
+        } catch (StackOverflowError e) {
+            return "\n((StackOverflowError<fallback>))\n" + StringEscapeUtils.escapeHtml(code);
+        }
+    }
+
+    private String getString(String code, String type) {
         if(!enable) {
             return "\n" + StringEscapeUtils.escapeHtml(code);
         }
