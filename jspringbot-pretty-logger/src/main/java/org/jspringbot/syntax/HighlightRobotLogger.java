@@ -124,7 +124,11 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         private String hardWordWrap(String str) {
-            return WordUtils.wrap(str, WORD_WRAP_LENGTH, "\n    ", true);
+            if(HighlighterUtils.instance().isEnable()) {
+                return str;
+            } else {
+                return WordUtils.wrap(str, WORD_WRAP_LENGTH, "\n    ", true);
+            }
         }
 
         public HtmlAppender appendArguments(Object[] params) {
@@ -178,9 +182,9 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                 int i =0;
                 for(Object o : (Object[]) value) {
                     if(buf.length() > 0) {
-                        buf.append(",");
+                        buf.append(", ");
                     }
-                    buf.append("[").append(i).append("] ").append(o);
+                    buf.append("[").append(i++).append("] ").append(o);
                 }
 
                 properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringUtils.substring(buf.toString(), 0, 200))));

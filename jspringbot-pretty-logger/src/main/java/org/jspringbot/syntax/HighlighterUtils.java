@@ -80,6 +80,10 @@ public class HighlighterUtils {
         theme = THEME_MAP.get(DEFAULT_THEME);
     }
 
+    public boolean isEnable() {
+        return enable;
+    }
+
     public void setTheme(String theme) {
         this.theme = THEME_MAP.get(theme);
 
