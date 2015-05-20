@@ -36,6 +36,5 @@
     <property name="enable" value="${jspringbot.pretty.print.enable:true}"/>
     <property name="theme" value="${jspringbot.pretty.print.theme:midnight}"/>
     <property name="fontSize" value="${jspringbot.pretty.print.fontsize:12px}"/>
-
   </bean>
 </beans>
