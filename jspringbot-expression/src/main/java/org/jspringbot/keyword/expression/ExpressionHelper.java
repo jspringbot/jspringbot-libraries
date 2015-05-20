@@ -225,10 +225,10 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
 
         @Override
         public Object evaluate(String expression) throws Exception {
-            LOG.keywordAppender().appendProperty("Expression Handler", "Expression Language (JUEL)");
+            LOG.keywordAppender().appendBold("Variables Expression Language (JUEL):");
 
             for(Map.Entry<String, Object> var : getVariables().entrySet()) {
-                LOG.keywordAppender().appendProperty(String.format("Expression Variable [%s]", var.getKey()), var.getValue());
+                LOG.keywordAppender().appendProperty(String.format("%s", var.getKey()), var.getValue());
             }
 
             DefaultELContext context = new DefaultELContext(functionManager, getVariables());
