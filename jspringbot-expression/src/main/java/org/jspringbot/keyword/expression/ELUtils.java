@@ -131,7 +131,7 @@ public class ELUtils {
         }
 
         if(!StringUtils.equals(string, buf.toString())) {
-            LOG.keywordAppender().appendProperty(String.format("Replacement [%s]", string), buf.toString());
+            LOG.keywordAppender().appendProperty(String.format("Replacement ['%s']", string), buf.toString());
         }
 
         return buf.toString();
