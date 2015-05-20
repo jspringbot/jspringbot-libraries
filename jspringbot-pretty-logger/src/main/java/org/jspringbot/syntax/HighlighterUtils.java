@@ -178,7 +178,7 @@ public class HighlighterUtils {
 
             String before = StringUtils.substring(code, i, result.getOffset());
             if (!StringUtils.isEmpty(before)) {
-                style(buf, "plain", StringEscapeUtils.escapeHtml(before));
+                style(buf, "plain", before);
             }
 
             String token = StringUtils.substring(code, result.getOffset(), result.getOffset() + result.getLength());
@@ -195,7 +195,7 @@ public class HighlighterUtils {
 
         String before = StringUtils.substring(code, i, i + code.length());
         if (!StringUtils.isEmpty(before)) {
-            style(buf, "plain", StringEscapeUtils.escapeHtml(before));
+            style(buf, "plain", before);
         }
 
         return buf.append("</pre>").toString();
