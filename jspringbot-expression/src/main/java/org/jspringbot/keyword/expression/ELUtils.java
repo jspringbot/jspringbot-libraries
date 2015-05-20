@@ -126,14 +126,13 @@ public class ELUtils {
 
             String strValue = String.valueOf(value);
 
-
-
             buf.replace(matcher.start(), matcher.end(), strValue);
             startIndex = matcher.start() + strValue.length();
         }
 
-        LOG.keywordAppender().appendProperty(String.format("Replacement [%s]", string), buf.toString());
-
+        if(!StringUtils.equals(string, buf.toString())) {
+            LOG.keywordAppender().appendProperty(String.format("Replacement [%s]", string), buf.toString());
+        }
 
         return buf.toString();
     }
