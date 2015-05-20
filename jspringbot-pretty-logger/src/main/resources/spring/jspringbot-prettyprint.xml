@@ -34,7 +34,7 @@
 
   <bean class="org.jspringbot.syntax.HighlighterUtils" factory-method="instance">
     <property name="enable" value="${jspringbot.pretty.print.enable:true}"/>
-    <property name="theme" value="${jspringbot.pretty.print.theme:midnight}"/>
+    <property name="theme" value="${jspringbot.pretty.print.theme:default}"/>
     <property name="fontSize" value="${jspringbot.pretty.print.fontsize:12px}"/>
   </bean>
 </beans>
