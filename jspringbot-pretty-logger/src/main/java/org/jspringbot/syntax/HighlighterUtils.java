@@ -142,7 +142,7 @@ public class HighlighterUtils {
         try {
             return getString(code, type);
         } catch (StackOverflowError e) {
-            return "\n((StackOverflowError<fallback>))\n" + StringEscapeUtils.escapeHtml(code);
+            return "\n((StackOverflowError&lt;fallback&gt;))\n" + StringEscapeUtils.escapeHtml(code);
         }
     }
 
