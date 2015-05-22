@@ -2,6 +2,8 @@ package org.jspringbot.keyword.json;
 
 import net.minidev.json.JSONObject;
 import org.apache.commons.collections.CollectionUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 
@@ -15,6 +17,22 @@ public class JSONUtils {
     private static JSONHelper getHelper() {
         return ApplicationContextHolder.get().getBean(JSONHelper.class);
     }
+
+    public static boolean isJSONValid(String test) {
+        try {
+            new org.json.JSONObject(test);
+        } catch (JSONException ex) {
+            // edited, to include @Arthur's comment
+            // e.g. in case JSONArray is valid as well...
+            try {
+                new JSONArray(test);
+            } catch (JSONException ex1) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public static Object object(Object... args) throws TransformerException {
         List objs = objects(args);

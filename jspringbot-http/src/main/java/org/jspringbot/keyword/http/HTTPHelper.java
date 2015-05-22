@@ -42,7 +42,9 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.jspringbot.keyword.json.JSONHelper;
+import org.jspringbot.keyword.json.JSONUtils;
 import org.jspringbot.keyword.xml.XMLHelper;
+import org.jspringbot.keyword.xml.XMLUtils;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.xml.sax.SAXException;
 
@@ -272,10 +274,19 @@ public class HTTPHelper {
             throw new IllegalArgumentException("Does not support string entity.");
         }
 
-        LOG.createAppender()
-            .appendBold("Set Request Body:")
-            .appendCode(stringBody)
-            .log();
+        stringBody = StringUtils.trimToEmpty(stringBody);
+
+        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender().appendBold("Set Request Body:");
+
+        if(JSONUtils.isJSONValid(stringBody)) {
+            appender.appendJSON(JSONHelper.prettyPrint(stringBody));
+        } else if(XMLUtils.isValidXML(stringBody)) {
+            appender.appendXML(JSONHelper.prettyPrint(stringBody));
+        } else {
+            appender.appendCode(stringBody);
+        }
+
+        appender.log();
 
         ((HttpEntityEnclosingRequest) request).setEntity(new StringEntity(stringBody, ENCODING_UTF_8));
     }

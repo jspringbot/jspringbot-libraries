@@ -1,14 +1,17 @@
 package org.jspringbot.keyword.xml;
 
+import com.sun.org.apache.xerces.internal.parsers.DOMParser;
 import org.apache.commons.collections.CollectionUtils;
 import org.jspringbot.keyword.expression.ExpressionHelper;
 import org.jspringbot.spring.ApplicationContextHolder;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
+import java.io.StringReader;
 import java.util.List;
 
 public class XMLUtils {
@@ -16,6 +19,18 @@ public class XMLUtils {
 
     private static XMLHelper getHelper() {
         return ApplicationContextHolder.get().getBean(XMLHelper.class);
+    }
+
+    public static boolean isValidXML(String xmlString) {
+        try {
+            DOMParser parser = new DOMParser();
+            parser.parse(new InputSource(new StringReader(xmlString)));
+            parser.getDocument();
+
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
     }
 
     public static String attr(Object... args) throws TransformerException, IOException, SAXException {
