@@ -15,4 +15,11 @@
     <function-class>org.jspringbot.keyword.csv.ELCSVUtils</function-class>
     <function-signature>java.lang.String[] asArray(java.lang.String)</function-signature>
   </function>
+  <function>
+    <name>value</name>
+    <prefix>csv</prefix>
+    <description>Returns the column value of the given line.</description>
+    <function-class>org.jspringbot.keyword.csv.ELCSVUtils</function-class>
+    <function-signature>java.lang.String value(java.lang.String[],java.lang.String)</function-signature>
+  </function>
 </functions>

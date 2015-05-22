@@ -86,6 +86,37 @@ The example below parses both CSV files and added states, then switches CSV stat
 Base from above, we check that there is an employee named Alvin of Age 29 and Position of CEO and
 checks for a department named Development and logs the department description.
 
+= Iterating a CSV results =
+
+The following example take advantage of the {{jspringbot-doc:expression}}. To support these ensure that {{jspringbot-doc:expression}} is properly configured.
+
+| `Parse CSV Resource`                     | classpath:employee.csv |
+| `Set First CSV Row As Headers`           |
+| `Create CSV Criteria`                    |
+| `Disjunction Start CSV Restriction`      |
+| `Conjunction Start CSV Restriction`      |
+| `Add Column Name Equals CSV Restriction` | Name                   | Alvin  |
+| `Add Column Name Equals CSV Restriction` | Position               | CEO    |
+| `Conjunction End CSV Restriction`        |
+| `Conjunction Start CSV Restriction`      |
+| `Add Column Name Equals CSV Restriction` | Name                   | Master |
+| `Add Column Name Equals CSV Restriction` | Position               | CFO    |
+| `Conjunction End CSV Restriction`        |
+| `Disjunction End CSV Restriction`        |
+| ${result}=                               | `Get CSV List Result`  |
+| `EL Run Keyword For Each`                | Iterate Row            | line   | ${result} |
+
+{{Iterate Row}}
+
+| ${name}=       | EL Evaluate | $[csv:value(line,'Name')] |
+| ${department}= | `Get CSV Column Value` | $[line] | Department |
+
+=>
+
+| Use two types of retrieval by name
+| 1. Expression function notation {{$[csv:value(line,'Name')}}
+| 2. `Get CSV Column Value` keyword
+
 = Support for Append =
 
 This example lets you update the CSV file. This also supports criteria even with updates.
