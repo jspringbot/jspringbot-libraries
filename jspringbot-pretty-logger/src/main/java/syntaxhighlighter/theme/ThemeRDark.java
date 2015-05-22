@@ -100,7 +100,7 @@ public class ThemeRDark extends Theme {
 
     style = new Style();
     style.setColor(Color.decode("0xe0e8ff"));
-    addStyle("color3", style);
+    addStyle("color1", style);
 
     style = new Style();
     style.setColor(Color.white);

@@ -71,6 +71,7 @@ public class HighlighterUtils {
 
         parserMap.put("xml", new SyntaxHighlighterParser(new BrushXml()));
         parserMap.put("css", new SyntaxHighlighterParser(new BrushCss()));
+        parserMap.put("locator", new SyntaxHighlighterParser(new BrushLocator()));
         parserMap.put("json", new SyntaxHighlighterParser(new BrushJScript()));
         parserMap.put("javascript", new SyntaxHighlighterParser(new BrushJScript()));
         parserMap.put("sql", new SyntaxHighlighterParser(new BrushSql()));
@@ -132,6 +133,10 @@ public class HighlighterUtils {
 
     public String highlightCss(String code) {
         return highlight(code, "css", true);
+    }
+
+    public String highlightLocator(String code) {
+        return highlight(code, "locator", true);
     }
 
     public String highlightSQL(String code) {

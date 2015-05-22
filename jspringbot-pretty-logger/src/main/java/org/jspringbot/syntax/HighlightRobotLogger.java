@@ -70,6 +70,8 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
         private StringBuilder css = new StringBuilder();
 
+        private StringBuilder locator = new StringBuilder();
+
         private JSpringBotLogger logger;
 
         private boolean silent = false;
@@ -282,6 +284,20 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return this;
         }
 
+        public HtmlAppender appendLocator(String msg, Object... args) {
+            if(isSilent()) {
+                return this;
+            }
+
+            if(args != null && args.length > 0) {
+                locator.append(String.format(msg, args));
+            } else {
+                locator.append(msg);
+            }
+
+            return this;
+        }
+
         public HtmlAppender appendJSON(String msg, Object... args) {
             if(isSilent()) {
                 return this;
@@ -327,6 +343,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
             if(css.length() > 0) {
                 buf.append(HighlighterUtils.INSTANCE.highlightCss(css.toString()));
+            }
+
+            if(locator.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightLocator(locator.toString()));
             }
 
             if(json.length() > 0) {
