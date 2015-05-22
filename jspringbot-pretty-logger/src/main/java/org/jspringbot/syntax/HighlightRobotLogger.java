@@ -18,6 +18,7 @@
 
 package org.jspringbot.syntax;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.jspringbot.JSpringBotLogger;
@@ -176,6 +177,8 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                 properties.append(hardWordWrap(String.format("%s = %s", property, String.valueOf(value))));
             } else if(Character.class.isInstance(value)) {
                 properties.append(hardWordWrap(String.format("%s = '%s'", property, String.valueOf(value))));
+            } else if(value == null) {
+                properties.append(String.format("%s = null", property));
             } else if(Object[].class.isInstance(value)) {
                 StringBuilder buf = new StringBuilder();
 
@@ -184,12 +187,12 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                     if(buf.length() > 0) {
                         buf.append(", ");
                     }
-                    buf.append("[").append(i++).append("] ").append(o);
+                    buf.append("[").append(i++).append("] ").append("\"").append(StringEscapeUtils.escapeJavaScript(String.valueOf(o))).append("\"");
                 }
 
                 properties.append(hardWordWrap(String.format("%s = (%s) %s", property, ((Object[]) value).getClass().getSimpleName(), StringUtils.substring(buf.toString(), 0, 200))));
             } else {
-                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringUtils.substring(String.valueOf(value), 0, 100))));
+                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringEscapeUtils.escapeJavaScript(StringUtils.substring(String.valueOf(value), 0, 100)))));
             }
 
             return this;
