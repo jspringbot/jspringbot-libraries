@@ -36,4 +36,10 @@ public class HighlighterUtilsTest {
         HighlighterUtils.INSTANCE.setEnable(true);
         System.out.println(HighlighterUtils.INSTANCE.highlightJSON("{\"a\": \"true\"}"));
     }
+
+    @Test
+    public void testCSS() throws Exception {
+        HighlighterUtils.INSTANCE.setEnable(true);
+        System.out.println(HighlighterUtils.INSTANCE.highlightCss("css=#alvin a.hello"));
+    }
 }

@@ -27,31 +27,33 @@ import java.util.regex.Pattern;
 
 /**
  * JavaScript brush.
+ *
  * @author Chan Wai Shing <cws1989@gmail.com>
  */
 public class BrushJScript extends Brush {
 
-  public BrushJScript() {
-    super();
+    public BrushJScript() {
+        super();
 
-    String keywords = "break case catch continue "
-            + "default delete do else false  "
-            + "for function if in instanceof "
-            + "new null return super switch "
-            + "this throw true try typeof var while with";
+        String keywords = "break case catch continue "
+                + "default delete do else false  "
+                + "for function if in instanceof "
+                + "new null return super switch "
+                + "this throw true try typeof var while with";
 
-    List<RegExpRule> _regExpRuleList = new ArrayList<RegExpRule>();
-    _regExpRuleList.add(new RegExpRule(RegExpRule.singleLineCComments, "comments")); // one line comments
-    _regExpRuleList.add(new RegExpRule(RegExpRule.multiLineCComments, "comments")); // multiline comments
-    // it's a standard not to use multi-line string
-    _regExpRuleList.add(new RegExpRule(RegExpRule.doubleQuotedString, "string")); // double quoted strings
-    _regExpRuleList.add(new RegExpRule(RegExpRule.singleQuotedString, "string")); // single quoted strings
-    _regExpRuleList.add(new RegExpRule("\\s*#.*", Pattern.MULTILINE, "preprocessor")); // preprocessor tags like #region and #endregion
-    _regExpRuleList.add(new RegExpRule(getKeywords(keywords), Pattern.MULTILINE, "keyword")); // keywords
-    setRegExpRuleList(_regExpRuleList);
+        List<RegExpRule> _regExpRuleList = new ArrayList<RegExpRule>();
+        _regExpRuleList.add(new RegExpRule(RegExpRule.singleLineCComments, "comments")); // one line comments
+        _regExpRuleList.add(new RegExpRule(RegExpRule.multiLineCComments, "comments")); // multiline comments
+        // it's a standard not to use multi-line string
+        _regExpRuleList.add(new RegExpRule(RegExpRule.doubleQuotedString, "string")); // double quoted strings
+        _regExpRuleList.add(new RegExpRule(RegExpRule.singleQuotedString, "string")); // single quoted strings
+        _regExpRuleList.add(new RegExpRule("\\s*#.*", Pattern.MULTILINE, "preprocessor"));
+        _regExpRuleList.add(new RegExpRule("[0-9]+(\\.[0-9]+)?", "value")); // preprocessor tags like #region and #endregion
+        _regExpRuleList.add(new RegExpRule(getKeywords(keywords), Pattern.MULTILINE, "keyword")); // keywords
+        setRegExpRuleList(_regExpRuleList);
 
-    setHTMLScriptRegExp(HTMLScriptRegExp.scriptScriptTags);
+        setHTMLScriptRegExp(HTMLScriptRegExp.scriptScriptTags);
 
-    setCommonFileExtensionList(Arrays.asList("js", "es"));
-  }
+        setCommonFileExtensionList(Arrays.asList("js", "es"));
+    }
 }
