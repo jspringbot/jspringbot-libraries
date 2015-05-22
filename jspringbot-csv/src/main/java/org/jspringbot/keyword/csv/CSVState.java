@@ -21,6 +21,7 @@ package org.jspringbot.keyword.csv;
 import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections.map.CaseInsensitiveMap;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.Validate;
 import org.jspringbot.keyword.csv.criteria.*;
@@ -43,6 +44,7 @@ public class CSVState {
     private List<String[]> lines;
 
     private String[] headerRow;
+
     private Map<String, Integer> headers;
 
     private String name;
@@ -90,7 +92,7 @@ public class CSVState {
     public void endDisjunction() {
         RestrictionAppender disjunction = appender.pop();
 
-        if(!DisjunctionRestriction.class.isInstance(disjunction)) {
+        if (!DisjunctionRestriction.class.isInstance(disjunction)) {
             throw new IllegalStateException("Last started was not an or disjunction.");
         }
 
@@ -100,7 +102,7 @@ public class CSVState {
     public void endConjunction() {
         RestrictionAppender conjunction = appender.pop();
 
-        if(!ConjunctionRestriction.class.isInstance(conjunction)) {
+        if (!ConjunctionRestriction.class.isInstance(conjunction)) {
             throw new IllegalStateException("Last started was not an and conjunction.");
         }
 
@@ -120,7 +122,7 @@ public class CSVState {
     }
 
     private String getJunction() {
-        if(DisjunctionRestriction.class.isInstance(appender.peek())) {
+        if (DisjunctionRestriction.class.isInstance(appender.peek())) {
             return OR_DISJUNCTION;
         }
 
@@ -150,19 +152,19 @@ public class CSVState {
     }
 
     public List<String[]> list() {
-        if(currentCriteria == null) {
+        if (currentCriteria == null) {
             throw new IllegalStateException("No csv criteria was created.");
         }
 
-        if(CollectionUtils.isEmpty(appender)) {
+        if (CollectionUtils.isEmpty(appender)) {
             throw new IllegalStateException("No restriction appenders found.");
         }
 
-        if(appender.size() != 1) {
+        if (appender.size() != 1) {
             throw new IllegalStateException("Junction restriction was not properly ended.");
         }
 
-        if(queryResults == null) {
+        if (queryResults == null) {
             queryResults = currentCriteria.list();
         }
 
@@ -174,6 +176,35 @@ public class CSVState {
         return queryResults;
     }
 
+    public List<Map<String, String>> map() {
+        if (currentCriteria == null) {
+            throw new IllegalStateException("No csv criteria was created.");
+        }
+
+        if (CollectionUtils.isEmpty(appender)) {
+            throw new IllegalStateException("No restriction appenders found.");
+        }
+
+        if (appender.size() != 1) {
+            throw new IllegalStateException("Junction restriction was not properly ended.");
+        }
+
+        if (queryResults == null) {
+            queryResults = currentCriteria.list();
+        }
+
+        LOG.createAppender()
+                .append("CSV Map Result:")
+                .appendText(toCSV(queryResults))
+                .log();
+
+        List<Map<String, String>> results = new ArrayList<Map<String, String>>(queryResults.size());
+        for(String[] item : queryResults) {
+            results.add(toMap(item));
+        }
+
+        return results;
+    }
 
     public String[] uniqueResult() {
         String[] result = currentCriteria.uniqueResult();
@@ -186,6 +217,32 @@ public class CSVState {
         return result;
     }
 
+    public Map<String, String> uniqueMapResult() {
+        String[] result = currentCriteria.uniqueResult();
+
+        Map<String, String> row = toMap(result);
+
+        LOG.createAppender()
+                .append("Unique Map Result:")
+                .appendProperty("Result", row)
+                .log();
+
+        return row;
+    }
+
+    @SuppressWarnings("unchecked")
+    private Map<String, String> toMap(String[] result) {
+        if(headerRow == null || headerRow.length == 0) {
+            throw new IllegalStateException("No headers found.");
+        }
+
+        Map<String, String> row = new CaseInsensitiveMap(result.length);
+        for(int i = 0; i < headerRow.length; i++) {
+            row.put(headerRow[i], result[i]);
+        }
+        return row;
+    }
+
 
     public String[] firstResult() {
         String[] result = currentCriteria.firstResult();
@@ -196,6 +253,19 @@ public class CSVState {
                 .log();
 
         return result;
+    }
+
+    public Map<String, String> firstMapResult() {
+        String[] result = currentCriteria.firstResult();
+
+        Map<String, String> row = toMap(result);
+
+        LOG.createAppender()
+                .append("First Map Result:")
+                .appendProperty("Result", row)
+                .log();
+
+        return row;
     }
 
     public String firstResultColumnIndex(int index) {
@@ -259,16 +329,14 @@ public class CSVState {
     }
 
     public List<String> getColumnValues(int index) {
+        List<String[]> results = list();
+        List<String> columnList = new ArrayList<String>(results.size());
 
-		List<String[]> results = list();
-		List<String> columnList = new ArrayList<String>(results.size());
+        for (String[] line : results) {
+            columnList.add(line[index]);
+        }
 
-		for (String[] line : results) {
-			columnList.add(line[index]);
-		}
-
-		return columnList;
-
+        return columnList;
     }
 
 
@@ -289,7 +357,7 @@ public class CSVState {
         List<String[]> results = list();
         List<String> columnList = new ArrayList<String>(results.size());
 
-        for(String[] line : results) {
+        for (String[] line : results) {
             columnList.add(line[index]);
         }
 
@@ -322,7 +390,7 @@ public class CSVState {
         HighlightRobotLogger.HtmlAppender appender = LOG.createAppender()
                 .appendBold("Parse CSV Resource:");
 
-        if(openedFile.isFile()) {
+        if (openedFile.isFile()) {
             readAll(new InputStreamReader(stream(openedFile)));
 
             appender.append(" (count=%d)", CollectionUtils.size(lines));
@@ -339,9 +407,14 @@ public class CSVState {
     }
 
     public void appendCSVLine(String csv) throws IOException {
+        LOG.createAppender()
+                .appendBold("Append CSV Line:")
+                .appendCode(csv)
+                .log();
+
         CSVWriter writer = new CSVWriter(new FileWriter(openedFile, true));
 
-        if(headerRow != null && CollectionUtils.isEmpty(lines)) {
+        if (headerRow != null && CollectionUtils.isEmpty(lines)) {
             writer.writeNext(headerRow);
         }
 
@@ -355,7 +428,7 @@ public class CSVState {
     private void setHeaders(String[] headers) {
         headerRow = headers;
         this.headers = new HashMap<String, Integer>(headers.length);
-        for(int i = 0; i < headers.length; i++) {
+        for (int i = 0; i < headers.length; i++) {
             this.headers.put(headers[i], i);
         }
 
@@ -370,7 +443,7 @@ public class CSVState {
     }
 
     public void setFirstLineAsHeader() {
-        if(CollectionUtils.isNotEmpty(lines)) {
+        if (CollectionUtils.isNotEmpty(lines)) {
             ListIterator<String[]> itr = lines.listIterator();
 
             setHeaders(itr.next());

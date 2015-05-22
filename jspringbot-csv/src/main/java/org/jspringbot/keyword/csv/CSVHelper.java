@@ -131,12 +131,24 @@ public class CSVHelper {
         return currentState.list();
     }
 
+    public List<Map<String, String>> map() {
+        return currentState.map();
+    }
+
     public String[] firstResult() {
         return currentState.firstResult();
     }
 
+    public Map<String, String> firstMapResult() {
+        return currentState.firstMapResult();
+    }
+
     public String[] uniqueResult() {
-        return currentState.firstResult();
+        return currentState.uniqueResult();
+    }
+
+    public Map<String, String> uniqueMapResult() {
+        return currentState.uniqueMapResult();
     }
 
     public String firstResultColumnIndex(int index) {
