@@ -1,7 +1,11 @@
 JSpringBot Date Library for Robot Framework.
 
-= Configuration =
+Please see the example {{Date Library}} project.
 
+{{jspringbot-github:sample-date|Sample Project}}
+
+= Configuration =
+pdated
 Configure the following to use jspringbot-expression.
 
 1. Add this artifact in maven dependency
