@@ -317,6 +317,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                 return;
             }
 
+            if(locator.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightLocator(locator.toString()));
+            }
+
             if(properties.length() > 0) {
                 buf.append(HighlighterUtils.INSTANCE.highlightText(properties.toString()));
             }
@@ -343,10 +347,6 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
             if(css.length() > 0) {
                 buf.append(HighlighterUtils.INSTANCE.highlightCss(css.toString()));
-            }
-
-            if(locator.length() > 0) {
-                buf.append(HighlighterUtils.INSTANCE.highlightLocator(locator.toString()));
             }
 
             if(json.length() > 0) {
