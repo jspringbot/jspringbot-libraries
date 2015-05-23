@@ -5,8 +5,8 @@ Please see the example {{Date Library}} project.
 {{jspringbot-github:sample-date|Sample Project}}
 
 = Configuration =
-pdated
-Configure the following to use jspringbot-expression.
+
+Configure the following to use jspringbot-date.
 
 1. Add this artifact in maven dependency
 
@@ -27,6 +27,7 @@ Configure the following to use jspringbot-expression.
 | Library | JSpringBotGlobal |
 
 = Sample Date Keyword Usage =
+
 | Set Date Time Zone | Japan | | # Sets Time Zone to *Time Zone Id*: Japan ; *Raw offset (Hours:Minutes)*: 9 : 00; *Display Name*: Japan Standard Time |
 | Print Date Time |
 | Set Date Time Format | dd-MM-yyyy HH:mm |
