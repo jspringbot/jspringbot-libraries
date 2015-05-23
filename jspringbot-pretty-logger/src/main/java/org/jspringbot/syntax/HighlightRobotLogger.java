@@ -289,6 +289,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                 return this;
             }
 
+            if(locator.length() > 0) {
+                locator.append("\n");
+            }
+
             if(args != null && args.length > 0) {
                 locator.append(String.format(msg, args));
             } else {
