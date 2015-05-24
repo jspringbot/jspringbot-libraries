@@ -114,8 +114,8 @@ public class SeleniumHelper {
 
     public void setSize(int width, int height) {
         LOG.keywordAppender()
-                .appendProperty("width", width)
-                .appendProperty("height", height);
+                .appendArgument("width", width)
+                .appendArgument("height", height);
 
         driver.manage().window().setSize(new Dimension(width, height));
     }
@@ -127,7 +127,7 @@ public class SeleniumHelper {
     public void assignIdToElement(String id, String locator) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("id", id);
+                .appendArgument("id", id);
 
         WebElement el = finder.find(locator);
 
@@ -160,12 +160,12 @@ public class SeleniumHelper {
         String domain = getDomain(url);
 
         KeywordAppender appender = LOG.keywordAppender();
-        appender.appendProperty("link", url);
+        appender.appendArgument("link", url);
 
         if(autoZoomIn != 0 || autoZoomOut != 0) {
-            appender.appendProperty("domain", domain);
-            appender.appendProperty("autoZoomIn", autoZoomIn);
-            appender.appendProperty("autoZoomOut", autoZoomOut);
+            appender.appendArgument("domain", domain);
+            appender.appendArgument("autoZoomIn", autoZoomIn);
+            appender.appendArgument("autoZoomOut", autoZoomOut);
         }
 
         if(domain != null && !hasZoomed(domain)) {
@@ -220,8 +220,8 @@ public class SeleniumHelper {
         String actualAlertText = getAlertMessage();
 
         LOG.keywordAppender()
-                .appendProperty("Actual Alert Text", actualAlertText)
-                .appendProperty("Expected Alert Text", expectedAlertText);
+                .appendArgument("Actual Alert Text", actualAlertText)
+                .appendArgument("Expected Alert Text", expectedAlertText);
 
         if (!StringUtils.equals(actualAlertText, expectedAlertText)) {
             throw new IllegalArgumentException("Alert text is not equal.");
@@ -263,7 +263,7 @@ public class SeleniumHelper {
         LOG.keywordAppender()
                 .appendBold("Checkbox Should Be Selected:")
                 .appendLocator(locator)
-                .appendProperty("Selected", el.isSelected());
+                .appendArgument("Selected", el.isSelected());
 
         if (!el.isSelected()) {
             throw new IllegalArgumentException("Checkbox should have been selected.");
@@ -276,7 +276,7 @@ public class SeleniumHelper {
         LOG.keywordAppender()
                 .appendBold("Checkbox Should Not e Selected:")
                 .appendLocator(locator)
-                .appendProperty("Selected", el.isSelected());
+                .appendArgument("Selected", el.isSelected());
 
         if (el.isSelected()) {
             throw new IllegalArgumentException("Checkbox should not have been selected.");
@@ -287,8 +287,8 @@ public class SeleniumHelper {
         File file = new File(filePath);
 
         LOG.keywordAppender().appendLocator(locator)
-                .appendProperty("File Path", filePath)
-                .appendProperty("Is File", file.isFile());
+                .appendArgument("File Path", filePath)
+                .appendArgument("Is File", file.isFile());
 
         if (!file.isFile()) {
             throw new IllegalArgumentException("File does not exist on the local file system.");
@@ -305,8 +305,8 @@ public class SeleniumHelper {
         int offSetY = Integer.parseInt(yOffset);
 
         LOG.keywordAppender()
-                .appendProperty("offSetX", offSetX)
-                .appendProperty("offSetY", offSetY);
+                .appendArgument("offSetX", offSetX)
+                .appendArgument("offSetY", offSetY);
 
         WebElement el = finder.find(locator);
 
@@ -374,7 +374,7 @@ public class SeleniumHelper {
         byte[] bytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         File file = newScreenCaptureFile();
 
-        LOG.keywordAppender().appendProperty("File", file.getAbsolutePath());
+        LOG.keywordAppender().appendArgument("File", file.getAbsolutePath());
 
         LOG.html("Screen captured (%d): <br /> <img src='%s'/>", screenCaptureCtr, file.getName());
 
@@ -386,10 +386,10 @@ public class SeleniumHelper {
         int eleHeight = el.getSize().getHeight();
 
         LOG.keywordAppender()
-                .appendProperty("Width", eleWidth)
-                .appendProperty("Height", eleHeight)
-                .appendProperty("X", point.getX())
-                .appendProperty("Y", point.getY());
+                .appendArgument("Width", eleWidth)
+                .appendArgument("Height", eleHeight)
+                .appendArgument("X", point.getX())
+                .appendArgument("Y", point.getY());
 
         //Crop the entire page screenshot to get only element screenshot
         BufferedImage eleScreenshot= fullImg.getSubimage(point.getX(), point.getY(), eleWidth, eleHeight);
@@ -464,17 +464,17 @@ public class SeleniumHelper {
             int height = Integer.parseInt(optionMap.get("height"));
 
             LOG.keywordAppender()
-                    .appendProperty("option.width", width)
-                    .appendProperty("option.height", height)
-                    .appendProperty("option.x", x)
-                    .appendProperty("option.y", y);
+                    .appendArgument("option.width", width)
+                    .appendArgument("option.height", height)
+                    .appendArgument("option.x", x)
+                    .appendArgument("option.y", y);
 
             fullImg = fullImg.getSubimage(x, y, width, height);
         }
 
         String style = optionMap.get("style");
         if(StringUtils.equals(style, "grayscale")) {
-            LOG.keywordAppender().appendProperty("option.grayscaled", true);
+            LOG.keywordAppender().appendArgument("option.grayscaled", true);
 
             toGray(fullImg);
         }
@@ -500,11 +500,11 @@ public class SeleniumHelper {
 
     public void addCookie(String cookieName, String cookieValue, String host, String domain, String path) {
         LOG.keywordAppender()
-                .appendProperty("Cookie Name", cookieName)
-                .appendProperty("Cookie Value", cookieValue)
-                .appendProperty("Host", host)
-                .appendProperty("Domain", domain)
-                .appendProperty("Path", path);
+                .appendArgument("Cookie Name", cookieName)
+                .appendArgument("Cookie Value", cookieValue)
+                .appendArgument("Host", host)
+                .appendArgument("Domain", domain)
+                .appendArgument("Path", path);
 
         driver.get(host);
 
@@ -526,12 +526,12 @@ public class SeleniumHelper {
     }
 
     public String getCookieValue (String cookieName) {
-        LOG.keywordAppender().appendProperty("Cookie Name", cookieName);
+        LOG.keywordAppender().appendArgument("Cookie Name", cookieName);
 
         Cookie cookie = driver.manage().getCookieNamed(cookieName);
 
         if (cookie != null) {
-            LOG.keywordAppender().appendProperty(cookie.getName(), cookie.getValue());
+            LOG.keywordAppender().appendArgument(cookie.getName(), cookie.getValue());
 
             return cookie.getValue();
         } else {
@@ -543,7 +543,7 @@ public class SeleniumHelper {
         Set<Cookie> cookies = driver.manage().getCookies();
 
         for(Cookie cookie : cookies) {
-            LOG.keywordAppender().appendProperty(cookie.getName(), cookie.getValue());
+            LOG.keywordAppender().appendArgument(cookie.getName(), cookie.getValue());
         }
 
         return cookies;
@@ -571,8 +571,8 @@ public class SeleniumHelper {
     public void dragAndDropByOffset(String locatorSrc, int xOffset, int yOffset) {
         LOG.keywordAppender()
                 .appendLocator(locatorSrc)
-                .appendProperty("xOffset", xOffset)
-                .appendProperty("yOffset", yOffset);
+                .appendArgument("xOffset", xOffset)
+                .appendArgument("yOffset", yOffset);
 
         WebElement element = finder.find(locatorSrc);
 
@@ -582,7 +582,7 @@ public class SeleniumHelper {
     public void elementShouldBeDisabled(String locator) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("Enabled", isEnabled(locator));
+                .appendArgument("Enabled", isEnabled(locator));
 
         if (isEnabled(locator))  {
             throw new AssertionError("Element is enabled.");
@@ -595,7 +595,7 @@ public class SeleniumHelper {
         boolean isEnabled = isEnabled(locator);
 
 
-        LOG.keywordAppender().appendProperty("Enabled", isEnabled);
+        LOG.keywordAppender().appendArgument("Enabled", isEnabled);
 
         if (!isEnabled)  {
             throw new AssertionError("Element is disabled");
@@ -607,7 +607,7 @@ public class SeleniumHelper {
 
         boolean isVisible = isVisible(locator);
 
-        LOG.keywordAppender().appendProperty("Visible", isVisible);
+        LOG.keywordAppender().appendArgument("Visible", isVisible);
 
         if (!isVisible) {
             throw new AssertionError("The element should be visible, but it is not.");
@@ -619,7 +619,7 @@ public class SeleniumHelper {
 
         boolean isVisible = isVisible(locator);
 
-        LOG.keywordAppender().appendProperty("Visible", isVisible);
+        LOG.keywordAppender().appendArgument("Visible", isVisible);
 
         return isVisible;
     }
@@ -629,7 +629,7 @@ public class SeleniumHelper {
 
         boolean isVisible = isVisible(locator);
 
-        LOG.keywordAppender().appendProperty("Visible", isVisible);
+        LOG.keywordAppender().appendArgument("Visible", isVisible);
 
         if (isVisible) {
             throw new AssertionError("The element should not be visible, but it is not.");
@@ -637,10 +637,10 @@ public class SeleniumHelper {
     }
 
     public void currentFrameShouldContain(String text) {
-        LOG.keywordAppender().appendProperty("text", text);
+        LOG.keywordAppender().appendArgument("text", text);
         boolean textIsPresent = textIsPresent(text);
 
-        LOG.keywordAppender().appendProperty("Text Is Present", textIsPresent);
+        LOG.keywordAppender().appendArgument("Text Is Present", textIsPresent);
 
         if (!textIsPresent) {
             throw new AssertionError("Page should have contained text but did not.");
@@ -656,10 +656,10 @@ public class SeleniumHelper {
     }
 
     public void frameShouldContainText(String locator, String text) {
-        LOG.keywordAppender().appendProperty("text", text);
+        LOG.keywordAppender().appendArgument("text", text);
         boolean frameContains = frameContains(locator, text);
 
-        LOG.keywordAppender().appendProperty("Text Is Present", frameContains);
+        LOG.keywordAppender().appendArgument("Text Is Present", frameContains);
 
         if (!frameContains) {
             throw new AssertionError("Page should have contained text but did not.");
@@ -671,8 +671,8 @@ public class SeleniumHelper {
         String actual = getText(locator, false);
 
         LOG.keywordAppender()
-                .appendProperty("Actual", actual)
-                .appendProperty("Expected", expected);
+                .appendArgument("Actual", actual)
+                .appendArgument("Expected", expected);
        
         if(!StringUtils.contains(StringUtils.trim(actual), StringUtils.trim(expected))) {
             throw new AssertionError("Element should have contained text.");
@@ -687,8 +687,8 @@ public class SeleniumHelper {
         String classNames = el.getAttribute("class");
 
         LOG.keywordAppender()
-                .appendProperty("Class Names", classNames)
-                .appendProperty("Expected Class Name", expectedClassName);
+                .appendArgument("Class Names", classNames)
+                .appendArgument("Expected Class Name", expectedClassName);
 
         if(StringUtils.isNotEmpty(classNames)) {
             if(Arrays.asList(StringUtils.split(classNames, " ")).contains(expectedClassName)) {
@@ -707,8 +707,8 @@ public class SeleniumHelper {
         String typeNames = el.getAttribute("type");
 
         LOG.keywordAppender()
-                .appendProperty("Class Names", typeNames)
-                .appendProperty("Expected Type Name", expectedTypeName);
+                .appendArgument("Class Names", typeNames)
+                .appendArgument("Expected Type Name", expectedTypeName);
 
         if(StringUtils.isNotEmpty(typeNames)) {
             if(Arrays.asList(StringUtils.split(typeNames, " ")).contains(expectedTypeName)) {
@@ -727,8 +727,8 @@ public class SeleniumHelper {
         String classNames = el.getAttribute("class");
 
         LOG.keywordAppender()
-                .appendProperty("Class Names", classNames)
-                .appendProperty("Expected Class Name", expectedClassName);
+                .appendArgument("Class Names", classNames)
+                .appendArgument("Expected Class Name", expectedClassName);
 
         if(StringUtils.isNotEmpty(classNames)) {
             if(Arrays.asList(StringUtils.split(classNames, " ")).contains(expectedClassName)) {
@@ -745,8 +745,8 @@ public class SeleniumHelper {
         String actualText = el.getText();
 
         LOG.keywordAppender()
-                .appendProperty("Actual Text", actualText)
-                .appendProperty("Expected Text", expectedText);
+                .appendArgument("Actual Text", actualText)
+                .appendArgument("Expected Text", expectedText);
 
         if (!StringUtils.equals(StringUtils.trim(expectedText), StringUtils.trim(actualText))) {
             throw new AssertionError("The text of element is not as expected.");
@@ -766,11 +766,11 @@ public class SeleniumHelper {
                 .appendLocator("Destination: css=" + cssDestLocator);
 
         if(!(Boolean) executeJavascript("return (typeof $ != 'undefined');")) {
-            LOG.keywordAppender().appendProperty("jqueryLink", jqueryLink);
+            LOG.keywordAppender().appendArgument("jqueryLink", jqueryLink);
             executeJavascript(jqueryLink);
         }
         if(!(Boolean) executeJavascript("return (typeof $.fn.simulateDragDrop != 'undefined');")) {
-            LOG.keywordAppender().appendProperty("dragAndDrop", "classpath:js/dragAndDrop.js");
+            LOG.keywordAppender().appendArgument("dragAndDrop", "classpath:js/dragAndDrop.js");
 
             executeJavascript("classpath:js/dragAndDrop.js");
         }
@@ -788,7 +788,7 @@ public class SeleniumHelper {
      
     public Object executeJavascript(String locator, String code, Object... args) throws IOException {
         if(StringUtils.startsWith(code, "file:") || StringUtils.startsWith(code, "classpath:") || StringUtils.startsWith(code, "http:") || StringUtils.startsWith(code, "https:")) {
-            LOG.keywordAppender().appendProperty("Resource", code);
+            LOG.keywordAppender().appendArgument("Resource", code);
             ResourceEditor editor = new ResourceEditor();
             editor.setAsText(code);
             Resource resource = (Resource) editor.getValue();
@@ -822,7 +822,7 @@ public class SeleniumHelper {
             }
         }
 
-        LOG.keywordAppender().appendProperty("Returned Value", returnedValue);
+        LOG.keywordAppender().appendArgument("Returned Value", returnedValue);
 
         return returnedValue;
     }
@@ -834,7 +834,7 @@ public class SeleniumHelper {
 
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("Attribute Name", attributeName);
+                .appendArgument("Attribute Name", attributeName);
 
         WebElement el = finder.find(parts[0], true);
 
@@ -845,7 +845,7 @@ public class SeleniumHelper {
         String attributeValue = el.getAttribute(attributeName);
 
         LOG.keywordAppender()
-                .appendProperty("Attribute Value", attributeValue);
+                .appendArgument("Attribute Value", attributeValue);
 
         return attributeValue;
     }
@@ -856,8 +856,8 @@ public class SeleniumHelper {
         String actualValue = getElementAttribute(attributeLocator);
 
         LOG.keywordAppender()
-                .appendProperty("Actual Element Attribute Value", actualValue)
-                .appendProperty("Expected Element Attribute Value", expectedValue);
+                .appendArgument("Actual Element Attribute Value", actualValue)
+                .appendArgument("Expected Element Attribute Value", expectedValue);
 
         if (!StringUtils.equals(StringUtils.trim(actualValue), StringUtils.trim(expectedValue))) {
             throw new AssertionError("The attribute value of the element is not as expected.");
@@ -870,8 +870,8 @@ public class SeleniumHelper {
         String actualValue = getElementAttribute(attributeLocator);
 
         LOG.keywordAppender()
-                .appendProperty("Actual Element Attribute Value", actualValue)
-                .appendProperty("Expected Element Attribute Value", expectedValue);
+                .appendArgument("Actual Element Attribute Value", actualValue)
+                .appendArgument("Expected Element Attribute Value", expectedValue);
 
         if(!StringUtils.contains(StringUtils.trim(actualValue), StringUtils.trim(expectedValue))) {
             throw new AssertionError("Element attribute value should have contained text.");
@@ -886,8 +886,8 @@ public class SeleniumHelper {
         Point point = element.getLocation();
 
         LOG.keywordAppender()
-                .appendProperty("X", point.getX())
-                .appendProperty("Y", point.getY());
+                .appendArgument("X", point.getX())
+                .appendArgument("Y", point.getY());
 
         return point.getX();
     }
@@ -900,15 +900,15 @@ public class SeleniumHelper {
         Point point = element.getLocation();
 
         LOG.keywordAppender()
-                .appendProperty("X", point.getX())
-                .appendProperty("Y", point.getY());
+                .appendArgument("X", point.getX())
+                .appendArgument("Y", point.getY());
 
         return point.getY();
     }
 
     public String getLocation() {
         LOG.keywordAppender()
-                .appendProperty("Current URL", driver.getCurrentUrl());
+                .appendArgument("Current URL", driver.getCurrentUrl());
 
         return driver.getCurrentUrl();
     }
@@ -922,7 +922,7 @@ public class SeleniumHelper {
 
         int count = driver.findElements(By.cssSelector(cssLocator)).size();
 
-        LOG.keywordAppender().appendProperty("Count", count);
+        LOG.keywordAppender().appendArgument("Count", count);
 
         return count;
     }
@@ -936,7 +936,7 @@ public class SeleniumHelper {
 
         int count = driver.findElements(By.xpath(xpath)).size();
 
-        LOG.keywordAppender().appendProperty("Count", count);
+        LOG.keywordAppender().appendArgument("Count", count);
 
         return count;
     }
@@ -972,7 +972,7 @@ public class SeleniumHelper {
 
         List<String> labels = getLabelsForOptions(selectOptions);
 
-        LOG.keywordAppender().appendProperty("Labels", labels);
+        LOG.keywordAppender().appendArgument("Labels", labels);
 
         return labels;
     }
@@ -984,7 +984,7 @@ public class SeleniumHelper {
             throw new IllegalArgumentException(String.format("Select list with locator '%s' does not have a single selected value", locator));
         }
 
-        LOG.keywordAppender().appendProperty("Selected Label", selectedLabels.get(0));
+        LOG.keywordAppender().appendArgument("Selected Label", selectedLabels.get(0));
 
         return selectedLabels.get(0);
     }
@@ -996,7 +996,7 @@ public class SeleniumHelper {
             throw new IllegalArgumentException(String.format("Select list with locator '%s' does not have a single selected value",locator));
         }
 
-        LOG.keywordAppender().appendProperty("Selected Value", selectedListValues.get(0));
+        LOG.keywordAppender().appendArgument("Selected Value", selectedListValues.get(0));
 
         return selectedListValues.get(0);
     }
@@ -1011,7 +1011,7 @@ public class SeleniumHelper {
 
         List<String> values = getValuesForOptions(selectedOptions);
 
-        LOG.keywordAppender().appendProperty("Selected Values", values);
+        LOG.keywordAppender().appendArgument("Selected Values", values);
 
         return values;
     }
@@ -1025,7 +1025,7 @@ public class SeleniumHelper {
 
         List<String> labels =  getLabelsForOptions(selectOptions);
 
-        LOG.keywordAppender().appendProperty("Selected Labels", labels);
+        LOG.keywordAppender().appendArgument("Selected Labels", labels);
 
         return labels;
     }
@@ -1039,7 +1039,7 @@ public class SeleniumHelper {
 
         List<String> labels = getLabelsForOptions(selectedOptions);
 
-        LOG.keywordAppender().appendProperty("Selected Labels", labels);
+        LOG.keywordAppender().appendArgument("Selected Labels", labels);
 
         return labels;
     }
@@ -1049,7 +1049,7 @@ public class SeleniumHelper {
         boolean isMultiSelectList = isMultiSelectList(selectEl);
 
         if (!isMultiSelectList) {
-            LOG.keywordAppender().appendProperty("multi-select", true);
+            LOG.keywordAppender().appendArgument("multi-select", true);
 
             throw new IllegalArgumentException("Keyword 'Select all from list' works only for multi-select lists.");
         }
@@ -1058,10 +1058,10 @@ public class SeleniumHelper {
         int index = 0;
         for(WebElement option : selectOptions) {
             if(!option.isSelected()) {
-                LOG.keywordAppender().appendProperty(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText());
+                LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText());
                 option.click();
             } else {
-                LOG.keywordAppender().appendProperty(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText() + ": (already selected)");
+                LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText() + ": (already selected)");
             }
         }
     }
@@ -1073,7 +1073,7 @@ public class SeleniumHelper {
         boolean isMultiSelectList = isMultiSelectList(selectEl);
         
         if (!isMultiSelectList) {
-            LOG.keywordAppender().appendProperty("multi-select", false);
+            LOG.keywordAppender().appendArgument("multi-select", false);
             throw new IllegalArgumentException("Keyword 'Unselect all from list' works only for multi-select lists.");
         }
 
@@ -1081,10 +1081,10 @@ public class SeleniumHelper {
         int index = 0;
         for(WebElement option : selectOptions) {
             if(option.isSelected()) {
-                LOG.keywordAppender().appendProperty(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText());
+                LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText());
                 option.click();
             } else {
-                LOG.keywordAppender().appendProperty(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText() + ": (already unselected)");
+                LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", index++, option.getAttribute("value")), option.getText() + ": (already unselected)");
             }
         }
     }
@@ -1097,7 +1097,7 @@ public class SeleniumHelper {
     }
 
     public String getTitle() {
-        LOG.keywordAppender().appendProperty("title", driver.getTitle());
+        LOG.keywordAppender().appendArgument("title", driver.getTitle());
 
         return driver.getTitle();
     }
@@ -1113,7 +1113,7 @@ public class SeleniumHelper {
     public String getCSSValue(String locator, String propertyName) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("Property Name", propertyName);
+                .appendArgument("Property Name", propertyName);
 
         WebElement el = finder.find(locator);
 
@@ -1158,7 +1158,7 @@ public class SeleniumHelper {
 
     public void inputPassword(String locator, String password) {
         LOG.keywordAppender()
-                .appendProperty("password", password)
+                .appendArgument("password", password)
                 .appendLocator(locator);
 
         inputTextIntoTextField(locator, password);
@@ -1166,7 +1166,7 @@ public class SeleniumHelper {
 
     public void inputText(String locator, String text) {
         LOG.keywordAppender()
-                .appendProperty("text", text)
+                .appendArgument("text", text)
                 .appendLocator(locator);
 
         inputTextIntoTextField(locator, text);
@@ -1174,7 +1174,7 @@ public class SeleniumHelper {
     
     public void sendKeys(String locator, String text) {
         LOG.keywordAppender()
-                .appendProperty("text", text)
+                .appendArgument("text", text)
                 .appendLocator(locator);
 
         WebElement el = finder.find(locator);
@@ -1182,10 +1182,10 @@ public class SeleniumHelper {
     }
 
     public void listSelectionShouldBe(String locator, List<String> items) {
-        LOG.keywordAppender().appendProperty("Expected", items);
+        LOG.keywordAppender().appendArgument("Expected", items);
         List<String> values = getSelectedListValues(locator);
 
-        LOG.keywordAppender().appendProperty("Actual Values", values);
+        LOG.keywordAppender().appendArgument("Actual Values", values);
 
         boolean containsValues = items.containsAll(values);
 
@@ -1195,7 +1195,7 @@ public class SeleniumHelper {
 
         List<String> texts = getSelectedListLabels(locator);
 
-        LOG.keywordAppender().appendProperty("Actual Texts", texts);
+        LOG.keywordAppender().appendArgument("Actual Texts", texts);
 
         boolean containsText = items.containsAll(texts);
 
@@ -1207,14 +1207,14 @@ public class SeleniumHelper {
     }
 
     public void listValueSelectionShouldBe(String locator, List<String> items) {
-        LOG.keywordAppender().appendProperty("Expected", items);
+        LOG.keywordAppender().appendArgument("Expected", items);
 
         List<String> values = getSelectedListValues(locator);
 
         boolean containsValues = items.containsAll(values);
 
         if(containsValues) {
-            LOG.keywordAppender().appendProperty("Actual Values", values);
+            LOG.keywordAppender().appendArgument("Actual Values", values);
 
             return;
         }
@@ -1223,13 +1223,13 @@ public class SeleniumHelper {
     }
 
     public void listTextSelectionShouldBe(String locator, List<String> items) {
-        LOG.keywordAppender().appendProperty("Expected", items);
+        LOG.keywordAppender().appendArgument("Expected", items);
 
         List<String> texts = getSelectedListLabels(locator);
         boolean containsText = items.containsAll(texts);
 
         if(containsText) {
-            LOG.keywordAppender().appendProperty("Actual", texts);
+            LOG.keywordAppender().appendArgument("Actual", texts);
 
             return;
         }
@@ -1242,15 +1242,15 @@ public class SeleniumHelper {
 
         if(CollectionUtils.isNotEmpty(values)) {
             LOG.keywordAppender()
-                    .appendProperty("Values", values)
-                    .appendProperty("Texts", getSelectedListLabels(locator));
+                    .appendArgument("Values", values)
+                    .appendArgument("Texts", getSelectedListLabels(locator));
 
             throw new IllegalArgumentException("List should have no selection.");
         }
     }
 
     public void selectFromListByIndex(String locator, List<Integer> indices) {
-        LOG.keywordAppender().appendProperty("Indices", indices);
+        LOG.keywordAppender().appendArgument("Indices", indices);
 
         List<WebElement> options = getSelectListOptions(locator);
 
@@ -1270,7 +1270,7 @@ public class SeleniumHelper {
     }
 
     public void unselectFromListByIndex(String locator, List<Integer> indices) {
-        LOG.keywordAppender().appendProperty("Indices", indices);
+        LOG.keywordAppender().appendArgument("Indices", indices);
 
         List<WebElement> options = getSelectListOptions(locator);
         
@@ -1288,7 +1288,7 @@ public class SeleniumHelper {
     }
     
     public void selectFromListByValue(String locator, List<String> values) {
-        LOG.keywordAppender().appendProperty("Values", values);
+        LOG.keywordAppender().appendArgument("Values", values);
 
         List<WebElement> options = getSelectListOptions(locator);
 
@@ -1309,7 +1309,7 @@ public class SeleniumHelper {
     }
     
     public void unselectFromListByValue(String locator, List<String> values) {
-        LOG.keywordAppender().appendProperty("Values", values);
+        LOG.keywordAppender().appendArgument("Values", values);
 
         List<WebElement> options = getSelectListOptions(locator);
         
@@ -1335,7 +1335,7 @@ public class SeleniumHelper {
     }
 
     public void selectFromListByLabel(String locator, List<String> labels) {
-        LOG.keywordAppender().appendProperty("Labels", labels);
+        LOG.keywordAppender().appendArgument("Labels", labels);
 
         List<WebElement> options = getSelectListOptions(locator);
 
@@ -1356,7 +1356,7 @@ public class SeleniumHelper {
     }
     
     public void unselectFromListByLabel(String locator, List<String> labels) {
-        LOG.keywordAppender().appendProperty("Labels", labels);
+        LOG.keywordAppender().appendArgument("Labels", labels);
 
         List<WebElement> options = getSelectListOptions(locator);
         
@@ -1481,8 +1481,8 @@ public class SeleniumHelper {
     public void actionMoveToElement(String locator, int xOffset, int yOffset) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("xOffset", xOffset)
-                .appendProperty("yOffset", yOffset);
+                .appendArgument("xOffset", xOffset)
+                .appendArgument("yOffset", yOffset);
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1498,8 +1498,8 @@ public class SeleniumHelper {
 
     public void actionMoveByOffset(int x, int y) {
         LOG.keywordAppender()
-                .appendProperty("xOffset", x)
-                .appendProperty("yOffset", y);
+                .appendArgument("xOffset", x)
+                .appendArgument("yOffset", y);
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1654,7 +1654,7 @@ public class SeleniumHelper {
     public void actionSendKeys(String locator, String keys) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("keys", keys);
+                .appendArgument("keys", keys);
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1701,7 +1701,7 @@ public class SeleniumHelper {
     public void actionKeyDown(String locator, Keys keys) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("keys", keys);
+                .appendArgument("keys", keys);
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1715,7 +1715,7 @@ public class SeleniumHelper {
     }
 
     public void actionKeyUp(Keys keys) {
-        LOG.keywordAppender().appendProperty("keys", keys);
+        LOG.keywordAppender().appendArgument("keys", keys);
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1725,7 +1725,7 @@ public class SeleniumHelper {
     public void actionKeyUp(String locator, Keys keys) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("keys", keys);
+                .appendArgument("keys", keys);
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1741,8 +1741,8 @@ public class SeleniumHelper {
     public void actionDragAndDropBy(String srclocator, int xOffset, int yOffset) {
         LOG.keywordAppender()
                 .appendLocator(srclocator)
-                .appendProperty("xOffset", xOffset)
-                .appendProperty("yOffset", yOffset);
+                .appendArgument("xOffset", xOffset)
+                .appendArgument("yOffset", yOffset);
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1756,7 +1756,7 @@ public class SeleniumHelper {
     }
 
     public void actionPause(int millis) {
-        LOG.keywordAppender().appendProperty("Millis", millis);
+        LOG.keywordAppender().appendArgument("Millis", millis);
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1790,7 +1790,7 @@ public class SeleniumHelper {
     }
 
     public void pageShouldContain(String text) {
-        LOG.keywordAppender().appendProperty("text", text);
+        LOG.keywordAppender().appendArgument("text", text);
 
         if (pageContains(text)) {
             LOG.info(String.format("Current page contains text '%s'.", text));
@@ -1892,7 +1892,7 @@ public class SeleniumHelper {
     }
 
     public void pageShouldNotContain(String text) {
-        LOG.keywordAppender().appendProperty("Text", text);
+        LOG.keywordAppender().appendArgument("Text", text);
 
         if (pageContains(text)) {
             throw new AssertionError(String.format("Page should not have contained text %s but did.", text));
@@ -1993,13 +1993,13 @@ public class SeleniumHelper {
 
     public void pressKey(String locator, String key) {
         LOG.keywordAppender()
-                .appendProperty("Key", key)
+                .appendArgument("Key", key)
                 .appendLocator(locator);
 
         if (key.startsWith("\\") && key.length() > 1) {
             int keyCode = Integer.valueOf(key.substring(2));
             key = mapAsciiKeyCodeToKey(keyCode) ;
-            LOG.keywordAppender().appendProperty("Ascii Key Code", key);
+            LOG.keywordAppender().appendArgument("Ascii Key Code", key);
         }
 
         if (key.length() < 1) {
@@ -2016,8 +2016,8 @@ public class SeleniumHelper {
 
     public void radioButtonShouldBeSetTo(String groupName, String valueSelected) {
         LOG.keywordAppender()
-                .appendProperty("Group Name", groupName)
-                .appendProperty("Value Selected", valueSelected);
+                .appendArgument("Group Name", groupName)
+                .appendArgument("Value Selected", valueSelected);
 
         List<WebElement> els = getRadioButton(groupName);
         String actualValueSelected = getValueFromRadioButtons(els);
@@ -2028,7 +2028,7 @@ public class SeleniumHelper {
     }
 
     public void radioButtonShouldNotBeSelected(String groupName) {
-        LOG.keywordAppender().appendProperty("Group Name", groupName);
+        LOG.keywordAppender().appendArgument("Group Name", groupName);
 
         List<WebElement> els = getRadioButton(groupName);
         String actualValue = getValueFromRadioButtons(els);
@@ -2048,8 +2048,8 @@ public class SeleniumHelper {
 
     public void selectRadioButton(String groupName, String value) {
         LOG.keywordAppender()
-                .appendProperty("Group Name", groupName)
-                .appendProperty("Value", value);
+                .appendArgument("Group Name", groupName)
+                .appendArgument("Value", value);
 
         WebElement el = getRadioButtonWithValue(groupName, value);
         if (!el.isSelected()) {
@@ -2096,7 +2096,7 @@ public class SeleniumHelper {
     public List<String> getWindowHandles() {
         List<String> handles = new ArrayList<String>(driver.getWindowHandles());
 
-        LOG.keywordAppender() .appendProperty("Handles", handles);
+        LOG.keywordAppender() .appendArgument("Handles", handles);
 
         return handles;
     }
@@ -2104,13 +2104,13 @@ public class SeleniumHelper {
     public String getWindowHandle() {
         String handle = driver.getWindowHandle();
 
-        LOG.keywordAppender().appendProperty("Handle", handle);
+        LOG.keywordAppender().appendArgument("Handle", handle);
 
         return handle;
     }
 
     public void selectWindow(String windowName) {
-        LOG.keywordAppender().appendProperty("Handle", windowName);
+        LOG.keywordAppender().appendArgument("Handle", windowName);
 
         driver.switchTo().window(windowName);
     }
@@ -2125,7 +2125,7 @@ public class SeleniumHelper {
     public void textfieldValueShouldBe(String locator, String expectedValue) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("Expected", expectedValue);
+                .appendArgument("Expected", expectedValue);
 
         WebElement el = finder.find(locator,"input");
 
@@ -2138,7 +2138,7 @@ public class SeleniumHelper {
             actual = el.getAttribute("value");
         }
 
-        LOG.keywordAppender().appendProperty("Actual", actual);
+        LOG.keywordAppender().appendArgument("Actual", actual);
 
         if (!StringUtils.equalsIgnoreCase(actual, expectedValue)) {
             throw new AssertionError(String.format("Value of text field '%s' should have been '%s' but was '%s'", locator, expectedValue, actual));
@@ -2149,18 +2149,18 @@ public class SeleniumHelper {
 
     public void titleShouldBe(String title) {
         LOG.keywordAppender()
-                .appendProperty("Expected", title)
-                .appendProperty("Actual", driver.getTitle());
+                .appendArgument("Expected", title)
+                .appendArgument("Actual", driver.getTitle());
 
         if (!driver.getTitle().equalsIgnoreCase(title)) {
             throw new AssertionError(String.format("Title should have been '%s' but was '%s'", title, driver.getTitle()));
         }
 
-        LOG.keywordAppender().appendProperty("Title", title);
+        LOG.keywordAppender().appendArgument("Title", title);
     }
 
     public void delay(long millis) {
-        LOG.keywordAppender().appendProperty("Delay Millis", millis);
+        LOG.keywordAppender().appendArgument("Delay Millis", millis);
 
         try {
             Thread.sleep(millis);
@@ -2174,7 +2174,7 @@ public class SeleniumHelper {
         
         LOG.keywordAppender()
                 .appendJavascript(javaScript)
-                .appendProperty("timeOutInSeconds", timeOutInSeconds);
+                .appendArgument("timeOutInSeconds", timeOutInSeconds);
         
         try{
             driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); //nullify implicitlyWait()
@@ -2196,7 +2196,7 @@ public class SeleniumHelper {
     }
     
     public boolean waitForJQueryProcessing(int timeOutInSeconds){
-        LOG.keywordAppender().appendProperty("timeOutInSeconds", timeOutInSeconds);
+        LOG.keywordAppender().appendArgument("timeOutInSeconds", timeOutInSeconds);
 
         boolean jQcondition = false;
 
@@ -2226,9 +2226,9 @@ public class SeleniumHelper {
     public void waitTillElementContainsRegex(String locator, String regex, long pollMillis, long timeoutMillis) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("Regex", regex)
-                .appendProperty("pollMillis", pollMillis)
-                .appendProperty("timeoutMillis", timeoutMillis);
+                .appendArgument("Regex", regex)
+                .appendArgument("pollMillis", pollMillis)
+                .appendArgument("timeoutMillis", timeoutMillis);
 
         long start = System.currentTimeMillis();
         long elapse = -1;
@@ -2269,9 +2269,9 @@ public class SeleniumHelper {
     public void waitTillElementContainsText(String locator, String text, long pollMillis, long timeoutMillis) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("text", text)
-                .appendProperty("pollMillis", pollMillis)
-                .appendProperty("timeoutMillis", timeoutMillis);
+                .appendArgument("text", text)
+                .appendArgument("pollMillis", pollMillis)
+                .appendArgument("timeoutMillis", timeoutMillis);
 
         long start = System.currentTimeMillis();
         long elapse = -1;
@@ -2307,8 +2307,8 @@ public class SeleniumHelper {
     public void waitTillElementFound(String locator, long pollMillis, long timeoutMillis) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("pollMillis", pollMillis)
-                .appendProperty("timeoutMillis", timeoutMillis);
+                .appendArgument("pollMillis", pollMillis)
+                .appendArgument("timeoutMillis", timeoutMillis);
 
         long start = System.currentTimeMillis();
         long elapse = -1;
@@ -2339,8 +2339,8 @@ public class SeleniumHelper {
     public void waitTillElementVisible(String locator, long pollMillis, long timeoutMillis) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendProperty("pollMillis", pollMillis)
-                .appendProperty("timeoutMillis", timeoutMillis);
+                .appendArgument("pollMillis", pollMillis)
+                .appendArgument("timeoutMillis", timeoutMillis);
 
         long start = System.currentTimeMillis();
         long elapse = -1;
@@ -2369,7 +2369,7 @@ public class SeleniumHelper {
     }
 
     public void cssShouldMatchXTimes(String cssLocator, int count) {
-        LOG.keywordAppender().appendProperty("Expected Count", count);
+        LOG.keywordAppender().appendArgument("Expected Count", count);
 
         int actual = getMatchingCSSCount(cssLocator);
         if(actual != count) {
@@ -2378,13 +2378,13 @@ public class SeleniumHelper {
     }
 
     public void zoomIn(int times) {
-        LOG.keywordAppender().appendProperty("Times", times);
+        LOG.keywordAppender().appendArgument("Times", times);
 
         WebElement html = driver.findElement(By.tagName("html"));
 
         for(int i = 0; i < times; i++) {
             if(isMacOS()) {
-                LOG.keywordAppender().appendProperty("Os X", true);
+                LOG.keywordAppender().appendArgument("Os X", true);
 
                 html.sendKeys(Keys.chord(Keys.COMMAND, Keys.ADD));
             } else {
@@ -2394,13 +2394,13 @@ public class SeleniumHelper {
     }
 
     public void zoomOut(int times) {
-        LOG.keywordAppender().appendProperty("Times", times);
+        LOG.keywordAppender().appendArgument("Times", times);
 
         WebElement html = driver.findElement(By.tagName("html"));
 
         for(int i = 0; i < times; i++) {
             if(isMacOS()) {
-                LOG.keywordAppender().appendProperty("Os X", true);
+                LOG.keywordAppender().appendArgument("Os X", true);
 
                 html.sendKeys(Keys.chord(Keys.COMMAND, Keys.SUBTRACT));
             } else {
@@ -2416,7 +2416,7 @@ public class SeleniumHelper {
     }
 
     public void xpathShouldMatchXTimes(String xpath, int count) {
-        LOG.keywordAppender().appendProperty("Expected Count", count);
+        LOG.keywordAppender().appendArgument("Expected Count", count);
 
         int actual = getMatchingXPathCount(xpath);
         if(actual != count) {
@@ -2445,7 +2445,7 @@ public class SeleniumHelper {
         try {
             Alert alert = driver.switchTo().alert();
 
-            LOG.keywordAppender().appendProperty("Message", alert.getText());
+            LOG.keywordAppender().appendArgument("Message", alert.getText());
 
             return true;
         } catch (NoAlertPresentException ex) {
@@ -2455,13 +2455,13 @@ public class SeleniumHelper {
     }
     
     public boolean isTextPresent(String text) {
-        LOG.keywordAppender().appendProperty("Text", text);
+        LOG.keywordAppender().appendArgument("Text", text);
 
         return driver.findElement(By.cssSelector("BODY")).getText().matches("^[\\s\\S]*" + text + "[\\s\\S]*$");
     }
     
     public boolean isTextPresentInPageSource(String html, String text) {
-        LOG.keywordAppender().appendProperty("Text", text);
+        LOG.keywordAppender().appendArgument("Text", text);
 
         return html.matches("^[\\s\\S]*" + text + "[\\s\\S]*$");
     }
@@ -2543,7 +2543,7 @@ public class SeleniumHelper {
     }
 
     private void deleteCookie(Cookie cookie) {
-        LOG.keywordAppender().appendProperty(cookie.getName(), cookie.getValue());
+        LOG.keywordAppender().appendArgument(cookie.getName(), cookie.getValue());
 
         driver.manage().deleteCookie(cookie);
     }
@@ -2589,8 +2589,8 @@ public class SeleniumHelper {
 
     private String[] parseAttributeLocator(String attributeLocator) {
         String[] parts = attributeLocator.split("@");
-        LOG.keywordAppender().appendProperty("Attribute Locator Parts", Arrays.asList(parts));
-        LOG.keywordAppender().appendProperty("Attribute Locator Size", parts.length);
+        LOG.keywordAppender().appendArgument("Attribute Locator Parts", Arrays.asList(parts));
+        LOG.keywordAppender().appendArgument("Attribute Locator Size", parts.length);
 
         if (parts.length == 0  || parts.length < 2) {
             throw new IllegalArgumentException(String.format("Invalid attribute locator '%s'", attributeLocator));
