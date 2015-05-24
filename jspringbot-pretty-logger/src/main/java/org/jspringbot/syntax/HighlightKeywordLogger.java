@@ -8,7 +8,7 @@ class HighlightKeywordLogger {
 
     static void createAppender(String keyword) {
         HtmlAppender appender = new HtmlAppender(JSpringBotLogger.getLogger(HighlightKeywordLogger.class));
-        appender.appendBold(keyword + ":");
+        appender.appendBold(keyword);
 
         APPENDER_THREAD_LOCAL.set(appender);
     }

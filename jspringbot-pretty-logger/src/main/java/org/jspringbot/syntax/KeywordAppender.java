@@ -37,6 +37,16 @@ public class KeywordAppender {
         return this;
     }
 
+    public KeywordAppender appendLocator(String msg, Object... args) {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.appendLocator(msg, args);
+
+        return this;
+    }
+
     public KeywordAppender appendPropertyStringArray(String name, String[] values) {
         if(appender == null) {
             return this;
