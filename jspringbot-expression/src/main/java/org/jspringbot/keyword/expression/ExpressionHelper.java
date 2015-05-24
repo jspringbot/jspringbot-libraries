@@ -79,8 +79,7 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     }
 
     public void evaluationShouldBe(String expression, Object expected) throws Exception {
-        LOG.keywordAppender()
-                .appendProperty("Expected Result", expected);
+        LOG.keywordAppender().appendArgument("Expected Result", expected);
 
         Object value = evaluate(expression);
 
@@ -143,7 +142,13 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
 
     public Object silentEvaluate(Object param) throws Exception {
         if(String.class.isInstance(param) && isSupported((String) param)) {
-            return evaluate((String) param);
+            try {
+                LOG.keywordAppender().createPath();
+
+                return evaluate((String) param);
+            } finally {
+                LOG.keywordAppender().endPath();
+            }
         }
 
         return param;
@@ -184,8 +189,6 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     }
 
     public Object evaluate(String expression) throws Exception {
-        LOG.keywordAppender().appendProperty("Base Expression", expression);
-
         Matcher matcher = EXPRESSION_PATTERN.matcher(expression);
 
         if(!matcher.find()) {
@@ -194,8 +197,10 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
 
         String content = matcher.group(1);
 
+        LOG.keywordAppender().appendExpression(expression);
+
         Matcher prefixMatcher = PREFIX_EXPRESSION_PATTERN.matcher(content);
-        if(prefixMatcher.matches()) {
+        if (prefixMatcher.matches()) {
             String prefix = prefixMatcher.group(1);
             String prefixContent = prefixMatcher.group(2);
 
@@ -250,8 +255,7 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
 
             Object result = expr.getValue(context);
 
-
-            LOG.keywordAppender().appendProperty("EL Evaluation Result", result);
+            LOG.keywordAppender().appendProperty("EL Result", result);
 
             return result;
         }

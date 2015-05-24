@@ -138,6 +138,12 @@ public class ELUtils {
     }
 
     public static Object eval(final String expression, Object... args) throws Exception {
+        LOG.keywordAppender().appendProperty("(eval) Expression", expression);
+
+        if(args != null && args.length > 0) {
+            LOG.keywordAppender().appendProperty("(eval) Arguments", args);
+        }
+
         if(args == null || args.length == 0) {
             return getHelper().evaluate(expression);
         }

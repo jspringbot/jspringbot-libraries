@@ -83,7 +83,7 @@ public class ThemeRDark extends Theme {
     addStyle("value", style);
 
     style = new Style();
-    style.setColor(Color.decode("0xffaa3e"));
+    style.setColor(Color.decode("0x81cef9"));
     addStyle("functions", style);
 
     style = new Style();

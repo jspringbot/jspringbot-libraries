@@ -26,20 +26,22 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 /**
- * JavaScript brush.
+ * Expression brush.
  *
  * @author Chan Wai Shing <cws1989@gmail.com>
  */
-public class BrushJScript extends Brush {
+public class BrushExpression extends Brush {
 
-    public BrushJScript() {
+    public BrushExpression() {
         super();
 
         String keywords = "break case catch continue "
                 + "default delete do else false  "
                 + "for function if in instanceof "
                 + "new null return super switch "
-                + "this throw true try typeof var while with";
+                + "this throw true try typeof var while " +
+                "with eval and or not eq ne lt gt le " +
+                "ge empty div mod";
 
         List<RegExpRule> _regExpRuleList = new ArrayList<RegExpRule>();
         _regExpRuleList.add(new RegExpRule(RegExpRule.singleLineCComments, "comments")); // one line comments
@@ -48,8 +50,14 @@ public class BrushJScript extends Brush {
         _regExpRuleList.add(new RegExpRule(RegExpRule.doubleQuotedString, "string")); // double quoted strings
         _regExpRuleList.add(new RegExpRule(RegExpRule.singleQuotedString, "string")); // single quoted strings
         _regExpRuleList.add(new RegExpRule("\\s*#.*", Pattern.MULTILINE, "preprocessor"));
-        _regExpRuleList.add(new RegExpRule("(?<![$_a-zA-Z])[0-9]+(\\.[0-9]+)?", "value")); // preprocessor tags like #region and #endregion
+        _regExpRuleList.add(new RegExpRule("(?<![$_a-zA-Z])[0-9]+(\\.[0-9]+)?", "value"));
+        _regExpRuleList.add(new RegExpRule("(?<![\\.\\:])[a-zA-Z0-9$_\\- ]+(?=\\:)", "constants"));
+        _regExpRuleList.add(new RegExpRule("[a-zA-Z0-9$_\\- ]+(?=\\()", "functions"));
+
         _regExpRuleList.add(new RegExpRule(getKeywords(keywords), Pattern.MULTILINE, "keyword")); // keywords
+        _regExpRuleList.add(new RegExpRule("[a-zA-Z0-9$_\\-]+", "variable"));
+
+
         setRegExpRuleList(_regExpRuleList);
 
         setHTMLScriptRegExp(HTMLScriptRegExp.scriptScriptTags);

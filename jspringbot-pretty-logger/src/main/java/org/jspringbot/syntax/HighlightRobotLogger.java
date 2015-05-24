@@ -18,10 +18,13 @@
 
 package org.jspringbot.syntax;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
 import org.jspringbot.JSpringBotLogger;
+
+import java.util.LinkedList;
 
 /**
  * Add highlight support.
@@ -54,6 +57,8 @@ public class HighlightRobotLogger extends JSpringBotLogger {
     public static class HtmlAppender {
         private StringBuilder buf = new StringBuilder();
 
+        private StringBuilder header = new StringBuilder();
+
         private StringBuilder code = new StringBuilder();
 
         private StringBuilder arguments = new StringBuilder();
@@ -74,7 +79,13 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
         private StringBuilder locator = new StringBuilder();
 
+        private StringBuilder expression = new StringBuilder();
+
         private JSpringBotLogger logger;
+
+        private LinkedList<String> pathMessages = new LinkedList<String>();
+
+        private LinkedList<HtmlAppender> paths = new LinkedList<HtmlAppender>();
 
         private boolean silent = false;
 
@@ -90,7 +101,31 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             this.silent = silent;
         }
 
+        public void createPath(String path) {
+            HtmlAppender pathAppender = new HtmlAppender(logger);
+            pathAppender.setSilent(silent);
+
+            if(StringUtils.isNotBlank(path)) {
+                pathAppender.appendHeader(path);
+            }
+
+            paths.push(pathAppender);
+        }
+
+        public void endPath() {
+            HtmlAppender pathAppender = paths.removeLast();
+
+            String message = pathAppender.buildLog();
+            if(StringUtils.isNotBlank(message)) {
+                pathMessages.add(message);
+            }
+        }
+
         public HtmlAppender append(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().append(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -104,7 +139,32 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return this;
         }
 
+        public HtmlAppender appendHeader(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendHeader(msg, args);
+            }
+
+            if(isSilent()) {
+                return this;
+            }
+
+            header.append("<b>");
+            if(args != null && args.length > 0) {
+                header.append(String.format(msg, args));
+            } else {
+                header.append(msg);
+            }
+
+            header.append("</b>");
+
+            return this;
+        }
+
         public HtmlAppender appendBold(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendBold(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -117,6 +177,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendPropertyStringArray(String name, String[] values) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendPropertyStringArray(name, values);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -136,33 +200,11 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             }
         }
 
-        public HtmlAppender appendArguments(Object[] params) {
-            if(isSilent()) {
-                return this;
-            }
-
-            if(params == null) {
-                appendProperty("Keyword Arguments", null);
-
-                return this;
-            } else if(params.length == 0) {
-                append("Keyword Arguments", "Array length is 0");
-
-                return this;
-            }
-
-            for(int i = 0; i < params.length; i++) {
-                if(params[i] != null) {
-                    appendProperty("Keyword Argument Class [" + i + "]", params[i].getClass().getName());
-                }
-
-                appendProperty("Keyword Argument Value [" + i + "]", params[i]);
-            }
-
-            return this;
-        }
-
         public HtmlAppender appendArgument(String property, Object value) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendArgument(property, value);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -170,12 +212,42 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return append(arguments, property, value);
         }
 
+        public HtmlAppender appendArgumentComment(String comment) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendArgumentComment(comment);
+            }
+
+            return appendComment(properties, comment);
+        }
+
+        public HtmlAppender appendPropertyComment(String comment) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendPropertyComment(comment);
+            }
+
+            return appendComment(properties, comment);
+        }
+
         public HtmlAppender appendProperty(String property, Object value) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendProperty(property, value);
+            }
+
             if(isSilent()) {
                 return this;
             }
 
             return append(properties, property, value);
+        }
+
+        private HtmlAppender appendComment(StringBuilder properties, String comment) {
+            if(properties.length() > 0) {
+                properties.append("\n");
+            }
+
+            properties.append(comment);
+
+            return this;
         }
 
         private HtmlAppender append(StringBuilder properties, String property, Object value) {
@@ -203,18 +275,22 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                     if(buf.length() > 0) {
                         buf.append(", ");
                     }
-                    buf.append("[").append(i++).append("] ").append("\"").append(StringEscapeUtils.escapeJavaScript(String.valueOf(o))).append("\"");
+                    buf.append("[").append(i++).append("] ").append("\"").append(StringEscapeUtils.escapeJava(String.valueOf(o))).append("\"");
                 }
 
                 properties.append(hardWordWrap(String.format("%s = (%s) %s", property, ((Object[]) value).getClass().getSimpleName(), StringUtils.substring(buf.toString(), 0, 200))));
             } else {
-                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringEscapeUtils.escapeJavaScript(StringUtils.substring(String.valueOf(value), 0, 100)))));
+                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringEscapeUtils.escapeJava(StringUtils.substring(String.valueOf(value), 0, 100)))));
             }
 
             return this;
         }
 
         public HtmlAppender appendText(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendText(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -229,6 +305,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendCode(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendCode(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -243,6 +323,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendXML(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendXML(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -257,6 +341,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendSQL(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendSQL(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -271,6 +359,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendJavascript(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendJavascript(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -285,6 +377,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendCss(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendCss(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -299,6 +395,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         public HtmlAppender appendLocator(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendLocator(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -316,7 +416,34 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return this;
         }
 
+        public HtmlAppender appendExpression(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendExpression(msg, args);
+            }
+
+            if(isSilent()) {
+                return this;
+            }
+
+            if(expression.length() > 0) {
+                // only log one expression, the main expression
+                return this;
+            }
+
+            if(args != null && args.length > 0) {
+                expression.append(String.format(msg, args));
+            } else {
+                expression.append(msg);
+            }
+
+            return this;
+        }
+
         public HtmlAppender appendJSON(String msg, Object... args) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendJSON(msg, args);
+            }
+
             if(isSilent()) {
                 return this;
             }
@@ -330,9 +457,9 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return this;
         }
 
-        public void log() {
+        private String buildLog() {
             if(isSilent()) {
-                return;
+                return null;
             }
 
             if(locator.length() > 0) {
@@ -343,12 +470,12 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                 buf.append(HighlighterUtils.INSTANCE.highlightText(arguments.toString()));
             }
 
-            if(properties.length() > 0) {
-                buf.append(HighlighterUtils.INSTANCE.highlightText(properties.toString()));
+            if(expression.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightExpression(expression.toString()));
             }
 
-            if(code.length() > 0) {
-                buf.append(HighlighterUtils.INSTANCE.highlightNormal(code.toString()));
+            if(properties.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightText(properties.toString()));
             }
 
             if(text.length() > 0) {
@@ -375,7 +502,31 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                 buf.append(HighlighterUtils.INSTANCE.highlightJSON(json.toString()));
             }
 
-            logger.pureHtml(buf.toString());
+            if(code.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightNormal(code.toString()));
+            }
+
+            if(buf.length() > 0) {
+                buf.insert(0, header.toString());
+            }
+
+            // log path messages
+            for(String message : pathMessages) {
+                buf.append(message);
+            }
+
+            return buf.toString();
+        }
+
+        public void log() {
+            if(isSilent()) {
+                return;
+            }
+
+            String message = buildLog();
+            if(StringUtils.isNotBlank(message)) {
+                logger.pureHtml(message);
+            }
         }
     }
 }

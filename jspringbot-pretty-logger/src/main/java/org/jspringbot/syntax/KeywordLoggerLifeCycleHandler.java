@@ -40,22 +40,42 @@ public class KeywordLoggerLifeCycleHandler extends LifeCycleAdapter {
 
         try {
             Object[] params = (Object[]) attributes.get("args");
-            HighlightKeywordLogger.appender().appendArguments(params);
 
-            if(attributes.containsKey("exception")) {
-                Exception e = (Exception) attributes.get("exception");
-                StringWriter sw = new StringWriter();
-                PrintWriter pw = new PrintWriter(sw);
-                try {
-                    e.printStackTrace(pw);
-                    pw.flush();
-                    sw.flush();
+            HighlightRobotLogger.HtmlAppender appender = HighlightKeywordLogger.appender();
+            appender.createPath("Keyword Failure Details:");
 
-                    HighlightKeywordLogger.appender().appendCode(sw.toString());
-                } finally {
-                    IOUtils.closeQuietly(pw);
-                    IOUtils.closeQuietly(sw);
+            try {
+                if (params == null) {
+                    appender.appendProperty("Keyword Arguments", null);
+                } else if (params.length == 0) {
+                    appender.appendProperty("Keyword Arguments", "Array length is 0");
+                } else {
+                    for (int i = 0; i < params.length; i++) {
+                        if (params[i] != null) {
+                            appender.appendProperty("Keyword Argument Class [" + i + "]", params[i].getClass().getName());
+                        }
+
+                        appender.appendProperty("Keyword Argument Value [" + i + "]", params[i]);
+                    }
                 }
+
+                if (attributes.containsKey("exception")) {
+                    Exception e = (Exception) attributes.get("exception");
+                    StringWriter sw = new StringWriter();
+                    PrintWriter pw = new PrintWriter(sw);
+                    try {
+                        e.printStackTrace(pw);
+                        pw.flush();
+                        sw.flush();
+
+                        appender.appendCode(sw.toString());
+                    } finally {
+                        IOUtils.closeQuietly(pw);
+                        IOUtils.closeQuietly(sw);
+                    }
+                }
+            } finally {
+                appender.endPath();
             }
         } finally {
             HighlightKeywordLogger.appender().log();

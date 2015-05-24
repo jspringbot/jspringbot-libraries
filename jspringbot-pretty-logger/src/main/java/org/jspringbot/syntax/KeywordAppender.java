@@ -17,12 +17,59 @@ public class KeywordAppender {
         appender.setSilent(silent);
     }
 
+    public KeywordAppender createPath() {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.createPath("");
+        return this;
+    }
+
+    public KeywordAppender createPath(String path) {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.createPath(path);
+        return this;
+    }
+
+    public KeywordAppender endPath() {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.endPath();
+        return this;
+    }
+
     public KeywordAppender append(String msg, Object... args) {
         if(appender == null) {
             return this;
         }
 
         appender.append(msg, args);
+
+        return this;
+    }
+
+    public KeywordAppender appendArgumentComment(String comment) {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.appendArgumentComment(comment);
+
+        return this;
+    }
+
+    public KeywordAppender appendPropertyComment(String comment) {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.appendPropertyComment(comment);
 
         return this;
     }
@@ -43,6 +90,16 @@ public class KeywordAppender {
         }
 
         appender.appendLocator(msg, args);
+
+        return this;
+    }
+
+    public KeywordAppender appendExpression(String msg, Object... args) {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.appendExpression(msg, args);
 
         return this;
     }
