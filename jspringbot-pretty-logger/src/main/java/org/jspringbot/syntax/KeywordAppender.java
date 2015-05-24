@@ -62,7 +62,7 @@ public class KeywordAppender {
             return this;
         }
 
-        appender.appendProperty(property, value);
+        appender.appendArgument(property, value);
 
         return this;
     }
