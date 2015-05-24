@@ -50,7 +50,7 @@ public class BrushExpression extends Brush {
         _regExpRuleList.add(new RegExpRule(RegExpRule.doubleQuotedString, "string")); // double quoted strings
         _regExpRuleList.add(new RegExpRule(RegExpRule.singleQuotedString, "string")); // single quoted strings
         _regExpRuleList.add(new RegExpRule("\\s*#.*", Pattern.MULTILINE, "preprocessor"));
-        _regExpRuleList.add(new RegExpRule("(?<![$_a-zA-Z])[0-9]+(\\.[0-9]+)?", "value"));
+        _regExpRuleList.add(new RegExpRule("(?<![$_a-zA-Z])\\-?[0-9]+(\\.[0-9]+)?", "value"));
         _regExpRuleList.add(new RegExpRule("(?<![\\.\\:])[a-zA-Z0-9$_\\- ]+(?=\\:)", "constants"));
         _regExpRuleList.add(new RegExpRule("[a-zA-Z0-9$_\\- ]+(?=\\()", "functions"));
 

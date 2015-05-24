@@ -48,7 +48,7 @@ public class BrushJScript extends Brush {
         _regExpRuleList.add(new RegExpRule(RegExpRule.doubleQuotedString, "string")); // double quoted strings
         _regExpRuleList.add(new RegExpRule(RegExpRule.singleQuotedString, "string")); // single quoted strings
         _regExpRuleList.add(new RegExpRule("\\s*#.*", Pattern.MULTILINE, "preprocessor"));
-        _regExpRuleList.add(new RegExpRule("(?<![$_a-zA-Z])[0-9]+(\\.[0-9]+)?", "value")); // preprocessor tags like #region and #endregion
+        _regExpRuleList.add(new RegExpRule("(?<![$_a-zA-Z])\\-?[0-9]+(\\.[0-9]+)?", "value")); // preprocessor tags like #region and #endregion
         _regExpRuleList.add(new RegExpRule(getKeywords(keywords), Pattern.MULTILINE, "keyword")); // keywords
         setRegExpRuleList(_regExpRuleList);
 
