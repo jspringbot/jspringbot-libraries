@@ -57,6 +57,16 @@ public class KeywordAppender {
         return this;
     }
 
+    public KeywordAppender appendArgument(String property, Object value) {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.appendProperty(property, value);
+
+        return this;
+    }
+
     public KeywordAppender appendProperty(String property, Object value) {
         if(appender == null) {
             return this;

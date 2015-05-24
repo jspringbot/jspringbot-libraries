@@ -56,6 +56,8 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
         private StringBuilder code = new StringBuilder();
 
+        private StringBuilder arguments = new StringBuilder();
+
         private StringBuilder properties = new StringBuilder();
 
         private StringBuilder xml = new StringBuilder();
@@ -160,11 +162,23 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return this;
         }
 
+        public HtmlAppender appendArgument(String property, Object value) {
+            if(isSilent()) {
+                return this;
+            }
+
+            return append(arguments, property, value);
+        }
+
         public HtmlAppender appendProperty(String property, Object value) {
             if(isSilent()) {
                 return this;
             }
 
+            return append(properties, property, value);
+        }
+
+        private HtmlAppender append(StringBuilder properties, String property, Object value) {
             if(properties.length() > 0) {
                 properties.append("\n");
             }
@@ -323,6 +337,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
             if(locator.length() > 0) {
                 buf.append(HighlighterUtils.INSTANCE.highlightLocator(locator.toString()));
+            }
+
+            if(arguments.length() > 0) {
+                buf.append(HighlighterUtils.INSTANCE.highlightText(arguments.toString()));
             }
 
             if(properties.length() > 0) {
