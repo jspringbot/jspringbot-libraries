@@ -1,6 +1,6 @@
 Retrieves a map of site catalyst events (Event1, Event2, ...)
 
-Example:
+*Example:*
 | ${eventsMap}= | Get Map Of Site Catalyst Events |
 | ${clickEventList}= | EL Evaluate | $[map:getObject(var('eventsMap'), 'Event1')] |
 | ${loadEventList}= | EL Evaluate | $[map:getObject(var('eventsMap'), 'Event2')] |

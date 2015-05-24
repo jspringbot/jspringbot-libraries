@@ -1,2 +1,3 @@
 Verifies the element attribute value identified by its attribute locator if it is equal to the expected text.
 
+

@@ -1,0 +1,13 @@
+Part of a chain action, for drag and drop support given the source and destination locator.
+
+*Example:*
+| `Navigate To` | http://marcojakob.github.io/dart-dnd/basic/web/ |
+| `Action Start` |
+| `Action Drag And Drop` | css=body > div > img:nth-child(3) | css=.trash |
+| `Action Pause` | 500 |
+| `Action Drag And Drop` | css=body > div > img:nth-child(4) | css=.trash |
+| `Action Pause` | 500 |
+| `Action Drag And Drop` | css=body > div > img:nth-child(5) | css=.trash |
+| `Action Pause` | 500 |
+| `Action Drag And Drop` | css=body > div > img:nth-child(6) | css=.trash |
+| `Action Perform` |

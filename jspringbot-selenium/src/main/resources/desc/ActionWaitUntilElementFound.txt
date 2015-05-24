@@ -1,0 +1,14 @@
+Part of a chain action, that allows you to wait until element is present, before proceeding to the next action.
+
+*Example:*
+| `Navigate To` | http://jspringbot.org/search.html |
+| `Action Start` |
+| `Action Wait Until Element Found` | id=artist_search |
+| `Action Click` | id=artist_search |
+| `Action Send Keys` | alvin de leon |
+| `Action Send Keys` | cord=SHIFT|ARROW_LEFT|ARROW_LEFT|ARROW_LEFT|ARROW_LEFT|ARROW_LEFT|ARROW_LEFT|ARROW_LEFT |
+| `Action Perform` |
+
+=>
+
+| this ensures that the element {{id=artist_search}} is available in dom before proceeding to the next action.

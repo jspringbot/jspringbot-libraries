@@ -1,7 +1,6 @@
 Returns the value of a given css property identified by a locator.
 
-Example:
-
+*Example:*
 | ${cssBackgroundImageValue}= | `Get CSS Value` | css=foo bar | background-image |
 
 =>

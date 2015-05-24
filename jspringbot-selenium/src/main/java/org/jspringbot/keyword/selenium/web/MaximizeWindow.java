@@ -14,7 +14,6 @@ public class MaximizeWindow extends AbstractSeleniumKeyword {
     public Object execute(Object[] params) {
         helper.windowMaximize();
 
-
         return null;
     }
 }

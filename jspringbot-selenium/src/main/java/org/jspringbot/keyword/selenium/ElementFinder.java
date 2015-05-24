@@ -27,7 +27,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,7 +103,7 @@ public class ElementFinder {
             UnicodeEncodeError: 'ascii' codec can't encode characters in position 60-61: ordinal not in range(128)
         	temporarily removing locatorStr.
         	*/
-        	Validate.notNull(element, String.format("Element locator not found."));
+        	Validate.notNull(element, "Element locator not found.");
         }
 
         return element;
@@ -152,7 +152,7 @@ public class ElementFinder {
             if(List.class.isInstance(result)) {
                 return filterElements((List<WebElement>) result, tagName, attributes);
             } else {
-                return filterElements(Arrays.asList((WebElement) result), tagName, attributes);
+                return filterElements(Collections.singletonList((WebElement) result), tagName, attributes);
             }
         }
 
@@ -198,6 +198,16 @@ public class ElementFinder {
         }
 
         return null;
+    }
+
+    public boolean isLocator(String locator) {
+        for(LocatorEnum locatorEnum : LocatorEnum.values()) {
+            if(StringUtils.startsWith(locator, locatorEnum.prefix + "=")) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private class Locator {

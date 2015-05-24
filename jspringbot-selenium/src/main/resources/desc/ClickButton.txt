@@ -1,6 +1,6 @@
 Clicks a button identified by locator.
 
-Examples:
+*Examples:*
 | Input Text  | id=buttonID |
 | Input Text  | name=buttonName |
 | Input Text  | css=div.main input#buttonID.button |

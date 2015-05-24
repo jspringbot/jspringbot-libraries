@@ -25,14 +25,18 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Wait Till Element Contains Text",
-        parameters = {"locator", "text","poll","timeout"},
+        parameters = {"locator", "text","*pollAndTimeout"},
         description = "classpath:desc/WaitTillElementContainsText.txt"
 )
 public class WaitTillElementContainsText extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.waitTillElementContainsText(String.valueOf(params[0]), String.valueOf(params[1]), Long.parseLong(String.valueOf(params[2])), Long.parseLong(String.valueOf(params[3])));
+        if(params.length > 2 && params.length == 4) {
+            helper.waitTillElementContainsText(String.valueOf(params[0]), String.valueOf(params[1]), Long.parseLong(String.valueOf(params[2])), Long.parseLong(String.valueOf(params[3])));
+        } else {
+            helper.waitTillElementContainsText(String.valueOf(params[0]), String.valueOf(params[1]));
+        }
 
         return null;
     }

@@ -1,6 +1,6 @@
 Asserts if the site catalyst variable (key-value pair) is as expected in the given list. 
 
-Example:
+*Example:*
 | Click Element | id=foo |
 | Delay | 1000 | # add/remove whenever needed |
 | ${clickEventList}= | Get List Of Site Catalyst Variables |

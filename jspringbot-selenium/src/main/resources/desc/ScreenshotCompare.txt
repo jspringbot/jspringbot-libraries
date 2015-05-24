@@ -1,16 +1,14 @@
 Compares two image given the threshold defined.
 
-Arguments:
-    filename - name of the image to be compared
-    threshold - image difference threshold (optional with default value 0.0001)
+*Arguments:*
+| filename - name of the image to be compared
+| threshold - image difference threshold (optional with default value 0.0001)
 
-Example:
-jspringbot.properties
-selenium.compare.threshold=0.0001
-selenium.compare.output.dir=${project.build.directory}/robotframework-reports
-selenium.compare.base.dir=${project.build.directory}/test-classes/imgbaseline/local-firefox/
-
+*Example:*
 | Navigate To        | http://jspringbot.org   |
 | Screenshot Collect | jspringbot-homepage.png |
 
-
+*jspringbot.properties*
+| selenium.compare.threshold=0.0001
+| selenium.compare.output.dir=${project.build.directory}/robotframework-reports
+| selenium.compare.base.dir=${project.build.directory}/test-classes/imgbaseline/local-firefox/

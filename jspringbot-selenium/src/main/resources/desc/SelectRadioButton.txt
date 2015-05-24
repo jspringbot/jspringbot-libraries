@@ -7,6 +7,6 @@ The radio button to be selected is located by two arguments:
 
 The XPath used to locate the correct radio button then looks like this: //input[@type='radio' and @name='group_name' and (@value='value' or @id='value')]
 
-Examples:
+*Examples:*
 | Select Radio Button | size | XL | # Matches HTML like <input type="radio" name="size" value="XL">XL</input> |
 | Select Radio Button | size | sizeXL | # Matches HTML like <input type="radio" name="size" value="XL" id="sizeXL">XL</input> |

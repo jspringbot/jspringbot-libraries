@@ -1,8 +1,7 @@
 Checks if the given text is present in the page.
 Returns true if it's present; false if otherwise.
 
-Example:
-
+*Example:*
 | ${isTextPresent}= | `Is Text Present` | Desired Text |
 
 =>

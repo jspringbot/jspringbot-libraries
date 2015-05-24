@@ -22,6 +22,8 @@ import org.jspringbot.KeywordInfo;
 import org.jspringbot.keyword.selenium.AbstractSeleniumKeyword;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 @Component
 @KeywordInfo(
         name= "Mouse Over",
@@ -31,7 +33,7 @@ import org.springframework.stereotype.Component;
 public class MouseOver extends AbstractSeleniumKeyword {
 
     @Override
-    public Object execute(Object[] params) {
+    public Object execute(Object[] params) throws IOException {
         helper.mouseOver(String.valueOf(params[0]));
 
         return null;

@@ -1,8 +1,7 @@
 Checks if the element identified by locator is visible.
 Returns true if it's visible; returns false if otherwise.
 
-Example:
-
+*Example:*
 | ${isVisible}= | `Is Element Visible` | css=foo bar |
 
 =>

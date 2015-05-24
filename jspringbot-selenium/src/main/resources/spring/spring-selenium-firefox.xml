@@ -66,6 +66,8 @@
 
   <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelper">
     <constructor-arg ref="webdriver"/>
+    <property name="jqueryLink" value="${selenium.jquery.link:https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js}"/>
+    <property name="implicitWaitInSeconds" value="${selenium.implicit.wait:30}"/>
     <property name="screenCaptureDir" value="${selenium.screenshot.folder}"/>
     <property name="autoZoomIn" value="${selenium.browser.auto.zoom.in:0}"/>
     <property name="autoZoomOut" value="${selenium.browser.auto.zoom.out:0}"/>

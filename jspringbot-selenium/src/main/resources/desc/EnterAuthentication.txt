@@ -1,1 +1,4 @@
-Enter authentication using java.awt.Robot class
+Enter authentication using java.awt.Robot class. This will simulate a keyboard press of username and password.
+
+*Example:*
+| Enter Authentication | username | Password1 |

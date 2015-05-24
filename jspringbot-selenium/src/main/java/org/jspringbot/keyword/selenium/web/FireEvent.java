@@ -22,6 +22,8 @@ import org.jspringbot.KeywordInfo;
 import org.jspringbot.keyword.selenium.AbstractSeleniumKeyword;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 @Component
 @KeywordInfo(
         name = "Fire Event",
@@ -31,7 +33,7 @@ import org.springframework.stereotype.Component;
 public class FireEvent extends AbstractSeleniumKeyword {
 
     @Override
-    public Object execute(Object[] params) {
+    public Object execute(Object[] params) throws IOException {
         helper.fireEvent(String.valueOf(params[0]), String.valueOf(params[1]));
 
         return null;

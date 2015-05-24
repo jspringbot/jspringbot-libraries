@@ -1,6 +1,6 @@
 Asserts if the value of a given site catalyst variable map key is as expected in the given map. 
 
-Example:
+*Example:*
 | Navigate To | http:foo.bar.com/page1 |
 | Delay | 1000 | # add/remove whenever needed |
 | ${loadEventMap}= | Get Map Of Site Catalyst Variables |		

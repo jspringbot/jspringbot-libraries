@@ -1,4 +1,4 @@
 Scrolls to specified element
 
-Example:
+*Example:*
 | Scroll To Element | id=textfieldID |

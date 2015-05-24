@@ -1,4 +1,4 @@
 Navigates to the url specified.
 
-Example:
+*Example:*
 | Navigate To | http://www.google.com.ph |

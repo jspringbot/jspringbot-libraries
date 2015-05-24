@@ -1,0 +1,4 @@
+Asynchronously navigates to the url specified. This will execute this in a separate thread.
+
+*Example:*
+| Async Navigate To | http://www.google.com.ph |

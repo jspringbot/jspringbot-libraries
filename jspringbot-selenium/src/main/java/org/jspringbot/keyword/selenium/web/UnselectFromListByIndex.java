@@ -41,7 +41,7 @@ public class UnselectFromListByIndex extends AbstractSeleniumKeyword {
             list.add(Integer.valueOf(String.valueOf(params[i])));
         }
 
-        helper.selectFromListByIndex(String.valueOf(params[0]), list);
+        helper.unselectFromListByIndex(String.valueOf(params[0]), list);
 
         return null;
     }

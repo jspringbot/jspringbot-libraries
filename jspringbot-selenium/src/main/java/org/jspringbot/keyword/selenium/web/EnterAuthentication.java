@@ -1,11 +1,11 @@
 package org.jspringbot.keyword.selenium.web;
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
 
 import org.jspringbot.KeywordInfo;
 import org.jspringbot.keyword.selenium.AbstractSeleniumKeyword;
 import org.springframework.stereotype.Component;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
 
 
 @Component

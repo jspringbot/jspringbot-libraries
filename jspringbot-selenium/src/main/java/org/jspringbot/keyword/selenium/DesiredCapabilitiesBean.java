@@ -3,6 +3,7 @@ package org.jspringbot.keyword.selenium;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openqa.selenium.Platform;
@@ -17,10 +18,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.core.io.Resource;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -29,6 +27,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class DesiredCapabilitiesBean implements InitializingBean {
+    private static final Logger LOGGER = Logger.getLogger(DesiredCapabilitiesBean.class);
+
     private DesiredCapabilities capabilities;
 
     private Proxy proxy;
@@ -41,6 +41,8 @@ public class DesiredCapabilitiesBean implements InitializingBean {
 
     private LoggingPreferences logPrefs;
 
+    private String chromeDriverVersion;
+
     public DesiredCapabilitiesBean(DesiredCapabilities capabilities) {
         this.capabilities = capabilities;
     }
@@ -49,11 +51,16 @@ public class DesiredCapabilitiesBean implements InitializingBean {
         capabilities.setCapability(FirefoxDriver.PROFILE, profile);
     }
 
-    public void setBaseDir(File baseDir) {
-        this.baseDir = baseDir;
+    public void setChromeDriverVersion(String chromeDriverVersion) {
+        this.chromeDriverVersion = chromeDriverVersion;
+    }
 
-        if(!baseDir.isDirectory()) {
-            baseDir.mkdirs();
+    public void setBaseDir(String baseStrDir) {
+        if(StringUtils.isNotBlank(baseStrDir) && !StringUtils.equalsIgnoreCase(baseStrDir, "none")) {
+            baseDir = new File(baseStrDir);
+            if (!baseDir.isDirectory()) {
+                baseDir.mkdirs();
+            }
         }
     }
 
@@ -71,10 +78,24 @@ public class DesiredCapabilitiesBean implements InitializingBean {
             driverDir = baseDir;
         } else {
             String userHome = System.getProperty("user.home");
-            driverDir = new File(userHome);
+            driverDir = new File(userHome, "jspringbot");
+
+            if(!driverDir.isDirectory()) {
+                driverDir.mkdirs();
+            }
         }
 
-        File driver = unzip(chromeDriver.getInputStream(), driverDir);
+        File downloadedFile = new File(driverDir, chromeDriver.getFilename());
+
+        if(!downloadedFile.isFile()) {
+            LOGGER.info("Chrome driver version: " + chromeDriverVersion);
+            LOGGER.info("Downloading driver: " + chromeDriver.getURL());
+            IOUtils.copy(chromeDriver.getInputStream(), new FileOutputStream(downloadedFile));
+        }
+
+        LOGGER.info("Chrome driver file: " + downloadedFile.getAbsolutePath());
+
+        File driver = unzip(new FileInputStream(downloadedFile), driverDir);
         driver.setExecutable(true);
 
         System.setProperty("webdriver.chrome.driver", driver.getAbsolutePath());

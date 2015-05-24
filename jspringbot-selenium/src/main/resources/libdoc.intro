@@ -1,4 +1,4 @@
-JSpringBot Selenium Library for Robot Framework.
+Selenium Library is a web testing library for jspringbot. This library runs tests in a real browser instance.
 
 = Configuration =
 

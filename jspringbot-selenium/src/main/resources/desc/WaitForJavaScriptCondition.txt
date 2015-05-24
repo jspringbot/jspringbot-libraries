@@ -2,7 +2,7 @@ Waits for the given JavaScript condition.
 
 Fails if timeout expires before the condition is met.
 
-Example:
+*Example:*
 
 | *** Variables *** |
 | ${js_condition}          | return (xmlhttp.readyState >= 2 && xmlhttp.status == 200) |

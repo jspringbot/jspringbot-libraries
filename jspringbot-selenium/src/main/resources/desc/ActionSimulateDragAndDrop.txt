@@ -1,0 +1,11 @@
+Part of a chain action, This simulates a drag and drop on html 5. Use this if the drag and drop does not work.
+
+This only supports `css` selector.
+
+*Example:*
+| `Navigate To` | http://www.w3schools.com/html/html5_draganddrop.asp |
+| `Action Start` |
+| `Action Simulate Drag And Drop` | css=#drag1 | css=#div2 |
+| `Action Pause` | 1000 |
+| `Action Simulate Drag And Drop` | css=#drag1 | css=#div1 |
+| `Action Perform` |

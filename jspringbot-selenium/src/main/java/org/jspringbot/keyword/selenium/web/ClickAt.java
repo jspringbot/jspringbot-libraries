@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Click At",
-        parameters = {"locator", "xOffset", "yOffset"},
+        parameters = {"location", "xOffset", "yOffset"},
         description = "classpath:desc/ClickAt.txt"
 )
 public class ClickAt extends AbstractSeleniumKeyword {

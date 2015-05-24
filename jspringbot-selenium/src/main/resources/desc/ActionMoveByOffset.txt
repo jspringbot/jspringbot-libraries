@@ -1,0 +1,6 @@
+Part of a chain action, Moves the mouse from its current position (or 0,0) by the given offset.
+If the coordinates provided are outside the viewport (the mouse will end up outside the browser window)
+then the viewport is scrolled to match.
+
+*Example:*
+| `Action Move by Offset` | 40 | 40 |

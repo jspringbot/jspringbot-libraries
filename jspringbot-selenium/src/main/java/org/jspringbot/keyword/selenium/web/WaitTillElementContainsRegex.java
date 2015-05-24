@@ -32,7 +32,11 @@ public class WaitTillElementContainsRegex extends AbstractSeleniumKeyword {
 
     @Override
     public Object execute(Object[] params) {
-        helper.waitTillElementContainsRegex(String.valueOf(params[0]), String.valueOf(params[1]), Long.parseLong(String.valueOf(params[2])), Long.parseLong(String.valueOf(params[3])));
+        if(params.length > 2 && params.length == 4) {
+            helper.waitTillElementContainsRegex(String.valueOf(params[0]), String.valueOf(params[1]), Long.parseLong(String.valueOf(params[2])), Long.parseLong(String.valueOf(params[3])));
+        } else {
+            helper.waitTillElementContainsRegex(String.valueOf(params[0]), String.valueOf(params[1]));
+        }
 
         return null;
     }

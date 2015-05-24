@@ -1,7 +1,7 @@
 Takes a screenshot of an element and embeds it into the log.
 
-The screenshot is saved into file screen_capture_%d_%d.png under the directory defined in selenium.screenshot.folder in jspringbot.properties.
+The screenshot is saved into file screen_capture_%d_%d.png under the directory defined in {{selenium.screenshot.folder}} in {{jspringbot.properties}}.
 
-Example:
+*Example:*
 | Element Capture Screenshot | css=#element |
 | Element Capture Screenshot | css=#element | style=grayscale |

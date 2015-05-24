@@ -1,0 +1,24 @@
+Part of a chain action, Performs a modifier key press or after focusing on an element. Does not release the modifier key - subsequent interactions may assume it's kept pressed.
+
+This usually comes before `Action Key Up` keyword.
+
+*Supported Keys:*
+| SHIFT, LEFT_SHIFT, CONTROL, LEFT_CONTROL, ALT, LEFT_ALT, META, COMMAND
+
+*Example:*
+| `Navigate To` | http://jspringbot.org/search.html |
+| `Send Keys`   | id=artist_search | hello world |
+| `Action Start` |
+| `Action Click` | id=artist_search |
+| `Action Key Down` | SHIFT |
+| `Action Send Keys` | cord=ARROW_LEFT|ARROW_LEFT|ARROW_LEFT|ARROW_LEFT|ARROW_LEFT |
+| `Action Key Up` | SHIFT |
+| `Action Send Keys` | hello |
+| `Action Perform` |
+
+=>
+
+| this will type "hello world"
+| highlight or select "world"
+| the replace it with "hello"
+| the last output is "hello hello"

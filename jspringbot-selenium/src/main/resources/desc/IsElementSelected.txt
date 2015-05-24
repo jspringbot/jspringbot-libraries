@@ -1,10 +1,9 @@
 Determine whether or not this element is selected or not. This operation only applies to input elements such as checkboxes, options in a select and radio buttons.
 
-Returns:
-True if the element is currently selected or checked, false otherwise.
+*Returns:*
+| True if the element is currently selected or checked, false otherwise.
 
-Example:
-
+*Example:*
 | ${isSelected}= | `Is Element Selected` | id=foo bar |
 
 =>

@@ -1,9 +1,9 @@
 Explicitly simulate an event, to trigger the corresponding "onevent" handler.
 
-    Arguments:
+*Arguments:*
+| {{locator}} - an element locator
+| {{eventName}} - the event name, e.g. "focus" or "blur"
 
-        locator - an element locator
-        eventName - the event name, e.g. "focus" or "blur"
-
-Examples:
+*Examples:*
 | Fire Event | css=foo bar | blur |
+| Fire Event | css=foo bar | mouseover |

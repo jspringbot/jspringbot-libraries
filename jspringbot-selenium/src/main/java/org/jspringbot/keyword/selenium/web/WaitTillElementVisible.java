@@ -25,13 +25,17 @@ import org.springframework.stereotype.Component;
 @Component
 @KeywordInfo(
         name = "Wait Till Element Visible",
-        parameters = {"locator","poll","timeout"},
+        parameters = {"locator","*pollAndTimeout"},
         description = "classpath:desc/WaitTillElementVisible.txt"
 )
 public class WaitTillElementVisible extends AbstractSeleniumKeyword {
 
     public Object execute(Object[] params) {
-        helper.waitTillElementVisible(String.valueOf(params[0]), Long.parseLong(String.valueOf(params[1])), Long.parseLong(String.valueOf(params[2])));
+        if(params.length > 1 && params.length == 3) {
+            helper.waitTillElementVisible(String.valueOf(params[0]), Long.parseLong(String.valueOf(params[1])), Long.parseLong(String.valueOf(params[2])));
+        } else {
+            helper.waitTillElementVisible(String.valueOf(params[0]));
+        }
 
         return null;
     }

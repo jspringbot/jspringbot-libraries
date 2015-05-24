@@ -6,7 +6,7 @@ locator may be either the title of the window or the name of the window in the J
 
 Special locator main (default) can be used to select the main window.
 
-Example:
+*Example:*
 | Click Link | popup_link | don't wait | # opens new window |
 | Select Window | popupName | | |
 | Title Should Be | Popup Title | | |

@@ -1,8 +1,7 @@
 Checks if the given text is present in the page source.
 Returns true if it's present; false if otherwise.
 
-Example:
-
+*Example:*
 | ${pageSource}= | 'Get Source' |
 | ${isTextPresentInPageSource}= | Is Text Present In Page Source | ${pageSource} | foo bar |
 

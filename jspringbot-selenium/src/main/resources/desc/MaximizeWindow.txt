@@ -1,4 +1,4 @@
 Maximizes current browser window.
 
-Example:
+*Example:*
 | Maximize Window |

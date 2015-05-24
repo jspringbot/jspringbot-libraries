@@ -27,12 +27,19 @@ import java.io.IOException;
 @Component
 @KeywordInfo(
         name = "Execute Javascript",
-        parameters = {"code"},
+        parameters = {"code", "*args"},
         description = "classpath:desc/ExecuteJavascript.txt"
 )
 public class ExecuteJavascript extends AbstractSeleniumKeyword {
 
     public Object execute(Object[] params) throws IOException {
-        return helper.executeJavascript(String.valueOf(params[0]));
+        if(params.length > 1) {
+            Object[] args = new Object[params.length - 1];
+            System.arraycopy(params, 1, args, 0, params.length - 1);
+
+            return helper.executeJavascript(String.valueOf(params[0]), args);
+        } else {
+            return helper.executeJavascript(String.valueOf(params[0]));
+        }
     }
 }
