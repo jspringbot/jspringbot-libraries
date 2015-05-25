@@ -691,7 +691,9 @@ public class SeleniumHelper {
                 .appendArgument("Expected Class Name", expectedClassName);
 
         if(StringUtils.isNotEmpty(classNames)) {
-            if(Arrays.asList(StringUtils.split(classNames, " ")).contains(expectedClassName)) {
+            List<String> classes = Arrays.asList(StringUtils.split(classNames, " "));
+
+            if(classes.contains(expectedClassName)) {
                 return;
             }
         }
@@ -822,7 +824,9 @@ public class SeleniumHelper {
             }
         }
 
-        LOG.keywordAppender().appendArgument("Returned Value", returnedValue);
+        if(returnedValue != null) {
+            LOG.keywordAppender().appendArgument("Returned Value", returnedValue);
+        }
 
         return returnedValue;
     }
@@ -962,6 +966,8 @@ public class SeleniumHelper {
             }
         }
 
+        LOG.keywordAppender().appendArgument("Selected", textIsSelected);
+
         if (!textIsSelected) {
             throw new AssertionError("Value was not selected from list");
         }
@@ -1093,11 +1099,15 @@ public class SeleniumHelper {
     public String getText(String locator) {
         LOG.keywordAppender().appendLocator(locator);
 
-        return getText(locator,true);
+        String text = getText(locator,true);
+
+        LOG.keywordAppender().appendArgument("Text", text);
+
+        return text;
     }
 
     public String getTitle() {
-        LOG.keywordAppender().appendArgument("title", driver.getTitle());
+        LOG.keywordAppender().appendArgument("Title", driver.getTitle());
 
         return driver.getTitle();
     }
@@ -1107,7 +1117,11 @@ public class SeleniumHelper {
 
         WebElement el = finder.find(locator);
 
-        return el.getAttribute("value");
+        String value = el.getAttribute("value");
+
+        LOG.keywordAppender().appendArgument("Value", value);
+
+        return value;
     }
     
     public String getCSSValue(String locator, String propertyName) {
@@ -1117,7 +1131,11 @@ public class SeleniumHelper {
 
         WebElement el = finder.find(locator);
 
-        return el.getCssValue(propertyName);
+        String cssValue = el.getCssValue(propertyName);
+
+        LOG.keywordAppender().appendArgument("Css Value", cssValue);
+
+        return cssValue;
     }
 
     public void goBack() {
@@ -1158,7 +1176,7 @@ public class SeleniumHelper {
 
     public void inputPassword(String locator, String password) {
         LOG.keywordAppender()
-                .appendArgument("password", password)
+                .appendArgument("Password", password)
                 .appendLocator(locator);
 
         inputTextIntoTextField(locator, password);
@@ -1166,7 +1184,7 @@ public class SeleniumHelper {
 
     public void inputText(String locator, String text) {
         LOG.keywordAppender()
-                .appendArgument("text", text)
+                .appendArgument("Text", text)
                 .appendLocator(locator);
 
         inputTextIntoTextField(locator, text);
@@ -1174,7 +1192,7 @@ public class SeleniumHelper {
     
     public void sendKeys(String locator, String text) {
         LOG.keywordAppender()
-                .appendArgument("text", text)
+                .appendArgument("Text", text)
                 .appendLocator(locator);
 
         WebElement el = finder.find(locator);
@@ -1257,7 +1275,7 @@ public class SeleniumHelper {
         for(int i = 0; i < options.size(); i++) {
             if(indices.contains(i)) {
                 WebElement option = options.get(i);
-                LOG.keywordAppender().append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
                 options.get(i).click();
 
                 if(indices.size() == 1) {
@@ -1280,7 +1298,7 @@ public class SeleniumHelper {
 
             //if not selected, dont unselect since it'll just click the option--thus selecting it.
             if(isSelected) {
-                LOG.keywordAppender().append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
                 option.click();
             }
             
@@ -1296,7 +1314,7 @@ public class SeleniumHelper {
             WebElement option = options.get(i);
 
             if(values.contains(option.getAttribute("value"))) {
-                LOG.keywordAppender().append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
                 options.get(i).click();
 
                 if(values.size() == 1) {
@@ -1321,7 +1339,7 @@ public class SeleniumHelper {
                 
                 //if not selected, dont unselect since it'll just click the option--thus selecting it.
                 if(isSelected) {
-                    LOG.keywordAppender().append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                    LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
                     option.click();
                 }
                 
@@ -1343,7 +1361,7 @@ public class SeleniumHelper {
             WebElement option = options.get(i);
 
             if(labels.contains(option.getText())) {
-                LOG.keywordAppender().append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
                 options.get(i).click();
 
                 if(labels.size() == 1) {
@@ -1368,7 +1386,7 @@ public class SeleniumHelper {
                 
                 //if not selected, dont unselect since it'll just click the option--thus selecting it.
                 if(isSelected) {
-                    LOG.keywordAppender().append(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
+                    LOG.keywordAppender().appendArgument(String.format("option[index=%d,value=%s]", i, option.getAttribute("value")), option.getText());
                     options.get(i).click();
                 }
                 
@@ -1794,7 +1812,7 @@ public class SeleniumHelper {
     }
 
     public void pageShouldContain(String text) {
-        LOG.keywordAppender().appendArgument("text", text);
+        LOG.keywordAppender().appendArgument("Text", text);
 
         if (pageContains(text)) {
             LOG.info(String.format("Current page contains text '%s'.", text));
@@ -2065,7 +2083,11 @@ public class SeleniumHelper {
         LOG.keywordAppender().appendLocator(locator);
 
         WebElement el = finder.find(locator, true, "input");
-        return el.isSelected();
+        boolean selected = el.isSelected();
+
+        LOG.keywordAppender().appendArgument("Selected", selected);
+
+        return selected;
     }
 
     public void selectCheckbox(String locator) {
@@ -2491,7 +2513,8 @@ public class SeleniumHelper {
 
     private List<WebElement> getRadioButton(String groupName) {
         String xpath = String.format("//input[@type='radio' and @name='%s']", groupName);
-        LOG.info("Radio group locator: " + xpath);
+
+        LOG.keywordAppender().appendLocator("xpath=" + xpath);
 
         return driver.findElements(By.xpath(xpath));
     }
@@ -2508,7 +2531,8 @@ public class SeleniumHelper {
 
     private WebElement getRadioButtonWithValue(String groupName, String value) {
         String xpath = String.format("//input[@type='radio' and @name='%s' and (@value='%s' or @id='%s')]", groupName, value, value);
-        LOG.info("Radio group locator: " + xpath);
+
+        LOG.keywordAppender().appendLocator("xpath=" + xpath);
 
         return ElementFinder.findByXpath(driver, xpath, null, null);
     }
@@ -2523,6 +2547,9 @@ public class SeleniumHelper {
 
     private boolean textIsPresent(String text) {
         String locator = String.format("xpath=//*[contains(., %s)]", escapeXpathValue(text));
+
+        LOG.keywordAppender().appendLocator(locator);
+
         return finder.find(locator, false) != null;
     }
 
@@ -2564,7 +2591,9 @@ public class SeleniumHelper {
         }
         
         String readOnly = el.getAttribute("readonly");
-        
+
+        LOG.keywordAppender().appendArgument("Read-only", readOnly);
+
         if (readOnly != null && (readOnly.equalsIgnoreCase("readonly") || readOnly.equalsIgnoreCase("true"))) {
             return false;
         }
