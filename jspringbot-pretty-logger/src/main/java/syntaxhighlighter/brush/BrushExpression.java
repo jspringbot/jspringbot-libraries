@@ -53,6 +53,7 @@ public class BrushExpression extends Brush {
         _regExpRuleList.add(new RegExpRule("(?<![$_a-zA-Z])\\-?[0-9]+(\\.[0-9]+)?", "value"));
         _regExpRuleList.add(new RegExpRule("(?<![\\.\\:])[a-zA-Z0-9$_\\- ]+(?=\\:)", "constants"));
         _regExpRuleList.add(new RegExpRule("[a-zA-Z0-9$_\\- ]+(?=\\()", "functions"));
+        _regExpRuleList.add(new RegExpRule("(?<=[\\.\\:])[a-zA-Z0-9$_\\-]+", "variable"));
 
         _regExpRuleList.add(new RegExpRule(getKeywords(keywords), Pattern.MULTILINE, "keyword")); // keywords
         _regExpRuleList.add(new RegExpRule("[a-zA-Z0-9$_\\-]+", "variable"));
