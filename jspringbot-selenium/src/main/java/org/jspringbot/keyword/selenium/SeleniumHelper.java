@@ -1695,7 +1695,7 @@ public class SeleniumHelper {
     }
 
     public void actionKeyDown(Keys keys) {
-        LOG.keywordAppender().appendArgument("Keys", keys);
+        LOG.keywordAppender().appendArgument("Keys", keys.name());
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1705,7 +1705,7 @@ public class SeleniumHelper {
     public void actionKeyDown(String locator, Keys keys) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendArgument("keys", keys);
+                .appendArgument("Keys", keys.name());
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1719,7 +1719,7 @@ public class SeleniumHelper {
     }
 
     public void actionKeyUp(Keys keys) {
-        LOG.keywordAppender().appendArgument("keys", keys);
+        LOG.keywordAppender().appendArgument("Keys", keys.name());
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1729,7 +1729,7 @@ public class SeleniumHelper {
     public void actionKeyUp(String locator, Keys keys) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendArgument("keys", keys);
+                .appendArgument("Keys", keys.name());
 
         Validate.notNull(actions, "actions is not yet started.");
 
