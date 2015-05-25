@@ -1071,7 +1071,7 @@ public class SeleniumHelper {
         
         WebElement selectEl = getSelectList(locator);
         boolean isMultiSelectList = isMultiSelectList(selectEl);
-        
+
         if (!isMultiSelectList) {
             LOG.keywordAppender().appendArgument("multi-select", false);
             throw new IllegalArgumentException("Keyword 'Unselect all from list' works only for multi-select lists.");
@@ -1646,6 +1646,8 @@ public class SeleniumHelper {
     }
 
     public void actionSendKeys(String keys) {
+        LOG.keywordAppender().appendArgument("Keys", keys);
+
         Validate.notNull(actions, "actions is not yet started.");
 
         actions.sendKeys(toKeys(keys));
@@ -1654,7 +1656,7 @@ public class SeleniumHelper {
     public void actionSendKeys(String locator, String keys) {
         LOG.keywordAppender()
                 .appendLocator(locator)
-                .appendArgument("keys", keys);
+                .appendArgument("Keys", keys);
 
         Validate.notNull(actions, "actions is not yet started.");
 
@@ -1693,6 +1695,8 @@ public class SeleniumHelper {
     }
 
     public void actionKeyDown(Keys keys) {
+        LOG.keywordAppender().appendArgument("Keys", keys);
+
         Validate.notNull(actions, "actions is not yet started.");
 
         actions.keyDown(keys);
@@ -2171,7 +2175,7 @@ public class SeleniumHelper {
     
     public boolean waitForJavaScriptCondition(final String javaScript, int timeOutInSeconds) {
         boolean jscondition;
-        
+
         LOG.keywordAppender()
                 .appendJavascript(javaScript)
                 .appendArgument("timeOutInSeconds", timeOutInSeconds);
@@ -2453,7 +2457,7 @@ public class SeleniumHelper {
             return false;
         }
     }
-    
+
     public boolean isTextPresent(String text) {
         LOG.keywordAppender().appendArgument("Text", text);
 
