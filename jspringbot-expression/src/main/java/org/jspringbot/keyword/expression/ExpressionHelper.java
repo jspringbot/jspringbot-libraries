@@ -81,7 +81,7 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     public void evaluationShouldBe(String expression, Object expected) throws Exception {
         LOG.keywordAppender().appendArgument("Expected Result", expected);
 
-        Object value = evaluate(expression);
+        Object value = silentEvaluate(expression);
 
         if(expected == null && value == null) {
             return;
