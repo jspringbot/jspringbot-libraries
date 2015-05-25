@@ -79,15 +79,18 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
     }
 
     public void evaluationShouldBe(String expression, Object expected) throws Exception {
-        LOG.keywordAppender().appendArgument("Expected Result", expected);
-
         Object value = silentEvaluate(expression);
 
         if(expected == null && value == null) {
             return;
         }
 
-        if(expected == null || value == null || !silentEvaluate(expected).equals(value)) {
+        Object actualValue = silentEvaluate(expected);
+
+        LOG.keywordAppender().appendArgument("Expected Value", value);
+        LOG.keywordAppender().appendArgument("Actual Value", actualValue);
+
+        if(expected == null || value == null || !actualValue.equals(value)) {
             throw new IllegalArgumentException(String.format("Evaluation '%s' was not expected.", expression));
         }
     }
