@@ -222,7 +222,7 @@ public class WordHelper {
             case SaveFormat.DOCX: removeDocxFirstParagraph(file); break;
         }
 
-        LOG.html("<a href='file://%s'/>Download File...</a>", file.getAbsolutePath());
+        LOG.html("<a href='file://%s'>Local Download File...</a>", file.getAbsolutePath());
 
         return file;
     }
