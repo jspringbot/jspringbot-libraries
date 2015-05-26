@@ -45,6 +45,8 @@ public class KeywordLoggerLifeCycleHandler extends LifeCycleAdapter {
             appender.createPath("Keyword Failure Details:");
 
             try {
+                appender.appendProperty("Keyword", name);
+
                 if (params == null) {
                     appender.appendProperty("Keyword Arguments", null);
                 } else if (params.length == 0) {
