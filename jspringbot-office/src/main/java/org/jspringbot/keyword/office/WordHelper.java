@@ -39,10 +39,7 @@ public class WordHelper {
     }
 
     public void openFile(String path) throws Exception {
-        LOG.createAppender()
-                .appendBold("Open File:")
-                .appendProperty("path", path)
-                .log();
+        LOG.keywordAppender().appendArgument("Path", path);
 
         openedFile = resource(path);
         document = new Document(stream(openedFile));
@@ -50,10 +47,7 @@ public class WordHelper {
     }
 
     public void insertText(String text) throws Exception {
-        LOG.createAppender()
-                .appendBold("Insert Text:")
-                .appendCss(text)
-                .log();
+        LOG.keywordAppender().appendArgument("Text", text);
 
         builder.write(text);
     }
@@ -68,20 +62,15 @@ public class WordHelper {
     }
 
     public void insertHtml(String html) throws Exception {
-        LOG.createAppender()
-                .appendBold("Insert Html:")
-                .appendCss(html)
-                .log();
+        LOG.keywordAppender().appendXML(html);
 
         builder.insertHtml(html);
     }
 
     public void insertHyperlink(String display, String url) throws Exception {
-        LOG.createAppender()
-                .appendBold("Insert Hyperlink:")
-                .appendProperty("display", display)
-                .appendProperty("path", url)
-                .log();
+        LOG.keywordAppender()
+                .appendArgument("Display", display)
+                .appendArgument("Url", url);
 
         builder.getFont().setColor(Color.BLUE);
         builder.getFont().setUnderline(Underline.SINGLE);
@@ -90,11 +79,9 @@ public class WordHelper {
     }
 
     public void replaceText(String replaceable, String replacement) throws Exception {
-        LOG.createAppender()
-                .appendBold("Replace Text:")
-                .appendProperty("replaceable", replaceable)
-                .appendProperty("replacement", replacement)
-                .log();
+        LOG.keywordAppender()
+                .appendArgument("Replaceable", replaceable)
+                .appendArgument("Replacement", replacement);
 
         document.getRange().replace(replaceable, replacement, true, false);
     }
@@ -113,13 +100,12 @@ public class WordHelper {
 
     @SuppressWarnings("unchecked")
     public void replaceTextAsImage(final String replaceable, File image, int width, int height) throws Exception {
-        LOG.createAppender()
-                .appendBold("Replace Text As Image:")
-                .appendProperty("replaceable", replaceable)
-                .appendProperty("image", image.getAbsolutePath())
-                .appendProperty("width", width)
-                .appendProperty("height", height)
-                .log();
+        LOG.keywordAppender()
+                .appendArgument("Replaceable", replaceable)
+                .appendArgument("Image", image.getAbsolutePath())
+                .appendArgument("Width", width)
+                .appendArgument("Height", height)
+        ;
 
         final List<Paragraph> found = new ArrayList<Paragraph>(5);
         document.accept(new DocumentVisitor() {
@@ -145,7 +131,7 @@ public class WordHelper {
             }
         }
 
-        replaceText(replaceable, "");
+        document.getRange().replace(replaceable, "", true, false);
     }
 
     public void insertImage(String image) throws Exception {
@@ -162,12 +148,11 @@ public class WordHelper {
 
     @SuppressWarnings("unchecked")
     public void insertImage(File image, int width, int height) throws Exception {
-        LOG.createAppender()
-                .appendBold("Insert Image:")
-                .appendProperty("image", image.getAbsolutePath())
-                .appendProperty("width", width)
-                .appendProperty("height", height)
-                .log();
+        LOG.keywordAppender()
+                .appendArgument("Image", image.getAbsolutePath())
+                .appendArgument("Width", width)
+                .appendArgument("Height", height)
+        ;
 
         byte[] bytes = IOUtils.toByteArray(new FileInputStream(image));
         if(width > 0 && height > 0) {
@@ -198,11 +183,11 @@ public class WordHelper {
     }
 
     public File save(File file, String format) throws Exception {
-        LOG.createAppender()
-                .appendBold("Save:")
-                .appendProperty("file", file.getAbsolutePath())
-                .appendProperty("format", format)
-                .log();
+        LOG.keywordAppender().appendArgument("File", file.getAbsolutePath());
+
+        if(format != null) {
+            LOG.keywordAppender().appendArgument("Format", format);
+        }
 
         int savedFormat;
 
