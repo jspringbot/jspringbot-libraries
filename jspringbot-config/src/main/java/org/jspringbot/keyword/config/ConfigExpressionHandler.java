@@ -10,13 +10,20 @@ public class ConfigExpressionHandler extends AbstractSimpleExpressionHandler {
 
     private ConfigHelper helper;
 
-    public ConfigExpressionHandler(ConfigHelper helper) {
+    private String prefix;
+
+    public ConfigExpressionHandler(ConfigHelper helper, String prefix) {
         this.helper = helper;
+        this.prefix = prefix;
+    }
+
+    public ConfigExpressionHandler(ConfigHelper helper) {
+        this(helper, EXPRESSION_PREFIX);
     }
 
     @Override
     public String getPrefix() {
-        return EXPRESSION_PREFIX;
+        return prefix;
     }
 
     @Override
