@@ -91,7 +91,7 @@ public class ExpressionHelper implements ApplicationContextAware, ValueEvaluator
         LOG.keywordAppender().appendArgument("Actual Value", actualValue);
 
         if(expected == null || value == null || !actualValue.equals(value)) {
-            throw new IllegalArgumentException(String.format("Evaluation '%s' was not expected.", expression));
+            throw new IllegalArgumentException(String.format("Evaluation '%s' was not expected.", value));
         }
     }
 
