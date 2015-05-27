@@ -215,8 +215,9 @@ public class HTTPHelper {
         }
 
         LOG.keywordAppender()
-            .appendArgument("URL", paramUrl)
-            .appendArgument("Path", uriPath)
+            .appendFullArgument("URL", paramUrl)
+            .appendFullArgument("Path", uri.getPath())
+            .appendFullArgument("Query String", uri.getQuery())
             .appendArgument("Method", method);
 
         if (method.equalsIgnoreCase(POST_METHOD)) {
@@ -392,7 +393,6 @@ public class HTTPHelper {
         LOG.keywordAppender()
                 .appendArgument("Name", name)
                 .appendArgument("Value", value);
-
 
         return value;
     }

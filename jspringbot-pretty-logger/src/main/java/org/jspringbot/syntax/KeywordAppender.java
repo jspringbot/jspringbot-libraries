@@ -124,6 +124,16 @@ public class KeywordAppender {
         return this;
     }
 
+    public KeywordAppender appendFullArgument(String property, Object value) {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.appendFullArgument(property, value);
+
+        return this;
+    }
+
     public KeywordAppender appendProperty(String property, Object value) {
         if(appender == null) {
             return this;
@@ -133,6 +143,17 @@ public class KeywordAppender {
 
         return this;
     }
+
+    public KeywordAppender appendFullProperty(String property, Object value) {
+        if(appender == null) {
+            return this;
+        }
+
+        appender.appendFullProperty(property, value);
+
+        return this;
+    }
+
 
     public KeywordAppender appendText(String msg, Object... args) {
         if(appender == null) {

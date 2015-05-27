@@ -33,6 +33,7 @@ public class HighlightRobotLogger extends JSpringBotLogger {
 
     public static final int WORD_WRAP_LENGTH = 120;
 
+    public static final int TRIM_SIZE = 225;
 
     public static HighlightRobotLogger getLogger(Class clazz) {
         return new HighlightRobotLogger(clazz);
@@ -212,6 +213,18 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return append(arguments, property, value);
         }
 
+        public HtmlAppender appendFullArgument(String property, Object value) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendArgument(property, value);
+            }
+
+            if(isSilent()) {
+                return this;
+            }
+
+            return append(arguments, property, value, false);
+        }
+
         public HtmlAppender appendArgumentComment(String comment) {
             if(CollectionUtils.isNotEmpty(paths)) {
                 return paths.peekLast().appendArgumentComment(comment);
@@ -240,6 +253,19 @@ public class HighlightRobotLogger extends JSpringBotLogger {
             return append(properties, property, value);
         }
 
+        public HtmlAppender appendFullProperty(String property, Object value) {
+            if(CollectionUtils.isNotEmpty(paths)) {
+                return paths.peekLast().appendProperty(property, value);
+            }
+
+            if(isSilent()) {
+                return this;
+            }
+
+            return append(properties, property, value, false);
+        }
+
+
         private HtmlAppender appendComment(StringBuilder properties, String comment) {
             if(properties.length() > 0) {
                 properties.append("\n");
@@ -251,6 +277,10 @@ public class HighlightRobotLogger extends JSpringBotLogger {
         }
 
         private HtmlAppender append(StringBuilder properties, String property, Object value) {
+            return append(properties, property, value, true);
+        }
+
+        private HtmlAppender append(StringBuilder properties, String property, Object value, boolean trim) {
             if(properties.length() > 0) {
                 properties.append("\n");
             }
@@ -278,9 +308,19 @@ public class HighlightRobotLogger extends JSpringBotLogger {
                     buf.append("[").append(i++).append("] ").append("\"").append(StringEscapeUtils.escapeJava(String.valueOf(o))).append("\"");
                 }
 
-                properties.append(hardWordWrap(String.format("%s = (%s) %s", property, ((Object[]) value).getClass().getSimpleName(), StringUtils.substring(buf.toString(), 0, 200))));
+                String strValue = buf.toString();
+                if(trim && strValue.length() > TRIM_SIZE) {
+                    strValue = StringUtils.substring(buf.toString(), 0, TRIM_SIZE) + "...";
+                }
+
+                properties.append(hardWordWrap(String.format("%s = (%s) %s", property, ((Object[]) value).getClass().getSimpleName(), strValue)));
             } else {
-                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringEscapeUtils.escapeJava(StringUtils.substring(String.valueOf(value), 0, 100)))));
+                String strValue = String.valueOf(value);
+                if(trim && strValue.length() > TRIM_SIZE) {
+                    strValue = StringUtils.substring(buf.toString(), 0, TRIM_SIZE) + "...";
+                }
+
+                properties.append(hardWordWrap(String.format("%s = \"%s\"", property, StringEscapeUtils.escapeJava(strValue))));
             }
 
             return this;
