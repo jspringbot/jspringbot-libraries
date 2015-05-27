@@ -462,6 +462,10 @@ public class HTTPHelper {
      * @param statusCode
      */
     public void responseStatusCodeShouldBeEqualTo(int statusCode) {
+        LOG.keywordAppender()
+                .appendArgument("Expected Status Code", statusCode)
+                .appendArgument("Actual Status Code", status.getStatusCode());
+
         if(status.getStatusCode() != statusCode) {
             throw new IllegalStateException(String.format("Expecting response status '%d' but was '%s'.", statusCode, status.toString()));
         }
@@ -473,6 +477,8 @@ public class HTTPHelper {
      * @throws java.io.IOException
      */
     public void responseShouldContain(String value) throws IOException {
+        LOG.keywordAppender().appendArgument("Text", value);
+
         if(responseString == null) {
             responseString = EntityUtils.toString(responseEntity);
 
