@@ -214,11 +214,10 @@ public class HTTPHelper {
             uriPath += "?" + uri.getQuery();
         }
 
-        LOG.createAppender()
-            .appendBold("Create Request:")
-            .appendProperty("URI", uriPath)
-            .appendProperty("Method", method)
-            .log();
+        LOG.keywordAppender()
+            .appendArgument("URL", paramUrl)
+            .appendArgument("Path", uriPath)
+            .appendArgument("Method", method);
 
         if (method.equalsIgnoreCase(POST_METHOD)) {
             request  = new HttpPost(uriPath);
@@ -241,11 +240,9 @@ public class HTTPHelper {
      * @param value
      */
     public void addRequestHeader(String name, String value) {
-        LOG.createAppender()
-            .appendBold("Add Request Header:")
-            .appendProperty("Name", name)
-            .appendProperty("Value", value)
-            .log();
+        LOG.keywordAppender()
+                .appendArgument("Name", name)
+                .appendArgument("Value", value);
 
         headers.add(new BasicNameValuePair(name, value));
     }
@@ -256,11 +253,9 @@ public class HTTPHelper {
      * @param value
      */
     public void addRequestParameter(String name, String value) {
-        LOG.createAppender()
-            .appendBold("Add Request Parameter:")
-            .appendProperty("Name", name)
-            .appendProperty("Value", value)
-            .log();
+        LOG.keywordAppender()
+                .appendArgument("Name", name)
+                .appendArgument("Value", value);
 
         params.add(new BasicNameValuePair(name, value));
     }
@@ -276,17 +271,13 @@ public class HTTPHelper {
 
         stringBody = StringUtils.trimToEmpty(stringBody);
 
-        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender().appendBold("Set Request Body:");
-
         if(JSONUtils.isJSONValid(stringBody)) {
-            appender.appendJSON(JSONHelper.prettyPrint(stringBody));
+            LOG.keywordAppender().appendJSON(JSONHelper.prettyPrint(stringBody));
         } else if(XMLUtils.isValidXML(stringBody)) {
-            appender.appendXML(JSONHelper.prettyPrint(stringBody));
+            LOG.keywordAppender().appendXML(JSONHelper.prettyPrint(stringBody));
         } else {
-            appender.appendCode(stringBody);
+            LOG.keywordAppender().appendCode(stringBody);
         }
-
-        appender.log();
 
         ((HttpEntityEnclosingRequest) request).setEntity(new StringEntity(stringBody, ENCODING_UTF_8));
     }
@@ -308,11 +299,9 @@ public class HTTPHelper {
         BasicScheme basicAuth = new BasicScheme();
         authCache.put(targetHost, basicAuth);
 
-        LOG.createAppender()
-            .appendBold("Set Basic Authentication:")
-            .appendProperty("Username", username)
-            .appendProperty("Password", password)
-            .log();
+        LOG.keywordAppender()
+                .appendArgument("Username", username)
+                .appendArgument("Password", password);
 
         context.setAttribute(ClientContext.AUTH_CACHE, authCache);
     }
@@ -365,52 +354,44 @@ public class HTTPHelper {
 
         addRequestHeadersToHttpRequest();
 
-        LOG.createAppender()
-            .appendBold("Request Line:")
-            .appendCode(String.valueOf(request.getRequestLine()))
-            .log();
+        LOG.keywordAppender().appendArgument("Request Line", String.valueOf(request.getRequestLine()));
 
         response = client.execute(targetHost, request, context);
         status = response.getStatusLine();
         responseEntity = response.getEntity();
 
         // request headers
-        HighlightRobotLogger.HtmlAppender appender = LOG.createAppender().appendBold("Request Headers:");
+        LOG.keywordAppender().createPath("Request Headers:");
         for(Header header : request.getAllHeaders()) {
-            appender.appendProperty(header.getName(), header.getValue());
+            LOG.keywordAppender().appendProperty(header.getName(), header.getValue());
         }
-        appender.log();
+        LOG.keywordAppender().endPath();
 
         // request parameters for post
         if (request instanceof HttpPost && CollectionUtils.isNotEmpty(params)) {
-            appender = LOG.createAppender().appendBold("Request Parameters:");
+            LOG.keywordAppender().createPath("Request Parameters:");
             for(NameValuePair nv : params) {
-                appender.appendProperty(nv.getName(), nv.getValue());
+                LOG.keywordAppender().appendProperty(nv.getName(), nv.getValue());
             }
-            appender.log();
+            LOG.keywordAppender().endPath();
         }
 
-        LOG.createAppender()
-            .appendBold("Response Status Line:")
-            .appendCode(String.valueOf(status))
-            .log();
+        LOG.keywordAppender().appendArgument("Status", String.valueOf(status));
 
         // response headers
-        appender = LOG.createAppender().appendBold("Response Headers:");
+        LOG.keywordAppender().createPath("Response Headers:");
         for(Header header : response.getAllHeaders()) {
-            appender.appendProperty(header.getName(), header.getValue());
+            LOG.keywordAppender().appendProperty(header.getName(), header.getValue());
         }
-        appender.log();
+        LOG.keywordAppender().endPath();
     }
 
     public String getResponseHeader(String name) {
         String value = response.getFirstHeader(name).getValue();
 
-        LOG.createAppender()
-                .appendBold("Get Response Header:")
-                .appendProperty("name", name)
-                .appendProperty("value", value)
-                .log();
+        LOG.keywordAppender()
+                .appendArgument("Name", name)
+                .appendArgument("Value", value);
 
 
         return value;
@@ -428,12 +409,9 @@ public class HTTPHelper {
             }
         }
 
-        LOG.createAppender()
-                .appendBold("Get Cookie:")
-                .appendProperty("name", name)
-                .appendProperty("value", cookieValue)
-                .log();
-
+        LOG.keywordAppender()
+                .appendArgument("name", name)
+                .appendArgument("value", cookieValue);
 
         return cookieValue;
     }
@@ -498,10 +476,7 @@ public class HTTPHelper {
         if(responseString == null) {
             responseString = EntityUtils.toString(responseEntity);
 
-            LOG.createAppender()
-                .appendBold("Response Content:")
-                .appendCode(responseString)
-                .log();
+            LOG.keywordAppender().appendCode(responseString);
 
             consume();
         }
