@@ -272,13 +272,13 @@ public class HTTPHelper {
 
         stringBody = StringUtils.trimToEmpty(stringBody);
 
-        if(JSONUtils.isJSONValid(stringBody)) {
+        /*if(JSONUtils.isJSONValid(stringBody)) {
             LOG.keywordAppender().appendJSON(JSONHelper.prettyPrint(stringBody));
         } else if(XMLUtils.isValidXML(stringBody)) {
             LOG.keywordAppender().appendXML(JSONHelper.prettyPrint(stringBody));
         } else {
             LOG.keywordAppender().appendCode(stringBody);
-        }
+        } */
 
         ((HttpEntityEnclosingRequest) request).setEntity(new StringEntity(stringBody, ENCODING_UTF_8));
     }
