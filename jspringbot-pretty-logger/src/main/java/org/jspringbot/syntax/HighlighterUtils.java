@@ -177,7 +177,7 @@ public class HighlighterUtils {
             cssColor(buf, "background-color", theme.getBackground());
         }
         if(theme.getFont() != null) {
-            buf.append("font-family:").append(theme.getFont().getFamily()).append(";");
+            buf.append("font-family:").append("Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace");
         }
         buf.append("font-size:").append(fontSize).append(";");
         buf.append("white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;");
