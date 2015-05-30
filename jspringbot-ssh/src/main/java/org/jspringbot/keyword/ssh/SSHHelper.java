@@ -66,6 +66,10 @@ public class SSHHelper {
         scpClient.get(remoteFile, System.out);
     }
 
+    public void put(String localFile, String remoteDirectory) throws IOException {
+        scpClient.put(localFile, remoteDirectory);
+    }
+
     public void executeWhileOutputIsNot(String command, String compare, long sleep, long timeout) throws InterruptedException {
         Validate.notNull(compare, "Compare should not be null");
 
