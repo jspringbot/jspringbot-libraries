@@ -1141,6 +1141,10 @@ public class SeleniumHelper {
     public void goBack() {
         driver.navigate().back();
     }
+
+    public void goForward() {
+        driver.navigate().forward();
+    }
     
     public String getHTMLSourceOfOmnitureDebuggerWindow(final String javaScript, String windowName, String decodeCheckboxNameLocator, int waitTime) {
         String htmlSource = null;
