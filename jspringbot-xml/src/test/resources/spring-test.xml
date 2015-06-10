@@ -30,6 +30,7 @@
 
   <bean name="sampleResources" class="org.jspringbot.keyword.xml.SampleResources">
     <property name="sampleXML" value="classpath:sample.xml"/>
+    <property name="sample2XML" value="classpath:sample2.xml"/>
   </bean>
 </beans>
 

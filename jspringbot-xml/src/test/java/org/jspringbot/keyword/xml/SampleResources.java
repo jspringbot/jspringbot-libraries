@@ -27,6 +27,16 @@ import java.io.InputStream;
 public class SampleResources {
     private Resource sampleXML;
 
+    private Resource sample2XML;
+
+    public Resource getSample2XML() {
+        return sample2XML;
+    }
+
+    public void setSample2XML(Resource sample2XML) {
+        this.sample2XML = sample2XML;
+    }
+
     public Resource getSampleXML() {
         return sampleXML;
     }
@@ -40,6 +50,17 @@ public class SampleResources {
 
         try {
             in = sampleXML.getInputStream();
+            return IOUtils.toString(in);
+        } finally {
+            IOUtils.closeQuietly(in);
+        }
+    }
+
+    public String getSample2XMLString() throws IOException {
+        InputStream in = null;
+
+        try {
+            in = sample2XML.getInputStream();
             return IOUtils.toString(in);
         } finally {
             IOUtils.closeQuietly(in);

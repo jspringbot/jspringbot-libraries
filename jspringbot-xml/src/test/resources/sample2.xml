@@ -1,0 +1,3 @@
+<balancesResponse nativeCurrency="CNY" requiredCurrency="CNY" responseCode="OK" xmlns="http://integration.api/jaxb/model" xmlns:ns2="http://integration.api/jaxb/model/internal">
+  <balance nativeValue="10001891.0" requiredValue="10001891.0" type="AVAILABLE"/>
+</balancesResponse>

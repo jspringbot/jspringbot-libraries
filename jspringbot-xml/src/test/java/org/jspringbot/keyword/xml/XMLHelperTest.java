@@ -19,6 +19,7 @@
 package org.jspringbot.keyword.xml;
 
 import com.jamesmurty.utils.XMLBuilder;
+import org.apache.commons.collections.CollectionUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,15 @@ public class XMLHelperTest {
 
     @Autowired
     private GetXMLXPathElementTextContent getXPathElementTextContentKeyword;
+
+    @Test
+    public void testGetXpathElements2() throws Exception {
+        helper.setXmlString(resources.getSample2XMLString());
+
+        List<Element> els = helper.getXpathElements("//balancesResponse");
+
+        assertTrue("Should not be empty.", CollectionUtils.isNotEmpty(els));
+    }
 
     @Test
     public void testGetXpathElements() throws Exception {

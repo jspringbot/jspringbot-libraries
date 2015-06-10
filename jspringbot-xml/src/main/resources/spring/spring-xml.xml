@@ -27,6 +27,15 @@
 
   <description>jSpringBot XML Keywords</description>
 
+  <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    <property name="locations">
+      <list>
+        <value>classpath:jspringbot.properties</value>
+      </list>
+    </property>
+  </bean>
+
   <bean id="xmlFunctions" class="org.jspringbot.keyword.expression.engine.function.SupportedFunctionRegistryBean">
     <constructor-arg>
       <list>
@@ -35,7 +44,10 @@
     </constructor-arg>
   </bean>
 
-  <bean name="xmlHelper" class="org.jspringbot.keyword.xml.XMLHelper"/>
+  <bean name="xmlHelper" class="org.jspringbot.keyword.xml.XMLHelper">
+    <property name="removeNamespace" value="${xml.remove.namespace:false}"/>
+  </bean>
+
   <bean name="xmlBuilderHelper" class="org.jspringbot.keyword.xml.XMLBuilderHelper"/>
 
   <bean class="org.jspringbot.lifecycle.LifeCycleHandlerRegistryBean">

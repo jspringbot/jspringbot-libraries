@@ -18,12 +18,11 @@
 
 package org.jspringbot.keyword.xml;
 
-import com.jamesmurty.utils.XMLBuilder;
-import com.sun.org.apache.xerces.internal.parsers.DOMParser;
-import com.sun.org.apache.xpath.internal.XPathAPI;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
+import org.apache.xerces.parsers.DOMParser;
+import org.apache.xpath.XPathAPI;
 import org.jspringbot.syntax.HighlightRobotLogger;
 import org.jspringbot.syntax.HighlighterUtils;
 import org.springframework.core.io.Resource;
@@ -48,9 +47,19 @@ public class XMLHelper {
 
     protected Document document;
 
+    private boolean removeNamespace = false;
+
     public void reset() {
         xmlString = null;
         document = null;
+    }
+
+    public boolean isRemoveNamespace() {
+        return removeNamespace;
+    }
+
+    public void setRemoveNamespace(boolean removeNamespace) {
+        this.removeNamespace = removeNamespace;
     }
 
     public void validate() {
@@ -68,6 +77,10 @@ public class XMLHelper {
             xmlString = new String(IOUtils.toCharArray(resource.getInputStream()));
         }
 
+        if(removeNamespace) {
+            xmlString = removeXmlStringNamespaceAndPreamble(xmlString);
+        }
+
         DOMParser parser = new DOMParser();
         parser.parse(new InputSource(new StringReader(xmlString)));
 
@@ -77,6 +90,13 @@ public class XMLHelper {
             .log();
 
         this.document = parser.getDocument();
+    }
+
+    public static String removeXmlStringNamespaceAndPreamble(String xmlString) {
+        return xmlString.replaceAll("(<\\?[^<]*\\?>)?", ""). /* remove preamble */
+                replaceAll("xmlns.*?(\"|\').*?(\"|\')", "") /* remove xmlns declaration */
+                .replaceAll("(<)(\\w+:)(.*?>)", "$1$3") /* remove opening tag prefix */
+                .replaceAll("(</)(\\w+:)(.*?>)", "$1$3"); /* remove closing tags prefix */
     }
 
     public void setDocument(Document document) {
@@ -264,5 +284,6 @@ public class XMLHelper {
 
         return nodeList;
     }
+
 
 }
