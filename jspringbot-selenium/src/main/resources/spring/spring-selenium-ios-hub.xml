@@ -19,15 +19,17 @@
     </property>
   </bean>
 
-  <bean id="desiredCapabilities" factory-method="mobileSafariIpad"
-        class="org.uiautomation.ios.IOSCapabilities">
-  </bean>
+  <bean id="desiredCapabilities" class="org.uiautomation.ios.IOSCapabilities" />
 
-  <bean class="org.jspringbot.keyword.selenium.DesiredCapabilitiesBean">
+  <bean class="org.jspringbot.keyword.selenium.IOSCapabilitiesBean">
     <constructor-arg ref="desiredCapabilities"/>
-    <property name="proxy" value="${selenium.proxy:none}"/>
-    <property name="httpProxy" value="${selenium.http.proxy:none}"/>
-    <property name="sslProxy" value="${selenium.ssl.proxy:none}"/>
+    <property name="deviceType" value="${ios.device.type:iphone}"/>
+    <property name="deviceId" value="${ios.device.id:none}"/>
+    <property name="simulatorMode" value="${ios.simulator.mode:false}"/>
+    <property name="capabilities" value="${selenium.added.capabilities:none}"/>
+    <property name="browserName" value="${selenium.grid.browserName:none}"/>
+    <property name="platform" value="${selenium.grid.platform:none}"/>
+    <property name="version" value="${selenium.grid.version:none}"/>
   </bean>
 
   <bean id="webdriver" class="org.jspringbot.keyword.selenium.RemoteWebDriverFactory" factory-method="create" destroy-method="quit">
