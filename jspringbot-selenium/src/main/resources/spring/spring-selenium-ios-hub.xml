@@ -19,7 +19,7 @@
     </property>
   </bean>
 
-  <bean id="desiredCapabilities" class="org.uiautomation.ios.IOSCapabilities" />
+  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>
 
   <bean class="org.jspringbot.keyword.selenium.IOSCapabilitiesBean">
     <constructor-arg ref="desiredCapabilities"/>
