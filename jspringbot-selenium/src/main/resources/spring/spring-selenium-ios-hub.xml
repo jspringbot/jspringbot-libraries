@@ -19,11 +19,10 @@
     </property>
   </bean>
 
-  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>
+  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>  
 
   <bean class="org.jspringbot.keyword.selenium.IOSCapabilitiesBean">
     <constructor-arg ref="desiredCapabilities"/>
-    <constructor-arg type="java.lang.String" value="${ios.device.type:iphone}"/>
     <property name="deviceId" value="${ios.device.id:none}"/>
     <property name="simulatorMode" value="${ios.simulator.mode:false}"/>
     <property name="capabilities" value="${selenium.added.capabilities:none}"/>

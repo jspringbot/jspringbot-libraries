@@ -10,19 +10,15 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.InitializingBean;
 import org.uiautomation.ios.IOSCapabilities;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class IOSCapabilitiesBean implements InitializingBean {
     private static final Logger LOGGER = Logger.getLogger(IOSCapabilitiesBean.class);
 
-    private DesiredCapabilities capabilities;
-    
-    private String browser = "Safari";
+    private DesiredCapabilities capabilities =  IOSCapabilities.iphone("Safari");
 
-    public IOSCapabilitiesBean(DesiredCapabilities capabilities, String device) {
+    public IOSCapabilitiesBean(DesiredCapabilities capabilities) {
         this.capabilities = capabilities;
-        if(device.equalsIgnoreCase("iphone")){
-    		this.capabilities = IOSCapabilities.iphone(browser);
-    	}
     }    
     
     public void setDeviceId(String uuid) {
