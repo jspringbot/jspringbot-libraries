@@ -7,25 +7,23 @@ import org.apache.log4j.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.springframework.beans.factory.InitializingBean;
 import org.uiautomation.ios.IOSCapabilities;
 
 public class IOSCapabilitiesBean implements InitializingBean {
     private static final Logger LOGGER = Logger.getLogger(IOSCapabilitiesBean.class);
 
-    private IOSCapabilities capabilities;
+    private DesiredCapabilities capabilities;
     
     private String browser = "Safari";
 
-    public IOSCapabilitiesBean(IOSCapabilities capabilities) {
+    public IOSCapabilitiesBean(DesiredCapabilities capabilities, String device) {
         this.capabilities = capabilities;
-    }
-    
-    public void setDeviceType(String device) {
-    	if(device.equalsIgnoreCase("iphone")){
+        if(device.equalsIgnoreCase("iphone")){
     		this.capabilities = IOSCapabilities.iphone(browser);
     	}
-    }
+    }    
     
     public void setDeviceId(String uuid) {
     	if(!StringUtils.equalsIgnoreCase(uuid, "none")) {
