@@ -19,16 +19,15 @@
     </property>
   </bean>
 
-  <bean id="desiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities"/>  
+  <bean id="desiredCapabilities" factory-method="mobileSafariIpad"
+        class="org.uiautomation.ios.IOSCapabilities">
+  </bean>
 
-  <bean class="org.jspringbot.keyword.selenium.IOSCapabilitiesBean">
+  <bean class="org.jspringbot.keyword.selenium.DesiredCapabilitiesBean">
     <constructor-arg ref="desiredCapabilities"/>
-    <property name="deviceId" value="${ios.device.id:none}"/>
-    <property name="simulatorMode" value="${ios.simulator.mode:false}"/>
-    <property name="capabilities" value="${selenium.added.capabilities:none}"/>
-    <property name="browserName" value="${selenium.grid.browserName:none}"/>
-    <property name="platform" value="${selenium.grid.platform:none}"/>
-    <property name="version" value="${selenium.grid.version:none}"/>
+    <property name="proxy" value="${selenium.proxy:none}"/>
+    <property name="httpProxy" value="${selenium.http.proxy:none}"/>
+    <property name="sslProxy" value="${selenium.ssl.proxy:none}"/>
   </bean>
 
   <bean id="webdriver" class="org.jspringbot.keyword.selenium.RemoteWebDriverFactory" factory-method="create" destroy-method="quit">
@@ -39,18 +38,11 @@
   <bean class="org.jspringbot.keyword.selenium.WebDriverWaitBean">
     <constructor-arg ref="webdriver"/>
     <property name="implicitWaitInSeconds" value="${selenium.implicit.wait:30}"/>
-    <property name="pageLoadWaitInSeconds" value="${selenium.page.wait:30}"/>
-    <property name="scriptWaitInSeconds" value="${selenium.script.wait:30}"/>
-    <property name="downloadTimeoutInSeconds" value="${selenium.download.timeout:10}"/>
   </bean>
 
   <bean id="helper" class="org.jspringbot.keyword.selenium.SeleniumHelper">
     <constructor-arg ref="webdriver"/>
-    <property name="jqueryLink" value="${selenium.jquery.link:https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js}"/>
-    <property name="implicitWaitInSeconds" value="${selenium.implicit.wait:30}"/>
     <property name="screenCaptureDir" value="${selenium.screenshot.folder}"/>
-    <property name="autoZoomIn" value="${selenium.browser.auto.zoom.in:0}"/>
-    <property name="autoZoomOut" value="${selenium.browser.auto.zoom.out:0}"/>
   </bean>
 
   <!-- Scan components -->
