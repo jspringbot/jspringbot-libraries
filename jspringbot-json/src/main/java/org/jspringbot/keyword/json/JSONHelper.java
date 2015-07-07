@@ -160,7 +160,7 @@ public class JSONHelper {
         }
         
         Object jsonValue = null;
-        if (jsonExpression.contains(".")) {
+        if ( jsonExpression.contains(".") && !jsonExpression.contains("[") ) {
         	// See https://groups.google.com/forum/#!topic/jsonpath/7YvgXWP1_7Y
         	String characterWithDots = String.format("$.['%s']", jsonExpression);
         	jsonValue= JsonPath.read(jsonString, characterWithDots);
