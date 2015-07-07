@@ -158,8 +158,16 @@ public class JSONHelper {
         if(jsonExpression.equals("*")) {
             return getRoot();
         }
-
-        Object jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
+        
+        Object jsonValue = null;
+        if (jsonExpression.contains(".")) {
+        	// See https://groups.google.com/forum/#!topic/jsonpath/7YvgXWP1_7Y
+        	String characterWithDots = String.format("$.['%s']", jsonExpression);
+        	jsonValue= JsonPath.read(jsonString, characterWithDots);
+        } else {
+        	jsonValue = JsonPath.read(jsonString, "$." + jsonExpression);
+        }
+        
 
         if(jsonValue instanceof List) {
             jsonValue = ((List) jsonValue).iterator().next();
