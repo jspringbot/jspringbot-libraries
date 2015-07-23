@@ -95,6 +95,10 @@ public class HTTPHelper {
     protected XMLHelper xmlHelper;
 
     protected BasicCookieStore cookieStore;
+    
+    protected boolean useUserAgent;
+    
+    protected String userAgent;
 
     public HTTPHelper(AbstractHttpClient client) {
         this.client = client;
@@ -107,6 +111,14 @@ public class HTTPHelper {
 
     public void setXmlHelper(XMLHelper xmlHelper) {
         this.xmlHelper = xmlHelper;
+    }
+    
+    public void setUserAgentString(String userAgent) {
+        this.userAgent = userAgent;
+    }
+    
+    public void setUserAgentFlag(boolean userAgentFlag) {
+    	this.useUserAgent = userAgentFlag;
     }
 
     public void consume() {
@@ -219,7 +231,7 @@ public class HTTPHelper {
             .appendFullArgument("Path", uri.getPath())
             .appendFullArgument("Query String", uri.getQuery())
             .appendArgument("Method", method);
-
+        
         if (method.equalsIgnoreCase(POST_METHOD)) {
             request  = new HttpPost(uriPath);
         } else if (method.equalsIgnoreCase(GET_METHOD)) {
@@ -231,7 +243,12 @@ public class HTTPHelper {
         } else {
             throw new IllegalArgumentException(String.format("Unknown http method '%s' for url '%s'.", method, paramUrl));
         }
-
+        
+ 
+        if (this.useUserAgent) {
+        	request.setHeader("User-Agent", this.userAgent);
+        }
+        
         reset();
     }
 

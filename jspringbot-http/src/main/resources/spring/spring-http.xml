@@ -37,6 +37,12 @@
     <property name="jsonHelper" ref="jsonHelper"/>
     <property name="xmlHelper" ref="xmlHelper"/>
   </bean>
+  
+  <bean name="userAgent" class="org.jspringbot.keyword.http.UserAgentBean">
+    <constructor-arg ref="httpHelper"/>
+    <property name="userAgentFlag" value="${http.user.agent.flag:false}"/>
+    <property name="userAgentString" value="${http.user.agent.string}"/>
+  </bean>
 
   <!-- Scan components -->
   <ctx:component-scan base-package="org.jspringbot.keyword.http" />
