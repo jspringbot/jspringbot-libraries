@@ -31,7 +31,7 @@ public class AddJSONListIntegerItem extends AbstractJSONKeyword {
 
     @Override
     public Object execute(Object[] params) throws Exception {
-            creator.addJSONArrayItem(Integer.valueOf(String.valueOf(params[1])));
+            creator.addJSONArrayItem(Integer.valueOf(String.valueOf(params[0])));
 
         return null;
     }

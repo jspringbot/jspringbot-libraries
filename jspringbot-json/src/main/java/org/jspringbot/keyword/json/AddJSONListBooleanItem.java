@@ -31,7 +31,7 @@ public class AddJSONListBooleanItem extends AbstractJSONKeyword {
 
     @Override
     public Object execute(Object[] params) throws Exception {
-            creator.addJSONArrayItem(Boolean.valueOf(String.valueOf(params[1])));
+            creator.addJSONArrayItem(Boolean.valueOf(String.valueOf(params[0])));
 
         return null;
     }
