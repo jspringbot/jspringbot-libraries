@@ -70,8 +70,12 @@ public class ELUtils {
         byte[] data = str.getBytes();
         digest.update(data,0,data.length);
         BigInteger i = new BigInteger(1,digest.digest());
+        String output = i.toString(16);
+        while (output.length() < 32){
+            output = "0"+output;
+        }
+        return output;
 
-        return i.toString(16);
     }
 
     private static ExpressionHelper getHelper() {
