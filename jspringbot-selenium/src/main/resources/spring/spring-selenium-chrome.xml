@@ -24,13 +24,13 @@
 
   <bean class="org.jspringbot.keyword.selenium.DesiredCapabilitiesBean">
     <constructor-arg ref="desiredCapabilities"/>
-    <property name="chromeDriverVersion" value="${selenium.chrome.driver.version:2.15}"/>
+    <property name="chromeDriverVersion" value="${selenium.chrome.driver.version:2.20}"/>
     <property name="baseDir" value="${selenium.base.dir:none}"/>
     <property name="chromeDrivers">
       <map>
-        <entry key="Windows" value="${selenium.chrome.driver.url.download:http://chromedriver.storage.googleapis.com/}${selenium.chrome.driver.version:2.15}/chromedriver_win32.zip"/>
-        <entry key="MacOS" value="${selenium.chrome.driver.url.download:http://chromedriver.storage.googleapis.com/}${selenium.chrome.driver.version:2.15}/chromedriver_mac32.zip"/>
-        <entry key="Linux" value="${selenium.chrome.driver.url.download:http://chromedriver.storage.googleapis.com/}${selenium.chrome.driver.version:2.15}/chromedriver_linux32.zip"/>
+        <entry key="Windows" value="${selenium.chrome.driver.url.download:http://chromedriver.storage.googleapis.com/}${selenium.chrome.driver.version:2.20}/chromedriver_win32.zip"/>
+        <entry key="MacOS" value="${selenium.chrome.driver.url.download:http://chromedriver.storage.googleapis.com/}${selenium.chrome.driver.version:2.20}/chromedriver_mac32.zip"/>
+        <entry key="Linux" value="${selenium.chrome.driver.url.download:http://chromedriver.storage.googleapis.com/}${selenium.chrome.driver.version:2.20}/chromedriver_linux32.zip"/>
       </map>
     </property>
     <property name="chromeDeviceEmulation" value="${selenium.chrome.mobile.device:none}"/>
