@@ -67,7 +67,7 @@ public class DesiredCapabilitiesBean implements InitializingBean {
     public void setChromeDrivers(Map<OsCheck.OSType, Resource> chromeDrivers) throws IOException {
         OsCheck.OSType osType = OsCheck.getOperatingSystemType();
 
-        Resource chromeDriver = chromeDrivers.get(OsCheck.OSType.MacOS);
+        Resource chromeDriver = chromeDrivers.get(osType);
 
         if(chromeDriver == null) {
             throw new IllegalArgumentException("Unsupported OS " + osType.name());
