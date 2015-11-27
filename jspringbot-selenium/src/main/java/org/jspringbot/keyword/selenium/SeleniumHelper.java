@@ -18,6 +18,7 @@
 
 package org.jspringbot.keyword.selenium;
 
+import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -778,6 +779,13 @@ public class SeleniumHelper {
         }
 
         executeJavascript(String.format("$('%s').simulateDragDrop({ dropTarget: $('%s')});", cssSrcLocator, cssDestLocator));
+    }
+
+    public void addJQuery() throws IOException {
+        if(!(Boolean) executeJavascript("return (typeof $ != 'undefined');")) {
+            LOG.keywordAppender().appendArgument("jqueryLink", jqueryLink);
+            executeJavascript(jqueryLink);
+        }
     }
 
     public Object executeJavascript(String code) throws IOException {
