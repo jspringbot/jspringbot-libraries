@@ -143,7 +143,6 @@
   </build>
 
   <modules>
-    <module>jspringbot-pretty-logger</module>
     <module>jspringbot-general</module>
     <module>jspringbot-date</module>
     <module>jspringbot-config</module>
