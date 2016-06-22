@@ -2350,7 +2350,8 @@ public class SeleniumHelper {
 
         long start = System.currentTimeMillis();
         long elapse = -1;
-        WebElement el;
+        WebElement el = null;
+        Exception lastException = null;
 
         do {
             if(elapse != -1) {
@@ -2361,12 +2362,21 @@ public class SeleniumHelper {
                 }
             }
 
-            el = finder.find(locator, false);
+            try {
+                el = finder.find(locator, false);
+            } catch(Exception e) {
+                lastException = e;
+                try {
+                    Thread.sleep(pollMillis);
+                } catch (InterruptedException ignore) {
+                }
+            }
+
             elapse = System.currentTimeMillis() - start;
         } while(el == null && elapse < timeoutMillis);
 
         if(el == null) {
-            throw new IllegalStateException(String.format("timeout for locating '%s' (%d ms) reached.", locator, timeoutMillis));
+            throw new IllegalStateException(String.format("timeout for locating '%s' (%d ms) reached.", locator, timeoutMillis), lastException);
         }
     }
 
