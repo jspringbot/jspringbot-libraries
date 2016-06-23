@@ -72,20 +72,6 @@
         <role>developer</role>
       </roles>
     </developer>
-    <developer>
-      <id>developer1</id>
-      <email>bernardilago@gmail.com</email>
-      <roles>
-        <role>developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>developer</id>
-      <email>siegcollado@gmail.com</email>
-      <roles>
-        <role>developer</role>
-      </roles>
-    </developer>
   </developers>
 
   <distributionManagement>
@@ -141,25 +127,6 @@
       </plugin>
     </plugins>
   </build>
-
-  <modules>
-    <module>jspringbot-general</module>
-    <module>jspringbot-date</module>
-    <module>jspringbot-config</module>
-    <module>jspringbot-json</module>
-    <module>jspringbot-xml</module>
-    <module>jspringbot-http</module>
-    <module>jspringbot-csv</module>
-    <module>jspringbot-ssh</module>
-    <module>jspringbot-selenium</module>
-    <module>jspringbot-utils</module>
-    <module>jspringbot-test-data</module>
-    <module>jspringbot-db</module>
-    <module>jspringbot-i18n</module>
-    <module>jspringbot-expression</module>
-    <module>jspringbot-function-generator</module>
-    <module>jspringbot-office</module>
-  </modules>
 
   <dependencyManagement>
     <dependencies>
