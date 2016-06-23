@@ -1,5 +1,0 @@
-Add the given days to the current date time.
-
-Example:
-| Add Date Time Days | 90 |
-| Print Date Time | |

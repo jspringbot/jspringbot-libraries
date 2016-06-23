@@ -1,6 +1,0 @@
-Drags element identified with locator.
-
-movement is a string in format "+70 -300" interpreted as pixels relative to the dragged element's original position.
-
-*Examples:*
-| `Drag And Drop By Offset` | myElem | +50 | -35 | # Move myElem 50px right and 35px down. |

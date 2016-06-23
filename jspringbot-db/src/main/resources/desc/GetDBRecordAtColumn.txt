@@ -1,1 +1,0 @@
-Retrieve the database record given the column index. This assumes a row index of 0.

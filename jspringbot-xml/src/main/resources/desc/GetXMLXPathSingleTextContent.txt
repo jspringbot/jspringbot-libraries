@@ -1,7 +1,0 @@
-Returns the XML a single text content given the xpath expression
-
-Example:
-| ${description}= | `Get XML XPath Single Text Content` | //catalog/book[1]/description | # This is similar to specifying "//catalog/book/description" as xpathExpression since this will only return a single text content. |
-
-Result:
-| ${description} = An in-depth look at creating applications with XML.

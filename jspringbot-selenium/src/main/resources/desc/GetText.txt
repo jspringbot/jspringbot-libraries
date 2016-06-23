@@ -1,4 +1,0 @@
-Returns the text of element identified by locator.
-
-*Example:*
-| ${var}= | Get Text | id=ID |

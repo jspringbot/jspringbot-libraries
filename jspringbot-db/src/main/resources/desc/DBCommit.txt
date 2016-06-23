@@ -1,1 +1,0 @@
-Commits DB transaction and closes the session.

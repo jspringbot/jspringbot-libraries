@@ -1,5 +1,0 @@
-Add JQuery to the page if not yet existing
-
-*Usage:*
-| `Add JQuery` |
-

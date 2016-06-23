@@ -1,1 +1,0 @@
-Searches the page for the given element. Returns true if a match is found and false if none.

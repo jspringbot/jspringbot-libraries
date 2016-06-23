@@ -1,5 +1,0 @@
-Asserts the XML text content given the xpath should be equal to the expected value.
-
-Example:
-| `XML XPath Text Content Should Be Equal` | //catalog/book/author | Gambardella, Matthew |
-| `XML XPath Text Content Should Be Equal` | //catalog/book[2]/author | Ralls, Kim |

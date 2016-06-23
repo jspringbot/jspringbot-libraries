@@ -1,8 +1,0 @@
-Returns the XML element attribute.
-
-Example:
-| ${first_book}= | `Get XML XPath Element` | //catalog/book[1] |
-| ${id}= | `Get XML Element Attribute` | ${first_book} | id |
-
-Result:
-| ${id} = bk101

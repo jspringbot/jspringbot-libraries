@@ -1,3 +1,0 @@
-Sets HTTP Basic Authentication
-
-Please see http://en.wikipedia.org/wiki/Basic_access_authentication for more information on HTTP Basic Authentication.

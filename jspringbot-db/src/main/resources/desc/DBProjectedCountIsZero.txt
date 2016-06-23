@@ -1,1 +1,0 @@
-Asserts that DB projected count is zero.

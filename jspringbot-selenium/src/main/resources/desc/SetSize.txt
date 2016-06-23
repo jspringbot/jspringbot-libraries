@@ -1,5 +1,0 @@
-Sets the size of the current window.
-
-*Example:*
-| Maximize Window | | |
-| Set Size | 300 | 500 |

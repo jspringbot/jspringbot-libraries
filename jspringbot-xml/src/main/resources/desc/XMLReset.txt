@@ -1,2 +1,0 @@
-Resets and clear the XML state.
-

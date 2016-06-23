@@ -1,1 +1,0 @@
-Deletes all cookies by calling Delete Cookie repeatedly.

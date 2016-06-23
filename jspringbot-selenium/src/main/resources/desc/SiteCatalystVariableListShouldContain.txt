@@ -1,7 +1,0 @@
-Asserts if the site catalyst variable (key-value pair) is as expected in the given list. 
-
-*Example:*
-| Click Element | id=foo |
-| Delay | 1000 | # add/remove whenever needed |
-| ${clickEventList}= | Get List Of Site Catalyst Variables |
-| Site Catalyst Variable List Should Contain | ${clickEventList} | pev2=foo-bar |

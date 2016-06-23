@@ -1,1 +1,0 @@
-Verifies the selected text value in select list identified by locator is exactly as expected.

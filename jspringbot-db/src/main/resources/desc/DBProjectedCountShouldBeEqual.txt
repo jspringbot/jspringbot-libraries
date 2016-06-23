@@ -1,1 +1,0 @@
-Asserts that DB record count should be equal to the expected value.

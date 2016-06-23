@@ -1,1 +1,0 @@
-Asserts that DB record at specified row and column should contain the expected value.

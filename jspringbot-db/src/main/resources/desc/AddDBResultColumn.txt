@@ -1,3 +1,0 @@
-Adds DB result column given the name and the hibernate data type.
-
-http://docs.jboss.org/hibernate/orm/3.6/reference/en-US/html/types.html

@@ -1,3 +1,0 @@
-Returns number of elements matching xpath
-
-If you wish to assert the number of matching elements, use `Xpath Should Match X Times`.

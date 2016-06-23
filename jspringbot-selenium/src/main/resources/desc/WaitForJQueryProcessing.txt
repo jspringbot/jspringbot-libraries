@@ -1,9 +1,0 @@
-Waits for the jQuery processing to complete.
-
-Fails if timeout expires before the condition is met.
-
-*Example:*
-
-| *** Variables *** |
-| ${jquery_processing_timeout_in_seconds} | 30 |
-| `Wait For JQuery Processing` | ${jquery_processing_timeout_in_seconds} |

@@ -1,1 +1,0 @@
-Verifies element identified by locator does not contains class.

@@ -1,1 +1,0 @@
-Chooses a file. This allows you to populate a {{input[type="file"]}} input file.

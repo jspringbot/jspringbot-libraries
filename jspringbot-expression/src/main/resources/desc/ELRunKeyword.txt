@@ -1,9 +1,0 @@
-This is similar to `Run Keyword` but since its a jSpringBot keyword expression language is supported for all arguments.
-
-Example:
-
-| `EL Run Keyword`     | Log Many          | $[1]        | $[var('domain_name')]  |        |         |
-| @{list}=             | `EL Run Keyword`  | Create List |  $[i:100]              | $[i:5] | $[true] |
-| `EL Should Be Equal` | $[var('list')[0]] | $[i:100]    |
-| `EL Should Be Equal` | $[var('list')[1]] | $[i:5]      |
-| `EL Should Be True`  | $[var('list')[2]] |

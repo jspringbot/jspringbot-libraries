@@ -1,5 +1,0 @@
-Returns horizontal position of element identified by locator.
-
-The position is returned in pixels off the left side of the page, as an integer. Fails if a matching element is not found.
-
-See also `Get Vertical Position`.

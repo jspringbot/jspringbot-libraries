@@ -1,3 +1,0 @@
-Deletes cookie matching name.
-
-If the cookie is not found, nothing happens.

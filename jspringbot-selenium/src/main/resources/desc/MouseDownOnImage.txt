@@ -1,1 +1,0 @@
-Simulates a mouse down event on an image.

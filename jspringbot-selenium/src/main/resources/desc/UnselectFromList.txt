@@ -1,5 +1,0 @@
-Unselects *values from list identified by locator
-
-If more than one value is given for a single-selection list, the last value will be deselected. If the target list is a multi-selection list, and *values is an empty list, all values of the list will be deselected.
-
-List keywords work on both lists and combo boxes.

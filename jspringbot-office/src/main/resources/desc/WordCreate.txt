@@ -1,3 +1,0 @@
-This will create a word document in memory to be available for update.
-
-| Word Create |

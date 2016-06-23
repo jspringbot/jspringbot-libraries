@@ -1,1 +1,0 @@
-Unselects from list by label, if it is selected beforehand.

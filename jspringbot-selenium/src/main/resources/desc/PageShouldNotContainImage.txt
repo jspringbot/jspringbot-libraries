@@ -1,1 +1,0 @@
-Verifies image identified by locator is NOT found in the current page.

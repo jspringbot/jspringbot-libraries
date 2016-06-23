@@ -1,8 +1,0 @@
-This will open a word document in memory to be available for update.
-Only one word document can be updated at one point.
-
-| Word Open File | classpath:template/doc1.doc |
-
-=>
-
-| This opens the doc1.doc in memory

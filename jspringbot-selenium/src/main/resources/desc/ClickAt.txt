@@ -1,8 +1,0 @@
-Clicks on a link, button, checkbox or radio button with offset.
-
-*Arguments:*
-| locator - an element locator
-| coordString - specifies the x,y position (i.e. - 10,20) of the mouse event relative to the element returned by the locator.
-    
-*Examples:*
-| Click At | id=foo bar | 10 | 20 |    

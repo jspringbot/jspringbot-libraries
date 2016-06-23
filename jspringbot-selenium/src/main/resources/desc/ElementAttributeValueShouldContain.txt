@@ -1,3 +1,0 @@
-Verifies if the element attribute value identified by locator contains text expected.
-
-If you wish to assert an exact (not a substring) match on the attribute value of an element, use `Element Attribute Value Should Be`.

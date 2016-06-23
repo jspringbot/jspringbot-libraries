@@ -1,4 +1,0 @@
-Asserts the XML should match X times.
-
-Example:
-| `XML Xpath Should Match X Times` | //catalog/book/price[text()='5.95']/.. | 2 |

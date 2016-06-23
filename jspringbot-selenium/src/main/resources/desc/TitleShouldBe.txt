@@ -1,1 +1,0 @@
-Verifies that current page title equals title.

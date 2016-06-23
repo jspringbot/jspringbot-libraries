@@ -1,1 +1,0 @@
-Returns the entire html source of the current page or frame.

@@ -1,8 +1,0 @@
-Returns the value of a given css property identified by a locator.
-
-*Example:*
-| ${cssBackgroundImageValue}= | `Get CSS Value` | css=foo bar | background-image |
-
-=>
-
-| ${cssBackgroundImageValue} = url("http://www.foo.bar/sites/sample/dir/sprite.png")

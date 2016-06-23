@@ -1,1 +1,0 @@
-Verifies checkbox identified by locator is not found from current page.

@@ -1,7 +1,0 @@
-Returns the XML matched counts given the xpath.
-
-Example:
-| ${match_count}= | `Get XML Xpath Match Count` | //catalog/book/price[text()='5.95']/.. |
-
-Result:
-| ${match_count} = 2

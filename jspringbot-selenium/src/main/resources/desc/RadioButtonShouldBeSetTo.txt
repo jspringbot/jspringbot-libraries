@@ -1,1 +1,0 @@
-Verifies radio button group identified by group_name has its selection set to value.

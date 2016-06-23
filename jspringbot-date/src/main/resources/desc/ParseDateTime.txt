@@ -1,5 +1,0 @@
-Parses the given date time.
-
-Example:
-| Parse Date Time | 2013-02-08 | yyyy-MM-dd |
-| Print Date Time | | |

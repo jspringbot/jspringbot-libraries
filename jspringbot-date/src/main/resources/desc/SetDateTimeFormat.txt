@@ -1,5 +1,0 @@
-Set the date time format pattern.
-
-Example:
-| Set Date Time Format | dd-MM-yyyy HH:mm |
-| Print Date Time | |

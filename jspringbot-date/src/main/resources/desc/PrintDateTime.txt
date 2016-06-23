@@ -1,4 +1,0 @@
-Prints the date time to string given the set format.
-
-Example:
-| Print Date Time |

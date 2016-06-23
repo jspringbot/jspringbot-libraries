@@ -1,5 +1,0 @@
-Zooms on a web page.
-
-*Example:*
-
-| `Zoom In` | 5 |

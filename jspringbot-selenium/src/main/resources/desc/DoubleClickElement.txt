@@ -1,5 +1,0 @@
-Double click element identified by locator.
-
-If you want to double click the element at certain coordinates, you can specify the position with coordinates argument in format x,y.
-
-See `Click Element` for usage examples.

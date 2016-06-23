@@ -1,5 +1,0 @@
-Verifies an alert is present and dismisses it.
-
-If text is a non-empty string, then it is also verified that the message of the alert equals to text.
-
-Will fail if no alert is present. Note that when running tests with selenium, the alerts will not be visible in the browser. Nevertheless, following keywords will fail unless the alert is dismissed by this keyword or by `Get Alert Message`.

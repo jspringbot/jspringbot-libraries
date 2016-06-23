@@ -1,1 +1,0 @@
-Returns the DB values at Column.

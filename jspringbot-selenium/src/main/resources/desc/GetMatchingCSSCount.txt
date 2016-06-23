@@ -1,3 +1,0 @@
-Returns number of elements matching CSS
-
-If you wish to assert the number of matching elements, use `CSS Should Match X Times`.

@@ -1,1 +1,0 @@
-Quits the browser.

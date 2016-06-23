@@ -1,1 +1,0 @@
-Simulates user reloading page.

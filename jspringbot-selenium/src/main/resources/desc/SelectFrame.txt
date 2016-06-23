@@ -1,1 +1,0 @@
-Sets frame identified by locator as current frame.

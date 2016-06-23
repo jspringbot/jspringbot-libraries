@@ -1,7 +1,0 @@
-This will insert a hyperlink in active document.
-
-| Word Insert Hyperlink | jspringbot.org | http://jspringbot.org/ |
-
-=>
-
-| insert a hyperlink "jspringbot.org" in the active paragraph.

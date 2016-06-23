@@ -1,7 +1,0 @@
-This will insert a text in active document.
-
-| Word Insert Text | sample text |
-
-=>
-
-| insert "sample text" in the active paragraph.

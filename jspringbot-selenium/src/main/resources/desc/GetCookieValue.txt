@@ -1,3 +1,0 @@
-Returns value of cookie found with name.
-
-If no cookie is found with name, this keyword fails.

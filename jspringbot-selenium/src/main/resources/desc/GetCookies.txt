@@ -1,1 +1,0 @@
-Returns all cookies of the current page.

@@ -1,1 +1,0 @@
-Verifies that element identified with locator is disabled.

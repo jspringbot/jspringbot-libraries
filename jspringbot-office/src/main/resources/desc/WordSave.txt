@@ -1,3 +1,0 @@
-This will save the opened document. This will use the same file, so the old file will be overridden.
-
-| Word Save |

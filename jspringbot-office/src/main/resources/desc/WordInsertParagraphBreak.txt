@@ -1,3 +1,0 @@
-This will insert a paragraph break in active document.
-
-| Word Insert Paragraph Break |

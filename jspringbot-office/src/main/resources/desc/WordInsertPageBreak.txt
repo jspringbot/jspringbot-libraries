@@ -1,3 +1,0 @@
-This will insert a page break in active document.
-
-| Word Insert Page Break |
