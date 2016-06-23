@@ -42,7 +42,7 @@
     <selenium.version>2.45.0</selenium.version>
     <java.version>1.6</java.version>
 
-    <jspringbot.version>1.4-SNAPSHOT</jspringbot.version>
+    <jspringbot.version>1.4</jspringbot.version>
     <libdoc.name>jSpringBot Library</libdoc.name>
   </properties>
 
