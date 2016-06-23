@@ -39,7 +39,7 @@
     <hibernate.version>3.3.2.GA</hibernate.version>
     <junit.version>4.8.1</junit.version>
     <junit.addons.version>1.4</junit.addons.version>
-    <selenium.version>2.45.0</selenium.version>
+    <selenium.version>2.53.0</selenium.version>
     <java.version>1.6</java.version>
 
     <jspringbot.version>1.4</jspringbot.version>
