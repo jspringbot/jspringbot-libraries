@@ -140,72 +140,72 @@
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-selenium</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-i18n</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-ssh</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-xml</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-json</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-csv</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-config</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-test-data</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-date</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-utils</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-db</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-http</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
       <dependency>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-expression</artifactId>
-        <version>${jspringbot.version}</version>
+        <version>${project.version}</version>
       </dependency>
 
       <dependency>
