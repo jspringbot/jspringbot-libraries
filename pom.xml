@@ -22,14 +22,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>7</version>
+    <groupId>org.jspringbot</groupId>
+    <artifactId>jspringbot-base</artifactId>
+    <version>1.5-SNAPSHOT</version>
   </parent>
  
-  <groupId>org.jspringbot</groupId>
   <artifactId>jspringbot-libraries</artifactId>
-  <version>1.5-SNAPSHOT</version>
   <name>jspringbot-libraries</name>
   <packaging>pom</packaging>
   <url>http://jspringbot.org</url>
@@ -137,77 +135,6 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-selenium</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-i18n</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-ssh</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-xml</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-json</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-csv</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-config</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-test-data</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-date</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-utils</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-db</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-http</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jspringbot</groupId>
-        <artifactId>jspringbot-expression</artifactId>
-        <version>${project.version}</version>
-      </dependency>
-
       <dependency>
         <groupId>commons-io</groupId>
         <artifactId>commons-io</artifactId>
