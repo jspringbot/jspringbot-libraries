@@ -260,6 +260,16 @@
         <version>${junit.addons.version}</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>com.jamesmurty.utils</groupId>
+        <artifactId>java-xmlbuilder</artifactId>
+        <version>0.6</version>
+      </dependency>
+      <dependency>
+        <groupId>xalan</groupId>
+        <artifactId>xalan</artifactId>
+        <version>2.7.2</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 </project>
