@@ -188,11 +188,6 @@
         <version>1.0.b2</version>
       </dependency>
       <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.5.8</version>
-      </dependency>
-      <dependency>
         <groupId>org.json</groupId>
         <artifactId>json</artifactId>
         <version>20090211</version>
@@ -303,6 +298,21 @@
         <groupId>joda-time</groupId>
         <artifactId>joda-time</artifactId>
         <version>2.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-log4j12</artifactId>
+        <version>1.6.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.6.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>jcl-over-slf4j</artifactId>
+        <version>1.6.1</version>
       </dependency>
 
       <dependency>
