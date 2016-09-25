@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.jspringbot</groupId>
     <artifactId>jspringbot-base</artifactId>
-    <version>1.5-SNAPSHOT</version>
+    <version>1.5</version>
   </parent>
  
   <artifactId>jspringbot-libraries</artifactId>
