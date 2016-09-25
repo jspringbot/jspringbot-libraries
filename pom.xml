@@ -28,6 +28,7 @@
   </parent>
  
   <artifactId>jspringbot-libraries</artifactId>
+  <version>1.5-SNAPSHOT</version>
   <name>jspringbot-libraries</name>
   <packaging>pom</packaging>
   <url>http://jspringbot.org</url>
