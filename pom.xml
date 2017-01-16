@@ -38,7 +38,7 @@
     <hibernate.version>3.3.2.GA</hibernate.version>
     <junit.version>4.12</junit.version>
     <junit.addons.version>1.4</junit.addons.version>
-    <selenium.version>3.0.1</selenium.version>
+    <selenium.version>2.53.1</selenium.version>
     <java.version>1.6</java.version>
     <hamcrest.version>2.0.0.0</hamcrest.version>
     <mockito.version>2.0.2-beta</mockito.version>
