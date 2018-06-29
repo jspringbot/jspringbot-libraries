@@ -23,13 +23,15 @@
 
   <groupId>org.jspringbot</groupId>
   <artifactId>jspringbot-libraries</artifactId>
-  <version>1.9-SNAPSHOT</version>
+  <version>1.10-SNAPSHOT</version>
   <name>jspringbot-libraries</name>
   <packaging>pom</packaging>
   <url>http://jspringbot.org</url>
   <description>jSpringBot Library contains third party libraries used across JSpringBot project.</description>
 
   <properties>
+    <jspringbot.version>1.9</jspringbot.version>
+    
     <spring.version>4.3.2.RELEASE</spring.version>
     <hibernate.version>3.3.2.GA</hibernate.version>
     <junit.version>4.12</junit.version>
@@ -164,6 +166,7 @@
       <plugin>
         <groupId>org.jspringbot</groupId>
         <artifactId>jspringbot-maven-plugin</artifactId>
+        <version>${jspringbot.version}</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
